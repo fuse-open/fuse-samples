@@ -35,6 +35,22 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   </tr>
 </table>
 
+## Animation
+
+<table>
+  <tr>
+    <td><a href="Samples/Animation/CyclePhase">Cycle Phase</a></td>
+    <td><a href="Samples/Animation/TimelineWrap">Timeline Wrap</a></td>
+  </tr>
+</table>
+
+## Custom Controls
+
+<table>
+  <tr>
+    <td><a href="Samples/Controls/Scrollbar">Scrollbar</a></td>
+  </tr>
+</table>
 
 ## Misc
 
