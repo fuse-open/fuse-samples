@@ -1,0 +1,14 @@
+<App Theme="Basic">
+	<DockPanel>
+		<Style>
+			<Text TextAlignment="Center" />
+		</Style>
+		<JavaScript File="MainView.js" />
+		<StatusBarBackground Dock="Top"/>
+		<StackPanel Dock="Fill">
+			<Text FontSize="32">Camera example</Text>
+			<Button Text="Take picture" Clicked="{takePicture}" />
+			<Image File="{image}"/>
+		</StackPanel>
+	</DockPanel>
+</App>

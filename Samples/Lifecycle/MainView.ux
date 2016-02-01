@@ -1,0 +1,10 @@
+<App Theme="Basic">
+	<Panel>
+		<JavaScript File="MainView.js" />
+		<SolidColor ux:Name="backgroundColor" Color="#4CAF50" />
+		<WhileFalse Value="{focused}">
+			<Change backgroundColor.Color="#FF9800" Duration=".5" />
+		</WhileFalse>
+	</Panel>
+</App>
+

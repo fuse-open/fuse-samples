@@ -1,0 +1,33 @@
+<ChattyPage ux:Class="Chat">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		var userName = Observable()
+		
+		var gotoChat = function(args, b) {
+			userName.value = args.user
+		}
+		
+		module.exports = {
+			userName: userName,
+			gotoChat: gotoChat,
+		}
+	</JavaScript>
+	<Label Value="{userName}" Alignment="TopCenter"/>
+	
+	<Button Text="Contacts" Alignment="BottomLeft">
+		<Clicked>
+			<RaiseUserEvent Name="Chatty.GotoContacts"/>
+		</Clicked>
+	</Button>
+	
+	<Button Text="Delete" Alignment="BottomRight">
+		<Clicked>
+			<RaiseUserEvent Name="Chatty.DeleteContact">
+				<UserEventArg Name="user" StringValue="{userName}"/>
+			</RaiseUserEvent>
+		</Clicked>
+	</Button>
+	
+	<OnUserEvent Name="Chatty.GotoChat" Handler="{gotoChat}"/>
+</ChattyPage>

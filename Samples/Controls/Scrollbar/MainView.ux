@@ -1,0 +1,40 @@
+<App Theme="Basic" ClearColor="1,1,1,1">
+	<ClientPanel>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable")
+			
+			exports.items = Observable()
+			for (var i=0; i < 50; ++i) {
+				exports.items.add({
+					index: i,
+					color: [ 0.9 + Math.random() * 0.1,
+						0.9 + Math.random() * 0.1,
+						0.9 + Math.random() * 0.1,
+						1],
+				})
+			}
+		</JavaScript>
+		<Panel Alignment="Left" Margin="5,25,0,25">
+			<Rectangle ux:Name="ScrollThumb" Height="40" Width="20"
+				CornerRadius="5" Fill="0,0.6,0.6,1" Anchor="50%,50%" Alignment="TopCenter"
+				Opacity="0"/>
+		</Panel>
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{items}">
+					<Rectangle Margin="10" CornerRadius="3" Fill="{color}" Height="50">
+						<Text Alignment="TopRight" Value="{index}" Margin="3"/>
+					</Rectangle>
+				</Each>
+			</StackPanel>
+			
+			<ScrollingAnimation>
+				<Move Target="ScrollThumb" Y="1" RelativeTo="ParentSize"/>
+			</ScrollingAnimation>
+			<WhileInteracting>
+				<Change ScrollThumb.Opacity="1" Duration="0.2" DurationBack="2"/>
+			</WhileInteracting>
+		</ScrollView>
+	</ClientPanel>
+</App>
+

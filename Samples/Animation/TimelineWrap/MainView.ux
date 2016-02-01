@@ -1,0 +1,63 @@
+<App Theme="Basic" Background="#446f">	
+	<Circle ux:Class="Dot" Width="15%" Height="15%" Alignment="TopLeft"
+		ux:Name="self" Anchor="50%,50%">
+		<double ux:Property="TimeOffset"/>
+		<SolidColor Color="0.8,0.96,0.99,1" ux:Name="TheColor"/>
+		
+		<Timeline PlayMode="Wrap" InitialProgress="{Property self.TimeOffset}"
+			TimeMultiplier="0.9">
+			<Move KeyframeInterpolation="CatmullRom" RelativeTo="ParentSize">
+				<Keyframe X="0" Time="0"/>
+				<Keyframe X="1" Time="1"/>
+				<Keyframe X="0" Time="2"/>
+			</Move>
+			<Change Target="TheColor.Color" KeyframeInterpolation="CatmullRom">
+				<Keyframe Value="0.8,0.96,0.99,1" Time="0"/>
+				<Keyframe Value="0.9,1,1,1" Time="0.5"/>
+				<Keyframe Value="0.8,0.96,0.99,1" Time="1"/>
+				<Keyframe Value="0.4,0.62,0.71,1" Time="1.5"/>
+				<Keyframe Value="0.8,0.96,0.99,1" Time="2"/>
+			</Change>
+			<Scale KeyframeInterpolation="CatmullRom">
+				<Keyframe Value="1" Time="0"/>
+				<Keyframe Value="1.25" Time="0.5"/>
+				<Keyframe Value="1" Time="1"/>
+				<Keyframe Value="0.83" Time="1.5"/>
+				<Keyframe Value="1" Time="2"/>
+			</Scale>
+		</Timeline>
+		<Timeline PlayMode="Wrap" InitialProgress="{Property self.TimeOffset}">
+			<Move KeyframeInterpolation="Linear" RelativeTo="ParentSize">
+				<Keyframe Y="0" Time="0"/>
+				<Keyframe Y="1" Time="4"/>
+			</Move>
+			<Scale>
+				<Keyframe Value="0.2" Time="0"/>
+				<Keyframe Value="1" Time="1"/>
+				<Keyframe Value="1" Time="3"/>
+				<Keyframe Value="0.2" Time="4"/>
+			</Scale>
+			<Change Target="self.Opacity">
+				<Keyframe Value="0" Time="0"/>
+				<Keyframe Value="1" Time="0.5"/>
+				<Keyframe Value="1" Time="3.5"/>
+				<Keyframe Value="0" Time="4"/>
+			</Change>
+		</Timeline>
+	</Circle>
+	
+	<ClientPanel>
+		<Panel Margin="50" Alignment="Center" Width="200" Height="300">
+			<Dot TimeOffset="0"/>
+			<Dot TimeOffset="0.1"/>
+			<Dot TimeOffset="0.2"/>
+			<Dot TimeOffset="0.3"/>
+			<Dot TimeOffset="0.4"/>
+			<Dot TimeOffset="0.5"/>
+			<Dot TimeOffset="0.6"/>
+			<Dot TimeOffset="0.7"/>
+			<Dot TimeOffset="0.8"/>
+			<Dot TimeOffset="0.9"/>
+		</Panel>
+	</ClientPanel>
+</App>

@@ -1,0 +1,70 @@
+<App Theme="Basic">
+	<DockPanel>
+		<Style>
+			<Page>
+				<EnteringAnimation>
+					<Move X="1" RelativeTo="ParentSize"/>
+				</EnteringAnimation>
+				<ExitingAnimation>
+					<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+				</ExitingAnimation>
+			</Page>
+		</Style>
+
+
+		<Panel Dock="Top" Height="50" Background="#ddd" Navigation="nav" HitTestMode="LocalBoundsAndChildren">
+
+			<WhileCanGoBack>
+				<Button ux:Name="backButton" Text="Back" Alignment="Left" Width="100">
+					<Clicked>
+						<GoBack />
+					</Clicked>
+					<AddingAnimation>
+						<Change backButton.Opacity="0" Duration="0.3" />
+					</AddingAnimation>
+					<RemovingAnimation>
+						<Change backButton.Opacity="0" Duration="0.3" />
+					</RemovingAnimation>
+				</Button>
+			</WhileCanGoBack>
+
+			<Panel Width="100">
+				<Text Value="{Page Title}" FontSize="24" Alignment="Center"/>
+			</Panel>
+		</Panel>
+		<Panel>
+			<HierarchicalNavigation ux:Name="nav"/>
+			<Page Background="Blue" Title="Page 1">
+				<StackPanel>
+					<Button Width="100" Height="60" Text="To page 2">
+						<Clicked>
+							<NavigateTo NavigationContext="nav" Target="page2" />
+						</Clicked>
+					</Button>
+					<Button Width="100" Height="60" Text="To page 3">
+						<Clicked>
+							<NavigateTo NavigationContext="nav" Target="page4" />
+						</Clicked>
+					</Button>
+				</StackPanel>
+			</Page>
+
+			<Page ux:Name="page2" Title="Page 2" Background="Red" ux:AutoBind="false">
+				<Button Width="100" Height="60" Text="To page 3">
+					<Clicked>
+						<NavigateTo NavigationContext="nav" Target="page3" />
+					</Clicked>
+				</Button>
+			</Page><!-- notice the ux:AutoBind="false" -->
+			<Page ux:Name="page3" Title="Page 3" Background="Green" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
+			<Page ux:Name="page4" Title="Page 4" Background="Yellow" ux:AutoBind="false">
+				<Button Width="100" Height="60" Text="To page 5">
+					<Clicked>
+						<NavigateTo NavigationContext="nav" Target="page5" />
+					</Clicked>
+				</Button>
+			</Page> <!-- notice the ux:AutoBind="false" -->
+			<Page ux:Name="page5" Title="Page 5" Background="Teal" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
+		</Panel>
+	</DockPanel>
+</App>

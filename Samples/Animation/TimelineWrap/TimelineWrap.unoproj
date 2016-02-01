@@ -1,0 +1,30 @@
+{
+  "InternalsVisibleTo": [],
+  "Packages": [
+    "Experimental.Http",
+    "Fuse.Android",
+    "Fuse.Android",
+    "Fuse.Animations",
+    "Fuse.BasicTheme",
+    "Fuse.Controls",
+    "FuseCore",
+    "Fuse.Designer",
+    "Fuse.Desktop",
+    "Fuse.Drawing",
+    "Fuse.Drawing.Planar",
+    "Fuse.Drawing.Primitives",
+    "Fuse.Effects",
+    "Fuse.Elements",
+    "Fuse.Entities",
+    "Fuse.Gestures",
+    "Fuse.iOS",
+    "Fuse.Navigation",
+    "Fuse.Reactive",
+    "Fuse.Shapes",
+    "Fuse.Triggers",
+  ],
+  "Projects": [],
+  "Includes": [
+	"*"
+  ]
+}

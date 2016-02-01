@@ -1,0 +1,38 @@
+<App Theme="Basic" Background="0.3,0.3,0.5,1">	
+	<Circle ux:Class="Dot" Width="30" Height="30" Alignment="CenterLeft"
+		ux:Name="self" Anchor="50%,50%" Fill="0.7,0.9,1,1">
+		<float ux:Property="TimeOffset"/>
+		<Translation RelativeTo="ParentSize" ux:Name="TheTrans"/>
+		<WhileVisible>
+			<Cycle Target="TheTrans.X" Low="0" High="1" ProgressOffset="{Property self.TimeOffset}"
+				Frequency="0.2" Waveform="Sawtooth" Easing="CircularOut"/>
+			<Cycle Target="self.Opacity" Low="0" High="1" Waveform="Sawtooth" Frequency="0.2"
+				ProgressOffset="{Property self.TimeOffset}" Easing="QuinticOut"/>
+		</WhileVisible>
+	</Circle>
+	
+	<ClientPanel>
+		<Panel Margin="50" Alignment="Center" Width="500" Height="50">
+			<Rectangle>
+				<LinearGradient StartPoint="0,0" EndPoint="1,0">
+					<GradientStop Offset="0" Color="0.3,0.3,0.5,0"/>
+					<GradientStop Offset="0.5" Color="0.3,0.3,0.5,0"/>
+					<GradientStop Offset="0.9" Color="0.7,0.9,1,1"/>
+					<GradientStop Offset="1" Color="0.7,0.9,1,1"/>
+				</LinearGradient>
+			</Rectangle>
+			<Panel Margin="0,0,30,0">
+				<Dot TimeOffset="0"/>
+				<Dot TimeOffset="0.1"/>
+				<Dot TimeOffset="0.2"/>
+				<Dot TimeOffset="0.3"/>
+				<Dot TimeOffset="0.4"/>
+				<Dot TimeOffset="0.5"/>
+				<Dot TimeOffset="0.6"/>
+				<Dot TimeOffset="0.7"/>
+				<Dot TimeOffset="0.8"/>
+				<Dot TimeOffset="0.9"/>
+			</Panel>
+		</Panel>
+	</ClientPanel>
+</App>

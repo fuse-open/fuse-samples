@@ -1,0 +1,30 @@
+<Panel ux:Class="PopupNotices">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		var messageText = Observable()
+		
+		var contactDeleted = function(args,b) {
+			messageText.value = args.user + " has been deleted"
+		}
+		
+		module.exports = {
+			contactDeleted: contactDeleted,
+			messageText: messageText,
+		}
+	</JavaScript>
+	<Panel ux:Name="Warning" Alignment="BottomCenter" Margin="50" Padding="25,0,25,0"
+		Opacity="0">
+		<Rectangle CornerRadius="50" Layer="Background">
+			<SolidColor Color="#FAA"/>
+		</Rectangle>
+		<Label Alignment="Center" Value="{messageText}" TextWrapping="Wrap" TextAlignment="Center"/>
+	</Panel>
+	
+	<!-- if we have UX level event bindings the JS part would not be needed 
+		https://github.com/fusetools/fuselibs/issues/619
+	-->
+	<OnUserEvent Name="Chatty.ContactDeleted" Handler="{contactDeleted}" Filter="Global">
+		<Change Warning.Opacity="1" Duration="0.1" DelayBack="2"/>
+	</OnUserEvent>
+</Panel>

@@ -1,0 +1,86 @@
+<App Theme="Basic">
+	<DockPanel>
+		<Style>
+			<Page>
+				<EnteringAnimation>
+					<Move X="1" RelativeTo="ParentSize"/>
+				</EnteringAnimation>
+				<ExitingAnimation>
+					<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+				</ExitingAnimation>
+			</Page>
+		</Style>
+
+		<JavaScript File="Auth.js" ux:Global="Auth"/>
+		<JavaScript File="MainView.js" />
+		<StatusBarBackground Dock="Top" />
+		<Grid Dock="Top" ColumnCount="3" Navigation="nav" Height="50">
+			<Button Text="Back">
+				<Clicked>
+					<GoBack />
+				</Clicked>
+			</Button>
+			<Button Text="Login" Clicked="{startGithubAuth}" />
+			<Button Text="Get repos" Clicked="{getRepos}" />
+		</Grid>
+		<Panel>
+			<HierarchicalNavigation ux:Name="nav" />
+			<Page>
+				<ScrollView>
+					<StackPanel>
+						<Each Items="{repos}">
+							<Grid RowCount="2" Margin="5" Padding="10" Height="70">
+								<Rectangle Layer="Background" Fill="#eee">
+									<Stroke Brush="#aaa" Width="1" />
+								</Rectangle>
+								<Text Value="{name}" FontSize="22"/>
+								<Text Value="{owner}" FontSize="16" TextColor="#444"/>
+								<Clicked>
+									<Callback Handler="{clicked_handler}" />
+									<NavigateTo Target="issuesPage" NavigationContext="nav" />
+								</Clicked>
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</Page>
+			<Page ux:Name="issuesPage" ux:AutoBind="false">
+				<ScrollView>
+					<StackPanel>
+						<Each Items="{issues}">
+							<DockPanel Margin="5" Padding="10">
+								<Rectangle Layer="Background" Fill="#eee">
+									<Stroke Brush="#aaa" Width="1" />
+								</Rectangle>
+								<Panel Dock="Left" Width="60">
+									<Match Value="{state}">
+										<Case String="open">
+											<Rectangle Width="20" Height="20" Fill="#0f0"/>
+										</Case>
+										<Case String="closed">
+											<Rectangle Width="20" Height="20" Fill="#f00"/>
+										</Case>
+									</Match>
+								</Panel>
+								<Grid RowCount="2">
+									<Text Value="{title}" FontSize="22"/>
+									<Text Value="{author}" FontSize="16" TextColor="#444"/>
+								</Grid>
+								<Panel ux:Name="issueBody" Visibility="Collapsed" Dock="Bottom">
+									<Text Value="{body}" TextWrapping="Wrap"/>
+								</Panel>
+								<WhileTrue ux:Name="showBody">
+									<Change issueBody.Visibility="Visible" />
+
+								</WhileTrue>
+								<Clicked>
+									<Toggle Target="showBody" />
+								</Clicked>
+							</DockPanel>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</Page>
+		</Panel>
+	</DockPanel>
+</App>

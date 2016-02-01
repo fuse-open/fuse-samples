@@ -1,0 +1,69 @@
+<App Theme="Basic">
+	<DockPanel>
+
+		<JavaScript File="Auth.js" ux:Global="Auth" />
+		<JavaScript File="MainView.js" />
+
+		<StatusBarBackground Dock="Top"/>
+		<BottomBarBackground Dock="Bottom"/>
+
+
+
+		<Panel>
+			<Panel>
+				<WhileTrue Value="{showWebView}">
+					<NativeViewHost ux:Name="nvh" Background="#ddd">
+						<WebView ux:Name="webView" Url="{url}">
+							<PageLoaded>
+								<EvaluateJS Handler="{pageLoaded}">
+									return { url : document.location.href };
+								</EvaluateJS>
+							</PageLoaded>
+						</WebView>
+
+						<AddingAnimation>
+							<Change nvh.Opacity="0" Duration="0.3" />
+						</AddingAnimation>
+					</NativeViewHost>
+				</WhileTrue>
+			</Panel>
+			<Panel>
+				<WhileTrue Value="{hasProfile}">
+					<StackPanel Alignment="Center" Padding="20">
+						<Rectangle Layer="Background" CornerRadius="15" Fill="#ddd">
+							<Stroke Width="2" Brush="#aaa" />
+						</Rectangle>
+						<Panel Height="100" Width="100">
+							<Circle>
+								<ImageFill Url="{myPicture}" />
+						 		<Stroke Width="4" Brush="#aaa" />
+							</Circle>
+							<Clicked>
+								<DebugAction Message="{myPicture}"/>
+							</Clicked>
+						</Panel>
+
+						<StackPanel Margin="10" Alignment="Center">
+							<Text Value="Welcome" FontSize="22" TextAlignment="Center"/>
+							<Text Value="{myName}" FontSize="26" TextAlignment="Center"/>
+						</StackPanel>
+
+						<AddingAnimation>
+							<Move RelativeTo="ParentSize" Y="1" Duration="1.5" Easing="BackIn" />
+						</AddingAnimation>
+					</StackPanel>
+				</WhileTrue>
+			</Panel>
+
+			<WhileFalse Value="{hasProfile}">
+				<DockPanel Clicked="{login}" Height="60" Padding="5,5,15,5"
+					   Alignment="Center">
+					<Rectangle Layer="Background" CornerRadius="4" Fill="#3B5998" />
+					<Image File="FB-f-Logo__white_512.png" Dock="Left" Margin="8,8,10,8"/>
+					<Text Value="Login with facebook" Alignment="Center" TextColor="#fff"
+						  FontSize="20" Font="RobotoBold"/>
+				</DockPanel>
+			</WhileFalse>
+		</Panel>
+	</DockPanel>
+</App>
