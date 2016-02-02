@@ -1,0 +1,34 @@
+<App Theme="Basic" ux:Class="GameOfLife" ClearColor="1,1,1,1">
+	<ClientPanel>
+		<JavaScript File="Life.js"/>
+		
+		<DockPanel Dock="Top">
+			<StackPanel Orientation="Horizontal" Dock="Left">
+				<Button Text="Step" Clicked="{step}"/>
+				<Text Value="Auto-Step:" Alignment="VerticalCenter"/>
+				<Switch Value="{autoStep}" Alignment="VerticalCenter" ValueChanged="{autoStepChanged}"/>
+				<Button Text="Clear" Clicked="{clear}" Alignment="VerticalCenter"/>
+				<Text Value="Speed" Alignment="VerticalCenter"/>
+			</StackPanel>
+			<Slider Value="{speed}" Minimum="100" Maximum="1000"/>
+		</DockPanel>
+		<Rectangle Height="1" Color="0,0,0,1" Dock="Top" Margin="0,2,0,0"/>
+		
+		<Grid Clicked="{updateColorCells}" ColumnCount="{numColumns}" RowCount="{numRows}"
+			CellSpacing="3" Color="0.6,0.6,0.7,1">
+			<Each Items="{cells}">
+				<Panel ux:Name="self" Color="1,1,1,1">
+					<Rectangle ux:Name="cell" Color="0,0,0,1" CornerRadius="50"
+						Width="0%" Height="0%"/>
+					<WhileTrue Value="{on}">
+						<Change cell.CornerRadius="0" Duration="0.2"/>
+						<Change cell.Width="100" Duration="0.2"/>
+						<Change cell.Height="100" Duration="0.2"/>
+					</WhileTrue>
+					<Tapped Handler="{toggleCell}"/>
+				</Panel>
+			</Each>
+		</Grid>
+		
+	</ClientPanel>
+</App>
