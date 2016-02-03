@@ -41,7 +41,7 @@
 							<NavigateTo NavigationContext="nav" Target="page2" />
 						</Clicked>
 					</Button>
-					<Button Width="100" Height="60" Text="To page 3">
+					<Button Width="100" Height="60" Text="To page 4">
 						<Clicked>
 							<NavigateTo NavigationContext="nav" Target="page4" />
 						</Clicked>
