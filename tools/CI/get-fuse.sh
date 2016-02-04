@@ -23,11 +23,17 @@ if [ ${#FUSE_DIR} -lt 3 ]; then
     exit 2
 fi
 
+BRANCH=$(echo $BRANCH | sed 's/\//%2F/')
 echo "Branch is $BRANCH"
-URL="$CI_SERVER_URL/builds/project:Fuse,buildType:(id:Fuse_BuildFor$OS),branch:$BRANCH,count:1/artifacts"
+BUILD_ID_URL="$CI_SERVER_URL/builds?locator=project:Fuse,buildType:(id:Fuse_BuildFor$OS),branch:$BRANCH,count:1"
 
-echo "Looking up artifacts at $URL"
-ARTIFACTS=$(curl -s --header "$CI_SERVER_AUTH" $URL)
+echo "Looking up build id at $BUILD_ID_URL"
+BUILD_ID=$(curl -s --header "$CI_SERVER_AUTH" $BUILD_ID_URL | sed 's/.*build id="\([0-9]*\)".*/\1/')
+echo "BUILD_ID is: '$BUILD_ID'"
+
+ARTIFACTS_URL="https://tc.outracks.com/httpAuth/app/rest/builds/$BUILD_ID/artifacts"
+echo "Looking up artifacts at $ARTIFACTS_URL"
+ARTIFACTS=$(curl -s --header "$CI_SERVER_AUTH" $ARTIFACTS_URL)
 echo "Artifacts are: '$ARTIFACTS'"
 
 ZIP=$CI_SERVER_URL"/"$(echo $ARTIFACTS | grep 'content/Fuse.*zip' | sed 's/.*\(builds.*zip\).*/\1/')
