@@ -1,0 +1,41 @@
+<App Theme="Basic" ClearColor="1,1,1,1">
+	<ClientPanel>
+		<DockPanel Dock="Top" Color="0.8,1,1,1" ux:Name="TitleBar" Padding="5">
+			<Text FontSize="32" Alignment="Center">App Title</Text>
+		</DockPanel>
+		
+		<DockPanel Dock="Bottom" Color="0.8,0.8,0.8,1" ux:Name="StatusBar" Padding="5">
+			<Text>Status Bar</Text>
+		</DockPanel>
+		
+		<PageControl>
+			<Page Color="0.95,1,0.9,1">
+				<StackPanel Alignment="Center">
+					<Text Alignment="Center">Page One</Text>
+					<Text>Swipe to navigate</Text>
+				</StackPanel>
+				
+				<WhileActive>
+					<AlternateRoot ParentNode="TitleBar">
+						<Button Dock="Right" Text="Share"/>
+					</AlternateRoot>
+				</WhileActive>
+			</Page>
+			
+			<Page Color="0.95,0.9,1,1">
+				<StackPanel Alignment="Center">
+					<Text Alignment="Center">Page Two</Text>
+					<Text>Toggle status indicator</Text>
+					
+					<Switch>
+						<WhileTrue>
+							<AlternateRoot ParentNode="StatusBar">
+								<Circle Color="1,0,0,1" Dock="Right" BoxSizing="FillAspect" Aspect="1"/>
+							</AlternateRoot>
+						</WhileTrue>
+					</Switch>
+				</StackPanel>
+			</Page>
+		</PageControl>
+	</ClientPanel>
+</App>
