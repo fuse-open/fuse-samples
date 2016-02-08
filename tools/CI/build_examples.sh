@@ -46,7 +46,7 @@ if [ "$MONO" != "" ]; then
     sed -i '' "s+ Packages+ $FUSEDIR/Packages+" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
     sed -i '' "s+/usr/local/share/uno/Packages++" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
     echo -n "/Library/Frameworks/Mono.framework/Versions/Current" > $FUSEDIR/Fuse.app/Contents/.mono_root
-    UNO=$FUSEDIR/Fuse.app/Contents/uno.exe
+    UNO=$FUSEDIR/Fuse.app/Contents/Uno/uno.exe
     FUSE=$FUSEDIR/Fuse.app/Contents/MacOS/Fuse
 else
     PACKAGES=$(echo $FUSEDIR | sed 's/^..//')"/Packages"
