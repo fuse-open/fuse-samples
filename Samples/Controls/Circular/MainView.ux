@@ -4,35 +4,35 @@
 		<float ux:Property="ClockValue"/>
 	<Text Alignment="Center" Value="{Property self.Text}" FontSize="24" TextColor="0,0,0,1"/>
 	</Panel>
-	
+
 	<Panel ux:Class="ClockHand" Anchor="0%,50%" X="50%" Y="50%" Width="29.5%" Height="10%"
 		TransformOrigin="Anchor" ux:Name="selfTheHourLine" SnapToPixels="false">
 		<Circle Alignment="CenterLeft" Height="20%" Aspect="1" BoxSizing="FillAspect"
 			Fill="0.2,0.8,1,0.4" Anchor="50%,50%" SnapToPixels="false"/>
-		<Circle Alignment="CenterRight" Height="100%" Aspect="1" BoxSizing="FillAspect" 
+		<Circle Alignment="CenterRight" Height="100%" Aspect="1" BoxSizing="FillAspect"
 			Fill="0.2,0.8,1,0.2" Anchor="50%,50%" SnapToPixels="false"/>
-		<Circle Alignment="CenterRight" Height="20%" Aspect="1" BoxSizing="FillAspect" 
+		<Circle Alignment="CenterRight" Height="20%" Aspect="1" BoxSizing="FillAspect"
 			Fill="0.2,0.8,1,0.4" Anchor="50%,50%" SnapToPixels="false"/>
 		<Rectangle Alignment="VerticalCenter" Height="3%" MinHeight="1"
 			Fill="0.2,0.8,1,0.2" SnapToPixels="false"/>
 	</Panel>
-			
+
 	<ClientPanel Background="0.8,0.8,0.8,1">
 		<JavaScript>
 			var Observable = require("FuseJS/Observable")
-			
+
 			exports.hoursX = Observable(0)
 			exports.hoursY = Observable(0)
 			exports.hours = Observable(function() {
 				return exports.hoursX.value + exports.hoursY.value * 12
 			})
 			exports.minutes = Observable(0)
-			
+
 			exports.selectHour = function(args) {
 				exports.hoursX.value = args.value%12
 				exports.hoursY.value = Math.floor(args.value/12)
 			}
-			
+
 			exports.selectMinute = function(args) {
 				exports.minutes.value = args.value
 			}
@@ -44,7 +44,7 @@
 			<Change MinuteSelect.Visibility="Visible"/>
 			<Change HourSelect.IsEnabled="false"/>
 		</WhileTrue>
-		
+
 		<Panel Dock="Top" Margin="0,0,0,10">
 			<StackPanel Orientation="Horizontal" Alignment="Center">
 				<Style>
@@ -63,22 +63,22 @@
 				</Number>
 			</StackPanel>
 		</Panel>
-		
+
 		<Panel Aspect="1" BoxSizing="FillAspect" Margin="5">
-			
-			<RangeControl2D ValueX="{hoursX}" ValueY="{hoursY}" 
+
+			<RangeControl2D ValueX="{hoursX}" ValueY="{hoursY}"
 				ux:Name="HourSelect" Minimum="0,0" Maximum="12,1"
 				UserStep="1,1" Visibility="Visible">
-				
+
 				<CircularRangeBehavior ux:Name="HourSlide"
 					StartAngleDegrees="-90" EndAngleDegrees="270"
 					MinimumRadius="0.59" MaximumRadius="0.83" IsWrapping="true"/>
-					
+
 				<ClockHand ux:Name="TheHourLine">
 					<Rotation ux:Name="HourRotate"/>
 					<Attractor Target="HourRotate.Degrees" Value="{Property HourSlide.DegreesValue}"
 						SimulationType="SmoothSnapAngularDegrees"/>
-						
+
 					<Attractor Target="TheHourLine.Width" ux:Name="HourLineAttractor"
 						SimulationType="SmoothSnapPoints"/>
 					<RangeAnimation Value="{Property HourSelect.ValueY}" Minimum="0" Maximum="1">
@@ -89,7 +89,7 @@
 				<InteractionCompleted>
 					<Set ShowMinutes.Value="true"/>
 				</InteractionCompleted>
-				
+
 				<Circle Layer="Background" Fill="1,1,1,1"/>
 				<Panel>
 					<CircleLayout Radius="0.75" StartAngleDegrees="-90" EndAngleDegrees="270"/>
@@ -122,19 +122,19 @@
 					<ClockTick Text="23" ClockValue="23"/>
 				</Panel>
 			</RangeControl2D>
-			
+
 			<RangeControl Value="{minutes}" Minimum="0" Maximum="60" UserStep="5"
 				ux:Name="MinuteSelect" Visibility="Hidden">
-				
+
 				<CircularRangeBehavior ux:Name="MinuteSlide"
 					StartAngleDegrees="-90" EndAngleDegrees="270" IsWrapping="true"/>
-					
+
 				<ClockHand Width="41.5%">
 					<Rotation ux:Name="MinuteRotate"/>
 					<Attractor Target="MinuteRotate.Degrees" Value="{Property MinuteSlide.DegreesValue}"
 						SimulationType="SmoothSnapAngularDegrees"/>
 				</ClockHand>
-			
+
 				<Circle Layer="Background" Fill="1,1,1,1"/>
 				<Panel>
 					<CircleLayout ItemSpacingDegrees="5" StartAngleDegrees="-90" EndAngleDegrees="270"/>
@@ -152,7 +152,7 @@
 					<ClockTick Text="55" ClockValue="55"/>
 				</Panel>
 			</RangeControl>
-			
+
 		</Panel>
 	</ClientPanel>
 </App>
