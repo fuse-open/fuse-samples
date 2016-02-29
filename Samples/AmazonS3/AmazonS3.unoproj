@@ -1,0 +1,19 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Experimental.TextureLoader",
+    "Fuse.Android",
+    "Fuse.Controls",
+    "Fuse.Desktop",
+    "Fuse.Elements",
+    "Fuse.Reactive",
+    "Fuse.Scripting",
+    "Fuse.iOS",
+    "FuseCore",
+    "Uno.Threading",
+    "UnoCore",
+  ],
+  "Includes": [
+    "*"
+  ]
+}

@@ -1,0 +1,7 @@
+<App ux:Class="MainView" ux:AutoCtor="false">
+	<StackPanel>
+		<Image ux:Name="Picture">
+			<TextureImageSource ux:Name="PictureTexture" />
+		</Image>
+	</StackPanel>
+</App>
