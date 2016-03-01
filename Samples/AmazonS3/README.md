@@ -19,5 +19,5 @@ displayed in the app.
 
 For more details on Foreign Code, see [the documentation](https://www.fusetools.com/learn/uno#working-with-foreign-code). For
 more details on AWS and S3, see [the S3 documentation for iOS](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/s3transfermanager.html)
-and [the S3 documentation for Android)[http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/s3transferutility.html].
+and [the S3 documentation for Android](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/s3transferutility.html).
 The code in this sample follows the S3 documentation closely.
