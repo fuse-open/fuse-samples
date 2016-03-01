@@ -3,9 +3,11 @@
   "Packages": [
     "Experimental.TextureLoader",
     "Fuse.Android",
+    "Fuse.BasicTheme",
     "Fuse.Controls",
     "Fuse.Desktop",
     "Fuse.Elements",
+    "Fuse.Gestures",
     "Fuse.Reactive",
     "Fuse.Scripting",
     "Fuse.iOS",

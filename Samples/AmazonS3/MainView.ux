@@ -1,7 +1,10 @@
-<App ux:Class="MainView" ux:AutoCtor="false">
-	<StackPanel>
-		<Image ux:Name="Picture">
-			<TextureImageSource ux:Name="PictureTexture" />
-		</Image>
-	</StackPanel>
+<App Theme="Basic">
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<StackPanel>
+			<Button Text="Start download" Clicked="S3ImageDownloader.Start" />
+			<TextureImageSource ux:Global="PictureTexture" />
+			<Image Source="PictureTexture" />
+		</StackPanel>
+	</DockPanel>
 </App>

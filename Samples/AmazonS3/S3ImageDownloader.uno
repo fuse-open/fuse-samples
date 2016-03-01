@@ -8,12 +8,6 @@ using Uno;
 
 public class TextureSetterTransferListener: TransferListener
 {
-	TextureImageSource _textureImageSource;
-	public TextureSetterTransferListener(TextureImageSource textureImageSource)
-	{
-		_textureImageSource = textureImageSource;
-	}
-
 	public override void OnStateChanged(string fileName, string state)
 	{
 		if (state == "COMPLETED")
@@ -36,12 +30,12 @@ public class TextureSetterTransferListener: TransferListener
 
 	void SetImageTexture(texture2D tex)
 	{
-		_textureImageSource.Texture = tex;
+		MainView.PictureTexture.Texture = tex;
 	}
 
 	public override void OnProgressChanged(long bytesCurrent, long bytesTotal)
 	{
-		debug_log "Download progress: " + (bytesCurrent * 100 / bytesTotal) + "%";
+		debug_log "Download progress: " + ((bytesCurrent * 100) / bytesTotal) + "%";
 	}
 
 	public override void OnError(string error)
@@ -50,12 +44,11 @@ public class TextureSetterTransferListener: TransferListener
 	}
 }
 
-public partial class MainView
+public static class S3ImageDownloader
 {
-	public MainView()
+	public static void Start(object sender, object args)
 	{
 		var s3 = new AmazonS3("<MY-POOLID>");
-		InitializeUX();
-		s3.Download("<MY-BUCKET>", "<MY-FILEKEY>", "tempfile.jpg", new TextureSetterTransferListener(PictureTexture));
+		s3.Download("<MY-BUCKET>", "<MY-FILEKEY>", "tempfile.jpg", new TextureSetterTransferListener());
 	}
 }
