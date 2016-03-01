@@ -17,6 +17,8 @@ Once you have done that, you can fill in the details of your configuration in
 `<MY-FILEKEY>` refers to an image file that you want to download, which will be
 displayed in the app.
 
+## Further reading
+
 For more details on Foreign Code, see [the documentation](https://www.fusetools.com/learn/uno#working-with-foreign-code). For
 more details on AWS and S3, see [the S3 documentation for iOS](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/s3transfermanager.html)
 and [the S3 documentation for Android](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/s3transferutility.html).
