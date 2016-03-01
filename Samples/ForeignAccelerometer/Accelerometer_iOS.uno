@@ -8,6 +8,7 @@ namespace ForeignAccelerometer
 	extern(iOS)
 	class Accelerometer_iOS
 	{
+
 		extern(iOS) ObjC.Object _impl;
 
 		public Accelerometer_iOS(AccelerometerUpdatedInternal updateDelegate)
@@ -19,10 +20,10 @@ namespace ForeignAccelerometer
 		protected extern(iOS) void Init(AccelerometerUpdatedInternal updateDelegate)
 		@{
 			AccelerometerImpl *impl = [[AccelerometerImpl alloc] initWithCallback: ^(float x, float y, float z) {
-				// Normalize acceleration to include gravity
-				x *= 9.81;
-				y *= 9.81;
-				z *= 9.81;
+				// Normalize acceleration
+				x *= -9.81f;
+				y *= -9.81f;
+				z *= -9.81f;
 
 				updateDelegate(x, y, z);
 			}];

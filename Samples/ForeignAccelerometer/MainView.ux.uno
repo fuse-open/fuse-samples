@@ -7,8 +7,9 @@ public partial class MainView
 {
 	void AccUpdated(object sender, AccelerometerUpdatedArgs args)
 	{
-		float3 acc = args.Value;
-		this.myCircle.Offset = float2(acc.X, acc.Y) * -10;
+		float3 acceleration = args.Value;
+		this.myCircle.Offset = acceleration.XY * 10;
+		this.circleScale.Factor = acceleration.Z * 0.2f + 0.2f;
 	}
 
 	public MainView() {

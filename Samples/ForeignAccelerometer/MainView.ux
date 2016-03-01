@@ -1,6 +1,7 @@
 <App Theme="Basic" ux:Class="MainView" ux:AutoCtor="false" Background="#3C4959">
 	<Panel>
-		<Circle ux:Name="myCircle" Width="40" Height="40" Fill="#F2AF5C" />
+		<Circle ux:Name="myCircle" Width="40" Height="40" Fill="#F2AF5C">
+			<Scaling ux:Name="circleScale" />
+		</Circle>
 	</Panel>
 </App>
-
