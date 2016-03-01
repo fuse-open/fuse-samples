@@ -68,5 +68,11 @@ namespace ForeignAccelerometer
 		{
 			_iosImpl.Stop();
 		}
+
+		extern(!MOBILE)
+		public void Start() {}
+
+		extern(!MOBILE)
+		public void Stop() {}
 	}
 }
