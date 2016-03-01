@@ -63,7 +63,11 @@ echo "Bulding examples"
 if [ $ACTION == "build" ]; then
     $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR
 elif [ $ACTION == "preview" ]; then
-    $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR
+    if [ "$TARGET" == "local" ]; then
+        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR
+    else
+        $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR
+    fi
 else
     echo "Invalid action '$ACTION'"
     exit 1
