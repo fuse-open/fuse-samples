@@ -1,8 +1,8 @@
 <Extensions Backend="CPlusPlus">
 	<Type Name="AmazonS3" Condition="Android">
-		<CopyFile Name="aws-android-sdk-2.2.13/lib/aws-android-sdk-core-2.2.13.jar"
+		<CopyFile Name="aws-android-sdk-2.2.13/aws-android-sdk-2.2.13/lib/aws-android-sdk-core-2.2.13.jar"
 			TargetName="@(Java.LibsDirectory)/aws-android-sdk-core-2.2.13.jar" />
-		<CopyFile Name="aws-android-sdk-2.2.13/lib/aws-android-sdk-s3-2.2.13.jar"
+		<CopyFile Name="aws-android-sdk-2.2.13/aws-android-sdk-2.2.13/lib/aws-android-sdk-s3-2.2.13.jar"
 			TargetName="@(Java.LibsDirectory)/aws-android-sdk-s3-2.2.13.jar" />
 		<Require AndroidManifest.ApplicationElement>
 			<![CDATA[

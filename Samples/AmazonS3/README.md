@@ -6,11 +6,10 @@ iOS.
 
 ## Setup
 
-For this sample to work you will need to get the AWS SDK for both iOS and
-Android.  These should be placed in the same directory as this project. The
-sample has been tested with `aws-ios-sdk-2.3.5` and `aws-android-sdk-2.2.13`.
+This sample will automatically download the AWS SDK for the platform it's built
+on.
 
-You will additionally need to configure S3 by following [Amazon's getting started guide](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/s3transfermanager.html).
+You will need to configure S3 by following [Amazon's getting started guide](http://docs.aws.amazon.com/mobile/sdkforios/developerguide/s3transfermanager.html).
 
 Once you have done that, you can fill in the details of your configuration in
 `MainView.uno`, where it says `<MY-POOLID>`, `<MY-BUCKET>`, and `<MY-FILEKEY>`.

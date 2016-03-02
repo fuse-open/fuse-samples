@@ -1,0 +1,7 @@
+if ANDROID {
+aws-android-sdk-2.2.13: "http://sdk-for-android.amazonwebservices.com/aws-android-sdk-2.2.13.zip"
+}
+if iOS {
+aws-ios-sdk-2.3.5: "http://sdk-for-ios.amazonwebservices.com/aws-ios-sdk-2.3.5.zip"
+}
+
