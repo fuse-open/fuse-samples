@@ -4,6 +4,8 @@ This sample shows how to use Amazon Web Services (AWS) SDK through Foreign Code
 to download an image file from Amazon Simple Storage Service (S3) on both Android and
 iOS.
 
+Note: On Android this sample uses features of Fuse that will be released in 0.11.
+
 ## Setup
 
 This sample will automatically download the AWS SDK for the platform it's built
