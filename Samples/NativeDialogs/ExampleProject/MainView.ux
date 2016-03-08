@@ -16,8 +16,8 @@
 						callback: function () { console.log("OK clicked!"); }
 					},
 					negativeButton: {
-						text: "CANCLE",
-						callback: function () { console.log("CANCLE clicked!"); }
+						text: "CANCEL",
+						callback: function () { console.log("CANCEL clicked!"); }
 					},
 				});
 			}
