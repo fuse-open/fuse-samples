@@ -1,0 +1,39 @@
+<App Theme="Basic">
+
+	<ClientPanel>
+
+		<Fuse.Dialogs.DialogModule ux:Global="DialogModule" />
+		<JavaScript>
+
+			var Dialog = require("DialogModule");
+
+			function show_dialog(argument) {
+				Dialog.show({
+					title: "Hello, World!",
+					message: "Dialog created in JavaScript",
+					positiveButton: {
+						text: "OK",
+						callback: function () { console.log("OK clicked!"); }
+					},
+					negativeButton: {
+						text: "CANCEL",
+						callback: function () { console.log("CANCEL clicked!"); }
+					},
+				});
+			}
+
+			module.exports = {
+				show_dialog: show_dialog
+			};
+
+		</JavaScript>
+		
+		<Panel>
+			<Button Text="Show dialog">
+				<Clicked Handler="{show_dialog}" />
+			</Button>
+		</Panel>
+
+	</ClientPanel>
+
+</App>
