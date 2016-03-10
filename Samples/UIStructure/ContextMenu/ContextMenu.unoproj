@@ -25,6 +25,6 @@
         "Uno.Geometry"
   ],
   "Includes": [
-    "*"
+    "MainView.ux:UXFile"
   ]
 }

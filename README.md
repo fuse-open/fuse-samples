@@ -34,6 +34,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
 	<td><a href="Samples/HierarchicalNavigation">HierarchicalNavigation</a></td>
 	<td><a href="Samples/EdgeNavigator">Edge Navigator</a></td>
   </tr>
+  <tr>
+ 	<td><a href="Samples/UIStructure/ContextMenu">Context menu</a></td>
+  </tr>
 </table>
 
 ## Foreign code
