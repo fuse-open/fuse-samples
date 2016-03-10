@@ -1,0 +1,12 @@
+<App Theme="Basic" ClearColor="1,1,1,1">
+	<ClientPanel>
+		<!-- Place on top of all others, serves as root for modals -->
+		<Panel ux:Name="FullWindow" Layer="Overlay"/>
+		<ResourceObject Key="FullWindow" Value="FullWindow"/>
+		
+		<Text Dock="Top" Value="A Title" Background="0.8,0.8,0.8,1"/>
+		<Panel>
+			<OtherPage/>
+		</Panel>
+	</ClientPanel>
+</App>

@@ -1,0 +1,34 @@
+<Panel ux:Class="OtherPage">
+	<Button Text="Delete" Alignment="Center">
+		<Clicked>
+			<Set ModalConfirm.IsEnabled="true"/>
+		</Clicked>
+	</Button>
+	
+	<!-- Toggling the status of the AlternateRoot.IsEnabled will display/hide our "modal" dialog.
+		You could alternately wrap this in another `While...` trigger. -->
+	<AlternateRoot IsEnabled="false" ParentNode="{Resource FullWindow}" ux:Name="ModalConfirm">
+		<Panel Color="1,0.8,0.8,0.9">
+			<StackPanel Alignment="Center" Padding="10">
+				<Rectangle Layer="Background"  Color="1,1,0.98,1">
+					<Stroke Width="1" Color="0,0,0,1"/>
+				</Rectangle>
+				
+				<Text>Are you sure you want to delete it?</Text>
+				
+				<Button Text="Yes, Delete">
+					<Clicked>
+						<Set ModalConfirm.IsEnabled="false"/>
+						<!-- perform action -->
+					</Clicked>
+				</Button>
+				
+				<Button Text="Whoa, no!">
+					<Clicked>
+						<Set ModalConfirm.IsEnabled="false"/>
+					</Clicked>
+				</Button>
+			</StackPanel>
+		</Panel>
+	</AlternateRoot>
+</Panel>
