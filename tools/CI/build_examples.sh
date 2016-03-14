@@ -16,6 +16,7 @@ ROOTDIR=$( cd $BASEDIR/../.. ; pwd)
 FUSEDIR=$ROOTDIR/FuseDownloaded
 BUILDER=$ROOTDIR/./tools/Stuff/MultiProjBuilder/MultiProjBuilder.exe
 PROJECT_DIR=$ROOTDIR/Samples
+EXCLUDES=(NativeDialogs/Fuse.Dialogs)
 ACTION=$1
 TARGET=$2
 CI_SERVER_URL=$3
@@ -31,6 +32,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     echo "Not using mono"
     MONO=""
+fi
+
+EXCLUDE_ARGS=" "
+if [ ${#EXCLUDES[@]} -gt 0 ]; then
+    for e in ${EXCLUDES[@]}; do
+        EXCLUDE_ARGS="$EXCLUDE_ARGS -e $PROJECT_DIR/$e"
+    done
+    echo "Excluding using '$EXCLUDE_ARGS'"
 fi
 
 echo "Installing stuff"
@@ -61,12 +70,12 @@ fi
 
 echo "Bulding examples"
 if [ $ACTION == "build" ]; then
-    $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR
+    $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
 elif [ $ACTION == "preview" ]; then
     if [ "$TARGET" == "local" ]; then
-        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR
+        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR $EXCLUDE_ARGS 
     else
-        $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR
+        $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
     fi
 else
     echo "Invalid action '$ACTION'"
