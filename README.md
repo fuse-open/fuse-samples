@@ -22,6 +22,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   </tr>
   <tr>
   <td><a href="Samples/UserEvents">UserEvents</a></td>
+  <td><a href="Samples/FilterOnObservableCondition">Filter on Observable condition</a></td>
  </tr>
 </table>
 

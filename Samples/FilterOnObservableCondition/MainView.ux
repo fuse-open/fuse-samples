@@ -1,0 +1,42 @@
+<App Theme="Basic">
+	<ClientPanel>
+		<JavaScript File="MainView.js" />
+		<Grid Rows="auto,1*">
+			<Grid Height="60" ColumnCount="4">
+				<Panel Color="#f00" Clicked="{gotoReds}">
+					<Text Alignment="Center" Value="Reds"/>
+				</Panel>
+				<Panel Color="#0f0" Clicked="{gotoGreens}">
+					<Text Alignment="Center" Value="Greens"/>
+				</Panel>
+				<Panel Color="#ddd" Clicked="{gotoOther}">
+					<Text Alignment="Center" Value="Other"/>
+				</Panel>
+				<Panel Color="#ff0" Clicked="{gotoAll}">
+					<Text Alignment="Center" Value="All"/>
+				</Panel>
+			</Grid>
+			<Panel>
+				<ScrollView>
+					<StackPanel>
+						<Each Items="{filteredItems}">
+							<Grid Columns="1*,auto" Color="#ddd" Height="60">
+								<Text Value="{name}" Alignment="VerticalCenter" Margin="50,0,0,0"/>
+								<Rectangle Color="{color}" Width="60" Height="60" Dock="Right"/>
+								<AddingAnimation>
+									<Move X="1" Duration="0.5" RelativeTo="Size" />
+								</AddingAnimation>
+								<RemovingAnimation>
+									<Move X="1" Duration="0.5" RelativeTo="Size" />
+								</RemovingAnimation>
+								<LayoutAnimation>
+									<Move Y="1" Duration="0.5" RelativeTo="PositionChange" />
+								</LayoutAnimation>
+							</Grid>
+						</Each>
+					</StackPanel>
+				</ScrollView>
+			</Panel>
+		</Grid>
+	</ClientPanel>
+</App>
