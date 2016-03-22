@@ -1,0 +1,10 @@
+{
+	"people":[
+		{ "firstName" : "Jacob", "lastName" : "Smith" },
+		{ "firstName" : "Aaron", "lastName" : "Brown" },
+		{ "firstName" : "Alex", "lastName" : "Johnson" },
+		{ "firstName" : "Michael", "lastName" : "Jones" },
+		{ "firstName" : "Ryan", "lastName" : "Taylor" },
+		{ "firstName" : "Adam", "lastName" : "Smith" }
+	]
+}

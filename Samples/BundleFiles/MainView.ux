@@ -1,0 +1,15 @@
+<App Theme="Basic">
+	<JavaScript File="MainView.js" />
+	<Panel Color="#03A9F4">
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{people}">
+					<Grid RowCount="2" ColumnCount="1" Color="{color}" Height="60" Padding="20,5">
+						<Text Value="{firstName}" Alignment="VerticalCenter" />
+						<Text Value="{lastName}" Alignment="VerticalCenter" Margin="20,0" TextColor="#333"/>
+					</Grid>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</Panel>
+</App>
