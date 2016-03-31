@@ -25,7 +25,7 @@ fi
 
 BRANCH=$(echo $BRANCH | sed 's/\//%2F/')
 echo "Branch is $BRANCH"
-BUILD_ID_URL="$CI_SERVER_URL/builds?locator=project:Fuse,buildType:(id:Fuse_BuildFor$OS),branch:$BRANCH,count:1"
+BUILD_ID_URL="$CI_SERVER_URL/builds?locator=project:Fuse,buildType:(id:Fuse_BuildFor$OS),branch:$BRANCH,count:1,status:SUCCESS"
 
 echo "Looking up build id at $BUILD_ID_URL"
 BUILD_ID=$(curl -s --header "$CI_SERVER_AUTH" $BUILD_ID_URL | sed 's/.*build id="\([0-9]*\)".*/\1/')
