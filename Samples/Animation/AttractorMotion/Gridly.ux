@@ -1,0 +1,39 @@
+<DockPanel ux:Class="Gridly">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		exports.items = Observable()
+		
+		function Item(x,y) {
+			this.x = x
+			this.y = y
+			this.xy = [x,y]
+		}
+		
+		var cols = 5
+		var rows = 5
+		for (var i=0; i <= cols; ++i) {
+			for( var j=0; j <= rows; ++j) {
+				exports.items.add( new Item(i/cols, j/rows) )
+			}
+		}
+	</JavaScript>
+	<Text TextWrapping="Wrap" Dock="Top">Demonstrates a normalized 2D attractor. Click on a circle to move the dot.</Text>
+	
+	<Attractor Target="TrackerTrans.XY" ux:Name="TheAttractor" Unit="Normalized"/>
+	<Panel BoxSizing="FillAspect" Aspect="1" Margin="20">
+		<Rectangle Layer="Overlay" Width="20" Height="20" CornerRadius="4" Color="1,0,0,1"
+			ux:Name="Tracker" Alignment="TopLeft" Anchor="50%,50%">
+			<Translation RelativeTo="ParentSize" ux:Name="TrackerTrans"/>
+		</Rectangle>
+		
+		<Each Items="{items}">
+			<Circle Width="40" Height="40" Color="0,1,0,1" Anchor="50%,50%" Alignment="TopLeft">
+				<Translation X="{x}" Y="{y}" RelativeTo="ParentSize"/>
+				<Clicked>
+					<Set Target="TheAttractor.Value" Value="{xy}"/>
+				</Clicked>
+			</Circle>
+		</Each>
+	</Panel>
+</DockPanel>

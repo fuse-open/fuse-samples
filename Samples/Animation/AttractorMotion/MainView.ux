@@ -1,0 +1,13 @@
+<App Theme="Basic" ClearColor="1,1,1,1" ux:Class="MyApp">
+	<Panel ux:Class="Cell" Margin="20" Padding="10">
+		<Rectangle CornerRadius="10" Layer="Background" Color="#EEF"/>
+	</Panel>
+	<ClientPanel>
+		<Grid ColumnCount="2" CellSpacing="10" Margin="10">
+			<Cell><Gridly/></Cell>
+			<Cell><Rotater/></Cell>
+			<!-- TODO:UX: producing UX errors, issue pending -->
+			<!--<Cell><Pointly/></Cell>-->
+		</Grid>
+	</ClientPanel>
+</App>
