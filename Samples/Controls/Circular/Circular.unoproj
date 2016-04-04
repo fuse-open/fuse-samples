@@ -1,6 +1,7 @@
 {
   "RootNamespace":"",
   "Packages": [
+		"Experimental.Physics",
         "Fuse.Animations",
         "Fuse.BasicTheme",
         "Fuse.Themes",
@@ -12,7 +13,6 @@
         "Fuse.Elements",
         "Fuse.Entities",
         "Fuse.Gestures",
-        "Fuse.Motion",
         "Fuse.Navigation",
         "Fuse.Shapes",
         "Fuse.Triggers",
