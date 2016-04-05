@@ -1,0 +1,19 @@
+<App Theme="Basic">
+
+	<JavaScript>
+	var Observable = require('FuseJS/Observable');
+	var items = Observable({name: "Autos"}, {name: "Juniors"});
+	var itemsTwo = Observable({name: "Small Wheels"}, {name: "Big Wheels"});
+
+	module.exports = {
+		items: items,
+		itemsTwo: itemsTwo
+	};
+	</JavaScript>
+	<DockPanel>
+		<DropdownMenu ux:Name="dropOne" ListItems="{items}" BackgroundColor="#FDFDFD" BorderColor="#BFBFBF" />
+		<DropdownMenu Margin="0,300,0,0" ux:Name="dropTwo" ListItems="{itemsTwo}" BackgroundColor="#FDFDFD" BorderColor="#BFBFBF" />
+	</DockPanel>
+
+</App>
+
