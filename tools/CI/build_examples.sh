@@ -48,7 +48,7 @@ $MONO ./stuff.exe install .
 popd
 
 echo "Getting Fuse"
-$ROOTDIR/tools/CI/get-fuse.sh $ROOTDIR/tools/CI/fuse-branch.txt $FUSEDIR $CI_SERVER_URL $CI_SERVER_AUTH
+$ROOTDIR/tools/CI/get-fuse.sh $FUSEDIR $CI_SERVER_URL $CI_SERVER_AUTH
 
 echo "Setting paths"
 if [ "$MONO" != "" ]; then 
