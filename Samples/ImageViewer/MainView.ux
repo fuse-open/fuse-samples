@@ -1,0 +1,132 @@
+<App Theme="Basic" ux:Class="MyApp" ClearColor="0,0,0,1">
+	<ClientPanel>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable")
+			
+			exports.birds = Observable()
+			//repeat several to show scrolling + transition
+			for (var i=0; i < 50; ++i) {
+				exports.birds.add({
+					image: "image" + (i % 9)
+				})
+			}
+		</JavaScript>
+		<Image ux:Class="ZoomImage"/>
+		
+		<Panel ux:Name="TheViewer" Visibility="Hidden" HitTestMode="LocalBoundsAndChildren">
+			<SolidColor Color="0,0,0,0" ux:Name="BlockColor"/>
+
+			<Panel Alignment="TopRight" Padding="5" ux:Name="CloseButton" Margin="5">	
+				<Translation Vector="1.5,-1.5,0" RelativeTo="Size" ux:Name="TheTrans"/>
+				<Rectangle Layer="Background" Fill="1,1,1,0.8" CornerRadius="5"/>
+				<Image File="Assets/cancel.png" Color="0,0.1,0.2,1"/>
+				<Clicked>
+					<Set ViewerVisible.Value="false"/>
+				</Clicked>
+			</Panel>
+			
+			<!-- reset transform -->
+			<DoubleTapped>
+				<Set TheZoomer.Value="1"/>
+				<Set ThePanner.Value="0,0"/>
+				<Set TheRotater.Value="0"/>
+			</DoubleTapped>
+			
+			<!-- close when it gets small enough -->
+			<WhileFloat Value="{Property TheTransform.ZoomFactor}" LessThan="0.7">
+				<!-- the gestures will be active at this time, so we must explicitly cancel them -->
+				<CancelInteractions/>
+				<Set ViewerVisible.Value="false"/>
+			</WhileFloat>
+			
+			<WhileTrue ux:Name="ViewerVisible">
+				<Change BlockColor.Color="0,0.1,0.2,0.8" Duration="0.2" Easing="QuadraticInOut"/>
+				<Change TheViewer.Visibility="Visible"/>
+				<Change TheTrans.Vector="0" Duration="0.3" Easing="QuadraticInOut"/>
+				<PulseForward Target="ZoomTo" Direction="Backward"/>
+				
+				<!-- reset transform so animation gets close to target size -->
+				<Set TheZoomer.Value="1" Direction="Backward"/>
+				<Set ThePanner.Value="0,0" Direction="Backward"/>
+				<Set TheRotater.Value="0" Direction="Backward"/>
+			</WhileTrue>
+			
+			<ZoomGesture Target="TheTransform" Minimum="1" Maximum="3" ux:Name="TheZoom"/>
+			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer"
+				SimulationType="ElasticForceNormalized" TimeMultiplier="2"/>
+				
+			<RotateGesture Target="TheTransform" ux:Name="TheRotate" StepDegrees="30"/>
+			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater"
+				SimulationType="ElasticForceAngular" TimeMultiplier="0.5"/>
+			
+			<PanGesture Target="TheTransform" Constraint="TheViewerImage" ux:Name="ThePan"/>
+			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner"
+				SimulationType="ElasticForcePoints"/>
+				
+			<!-- the user might start interacting while the attractors are still running, stop that -->
+			<WhileInteracting>
+				<!-- TODO: https://github.com/fusetools/fuselibs/issues/1344 -->
+				<!-- Fix will be released soon -->
+				<!--<Change Target="TheZoomer.IsEnabled" Value="false"/>
+				<Change Target="TheRotater.IsEnabled" Value="false"/>
+				<Change Target="ThePanner.IsEnabled" Value="false"/>-->
+			</WhileInteracting>
+			
+			<!-- A wrapping panel to ensure the InteractiveTransform and layout transforms don't
+				interfere with each other (it is not supported to have them both on the same node) -->
+			<Panel>
+				<ZoomImage ux:Name="TheViewerImage">
+					<InteractiveTransform ux:Name="TheTransform"/>
+				</ZoomImage>
+				<Timeline ux:Name="ZoomTo">
+					<Move RelativeTo="PositionOffset" Vector="1" Duration="0.3" ux:Name="ZoomToPos"
+						Easing="QuadraticInOut"/>
+					<Resize RelativeTo="Size" Vector="1" Duration="0.3" ux:Name="ZoomToSize"
+						Easing="QuadraticInOut"/>
+				</Timeline>
+			</Panel>
+		</Panel>
+		
+		<ScrollView AllowedScrollDirections="Horizontal" ux:Name="TheScroll">
+			<Panel Margin="7">
+				<ColumnLayout ColumnSize="100" Orientation="Horizontal" Sizing="Fill"
+					ColumnSpacing="7" ItemSpacing="7" ux:Name="TheColumns"/>
+
+				<Each Items="{birds}">
+					<Panel ux:Name="self">
+						<Image Source="{DataToResource image}" ux:Name="selfImage"/>
+						<Tapped>
+							<Set Target="TheViewerImage.Source" Value="{DataToResource image}"/>
+							<Set ViewerVisible.Value="true"/>
+							
+							<Set TheTransform.ZoomFactor="1"/>
+							<Set TheTransform.Rotation="0"/>
+							<Set TheTransform.Translation="0"/>
+							
+							<Set ZoomToPos.RelativeNode="selfImage"/>
+							<Set ZoomToSize.RelativeNode="selfImage"/>
+							<PulseBackward Target="ZoomTo"/>
+						</Tapped>
+					</Panel>
+				</Each>
+				
+			</Panel>
+		</ScrollView>
+		
+		<WhileWindowPortrait>
+			<Change TheScroll.AllowedScrollDirections="Vertical"/>
+			<Change TheColumns.Orientation="Vertical"/>
+		</WhileWindowPortrait>
+	</ClientPanel>
+	
+	<!-- a few with different aspect ratios -->
+	<FileImageSource ux:Key="image0" File="Assets/Unsplash2.jpg"/>
+	<FileImageSource ux:Key="image1" File="Assets/Unsplash20.jpg"/>
+	<FileImageSource ux:Key="image2" File="Assets/Unsplash21.jpg"/>
+	<FileImageSource ux:Key="image3" File="Assets/Unsplash3.jpg"/>
+	<FileImageSource ux:Key="image4" File="Assets/Unsplash5.jpg"/>
+	<FileImageSource ux:Key="image5" File="Assets/Unsplash6.jpg"/>
+	<FileImageSource ux:Key="image6" File="Assets/Unsplash10.jpg"/>
+	<FileImageSource ux:Key="image7" File="Assets/Unsplash11.jpg"/>
+	<FileImageSource ux:Key="image8" File="Assets/Unsplash13.jpg"/>
+</App>
