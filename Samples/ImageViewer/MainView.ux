@@ -1,4 +1,4 @@
-<App Theme="Basic" ux:Class="MyApp" ClearColor="0,0,0,1">
+<App  ux:Class="MyApp" ClearColor="0,0,0,1">
 	<ClientPanel>
 		<JavaScript>
 			var Observable = require("FuseJS/Observable")
@@ -52,16 +52,25 @@
 			</WhileTrue>
 			
 			<ZoomGesture Target="TheTransform" Minimum="1" Maximum="3" ux:Name="TheZoom"/>
+			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer" TimeMultiplier="2"/>
+			<!--
+				What has happend to SimulationType?
 			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer"
-				SimulationType="ElasticForceNormalized" TimeMultiplier="2"/>
+				SimulationType="ElasticForceNormalized" TimeMultiplier="2"/>-->
 				
 			<RotateGesture Target="TheTransform" ux:Name="TheRotate" StepDegrees="30"/>
+			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater" TimeMultiplier="0.5"/>
+			<!--
+				What has happend to SimulationType?
 			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater"
-				SimulationType="ElasticForceAngular" TimeMultiplier="0.5"/>
+				SimulationType="ElasticForceAngular" TimeMultiplier="0.5"/>-->
 			
 			<PanGesture Target="TheTransform" Constraint="TheViewerImage" ux:Name="ThePan"/>
+			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner" />
+			<!--
+				What has happend to SimulationType?
 			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner"
-				SimulationType="ElasticForcePoints"/>
+				SimulationType="ElasticForcePoints"/>-->
 				
 			<!-- the user might start interacting while the attractors are still running, stop that -->
 			<WhileInteracting>

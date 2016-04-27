@@ -1,4 +1,4 @@
-<App Theme="Basic">
+<App >
 	<ClientPanel>
 		<JavaScript File="MainView.js" />
 		<Grid Rows="auto,1*">

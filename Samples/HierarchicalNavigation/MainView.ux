@@ -1,16 +1,14 @@
-<App Theme="Basic">
+<App >
 	<DockPanel>
-		<Style>
-			<Page>
-				<EnteringAnimation>
-					<Move X="1" RelativeTo="ParentSize"/>
-				</EnteringAnimation>
-				<ExitingAnimation>
-					<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
-				</ExitingAnimation>
-			</Page>
-		</Style>
-
+		
+		<Page ux:Class="NavPage">
+			<EnteringAnimation>
+				<Move X="1" RelativeTo="ParentSize"/>
+			</EnteringAnimation>
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+			</ExitingAnimation>
+		</Page>
 
 		<Panel Dock="Top" Height="50" Background="#ddd" Navigation="nav" HitTestMode="LocalBoundsAndChildren">
 
@@ -34,7 +32,7 @@
 		</Panel>
 		<Panel>
 			<HierarchicalNavigation ux:Name="nav"/>
-			<Page Background="Blue" Title="Page 1">
+			<NavPage Background="Blue" Title="Page 1">
 				<StackPanel>
 					<Button Width="100" Height="60" Text="To page 2">
 						<Clicked>
@@ -47,24 +45,24 @@
 						</Clicked>
 					</Button>
 				</StackPanel>
-			</Page>
+			</NavPage>
 
-			<Page ux:Name="page2" Title="Page 2" Background="Red" ux:AutoBind="false">
+			<NavPage ux:Name="page2" Title="Page 2" Background="Red" ux:AutoBind="false">
 				<Button Width="100" Height="60" Text="To page 3">
 					<Clicked>
 						<NavigateTo NavigationContext="nav" Target="page3" />
 					</Clicked>
 				</Button>
-			</Page><!-- notice the ux:AutoBind="false" -->
-			<Page ux:Name="page3" Title="Page 3" Background="Green" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
-			<Page ux:Name="page4" Title="Page 4" Background="Yellow" ux:AutoBind="false">
+			</NavPage><!-- notice the ux:AutoBind="false" -->
+			<NavPage ux:Name="page3" Title="Page 3" Background="Green" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
+			<NavPage ux:Name="page4" Title="Page 4" Background="Yellow" ux:AutoBind="false">
 				<Button Width="100" Height="60" Text="To page 5">
 					<Clicked>
 						<NavigateTo NavigationContext="nav" Target="page5" />
 					</Clicked>
 				</Button>
-			</Page> <!-- notice the ux:AutoBind="false" -->
-			<Page ux:Name="page5" Title="Page 5" Background="Teal" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
+			</NavPage> <!-- notice the ux:AutoBind="false" -->
+			<NavPage ux:Name="page5" Title="Page 5" Background="Teal" ux:AutoBind="false"/> <!-- notice the ux:AutoBind="false" -->
 		</Panel>
 	</DockPanel>
 </App>

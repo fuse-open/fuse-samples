@@ -1,4 +1,4 @@
-<App Theme="Basic">
+<App >
 	<DockPanel>
 
 		<JavaScript File="Auth.js" ux:Global="Auth" />

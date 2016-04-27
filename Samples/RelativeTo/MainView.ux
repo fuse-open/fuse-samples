@@ -1,4 +1,4 @@
-<App Theme="Basic">
+<App >
 	<DockPanel>
 		<TopFrameBackground Dock="Top" />
 		<Panel>

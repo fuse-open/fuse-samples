@@ -1,4 +1,4 @@
-<App Theme="Basic">
+<App>
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
 		<StackPanel>
