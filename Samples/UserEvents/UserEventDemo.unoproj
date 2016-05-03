@@ -1,0 +1,35 @@
+{
+  "InternalsVisibleTo": [],
+  "Packages": [
+    "Experimental.Http",
+    "Fuse.Android",
+    "Fuse.Animations",
+    "Fuse.BasicTheme",
+    "Fuse.Controls",
+    "Fuse.Controls.Primitives",
+    "Fuse.Controls.Panels",
+    "Fuse.Controls.Navigation",
+    "Fuse.Controls.Native",
+    "FuseCore",
+    "Fuse.Designer",
+    "Fuse.Desktop",
+    "Fuse.Drawing",
+    "Fuse.Drawing.Planar",
+    "Fuse.Drawing.Primitives",
+    "Fuse.Effects",
+    "Fuse.Elements",
+    "Fuse.Entities",
+    "Fuse.Gestures",
+    "Fuse.iOS",
+    "Fuse.Motion",
+    "Fuse.Navigation",
+    "Fuse.Reactive",
+    "Fuse.Shapes",
+    "Fuse.Triggers",
+    "Fuse.UserEvents",
+  ],
+  "Projects": [],
+  "Includes": [
+    "*"
+  ]
+}
