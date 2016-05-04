@@ -1,0 +1,6 @@
+<StateGroup Active="{locale}">
+  <ux:Include File="locales/en_US.ux" />
+  <ux:Include File="locales/zh_CN.ux" />
+  <ux:Include File="locales/zh_TW.ux" />
+  <ux:Include File="locales/ko_KR.ux" />
+</StateGroup>
