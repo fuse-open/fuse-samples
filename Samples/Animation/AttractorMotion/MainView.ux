@@ -1,4 +1,4 @@
-<App Theme="Basic" ClearColor="1,1,1,1" ux:Class="MyApp">
+<App ClearColor="1,1,1,1" ux:Class="MyApp">
 	<Panel ux:Class="Cell" Margin="20" Padding="10">
 		<Rectangle CornerRadius="10" Layer="Background" Color="#EEF"/>
 	</Panel>
