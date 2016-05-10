@@ -1,4 +1,4 @@
-<App Theme="Basic" ClearColor="1,1,1,1">
+<App ClearColor="1,1,1,1">
 	<ClientPanel>
 		<DockPanel Dock="Top" Color="0.8,1,1,1" ux:Name="TitleBar" Padding="5">
 			<Text FontSize="32" Alignment="Center">App Title</Text>

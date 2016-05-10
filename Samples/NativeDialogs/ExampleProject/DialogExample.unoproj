@@ -1,25 +1,7 @@
 {
   "Packages": [
-    "Fuse.BasicTheme",
-    "Fuse.Controls",
-    "Fuse.Designer",
-    "Fuse.Drawing",
-    "Fuse.Effects",
-    "Fuse.Elements",
-    "Fuse.Gestures",
-    "Fuse.Android",
-    "Fuse.iOS",
-    "Fuse.Desktop",
-    "Fuse.Camera",
-    "Fuse.Vibration",
-    "Fuse.Launcher",
-    "Fuse.Storage",
-    "Fuse.Navigation",
-    "Fuse.Reactive",
-    "Fuse.Scripting",
-    "Fuse.Shapes",
-    "Fuse.Triggers",
-    "FuseCore"
+	"Fuse",
+	"FuseJS",
   ],
   "Projects": [
     "../Fuse.Dialogs/Fuse.Dialogs.unoproj",
