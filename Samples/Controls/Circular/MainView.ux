@@ -1,4 +1,4 @@
-<App Theme="Basic" ux:Class="Circular">
+<App ux:Class="Circular">
 	<Panel ux:Class="ClockTick" ux:Name="self">
 		<string ux:Property="Text"/>
 		<float ux:Property="ClockValue"/>
@@ -20,13 +20,27 @@
 	<ClientPanel Background="0.8,0.8,0.8,1">
 		<JavaScript>
 			var Observable = require("FuseJS/Observable")
-
+			
+			function formatTime(x) {
+				var q = x.toFixed(0)
+				if (x < 10) {
+					return "0" + q
+				}
+				return q
+			}
+			
 			exports.hoursX = Observable(0)
 			exports.hoursY = Observable(0)
 			exports.hours = Observable(function() {
 				return exports.hoursX.value + exports.hoursY.value * 12
 			})
+			exports.displayHours = exports.hours.map(function(x) {
+				return formatTime(x)
+			})
 			exports.minutes = Observable(0)
+			exports.displayMinutes = exports.minutes.map(function(x) {
+				return formatTime(x)
+			})
 
 			exports.selectHour = function(args) {
 				exports.hoursX.value = args.value%12
@@ -46,21 +60,19 @@
 		</WhileTrue>
 
 		<Panel Dock="Top" Margin="0,0,0,10">
-			<StackPanel Orientation="Horizontal" Alignment="Center">
-				<Style>
-					<Text FontSize="24" TextColor="0,0.5,0.8,1"/>
-				</Style>
-				<Number Value="{hours}" Format="00" Padding="10,0,10,0" HitTestMode="LocalBounds">
+			<StackPanel Orientation="Horizontal" Alignment="Center" ItemSpacing="10">
+				<Text ux:Class="ClockText" FontSize="24" TextColor="0,0.5,0.8,1"/>
+				<ClockText Value="{displayHours}" HitTestMode="LocalBounds">
 					<Tapped>
 						<Set ShowMinutes.Value="false"/>
 					</Tapped>
-				</Number>
-				<Text Value=":"/>
-				<Number Value="{minutes}" Format="00" Padding="10,0,10,0" HitTestMode="LocalBounds">
+				</ClockText>
+				<ClockText Value=":"/>
+				<ClockText Value="{displayMinutes}" HitTestMode="LocalBounds">
 					<Tapped>
 						<Set ShowMinutes.Value="true"/>
 					</Tapped>
-				</Number>
+				</ClockText>
 			</StackPanel>
 		</Panel>
 
@@ -77,10 +89,10 @@
 				<ClockHand ux:Name="TheHourLine">
 					<Rotation ux:Name="HourRotate"/>
 					<Attractor Target="HourRotate.Degrees" Value="{Property HourSlide.DegreesValue}"
-						SimulationType="SmoothSnapAngularDegrees"/>
+						Type="SmoothSnap" Unit="Degrees"/>
 
 					<Attractor Target="TheHourLine.Width" ux:Name="HourLineAttractor"
-						SimulationType="SmoothSnapPoints"/>
+						Type="SmoothSnap" Unit="Points"/>
 					<RangeAnimation Value="{Property HourSelect.ValueY}" Minimum="0" Maximum="1">
 						<Change HourLineAttractor.Value="41.5"/>
 					</RangeAnimation>
@@ -132,7 +144,7 @@
 				<ClockHand Width="41.5%">
 					<Rotation ux:Name="MinuteRotate"/>
 					<Attractor Target="MinuteRotate.Degrees" Value="{Property MinuteSlide.DegreesValue}"
-						SimulationType="SmoothSnapAngularDegrees"/>
+						Type="SmoothSnap" Unit="Degrees"/>
 				</ClockHand>
 
 				<Circle Layer="Background" Fill="1,1,1,1"/>
