@@ -1,0 +1,35 @@
+<Panel ux:Class="NumberPad">
+	<!-- declare convenience triggers -->
+	<OnUserEvent ux:Class="NumberSelected" Name="NumberSelected"/>
+	<OnUserEvent ux:Class="NumberCleared" Name="NumberCleared"/>
+	<OnUserEvent ux:Class="NumberBack" Name="NumberBack"/>
+	
+	<!-- these events are raised by this component -->
+	<UserEvent ux:Name="NumberSelected"/>
+	<UserEvent ux:Name="NumberCleared"/>
+	<UserEvent ux:Name="NumberBack"/>
+
+	<JavaScript File="NumberPad.js"/>
+	<Grid ColumnCount="3" CellSpacing="5">
+		<Each Items="{numbers}">
+			<Panel Color="1,1,1,1" Width="50" Height="50" Clicked="{select}" HitTestMode="LocalBounds"
+				ux:Name="self">
+				<Match Value="{}">
+					<Case String="*">
+						<Image File="arrowleft.png" Color="0,0,0,1" Alignment="Center"/>
+					</Case>
+					<Case String="c">
+						<Image File="cancel.png" Color="0,0,0,1" Alignment="Center"/>
+					</Case>
+					<Case IsDefault="true">
+						<Text Value="{}" FontSize="40" Alignment="Center" TextColor="0,0,0,1"/>
+					</Case>
+				</Match>
+				
+				<Clicked>
+					<Change self.Color="0.8,1,1,1" Duration="0.3"/>
+				</Clicked>
+			</Panel>
+		</Each>
+	</Grid>
+</Panel>

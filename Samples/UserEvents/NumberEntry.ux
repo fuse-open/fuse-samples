@@ -1,0 +1,13 @@
+<Panel ux:Class="NumberEntry">
+	<!-- This example is a bit contrived, here you're better off just linking the Output.Value directly
+		to a `string` property on this control -->
+	<Text ux:Dependency="Output"/>
+	<DataBinding Target="Output.Value" Key="pin"/>
+	<JavaScript File="NumberEntry.js"/>
+	
+	<NumberPad>
+		<NumberSelected Handler="{selected}"/>
+		<NumberCleared Handler="{cleared}"/>
+		<NumberBack Handler="{back}"/>
+	</NumberPad>
+</Panel>
