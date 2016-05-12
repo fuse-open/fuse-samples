@@ -46,6 +46,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
 <table>
   <tr>
   	<td><a href="Samples/NativeDialogs">Native dialogs</a></td>
+	<td><a href="Samples/Localization">Localization</a></td>
   </tr>
 </table>
 
