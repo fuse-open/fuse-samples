@@ -1,0 +1,82 @@
+
+<Panel Selected="{selected}" BackgroundColor="#FDFDFD" BorderColor="#BFBFBF" ux:Class="DropdownMenu" ux:Name="menu" TextColor="#000000" FontSize="14" >
+	<!-- PROPERTIES -->
+	<object ux:Property="ListItems" />
+	<string ux:Property="Selected" />
+	<float4 ux:Property="TextColor" />
+	<Brush ux:Property="BackgroundColor" />
+	<Brush ux:Property="BorderColor" />
+	<float ux:Property="FontSize" />
+
+
+	<!-- JAVASCRIPT -->
+	<JavaScript>
+	var Observable = require('FuseJS/Observable');
+
+	var selected = Observable();
+
+	function onSelected(arg) {
+		selected.value = arg.data.name;
+		//console.log(menu.Selected);
+	}
+
+	module.exports = {
+		selected: selected,
+		onSelected: onSelected
+	}
+	</JavaScript>
+
+
+
+	<!-- THE LIST PANEL (when dropdown is open) -->
+	<Panel ux:Class="DropdownOption" ux:Name="self" Height="30" >
+		<string ux:Property="Text" />
+		<Brush ux:Property="BackgroundColor" />
+		<Brush ux:Property="BorderColor" />
+		<float ux:Property="FontSize" />
+		<float4 ux:Property="TextColor" />
+		<Rectangle Layer="Background" ux:Name="bgCol" Fill="{Property self.BackgroundColor}">
+			<Stroke Brush="{Property self.BorderColor}" Width="1" />
+		</Rectangle>
+		<Text Margin="10,0,0,0" Alignment="CenterLeft" Value="{Property self.Text}" FontSize="{Property self.FontSize}" TextColor="{Property self.TextColor}" />
+		
+	</Panel>
+
+
+	<!-- THE FIRST PANEL (when dropdown is closed) -->
+	<Panel Clicked="{onSelected}" ux:Class="DropdownSelectedItem" ux:Name="self" Height="40" >
+		<string ux:Property="Text" />
+		<Brush ux:Property="BackgroundColor" />
+		<Brush ux:Property="BorderColor" />
+		<float ux:Property="FontSize" />
+		<float4 ux:Property="TextColor" />
+		<Text Margin="10,0,0,0" FontSize="{Property self.FontSize}" TextColor="{Property self.TextColor}" Alignment="CenterLeft" Value="{Property self.Text}" />
+		<Panel Layer="Background">
+			<Rectangle Layer="Background" Fill="{Property self.BackgroundColor}" Height="100%" Alignment="Top">
+				<!--Stroke Brush="{Property self.BorderColor}" Width="1" /-->
+			</Rectangle>
+		</Panel>
+	</Panel>
+
+
+
+	<!-- PANEL CONTAINING EVERYTHING -->
+	<Panel Width="200" Height="40">
+		<Rectangle>
+			<Stroke Brush="{Property menu.BorderColor}" Width="1" />
+		</Rectangle>
+		<DropdownSelectedItem TextColor="{Property menu.TextColor}" FontSize="{Property menu.FontSize}" Text="{selected}" BackgroundColor="{Property menu.BackgroundColor}" BorderColor="{Property menu.BorderColor}" />
+		<Clicked>
+			<Toggle Target="expandDropdown" />
+		</Clicked>
+
+		<WhileTrue ux:Name="expandDropdown">
+			<StackPanel Offset="0,40" >
+				<Each Items="{Property menu.ListItems}" >
+					<DropdownOption FontSize="{Property menu.FontSize}" TextColor="{Property menu.TextColor}" Text="{name}" BackgroundColor="{Property menu.BackgroundColor}" Clicked="{onSelected}" BorderColor="{Property menu.BorderColor}" />
+				</Each>
+			</StackPanel>
+		</WhileTrue>
+	</Panel>
+
+</Panel>
