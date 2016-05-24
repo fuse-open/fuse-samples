@@ -1,0 +1,33 @@
+<Panel ux:Template="login" Transition="None" Color="#EFD">
+	<JavaScript>
+		var state = require("App/state.js")
+		
+		exports.login = function() {
+			state.setLoading(true)
+			setTimeout( function() {
+					state.setLogin( { name: "einstein" } )
+					state.setLoading(false)
+					router.goto("home",{})
+				}, 1000)
+		}
+		
+		exports.quickLogin = function() {
+			state.setLogin( { name: "feynmann" } )
+			router.goto("home", {})
+		}
+	</JavaScript>
+	<StackPanel Padding="10" Alignment="Center">
+		<Rectangle Layer="Background" CornerRadius="5" Color="1,1,1,1">
+			<DropShadow/>
+			<Stroke Width="1" Color="0,0,0,1"/>
+		</Rectangle>
+		
+		<Text>Please log in</Text>
+		<Button Text="Log in" Clicked="{login}" />
+		<Button Text="Quick" Clicked="{quickLogin}"/>
+	</StackPanel>
+	
+	<RemovingAnimation>
+		<Scale Factor="0.5" Duration="0.6" Easing="QuadraticOut"/>
+	</RemovingAnimation>
+</Panel>
