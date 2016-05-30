@@ -1,0 +1,19 @@
+<App Theme="Basic" Background="#EEEEEEFF">
+	<Localization ux:Global="Localization" />
+	<ClientPanel>
+		<JavaScript File="MainView.js" />
+		<ux:Include File="Locales.ux" />
+		<StackPanel Alignment="VerticalCenter" ItemSpacing="10">
+			<Text Value="{Resource keyWelcome}" TextAlignment="Center" />
+			<Button Text="{Resource keySignIn}" />
+			<WrapPanel Alignment="HorizontalCenter">
+				<Text Value="App Locale:" />
+				<Text Value="{locale}" />
+			</WrapPanel>
+			<WrapPanel Alignment="HorizontalCenter">
+				<Text Value="Device Locale:" />
+				<Text Value="{deviceLocale}" />
+			</WrapPanel>
+		</StackPanel>
+	</ClientPanel>
+</App>

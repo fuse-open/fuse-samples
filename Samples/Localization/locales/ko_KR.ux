@@ -1,0 +1,4 @@
+<State Name="ko_KR">
+  <ResourceString Key="keyWelcome" Value="소개"/>
+  <ResourceString Key="keySignIn" Value="로그인"/>
+</State>
