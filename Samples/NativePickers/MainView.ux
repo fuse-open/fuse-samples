@@ -1,0 +1,17 @@
+<App Background="#222">
+
+	<ClientPanel>
+		<Panel>
+			<NativeViewHost>
+				<Native.DatePicker ux:Name="datepicker">
+					<JavaScript>
+
+						datepicker.setDate(2016, 12, 24);
+
+					</JavaScript>
+				</Native.DatePicker>
+			</NativeViewHost>
+		</Panel>
+	</ClientPanel>
+
+</App>

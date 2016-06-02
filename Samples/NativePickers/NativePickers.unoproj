@@ -1,0 +1,11 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "*",
+    "UIControlEvent.h:ObjCHeader:iOS",
+    "UIControlEvent.mm:ObjCSource:iOS",
+  ]
+}
