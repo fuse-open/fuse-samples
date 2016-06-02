@@ -30,7 +30,7 @@ namespace Native
 
 		void IDatePickerHost.OnDateChanged(int year, int month, int day)
 		{
-			debug_log("Year: " + year + " Month: " + month + " Day: " + day);
+			// TODO: implement JS event
 		}
 
 		protected override IView CreateNativeView()

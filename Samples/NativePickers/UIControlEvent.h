@@ -3,7 +3,7 @@
 #include <Uno/Uno.h>
 #include <UIKit/UIKit.h>
 
-@interface UIControlEventHandler : NSObject { }
+@interface UIControlEventProxy : NSObject { }
 - (void)action:(id)sender forEvent:(UIEvent *)event;
 @property (copy) void (^callback)(id, id);
 @end

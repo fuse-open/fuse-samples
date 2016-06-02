@@ -1,7 +1,7 @@
 #import "UIControlEvent.h"
 
 
-@implementation UIControlEventHandler
+@implementation UIControlEventProxy
 
 - (void) action:(id)sender forEvent:(UIEvent *)event
 {

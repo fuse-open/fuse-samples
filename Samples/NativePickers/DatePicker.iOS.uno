@@ -66,7 +66,9 @@ namespace Native.iOS
 		[Foreign(Language.ObjC)]
 		static ObjC.Object Create()
 		@{
-			return [[UIDatePicker alloc] init];
+			UIDatePicker* dp = [[UIDatePicker alloc] init];
+			[dp setDatePickerMode:UIDatePickerModeDate];
+			return dp;
 		@}
 
 		[Foreign(Language.ObjC)]
@@ -74,12 +76,12 @@ namespace Native.iOS
 		@{
 			UIDatePicker* dp = (UIDatePicker*)handle;
 			NSDate* date = [dp date];
-			NSCalendar* calendar [NSCalendar currentCalendar];
+			NSCalendar* calendar = [NSCalendar currentCalendar];
 			NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date]; 
 
-			*year = [components year];
-			*month = [components month];
-			*day = [components day];
+			*year = (int)[components year];
+			*month = (int)[components month];
+			*day = (int)[components day];
 		@}
 
 		[Foreign(Language.ObjC)]
@@ -91,8 +93,8 @@ namespace Native.iOS
 			[components setMonth:month];
 			[components setDay:day];
 
-			NSCalendar* calendar = [[NSCalendar alloc] initWithCalendaIdentifier:NSGregorianCalendar];
-			NSDate* date = [cal dateFromComponents:components];
+            NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+			NSDate* date = [calendar dateFromComponents:components];
 			[components release];
 
 			return date;
@@ -147,7 +149,7 @@ namespace Native.iOS
 		[Foreign(Language.ObjC)]
 		static ObjC.Object Create(ObjC.Object uiControl, Action<ObjC.Object, ObjC.Object> handler, int type)
 		@{
-			UIControlEventHandler* h = [[UIControlEventHandler alloc] init];
+			UIControlEventProxy* h = [[UIControlEventProxy alloc] init];
 			[h setCallback:handler];
 			UIControl* control = (UIControl*)uiControl;
 			[control addTarget:h action:@selector(action:forEvent:) forControlEvents:(UIControlEvents)type];
@@ -164,7 +166,7 @@ namespace Native.iOS
 		[Foreign(Language.ObjC)]
 		static void RemoveHandler(ObjC.Object uiControl, ObjC.Object eventHandler, int type)
 		@{
-			UIControlEventHandler* h = (UIControlEventHandler*)eventHandler;
+			UIControlEventProxy* h = (UIControlEventProxy*)eventHandler;
 			UIControl* control = (UIControl*)uiControl;
 			[control removeTarget:h action:@selector(action:forEvent:) forControlEvents:(UIControlEvents)type];
 		@}

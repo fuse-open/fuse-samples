@@ -16,7 +16,7 @@ namespace Native
 				new ScriptMethod<DatePicker>("setDate", setDate, ExecutionThread.MainThread),
 				new ScriptMethod<DatePicker>("setMinDate", setDate, ExecutionThread.MainThread),
 				new ScriptMethod<DatePicker>("setMaxDate", setDate, ExecutionThread.MainThread),
-				new ScriptMethod<DatePicker>("getDate", getDate, ExecutionThread.MainThread));
+				new ScriptMethod<DatePicker>("getDate", getDate, ExecutionThread.JavaScript));
 		}
 
 		static void setDate(DatePicker datePicker, object[] args)
@@ -55,6 +55,8 @@ namespace Native
 				dpv.SetMaxDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2]));
 		}
 
+		// TODO: this does not work since a Func cannot be called from JS when
+		// mainthread is specified
 		static object getDate(DatePicker datePicker, object[] args)
 		{
 			var dpv = datePicker.DatePickerView;
