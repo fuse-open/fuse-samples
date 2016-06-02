@@ -1,4 +1,4 @@
-<App Theme="Basic" Background="#EEEEEEFF">
+<App Background="#EEEEEEFF">
 	<Localization ux:Global="Localization" />
 	<ClientPanel>
 		<JavaScript File="MainView.js" />
