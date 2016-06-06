@@ -89,14 +89,14 @@ namespace Native.Android
 		void SetMinDate(Java.Object datePickerHandle, int year, int month, int day)
 		@{
 			android.widget.DatePicker datePicker = (android.widget.DatePicker)datePickerHandle;
-			datePicker.updateDate(year, month, day);
+			datePicker.setMinDate(new java.util.Date(year, month, day).getTime());
 		@}
 
 		[Foreign(Language.Java)]
 		void SetMaxDate(Java.Object datePickerHandle, int year, int month, int day)
 		@{
 			android.widget.DatePicker datePicker = (android.widget.DatePicker)datePickerHandle;
-			datePicker.updateDate(year, month, day);
+			datePicker.setMaxDate(new java.util.Date(year, month, day).getTime());
 		@}
 
 		[Foreign(Language.Java)]
