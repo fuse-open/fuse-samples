@@ -1,4 +1,5 @@
 using Uno;
+using Uno.Time;
 using Uno.Compiler.ExportTargetInterop;
 
 using Fuse;
@@ -26,31 +27,34 @@ namespace Native.Android
 			_host = null;
 		}
 
-		void IDatePickerView.SetDate(int year, int month, int day)
+		LocalDate IDatePickerView.CurrentDate
 		{
-			SetDate(Handle, year, month, day);
+			get
+			{
+				var date = new int[3];
+				GetDate(Handle, date);
+				return new LocalDate(date[0], date[1], date[2]);
+			}
+		}
+		
+		void IDatePickerView.SetDate(LocalDate date)
+		{
+			SetDate(Handle, date.Year, date.Month, date.Day);
 		}
 
-		void IDatePickerView.SetMinDate(int year, int month, int day)
+		void IDatePickerView.SetMinDate(LocalDate date)
 		{
-			SetMinDate(Handle, year, month, day);
+			SetMinDate(Handle, date.Year, date.Month, date.Day);
 		}
 
-		void IDatePickerView.SetMaxDate(int year, int month, int day)
+		void IDatePickerView.SetMaxDate(LocalDate date)
 		{
-			SetMaxDate(Handle, year, month, day);
-		}
-
-		Tuple<int,int,int> IDatePickerView.GetDate()
-		{
-			var date = new int[3];
-			GetDate(Handle, date);
-			return new Tuple<int,int,int>(date[0], date[1], date[2]);
+			SetMaxDate(Handle, date.Year, date.Month, date.Day);
 		}
 
 		void OnDateChanged(int year, int month, int day)
 		{
-			_host.OnDateChanged(year, month, day);
+			_host.OnDateChanged(new LocalDate(year, month, day));
 		}
 
 		[Foreign(Language.Java)]

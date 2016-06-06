@@ -1,4 +1,5 @@
 using Uno;
+using Uno.Time;
 using Uno.Compiler.ExportTargetInterop;
 
 using Fuse;
@@ -36,31 +37,34 @@ namespace Native.iOS
 			int month = 0;
 			int day = 0;
 			GetDate(Handle, out year, out month, out day);
-			_host.OnDateChanged(year, month, day);
+			_host.OnDateChanged(new LocalDate(year, month, day));
 		}
 
-		void IDatePickerView.SetDate(int year, int month, int day)
+		LocalDate IDatePickerView.CurrentDate
 		{
-			SetDate(Handle, MakeNSDate(year, month, day));
+			get
+			{
+				int year = 0;
+				int month = 0;
+				int day = 0;
+				GetDate(Handle, out year, out month, out day);
+				return new LocalDate(year, month, day);
+			}
+		}
+		
+		void IDatePickerView.SetDate(LocalDate date)
+		{
+			SetDate(Handle, MakeNSDate(date.Year, date.Month, date.Day));
 		}
 
-		void IDatePickerView.SetMinDate(int year, int month, int day)
+		void IDatePickerView.SetMinDate(LocalDate date)
 		{
-			SetMinDate(Handle, MakeNSDate(year, month, day));
+			SetMinDate(Handle, MakeNSDate(date.Year, date.Month, date.Day));
 		}
 
-		void IDatePickerView.SetMaxDate(int year, int month, int day)
+		void IDatePickerView.SetMaxDate(LocalDate date)
 		{
-			SetMaxDate(Handle, MakeNSDate(year, month, day));
-		}
-
-		Tuple<int,int,int> IDatePickerView.GetDate()
-		{
-			int year = 0;
-			int month = 0;
-			int day = 0;
-			GetDate(Handle, out year, out month, out day);
-			return new Tuple<int,int,int>(year, month, day);
+			SetMaxDate(Handle, MakeNSDate(date.Year, date.Month, date.Day));
 		}
 
 		[Foreign(Language.ObjC)]

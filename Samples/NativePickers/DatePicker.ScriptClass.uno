@@ -28,7 +28,7 @@ namespace Native
 			}
 			var dpv = datePicker.DatePickerView;
 			if (dpv != null)
-				dpv.SetDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2]));
+				dpv.SetDate(new LocalDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2])));
 		}
 
 		static void setMinDate(DatePicker datePicker, object[] args)
@@ -40,7 +40,7 @@ namespace Native
 			}
 			var dpv = datePicker.DatePickerView;
 			if (dpv != null)
-				dpv.SetMinDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2]));
+				dpv.SetMinDate(new LocalDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2])));
 		}
 
 		static void setMaxDate(DatePicker datePicker, object[] args)
@@ -52,7 +52,7 @@ namespace Native
 			}
 			var dpv = datePicker.DatePickerView;
 			if (dpv != null)
-				dpv.SetMaxDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2]));
+				dpv.SetMaxDate(new LocalDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2])));
 		}
 
 		// TODO: this does not work since a Func cannot be called from JS when
@@ -62,8 +62,8 @@ namespace Native
 			var dpv = datePicker.DatePickerView;
 			if (dpv != null)
 			{
-				var d = dpv.GetDate();
-				return new [] { d.Item1, d.Item2, d.Item3 };
+				var d = dpv.CurrentDate;
+				return new [] { d.Year, d.Month, d.Day };
 			}
 			return null;
 		}

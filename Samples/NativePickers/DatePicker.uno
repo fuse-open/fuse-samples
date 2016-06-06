@@ -1,4 +1,5 @@
 using Uno;
+using Uno.Time;
 using Uno.Compiler.ExportTargetInterop;
 
 using Fuse;
@@ -10,15 +11,15 @@ namespace Native
 {
 	internal interface IDatePickerHost
 	{
-		void OnDateChanged(int year, int month, int day);
+		void OnDateChanged(LocalDate date);
 	}
 
 	internal interface IDatePickerView
 	{
-		Tuple<int,int,int> GetDate();
-		void SetDate(int year, int month, int day);
-		void SetMinDate(int year, int month, int day);
-		void SetMaxDate(int year, int month, int day);
+		LocalDate CurrentDate { get; }
+		void SetDate(LocalDate date);
+		void SetMinDate(LocalDate date);
+		void SetMaxDate(LocalDate date);
 	}
 
 	public partial class DatePicker : Panel, IDatePickerHost
@@ -28,7 +29,7 @@ namespace Native
 			get { return NativeView as IDatePickerView; }
 		}
 
-		void IDatePickerHost.OnDateChanged(int year, int month, int day)
+		void IDatePickerHost.OnDateChanged(LocalDate date)
 		{
 			// TODO: implement JS event
 		}
