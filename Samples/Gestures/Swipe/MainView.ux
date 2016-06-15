@@ -1,12 +1,12 @@
-<App Theme="NativeWithFallback" ux:Class="MyApp" ClearColor="0.7,0.7,0.7,1">
+<App Background="0.7,0.7,0.7,1">
 	<Text ux:Class="Label" Alignment="Center" FontSize="20" TextWrapping="Wrap"/>
 
 	<JavaScript File="main.js"/>
-	
+
 	<!-- only two images are used to reduce the sample's size -->
 	<FileImageSource File="bird0.jpg" ux:Key="bird0"/>
 	<FileImageSource File="bird1.jpg" ux:Key="bird1"/>
-	
+
 	<ClientPanel>
 		<ScrollView>
 			<StackPanel ItemSpacing="2" Margin="2">
@@ -15,11 +15,11 @@
 						<StackPanel Orientation="Horizontal" ux:Name="TheItem">
 							<SolidColor Color="1,1,1,1" ux:Name="BackFill"/>
 							<Rectangle Width="100" Height="75" Margin="2" CornerRadius="5">
-								<ImageFill Source="{DataToResource image}" StretchMode="UniformToFill" 
+								<ImageFill Source="{DataToResource image}" StretchMode="UniformToFill"
 									Color="{tintColor}"/>
 							</Rectangle>
 							<Label Value="{name}" Alignment="VerticalCenter" Margin="5" TextColor="0,0,0,1"/>
-							
+
 							<WhileSwipeActive Source="DeleteSwipe">
 								<Image Layer="Overlay" File="dynamite.png" Alignment="Right" Margin="13"
 									ux:Name="DeleteIcon">
@@ -34,7 +34,7 @@
 								</Image>
 							</WhileSwipeActive>
 						</StackPanel>
-						
+
 						<Panel Alignment="Right" Background="0.5,0.1,0.1,1" Clicked="{deleteItem}"
 							ux:Name="DeleteNode">
 							<StackPanel Alignment="Center">
@@ -49,7 +49,7 @@
 						<Swiped Source="DeleteSwipe" How="ToInactive">
 							<Change BackFill.Color="0.9,1,0.9,1" Duration="0.2"/>
 						</Swiped>
-						
+
 						<Panel Alignment="Left" Background="0.9,0.8,0.9,1"	ux:Name="SomethingNode">
 							<StackPanel Alignment="Center">
 								<Image File="unknown.png" Color="0,0,0,1" StretchMode="PixelPrecise"
@@ -60,7 +60,7 @@
 								<ToggleSwipeActive Target="SomethingSwipe"/>
 							</Clicked>
 						</Panel>
-						<SwipeGesture  Direction="Right" LengthNode="SomethingNode" 
+						<SwipeGesture  Direction="Right" LengthNode="SomethingNode"
 							ux:Name="SomethingSwipe" Type="Active"/>
 						<SwipingAnimation Source="SomethingSwipe">
 							<Move Target="TheItem" X="1" RelativeTo="Size" RelativeNode="SomethingNode"/>
@@ -69,7 +69,7 @@
 							<Scale Target="MysteryIcon" Factor="2.5" Duration="0.5" DurationBack="0.2"/>
 							<Change MysteryIcon.Color="0,1,1,1" Duration="0.5" DurationBack="0.2"/>
 						</Swiped>
-						
+
 						<LayoutAnimation>
 							<Move RelativeTo="PositionChange" Vector="1" Duration="0.25"/>
 						</LayoutAnimation>
