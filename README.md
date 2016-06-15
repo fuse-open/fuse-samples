@@ -38,6 +38,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
  	<td><a href="Samples/UIStructure/ContextMenu">Context menu</a></td>
 	<td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
 	<td><a href="Samples/UIStructure/Navigation">Navigation</a></td>
+    <td><a href="Samples/Gestures/Swipe">Swipe gesture</a></td>
   </tr>
 </table>
 
