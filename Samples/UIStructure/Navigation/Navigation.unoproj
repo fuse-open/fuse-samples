@@ -1,0 +1,14 @@
+{
+  "InternalsVisibleTo": [],
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+  ],
+  "Projects": [],
+  "Includes": [
+	"*",
+	"App/channels.js:Bundle",
+	"App/contacts.js:Bundle",
+	"App/state.js:Bundle",
+  ]
+}
