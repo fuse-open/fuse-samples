@@ -1,0 +1,23 @@
+<DockPanel ux:Template="chat" Color="#FFF">
+	<JavaScript File="chat.js"/>
+	<TitleBar Dock="Top">
+		<Button Alignment="Left" Text="Back" Clicked="{leave}"/>
+		<Panel Alignment="Right" Clicked="{viewProfile}">
+			<Text Value="Profile" FontSize="12"/>
+			<Circle Color="#AFF"/>
+		</Panel>
+		<Label Alignment="Center" Value="{contact.name}"/>
+	</TitleBar>
+	
+	<StackPanel Alignment="Bottom">
+		<Label Alignment="Center" Value="Chatting"/>
+		<Rectangle Height="5" Color="{contact.color}"/>
+		<Label Alignment="Left" Value="{contact.name}"/>
+		<Label Alignment="Right" Value="blah blah blah"/>
+	</StackPanel>
+	
+	<Grid Dock="Bottom" Columns="1*,auto" Padding="4" Color="#AAA">
+		<TextInput/>
+		<Image File="Assets/play.png" Color="0.98,0.99,1,1" StretchMode="PointPrecise"/>
+	</Grid>
+</DockPanel>

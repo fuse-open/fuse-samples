@@ -1,4 +1,4 @@
-<App Theme="Basic" Background="#446f">	
+<App Background="#446f">	
 	<Circle ux:Class="Dot" Width="15%" Height="15%" Alignment="TopLeft"
 		ux:Name="self" Anchor="50%,50%">
 		<double ux:Property="TimeOffset"/>

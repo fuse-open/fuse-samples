@@ -1,24 +1,21 @@
-<App Theme="Basic" ux:Class="OsUiMinimalExample">
+<App  ux:Class="OsUiMinimalExample">
 
 	<DockPanel>
-		<Style>
-			<Text Margin="15,0,15,0" Alignment="HorizontalCenter" />
-		</Style>
-
+		
 		<!-- The top section of the app -->
 		<TopFrameBackground ux:Name="sbb" DockPanel.Dock="Top" Visibility="Collapsed" />
 		<Text DockPanel.Dock="Top">Hello, world! I'm on the top of you.</Text>
 
 		<!-- This is the main client area -->
-		<ScrollViewer DockPanel.Dock="Fill">
+		<ScrollView DockPanel.Dock="Fill">
 			<StackPanel>
 				<DockPanel>
-					<Text Alignment="VerticalCenter" DockPanel.Dock="Left">Type here:</Text>
+					<Text Margin="15,0,15,0" Alignment="VerticalCenter" DockPanel.Dock="Left">Type here:</Text>
 					<TextInput Alignment="VerticalCenter" />
 				</DockPanel>
 
 				<StackPanel Alignment="HorizontalCenter" Orientation="Horizontal">
-					<Text Alignment="VerticalCenter">Change layout in response to OS?</Text>
+					<Text Margin="15,0,15,0"  Alignment="VerticalCenter">Change layout in response to OS?</Text>
 					<Switch Alignment="VerticalCenter">
 						<!-- Turn on all of our OS responsive controls -->
 						<WhileTrue>
@@ -29,23 +26,23 @@
 					</Switch>
 				</StackPanel>
 				<Panel Height="50" />
-				<Text TextWrapping="Wrap" ux:Name="Description">This example shows controls that are hidden by OS adornments, such as the status bar, navigation and keyboard. To make the app respond to these entities, toggle the "respond to OS switch". You can also try the text input field to see how it makes the app respond to the onscreen keyboard if your device has one.</Text>
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap" ux:Name="Description">This example shows controls that are hidden by OS adornments, such as the status bar, navigation and keyboard. To make the app respond to these entities, toggle the "respond to OS switch". You can also try the text input field to see how it makes the app respond to the onscreen keyboard if your device has one.</Text>
 
 				<!-- Fade out the description of the app when the keyboard is visible -->
 				<WhileKeyboardVisible>
 					<Change Target="Description.Opacity" Value="0" Duration="0.5" />
 				</WhileKeyboardVisible>
 			</StackPanel>
-		</ScrollViewer>
+		</ScrollView>
 
 		<!-- The bottom section of the app -->
 		<Grid ColumnCount="2" Background="White" DockPanel.Dock="Bottom" >
 			<StackPanel Alignment="Bottom">
-				<Text TextWrapping="Wrap">Bottom 1</Text>
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap">Bottom 1</Text>
 				<BottomFrameBackground ux:Name="bbb1" Visibility="Collapsed" />
 			</StackPanel>
 			<StackPanel Alignment="Bottom">
-				<Text TextWrapping="Wrap">Bottom 2</Text>
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap">Bottom 2</Text>
 				<BottomFrameBackground ux:Name="bbb2"
 					Visibility="Collapsed" IncludesKeyboard="false" />
 			</StackPanel>

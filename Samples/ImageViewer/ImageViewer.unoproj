@@ -1,0 +1,12 @@
+{
+  "InternalsVisibleTo": [],
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Physics"
+  ],
+  "Projects": [],
+  "Includes": [
+    "*"
+  ]
+}

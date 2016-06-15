@@ -1,0 +1,16 @@
+{
+  "Copyright": "Copyright (c) Fusetools AS 2014",
+  "Description": "Fuse.Dialogs",
+  "Publisher": "Fusetools AS",
+  "Version": "0.19.3",
+  "Packages": [
+    "Uno.Collections",
+    "Fuse.Scripting",
+    "Uno.Threading",
+    "Fuse.Designer",
+    "FuseCore",
+  ],
+  "Includes": [
+    "*",
+  ]
+}

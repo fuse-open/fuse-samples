@@ -16,6 +16,7 @@ ROOTDIR=$( cd $BASEDIR/../.. ; pwd)
 FUSEDIR=$ROOTDIR/FuseDownloaded
 BUILDER=$ROOTDIR/./tools/Stuff/MultiProjBuilder/MultiProjBuilder.exe
 PROJECT_DIR=$ROOTDIR/Samples
+EXCLUDES=(NativeDialogs/Fuse.Dialogs)
 ACTION=$1
 TARGET=$2
 CI_SERVER_URL=$3
@@ -33,20 +34,28 @@ else
     MONO=""
 fi
 
+EXCLUDE_ARGS=" "
+if [ ${#EXCLUDES[@]} -gt 0 ]; then
+    for e in ${EXCLUDES[@]}; do
+        EXCLUDE_ARGS="$EXCLUDE_ARGS -e $PROJECT_DIR/$e"
+    done
+    echo "Excluding using '$EXCLUDE_ARGS'"
+fi
+
 echo "Installing stuff"
 pushd $ROOTDIR/tools/Stuff
 $MONO ./stuff.exe install .
 popd
 
 echo "Getting Fuse"
-$ROOTDIR/tools/CI/get-fuse.sh $ROOTDIR/tools/CI/fuse-branch.txt $FUSEDIR $CI_SERVER_URL $CI_SERVER_AUTH
+$ROOTDIR/tools/CI/get-fuse.sh $FUSEDIR $CI_SERVER_URL $CI_SERVER_AUTH
 
 echo "Setting paths"
 if [ "$MONO" != "" ]; then 
     sed -i '' "s+ Packages+ $FUSEDIR/Packages+" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
     sed -i '' "s+/usr/local/share/uno/Packages++" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
     echo -n "/Library/Frameworks/Mono.framework/Versions/Current" > $FUSEDIR/Fuse.app/Contents/.mono_root
-    UNO=$FUSEDIR/Fuse.app/Contents/uno.exe
+    UNO=$FUSEDIR/Fuse.app/Contents/Uno/uno.exe
     FUSE=$FUSEDIR/Fuse.app/Contents/MacOS/Fuse
 else
     PACKAGES=$(echo $FUSEDIR | sed 's/^..//')"/Packages"
@@ -61,9 +70,13 @@ fi
 
 echo "Bulding examples"
 if [ $ACTION == "build" ]; then
-    $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR
+    $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
 elif [ $ACTION == "preview" ]; then
-    $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR
+    if [ "$TARGET" == "local" ]; then
+        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR $EXCLUDE_ARGS 
+    else
+        $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
+    fi
 else
     echo "Invalid action '$ACTION'"
     exit 1

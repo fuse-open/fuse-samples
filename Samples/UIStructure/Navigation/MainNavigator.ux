@@ -1,0 +1,65 @@
+<Navigator DefaultTemplate="home">
+	<ux:Include File="Login.ux" />
+	<ux:Include File="Chat.ux" />
+	
+	<DockPanel ux:Template="home" Transition="None" Color="#FFF"
+		ClipToBounds="true">
+		<EnteringAnimation>
+			<Move X="1" Duration="0.3" RelativeTo="ParentSize" Easing="CubicOut"/>
+		</EnteringAnimation>
+		<ExitingAnimation>
+			<Scale Factor="0.8" Duration="0.1"/>
+			<Move X="-1" RelativeTo="ParentSize" Easing="CubicIn" Duration="0.4"/>
+		</ExitingAnimation>
+		<RemovingAnimation>
+			<Scale Factor="2" Duration="0.2"/>
+			<Change home.Opacity="0" Duration="0.4"/>
+		</RemovingAnimation>
+		
+		<PageControl>
+			<Page Name="channels" >
+				<PageControl Interaction="None">
+					<ux:Include File="Channel/List.ux" />
+					<ux:Include File="Channel/View.ux" />
+				</PageControl>
+			</Page>
+			
+			<Page Name="contacts">
+				<Navigator>
+					<ux:Include File="Contact/List.ux" />
+					<ux:Include File="Contact/View.ux"/>
+				</Navigator>
+			</Page>
+			
+			<Page Name="settings">
+				<ux:Include File="Settings.ux" />
+			</Page>
+		</PageControl>
+		
+		<TitleBar Dock="Top" Color="#AEE" Navigation="router" Padding="4">
+			<WhileCanGoBack>
+				<Button Alignment="Left" Text="Back" Clicked="{goBack}"/>
+				<!-- GoBack would also work, but I want to test goBack in JS -->
+			</WhileCanGoBack>
+			<WhileCanGoBack Invert="true">
+				<Image Alignment="Left" File="Assets/menu.png"
+					Clicked="{openMenu}" Color="0.4,0.4,0.5,1"/>
+			</WhileCanGoBack>
+			<Label Alignment="Center" Value="Navigator Demo"/>
+		</TitleBar>
+		
+		<Grid Dock="Bottom" Color="#AEE" RowCount="1" ColumnCount="3" Padding="4">
+			<StackPanel ux:Class="NavIcon" Alignment="HorizontalCenter" HitTestMode="LocalBounds">
+				<string ux:Property="Title"/>
+				<Uno.UX.FileSource ux:Property="File"/>
+				
+				<Image File="{Property this.File}" StretchMode="PointPrecise" Color="0.4,0.4,0.5,1"/>
+				<Text Value="{Property this.Title}" FontSize="14" Margin="0,3,0,0"/>
+			</StackPanel>
+			
+			<NavIcon Title="Channels" File="Assets/calendar.png" Clicked="{goChannels}"/>
+			<NavIcon Title="Contacts" File="Assets/user.png" Clicked="{goContacts}"/>
+			<NavIcon Title="Settings" File="Assets/settings.png" Clicked="{goSettings}"/>
+		</Grid>
+	</DockPanel>
+</Navigator>

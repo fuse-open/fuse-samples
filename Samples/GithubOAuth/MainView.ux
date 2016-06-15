@@ -1,15 +1,14 @@
-<App Theme="Basic">
+<App >
 	<DockPanel>
-		<Style>
-			<Page>
-				<EnteringAnimation>
-					<Move X="1" RelativeTo="ParentSize"/>
-				</EnteringAnimation>
-				<ExitingAnimation>
-					<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
-				</ExitingAnimation>
-			</Page>
-		</Style>
+
+		<Page ux:Class="NavPage">
+			<EnteringAnimation>
+				<Move X="1" RelativeTo="ParentSize"/>
+			</EnteringAnimation>
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="ParentSize" Duration="0.5"/>
+			</ExitingAnimation>
+		</Page>
 
 		<JavaScript File="Auth.js" ux:Global="Auth"/>
 		<JavaScript File="MainView.js" />
@@ -25,7 +24,7 @@
 		</Grid>
 		<Panel>
 			<HierarchicalNavigation ux:Name="nav" />
-			<Page>
+			<NavPage>
 				<ScrollView>
 					<StackPanel>
 						<Each Items="{repos}">
@@ -43,8 +42,8 @@
 						</Each>
 					</StackPanel>
 				</ScrollView>
-			</Page>
-			<Page ux:Name="issuesPage" ux:AutoBind="false">
+			</NavPage>
+			<NavPage ux:Name="issuesPage" ux:AutoBind="false">
 				<ScrollView>
 					<StackPanel>
 						<Each Items="{issues}">
@@ -80,7 +79,7 @@
 						</Each>
 					</StackPanel>
 				</ScrollView>
-			</Page>
+			</NavPage>
 		</Panel>
 	</DockPanel>
 </App>

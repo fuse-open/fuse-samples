@@ -1,0 +1,12 @@
+{
+  "Packages": [
+	"Fuse",
+	"FuseJS",
+  ],
+  "Projects": [
+    "../Fuse.Dialogs/Fuse.Dialogs.unoproj",
+  ],
+  "Includes": [
+    "*"
+  ]
+}

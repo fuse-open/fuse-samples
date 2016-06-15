@@ -1,0 +1,43 @@
+<DockPanel ux:Class="Demo2">
+	<Text TextWrapping="Wrap" Dock="Top">This demonstrates multiple `Change` animators on the same property with the various `MixOp`. The change values used are `100` and `200`, targeting the panel `Height`, using an `Easing="BackInOut"`. The switches apply the different values.</Text>
+	<StackPanel Orientation="Horizontal" Dock="Top" Alignment="Center">
+		<Text>100</Text>
+		<Switch>
+			<WhileTrue>
+				<Change Panel1.Height="100" Duration="1" Easing="BackInOut"/>
+				<Change Panel2.Height="100" Duration="1" Easing="BackInOut" MixOp="Add"/>
+				<Change Panel3.Height="100" Duration="1" Easing="BackInOut" MixOp="Weight"/>
+			</WhileTrue>
+		</Switch>
+		
+		<Panel Width="20"/>
+		<Text>200</Text>
+		<Switch>
+			<WhileTrue>
+				<Change Panel1.Height="200" Duration="1" Easing="BackInOut"/>
+				<Change Panel2.Height="200" Duration="1" Easing="BackInOut" MixOp="Add"/>
+				<Change Panel3.Height="200" Duration="1" Easing="BackInOut" MixOp="Weight"/>
+			</WhileTrue>
+		</Switch>
+	</StackPanel>
+	
+	<Grid ColumnCount="3" CellSpacing="20" Margin="20" Rows="auto,1*">
+		<Text Value="Default / Offset" Alignment="Center"/>
+		<Text Value="Add" Alignment="Center"/>
+		<Text Value="Weight" Alignment="Center"/>
+	
+		<Panel Color="0.8,0.8,0.8,1" ux:Name="Panel1" Height="50" Alignment="Top"/>
+		<Panel Color="0.8,0.8,0.8,1" ux:Name="Panel2" Height="50" Alignment="Top"/>
+		<Panel Color="0.8,0.8,0.8,1" ux:Name="Panel3" Height="50" Alignment="Top"/>
+		
+		<Panel Row="1" Column="0" ColumnSpan="3">
+			<Rectangle Height="1px" Y="50" Color="0,0,0,0.5"/>
+			<Rectangle Height="1px" Y="100" Color="0,0,0,1"/>
+			<Rectangle Height="1px" Y="150" Color="0,0,0,0.5"/>
+			<Rectangle Height="1px" Y="200" Color="0,0,0,1"/>
+			<Rectangle Height="1px" Y="250" Color="0,0,0,0.5"/>
+			<Rectangle Height="1px" Y="300" Color="0,0,0,1"/>
+			<Rectangle Height="1px" Y="350" Color="0,0,0,0.5"/>
+		</Panel>
+	</Grid>
+</DockPanel>

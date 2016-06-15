@@ -1,0 +1,30 @@
+<DockPanel Name="view" ux:Name="channelView">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		var channels = require("App/channels.js")
+		exports.channel = Observable()
+		
+		channelView.onParameterChanged( function(param) {
+			exports.channel.value = {}
+			channels.lookupChannel(param, function(channel) {
+				exports.channel.value = channel
+			})
+		})
+		
+		exports.goChat = function(args) {
+			router.push( "chat",  args.data )
+		}
+	</JavaScript>
+	<StackPanel Alignment="Center">
+		<Text Value="Now in channel: " />
+		<Label Value="{channel.name}" />
+		<Button Text="Leave" Clicked="{goBack}" />
+	</StackPanel>
+	
+	<StackPanel Dock="Right" Color="#CCC" Padding="10">
+		<Text Value="In Channel:"/>
+		<Each Items="{channel.members}">
+			<Button Text="{}" Clicked="{goChat}"/>
+		</Each>
+	</StackPanel>
+</DockPanel>

@@ -26,13 +26,13 @@ Looking at this example will make it easier to understand the effect of these co
 <table>
     <tr>
 		<td>
-			![ex1](OS_UI/no_response.png)
+		    <img src="/Samples/OSUI/OS_UI/no_response.png" />
 		</td>
 		<td>
-			![ex2](OS_UI/respond.png)
+			<img src="/Samples/OSUI/OS_UI/respond.png" />
 		</td>
 		<td>
-			![ex3](OS_UI/response_with_keyboard.png)
+			<img src="/Samples/OSUI/OS_UI/response_with_keyboard.png" />
 		</td>
 	</tr>
 </table>

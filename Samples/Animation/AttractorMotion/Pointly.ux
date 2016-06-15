@@ -1,0 +1,30 @@
+<DockPanel ux:Class="Pointly">
+	<StackPanel Dock="Top">
+		<Text TextWrapping="Wrap">A demonstration of attractor using various types with Point units.</Text>
+	</StackPanel>
+	<DockPanel Alignment="Center">
+		<Grid ColumnCount="3" Rows="auto" Dock="Top">
+			<Panel ux:InnerClass="MoveIt" Color="#AAF" Padding="2" Alignment="Center">
+				<string ux:Property="Text"/>
+				<Size ux:Property="Value"/>
+				<Text FontSize="20" Value="{Property this.Text}"/>
+				<Clicked>
+					<Set Target="A1.Value" Value="{Property this.Value}"/>
+				</Clicked>
+			</Panel>
+			<MoveIt Text="&lt;" Value="0"/>
+			<MoveIt Text="*" Value="150"/>
+			<MoveIt Text="&gt;" Value="300"/>
+		</Grid>
+
+		<StackPanel Width="340" Padding="20,0,20,0" ItemSpacing="5" Color="#FFF">
+			
+			<Rectangle ux:Class="Rect" Height="20" Width="40" Alignment="TopLeft" 
+				Anchor="50%,0%" Color="#AFF"/>
+				
+			<Rect ux:Name="R1">
+				<Attractor Target="R1.X" Unit="Points" Type="Elastic" ux:Name="A1"/>
+			</Rect>
+		</StackPanel>
+	</DockPanel>
+</DockPanel>

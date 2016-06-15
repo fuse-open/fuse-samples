@@ -1,4 +1,4 @@
-<App Theme="Basic" Background="0.3,0.3,0.5,1">	
+<App Background="0.3,0.3,0.5,1">
 	<Circle ux:Class="Dot" Width="30" Height="30" Alignment="CenterLeft"
 		ux:Name="self" Anchor="50%,50%" Fill="0.7,0.9,1,1">
 		<float ux:Property="TimeOffset"/>
@@ -10,7 +10,7 @@
 				ProgressOffset="{Property self.TimeOffset}" Easing="QuinticOut"/>
 		</WhileVisible>
 	</Circle>
-	
+
 	<ClientPanel>
 		<Panel Margin="50" Alignment="Center" Width="500" Height="50">
 			<Rectangle>
