@@ -56,6 +56,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/Animation/CyclePhase">Cycle Phase</a></td>
     <td><a href="Samples/Animation/TimelineWrap">Timeline Wrap</a></td>
 	<td><a href="Samples/RelativeTo">RelativeTo</a></td>
+	<td><a href="Samples/Animation/MixOp">MixOp</a></td>
   </tr>
 </table>
 
