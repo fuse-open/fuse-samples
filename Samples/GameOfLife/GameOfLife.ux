@@ -1,7 +1,7 @@
-<App Theme="Basic" ux:Class="GameOfLife" ClearColor="1,1,1,1">
+<App ux:Class="GameOfLife" Background="#fff">
 	<ClientPanel>
 		<JavaScript File="Life.js"/>
-		
+
 		<DockPanel Dock="Top">
 			<StackPanel Orientation="Horizontal" Dock="Left">
 				<Button Text="Step" Clicked="{step}"/>
@@ -13,7 +13,7 @@
 			<Slider Value="{speed}" Minimum="100" Maximum="1000"/>
 		</DockPanel>
 		<Rectangle Height="1" Color="0,0,0,1" Dock="Top" Margin="0,2,0,0"/>
-		
+
 		<Grid Clicked="{updateColorCells}" ColumnCount="{numColumns}" RowCount="{numRows}"
 			CellSpacing="3" Color="0.6,0.6,0.7,1">
 			<Each Items="{cells}">
@@ -29,6 +29,6 @@
 				</Panel>
 			</Each>
 		</Grid>
-		
+
 	</ClientPanel>
 </App>
