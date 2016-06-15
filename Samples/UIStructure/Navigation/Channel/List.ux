@@ -1,0 +1,11 @@
+<Page Name="list">
+	<JavaScript File="List.js"/>
+	<StackPanel ItemSpacing="10">
+		<Each Items="{channels}">
+			<StackPanel Padding="10" Orientation="Horizontal" Clicked="{view}">
+				<ListIcon Color="{color}"/>
+				<Label Value="{name}" />
+			</StackPanel>
+		</Each>
+	</StackPanel>
+</Page>

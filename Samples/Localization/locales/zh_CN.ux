@@ -1,0 +1,4 @@
+<State Name="zh_CN">
+  <ResourceString Key="keyWelcome" Value="欢迎访问"/>
+  <ResourceString Key="keySignIn" Value="登录"/>
+</State>

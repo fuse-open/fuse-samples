@@ -1,0 +1,4 @@
+<State Name="en_US">
+  <ResourceString Key="keyWelcome" Value="Welcome"/>
+  <ResourceString Key="keySignIn" Value="Sign In"/>
+</State>

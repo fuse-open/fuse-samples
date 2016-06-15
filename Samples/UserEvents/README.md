@@ -1,81 +1,40 @@
-# Fuse User Events
+# A component with custom events
 
-Fuse User Events are intended for sending messages between components of your application. They may be sent and received from UX, Uno, and JavaScript.
+This example creates a number pad entry component showing how to define and raise user events. It builds a second higher level component showing how to structure components into usable high-level controls.
 
-## Declaring an event
+## NumberPad
 
-User events are attached to the node from where they are raised. For example:
+The core control is the `NumberPad` which defines a simple panel of 10 digits and two control actions. A user of this control will listen to the various events that it publishes. One such event is the `NumberSelected` event:
 
-	<App>
-		<UserEvent Name="Chatty.GotoContacts"/>
-		...
+	<UserEvent ux:Name="NumberSelected"/>
+	
+When the user presses one of the numbers the JS code raises the event:
 
-This creates an even with the name `Chatty.GotoContacts`. By putting this `UserEvent` in `App` we are essentially making it an app-wide event, since every child of `App` can raise and respond to this event.
+	NumberSelected.raise({ 
+		number: args.data,
+	})
+	
+The `number` is provided as a named argument. A listener to the event gets this value as an argument. For example, in the `MainView.ux` use it sets a text value to the number and pulses it's display.
 
-## Raising and responding to the event
+	exports.selected = function(args) {
+		exports.current.value = args.number
+		OneShot.pulseBackward()
+	}
+	
+### Convenience Triggers
 
-To raise an event from UX use the `RaiseUserEvent` action. You might for example put this in a `Clicked` handler on a button.
+For convenience the `NumberPad.ux` also defines a trigger for each of the events it raises. For example:
 
-```
-<Button Text="Contacts">
-	<Clicked>
-		<RaiseUserEvent Name="Chatty.GotoContacts"/>
-	</Clicked>
-</Button>
-```
+	<OnUserEvent ux:Class="NumberSelected" Name="NumberSelected"/>
+	
+This allows these events to be responded to in UX with a nice name instead of just having `OnUserEvent` everywhere. In `MainView.ux` the demo respnds to this event:
 
-In another UX file you can then respond to this event using the `OnUserEvent` trigger. To continue our example we'll set a new active page for navigation.
+	<NumberPad>
+		<NumberSelected Handler="{selected}"/>
+	</NumberPad>
+	
+There is no need to define these custom triggers. You can use `OnUserEvent` directly with the appropriate `Name`. This may be more desirable if you have only one responder to a particular event.	
 
-```
-<OnUserEvent Name="Chatty.GotoContacts">
-	<Set Navi.Active="PageContacts"/>
-</OnUserEvent>
-```
+## NumberEntry
 
-## Arguments
-
-Arguments can be added to the messages using `UserEventArg`.
-
-```
-<RaiseUserEvent Name="Chatty.GotoChat">
-	<UserEventArg Name="user" StringValue="Tom"/>
-</RaiseUserEvent>
-```
-
-The receiving side can read these values in JavaScript (or Uno) by attaching a handler. This is a simple JavaScript handler:
-
-```
-<OnUserEvent Name="Chatty.GotoChat" Handler="{gotoChat}"/>
-```
-
-```
-var gotoChat = function(args, o) {
-	console.log(args.user)
-}
-```
-
-## Raising from JavaScript
-
-Events can be raised from JavaScript by using the `FuseJS/UserEvents` module.
-
-```
-var UserEvents = require("FuseJS/UserEvents")
-
-UserEvents.raise( "Chatty.JSGotoContacts" )
-
-UserEvents.raise( "Chatty.JSGotoChat", {
-	user: "Tom"
-})
-```
-
-### Global filter
-
-At the moment events raised from JavaScript are global only, and not associated with a node (we have an issue to correct this). Thus to respond to an event from JavaScript you need to put a global filter on the handler:
-
-```
-<OnUserEvent Name="Chatty.JSGotoContact" Filter="Global">
-	...
-</OnUserEvent>
-```
-
-This filtering can be used anyway. It allows an event listener to hear events that do not belong to one of its ancestor Nodes. Placing events at the `App` level is preferred when possible.
+`NumberEntry` is a component that connects the `NumberPad` to a `Text` control. It demonstrates the `ux:Dependency` feature and shows how to handle all the messages from the `NumberPad`.
