@@ -1,0 +1,46 @@
+<DockPanel Alignment="Center" ux:Class="Demo1">
+	<Text TextWrapping="Wrap" Dock="Top" Width="100%" MaxWidth="400">Demonstration of `Change X=`1` Easing="BackInOut"` with the different `MixOp` options. It applies to a `Translation X='0.5' RelativeTo='ParentSize'.</Text>
+	<Switch Dock="Top">
+		<WhileTrue>
+			<Change TheTrans1.X="1" Duration="1" Easing="BackInOut"/>
+			<Change TheTrans2.X="1" Duration="1" Easing="BackInOut" MixOp="Weight"/>
+			<Change TheTrans3.X="1" Duration="1" Easing="BackInOut" MixOp="Add"/>
+		</WhileTrue>
+	</Switch>
+	
+	<Grid Columns="auto,1*" CellSpacing="5" Rows="auto,50,50,50">
+		<Panel/>
+		<Panel Margin="25,0,25,0">
+			<Text Alignment="Left" Value="0"/>
+			<Text Alignment="Center" Value="0.5"/>
+			<Text Alignment="Right" Value="1"/>
+		</Panel>
+		
+		<Text Value="Default / Offset"/>
+		<Panel Margin="25,10,25,10">
+			<Rectangle Color="0.5,1,0.5,0.3" Anchor="50%,50%" Alignment="Left" Height="50" Width="50">
+				<Stroke Width="1" Color="0,0,0,1"/>
+				<Translation X="0.5" RelativeTo="ParentSize" ux:Name="TheTrans1"/>
+			</Rectangle>
+		</Panel>
+		
+		<Text Value="Weight"/>
+		<Panel Margin="25,10,25,10">
+			<Rectangle Color="0.5,1,0.5,0.3" Anchor="50%,50%" Alignment="Left" Height="50" Width="50">
+				<Stroke Width="1" Color="0,0,0,1"/>
+				<Translation X="0.5" RelativeTo="ParentSize" ux:Name="TheTrans2"/>
+			</Rectangle>
+		</Panel>
+		
+		<Text Value="Add"/>
+		<Panel Margin="25,10,25,10">
+			<Rectangle Color="0.5,1,0.5,0.3" Anchor="50%,50%" Alignment="Left" Height="50" Width="50">
+				<Stroke Width="1" Color="0,0,0,1"/>
+				<Translation X="0.5" RelativeTo="ParentSize" ux:Name="TheTrans3"/>
+			</Rectangle>
+		</Panel>
+		
+		<Panel Row="1" Column="1" RowSpan="4" Color="0.8,0.8,0.8,1"/>
+		
+	</Grid>
+</DockPanel>
