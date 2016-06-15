@@ -1,0 +1,69 @@
+<Page ux:Class="DetailsPage">
+	<string ux:Property="CurrentPet" />
+
+	<JavaScript File="DetailsPage.js" />
+
+	<WhiteText ux:Class="InfoText" TextColor="#fff7" Margin="0,20,0,5" />
+
+	<Panel ux:Name="dialog" Alignment="VerticalCenter" Margin="40" Padding="20,40,20,0" Opacity="0">
+		<Rectangle Layer="Background" Fill="#fff" CornerRadius="2" Opacity=".8" />
+
+		<StackPanel>
+			<Text Alignment="Center" FontSize="30" TextWrapping="Wrap" TextAlignment="Center">Your playdate has been booked!</Text>
+
+			<Button Text="Fantastic!" Margin="0,20,0,0" Padding="10,10,10,50" Clicked="{closeDialog}" HitTestMode="LocalBoundsAndChildren" />
+		</StackPanel>
+
+		<WhileFalse Value="{isDialogShowing}">
+			<Move X="3" RelativeTo="Size" Duration="0.6" Easing="BackIn" />
+			<Scale Factor="0.8" Duration=".6" Easing="BackIn" />
+		</WhileFalse>
+
+		<DropShadow />
+	</Panel>
+
+
+	<WhileTrue Value="{isDialogShowing}">
+		<Change dialog.Opacity="1" Duration=".3" Easing="QuadraticInOut" />
+		<Change mainPanelBlur.Radius="10" Duration=".3" Easing="QuadraticInOut" />
+	</WhileTrue>
+
+	<Panel>
+		<Select Data="{pet}">
+			<Panel>
+				<Button Text="Book playdate!!" Alignment="BottomRight" Margin="20" Padding="10" Clicked="{bookDate}" HitTestMode="LocalBoundsAndChildren" />
+
+				<DockPanel>
+					<DockPanel Height="250" Dock="Top">
+						<Panel Layer="Background">
+							<Rectangle>
+								<LinearGradient StartPoint="0,0" EndPoint="1,1" AngleDegrees="90">
+									<GradientStop Offset=".4" Color="#fff0" />
+									<GradientStop Offset="1" Color="#7f5ce6c0" />
+								</LinearGradient>
+							</Rectangle>
+							<Image File="{mainPicture.file}" StretchMode="UniformToFill" />
+						</Panel>
+
+						<WhiteText Value="{name}" FontSize="40" Alignment="HorizontalCenter" Dock="Bottom">
+							<DropShadow />
+						</WhiteText>
+					</DockPanel>
+
+					<DockPanel Padding="20">
+						<StackPanel Dock="Top">
+							<InfoText>Height:</InfoText>
+							<WhiteText Value="{height}" />
+							<InfoText>More info:</InfoText>
+						</StackPanel>
+						<ScrollView>
+							<WhiteText Value="{info}" TextWrapping="Wrap" />
+						</ScrollView>
+					</DockPanel>
+				</DockPanel>
+			</Panel>
+		</Select>
+
+		<Blur ux:Name="mainPanelBlur" Radius="0" />
+	</Panel>
+</Page>

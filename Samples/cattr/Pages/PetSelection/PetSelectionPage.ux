@@ -1,0 +1,42 @@
+<DefaultPage ux:Class="PetSelectionPage">
+	<Router ux:Dependency="router" />
+
+	<JavaScript File="PetSelectionPage.js" />
+
+	<DockPanel>
+		<Panel Background="#7f5ce6" Dock="Top">
+			<WhiteText Alignment="Center" FontSize="30" Margin="0,20,0,20">Pick your pet!</WhiteText>
+		</Panel>
+
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{pets}">
+					<DockPanel Height="250">
+						<Panel Layer="Background">
+							<Rectangle>
+								<LinearGradient StartPoint="0,0" EndPoint="1,1" AngleDegrees="90">
+									<GradientStop Offset=".4" Color="#fff0" />
+									<GradientStop Offset="1" Color="#7f5ce6c0" />
+								</LinearGradient>
+							</Rectangle>
+							<Image File="{mainPicture.file}" StretchMode="UniformToFill" />
+						</Panel>
+
+						<DockPanel Dock="Bottom" Margin="10">
+							<ImageRectangle File="{mainPicture.file}" Dock="Left" Width="50" Height="50" Margin="0,0,10,0" />
+
+							<StackPanel>
+								<WhiteText Value="{name}" Alignment="CenterLeft" FontSize="30" />
+								<WhiteText Value="{liteInfo}" Alignment="BottomLeft" TextWrapping="Wrap" />
+							</StackPanel>
+
+							<DropShadow />
+						</DockPanel>
+
+						<Clicked Handler="{clicked}" />
+					</DockPanel>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</DefaultPage>

@@ -1,0 +1,27 @@
+<Page ux:Class="PicsPage">
+	<string ux:Property="CurrentPet" />
+
+	<JavaScript File="PicsPage.js" />
+
+	<ScrollView>
+		<StackPanel>
+			<Each Items="{pet.pictures}">
+				<Panel>
+					<Panel>
+						<WhiteText Value="{info}" TextWrapping="Wrap" Alignment="BottomCenter" Margin="10">
+							<DropShadow />
+						</WhiteText>
+
+						<Rectangle Height="150" Alignment="Bottom">
+							<LinearGradient StartPoint="0,0" EndPoint="1,1" AngleDegrees="90">
+								<GradientStop Offset="0" Color="#fff0" />
+								<GradientStop Offset="1" Color="#7f5ce6c0" />
+							</LinearGradient>
+						</Rectangle>
+					</Panel>
+					<Image File="{file}" StretchMode="UniformToFill" />
+				</Panel>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+</Page>

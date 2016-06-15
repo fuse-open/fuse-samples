@@ -1,0 +1,12 @@
+<Panel ux:Class="HomePageTab" HitTestMode="LocalBoundsAndChildren">
+	<string ux:Property="Label" />
+	<PageControl ux:Dependency="pageControl" />
+	<Page ux:Dependency="page" />
+	<WhiteText Alignment="Center" Value="{Property this.Label}" />
+	<Clicked>
+		<NavigateTo NavigationContext="pageControl" Target="page" />
+	</Clicked>
+	<WhilePressed>
+		<Scale Factor=".85" Duration=".08" Easing="QuadraticInOut" />
+	</WhilePressed>
+</Panel>

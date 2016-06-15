@@ -1,0 +1,18 @@
+<App>
+	<iOS.StatusBarConfig Style="Light" />
+	<Android.StatusBarConfig Color="#7f5ce6" />
+
+	<Router ux:Name="router" />
+
+	<DockPanel>
+		<Image Layer="Background" File="assets/base.png" StretchMode="Fill" />
+
+		<StatusBarBackground Dock="Top" Background="#7f5ce6" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Navigator DefaultTemplate="petSelection">
+			<PetSelectionPage ux:Template="petSelection" router="router" />
+			<HomePage ux:Template="home" router="router" />
+		</Navigator>
+	</DockPanel>
+</App>

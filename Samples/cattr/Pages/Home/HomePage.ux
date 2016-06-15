@@ -1,0 +1,26 @@
+<DefaultPage ux:Class="HomePage">
+	<Router ux:Dependency="router" />
+
+	<JavaScript File="HomePage.js" />
+
+	<DockPanel>
+		<Panel Dock="Top">
+			<Grid Alignment="Bottom" Height="50" ColumnCount="3" Background="#7f5ce6">
+				<HomePageTab Label="Details" pageControl="pageControl" page="details" />
+				<HomePageTab Label="Pics" pageControl="pageControl" page="pics" />
+				<HomePageTab Label="Chat" pageControl="pageControl" page="chat" />
+			</Grid>
+		</Panel>
+		<iOS>
+			<Panel Dock="Bottom">
+				<Rectangle Layer="Background" Height="1" Alignment="Top" Fill="#fff8" Opacity=".1" />
+				<Button Text="Back to Pet Selection" Height="50" Clicked="{goBack}" />
+			</Panel>
+		</iOS>
+		<PageControl ux:Name="pageControl">
+			<DetailsPage ux:Name="details" CurrentPet="{currentPet}" />
+			<PicsPage ux:Name="pics" CurrentPet="{currentPet}" />
+			<ChatPage ux:Name="chat" />
+		</PageControl>
+	</DockPanel>
+</DefaultPage>

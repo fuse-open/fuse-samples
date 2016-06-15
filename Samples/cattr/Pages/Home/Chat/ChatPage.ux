@@ -1,0 +1,35 @@
+<Page ux:Class="ChatPage">
+	<JavaScript File="ChatPage.js" />
+
+	<DockPanel>
+		<DockPanel Dock="Bottom" MinHeight="60" Padding="10">
+			<Rectangle Layer="Background" Height="1" Alignment="Top" Fill="#fff8" Opacity=".1" />
+			<Rectangle Layer="Background" Height="1" Alignment="Bottom" Fill="#fff8" Opacity=".1" />
+
+			<Button Dock="Right" Text="Send" Margin="10,0,0,0" Clicked="{sendMessage}" IsEnabled="{canSendMessage}" />
+			<TextInput Value="{message}" PlaceholderText="Send a message!" PlaceholderColor="#fff4" CaretColor="#fff" TextColor="White" ActionStyle="Send" ActionTriggered="{sendMessage}" />
+		</DockPanel>
+
+		<ScrollView>
+			<StackPanel Alignment="Bottom">
+				<Each Items="{messages}">
+					<DockPanel Margin="10">
+						<WhiteText Value="{info}" Alignment="Center" Dock="{dock}" FontSize="12" Opacity=".5" />
+						<Panel Padding="20" Margin="10,0,10,0">
+							<Rectangle Layer="Background" CornerRadius="10" Opacity=".12" Color="#fff"/>
+							<WhiteText Value="{text}" TextWrapping="Wrap" Alignment="CenterLeft" />
+						</Panel>
+
+						<AddingAnimation>
+							<Scale Factor="0" Duration=".5" Easing="QuinticIn" />
+						</AddingAnimation>
+					</DockPanel>
+				</Each>
+
+				<LayoutAnimation>
+					<Move RelativeTo="PositionChange" Y="1" Duration=".5" Easing="QuinticInOut" />
+				</LayoutAnimation>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</Page>
