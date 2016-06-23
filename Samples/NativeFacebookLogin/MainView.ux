@@ -1,0 +1,8 @@
+<App>
+  <ScrollView>
+    <StackPanel>
+      <Text Value="Aaa" />
+      <FacebookLoginButton Text="Login with Facebook" />
+    </StackPanel>
+  </ScrollView>
+</App>

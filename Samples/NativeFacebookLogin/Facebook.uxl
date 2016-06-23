@@ -1,0 +1,64 @@
+<Extensions Backend="CPlusPlus">
+  <Set Facebook.AppID="YOUR-FACEBOOK-APPID" />
+
+  <Require Condition="Android" Android.ResStrings.Declaration>
+    <![CDATA[
+      <string name="FACEBOOK_APP_ID">@(Facebook.AppID)</string>
+    ]]>
+  </Require>
+  <Require Condition="Android" AndroidManifest.ApplicationElement>
+    <![CDATA[
+      <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/FACEBOOK_APP_ID" />
+      <activity android:name="com.facebook.FacebookActivity"
+              android:configChanges=
+                     "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:label="com.uno.test" />
+    ]]>
+  </Require>
+
+  <Require Condition="iOS" Xcode.Plist.Element>
+    <![CDATA[
+      <key>CFBundleURLTypes</key>
+      <array>
+        <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>fb@(Facebook.AppID)</string>
+          </array>
+        </dict>
+      </array>
+      <key>FacebookAppID</key>
+      <string>@(Facebook.AppID)</string>
+      <key>FacebookDisplayName</key>
+      <string>Fuse Test App</string>
+
+      <key>NSAppTransportSecurity</key>
+      <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+          <key>facebook.com</key>
+          <dict>
+            <key>NSIncludesSubdomains</key> <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
+          </dict>
+          <key>fbcdn.net</key>
+          <dict>
+            <key>NSIncludesSubdomains</key> <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>  <false/>
+          </dict>
+          <key>akamaihd.net</key>
+          <dict>
+            <key>NSIncludesSubdomains</key> <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
+          </dict>
+        </dict>
+      </dict>
+
+      <key>LSApplicationQueriesSchemes</key>
+      <array>
+        <string>fbauth2</string>
+      </array>
+    ]]>
+  </Require>
+</Extensions>
