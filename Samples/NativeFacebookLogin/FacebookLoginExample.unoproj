@@ -19,7 +19,6 @@
   ],
   "Includes": [
     "FacebookAppId.uxl",
-    "FacebookLoginButton.uno",
     "MainView.ux",
   ],
 }
