@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Fuse",
+    "Fuse.Platform",
+  ],
+  "Includes": [
+    "FacebookLogin.uno",
+    "FacebookLogin.uxl",
+  ],
+}

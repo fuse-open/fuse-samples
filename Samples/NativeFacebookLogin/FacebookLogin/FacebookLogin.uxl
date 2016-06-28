@@ -1,6 +1,4 @@
 <Extensions Backend="CPlusPlus">
-  <Set Facebook.AppID="YOUR-FACEBOOK-APPID" />
-
   <Require Condition="Android" Android.ResStrings.Declaration>
     <![CDATA[
       <string name="FACEBOOK_APP_ID">@(Facebook.AppID)</string>
