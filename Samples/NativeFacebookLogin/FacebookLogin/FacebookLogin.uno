@@ -3,11 +3,11 @@ using Fuse.Platform;
 using Uno;
 using Uno.Compiler.ExportTargetInterop;
 
-[Require("Xcode.FrameworkDirectory", "@('FacebookSDKs-iOS':Path)")]
-[Require("Xcode.Framework", "@('FacebookSDKs-iOS/FBSDKCoreKit.framework':Path)")]
-[Require("Xcode.Framework", "@('FacebookSDKs-iOS/FBSDKLoginKit.framework':Path)")]
-[ForeignInclude(Language.ObjC, "FBSDKCoreKit/FBSDKCoreKit.h")]
-[ForeignInclude(Language.ObjC, "FBSDKLoginKit/FBSDKLoginKit.h")]
+[extern(iOS) Require("Xcode.FrameworkDirectory", "@('FacebookSDKs-iOS':Path)")]
+[extern(iOS) Require("Xcode.Framework", "@('FacebookSDKs-iOS/FBSDKCoreKit.framework':Path)")]
+[extern(iOS) Require("Xcode.Framework", "@('FacebookSDKs-iOS/FBSDKLoginKit.framework':Path)")]
+[extern(iOS) ForeignInclude(Language.ObjC, "FBSDKCoreKit/FBSDKCoreKit.h")]
+[extern(iOS) ForeignInclude(Language.ObjC, "FBSDKLoginKit/FBSDKLoginKit.h")]
 [Require("Gradle.Dependency","compile('com.facebook.android:facebook-android-sdk:4.8.+') { exclude module: 'support-v4' }")]
 [Require("Gradle.Repository","mavenCentral()")]
 [ForeignInclude(Language.Java, "android.content.Intent")]
