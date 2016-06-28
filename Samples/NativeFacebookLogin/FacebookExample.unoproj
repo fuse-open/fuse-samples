@@ -11,13 +11,14 @@
     }
   },
   "Packages": [
-    "Uno.Permissions",
     "Fuse",
-    "Fuse.Platform",
+    "Uno.Permissions",
+  ],
+  "Projects": [
+    "FacebookLogin/FacebookLogin.unoproj",
   ],
   "Includes": [
-    "Facebook.uno",
-    "Facebook.uxl",
+    "FacebookAppId.uxl",
     "FacebookLoginButton.uno",
     "MainView.ux",
   ],

@@ -15,9 +15,9 @@ using Uno.Compiler.ExportTargetInterop;
 [ForeignInclude(Language.Java, "com.facebook.appevents.AppEventsLogger")]
 [ForeignInclude(Language.Java, "com.facebook.login.*")]
 [ForeignInclude(Language.Java, "com.fuse.Activity")]
-public class Facebook
+public class FacebookLogin
 {
-	public Facebook()
+	public FacebookLogin()
 	{
 		Lifecycle.Started += Started;
 		Lifecycle.EnteringInteractive += OnEnteringInteractive;
@@ -40,7 +40,7 @@ public class Facebook
 	@{
 		FacebookSdk.sdkInitialize(Activity.getRootActivity());
 		final CallbackManager callbackManager = CallbackManager.Factory.create();
-		@{Facebook:Of(_this)._callbackManager:Set(callbackManager)};
+		@{FacebookLogin:Of(_this)._callbackManager:Set(callbackManager)};
 		Activity.subscribeToResults(new Activity.ResultListener()
 		{
 			@Override
@@ -148,7 +148,7 @@ public class Facebook
 	[Require("Entity", "AccessToken(Java.Object)")]
 	public extern(Android) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
 	@{
-		CallbackManager callbackManager = (CallbackManager)@{Facebook:Of(_this)._callbackManager:Get()};
+		CallbackManager callbackManager = (CallbackManager)@{FacebookLogin:Of(_this)._callbackManager:Get()};
 		LoginManager.getInstance().registerCallback(callbackManager,
 			new FacebookCallback<LoginResult>()
 			{

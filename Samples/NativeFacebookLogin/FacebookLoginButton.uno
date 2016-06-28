@@ -4,11 +4,11 @@ using Fuse.Controls;
 
 public class FacebookLoginButton : Button
 {
-	Facebook _facebook;
+	FacebookLogin _facebookLogin;
 	public FacebookLoginButton()
 		: base()
 	{
-		_facebook = new Facebook();
+		_facebookLogin = new FacebookLogin();
 		Fuse.Gestures.Clicked.AddHandler(this, ClickHandler);
 	}
 
@@ -28,7 +28,7 @@ public class FacebookLoginButton : Button
 
 	void Login()
 	{
-		_facebook.Login(OnSuccess, OnCancelled, OnError);
+		_facebookLogin.Login(OnSuccess, OnCancelled, OnError);
 	}
 
 	extern(Android) void OnPermissionsPermitted(PlatformPermission p)
@@ -36,7 +36,7 @@ public class FacebookLoginButton : Button
 		Login();
 	}
 
-	void OnSuccess(Facebook.AccessToken token)
+	void OnSuccess(FacebookLogin.AccessToken token)
 	{
 		debug_log "Login successful";
 	}

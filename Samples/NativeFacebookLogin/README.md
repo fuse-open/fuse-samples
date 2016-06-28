@@ -5,10 +5,13 @@ Facebook Android and iOS SDKs.
 It is part of the tutorial over at [https://www.fusetools.com/docs/native-interop/facebook-login](Fuse's docs page),
 so head over there if that's not where you came from!
 
+The main login functionality is implemented in the `FacebookLogin` Uno project
+in the `FacebookLogin` folder.
+
 ## Setup
 
 You will need to [register for a Facebook App ID](https://developers.facebook.com/docs/apps/register)
-and fill it in as `Facebook.AppID` in `Facebook.uxl`.
+and fill it in as `Facebook.AppID` in `FacebookAppId.uxl`.
 
 ## Building
 
