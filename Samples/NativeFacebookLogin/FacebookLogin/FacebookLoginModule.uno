@@ -22,7 +22,7 @@ public class FacebookLoginModule : NativeModule
 			}
 			else
 			{
-				Login();
+				Fuse.UpdateManager.AddOnceAction(Login);
 			}
 		}
 
@@ -46,7 +46,7 @@ public class FacebookLoginModule : NativeModule
 
 		extern(Android) void OnPermissionsPermitted(PlatformPermission p)
 		{
-			Login();
+			Fuse.UpdateManager.AddOnceAction(Login);
 		}
 
 		extern(Android) void OnPermissionsRejected(Exception e)
