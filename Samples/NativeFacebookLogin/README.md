@@ -21,4 +21,4 @@ dependency will then be handled automatically by Gradle.
 Use e.g. `uno build --target=Android -DGRADLE --run`.
 
 To build for iOS, you currently have to download the Facebook SDK for iOS
-manually. It needs to be extracted in `FacebookSDKs-iOS` in the current folder.
+manually. It needs to be extracted in `FacebookSDKs-iOS` in the `FacebookLogin` folder.
