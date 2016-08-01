@@ -1,4 +1,5 @@
 using Experimental.TextureLoader;
+using Fuse.Scripting;
 using Fuse.Resources;
 using Uno.Graphics;
 using Uno.Platform;
@@ -44,9 +45,22 @@ public class TextureSetterTransferListener: TransferListener
 	}
 }
 
-public static class S3ImageDownloader
+[UXGlobalModule]
+public class S3ImageDownloader : NativeModule
 {
-	public static void Start(object sender, object args)
+	public S3ImageDownloader()
+	{
+		Resource.SetGlobalKey(this, "S3ImageDownloader");
+		AddMember(new NativeFunction("start", (NativeCallback)StartDownloader));
+	}
+
+	public object StartDownloader(Context c, object[] args)
+	{
+		Start();
+		return null;
+	}
+
+	static void Start()
 	{
 		var s3 = new AmazonS3("<MY-POOLID>");
 		s3.Download("<MY-BUCKET>", "<MY-FILEKEY>", "tempfile.jpg", new TextureSetterTransferListener());

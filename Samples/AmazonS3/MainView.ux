@@ -1,8 +1,14 @@
 <App>
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
+		<JavaScript>
+			var downloader = require("S3ImageDownloader");
+			module.exports.download = function(){
+				downloader.start();
+			};
+		</JavaScript>
 		<StackPanel>
-			<Button Text="Start download" Clicked="S3ImageDownloader.Start" />
+			<Button Text="Start download" Clicked="{download}" />
 			<TextureImageSource ux:Global="PictureTexture" />
 			<Image Source="PictureTexture" />
 		</StackPanel>
