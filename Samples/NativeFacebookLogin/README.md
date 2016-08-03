@@ -2,7 +2,7 @@
 
 This sample shows how we can get Facebook login working with Fuse using the
 Facebook Android and iOS SDKs.
-It is part of the tutorial over at [https://www.fusetools.com/docs/native-interop/facebook-login](Fuse's docs page),
+It is part of the tutorial over at [Fuse's docs page](https://www.fusetools.com/docs/native-interop/facebook-login),
 so head over there if that's not where you came from!
 
 The main login functionality is implemented in the `FacebookLogin` Uno project
