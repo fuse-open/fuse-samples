@@ -1,0 +1,8 @@
+<App>
+	<Router ux:Name="router" />
+	<ClientPanel Background="#373F51">
+		<Navigator DefaultTemplate="directory">
+			<Directory ux:Template="directory" router="router" />
+		</Navigator>
+	</ClientPanel>
+</App>
