@@ -1,0 +1,69 @@
+<Page ux:Class="ToppingsPage">
+	
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		exports.current = Observable("")
+		function updateCurrent() {
+			var q = "Selected: "
+			for (var i=0; i < exports.sel.length; ++i) {
+				if (i > 0) {
+					q += ", "
+				}
+				q += exports.sel.getAt(i)
+			}
+			exports.current.value = q
+		}
+		
+		exports.sel = Observable()
+		exports.sel.onValueChanged( module, updateCurrent)
+	</JavaScript>
+
+	<StackPanel ItemSpacing="10">
+		<Label Value="Select up to 3 additional toppings"/>
+		<Panel Margin="5">	
+			<ColumnLayout ColumnSize="100" ColumnSpacing="7" ItemSpacing="7" Sizing="Fill"/>
+			<Selection Values="{sel}" MaxCount="3"/>
+			
+			<Panel ux:Class="Topping" Padding="5" BoxSizing="FillAspect">
+				<string ux:Property="Value"/>
+				<Uno.UX.FileSource ux:Property="File"/>
+				
+				<Selectable Value="{Property this.Value}"/>
+
+				<Rectangle CornerRadius="5" Layer="Background" Color="#FFF" ux:Name="TheBack"/>
+				<Image File="{Property this.File}" Margin="10" ux:Name="TheImage"/>
+				
+				<WhileSelected>
+					<Change TheBack.Color="#CAF" Duration="0.2"/>
+				</WhileSelected>
+				<Tapped>
+					<SelectItem/>
+				</Tapped>
+				
+				<Selected>
+					<Scale Factor="1.2" Duration="0.3" Target="TheImage"/>
+				</Selected>
+				<Deselected>
+					<Scale Factor="0.5" Duration="0.3" Target="TheImage"/>
+					<Change TheImage.Color="#800" Duration="0.3"/>
+				</Deselected>
+			</Panel>
+			
+			<Topping File="Assets/basil.png" Value="basil"/>
+			<Topping File="Assets/green_olives.png" Value="green olives"/>
+			<Topping File="Assets/ham.png" Value="ham"/>
+			<Topping File="Assets/onions.png" Value="onions"/>
+			<Topping File="Assets/salami.png" Value="salami"/>
+			<Topping File="Assets/black_olives.png" Value="black olives"/>
+			<Topping File="Assets/green_pepper.png" Value="green peppers"/>
+			<Topping File="Assets/mushrooms.png" Value="mushrooms"/>
+			<Topping File="Assets/pineapple.png" Value="pineapple"/>
+			<Topping File="Assets/red_pepper.png" Value="red peppers"/>
+			<Topping File="Assets/tomato.png" Value="tomatos"/>
+			
+		</Panel>
+		<Label Value="{current}"/>
+		
+	</StackPanel>
+</Page>

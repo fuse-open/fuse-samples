@@ -1,0 +1,15 @@
+<App>
+	<Text ux:Class="Label" FontSize="24" Color="#002" TextWrapping="Wrap" TextAlignment="Center"/>
+	
+	<Panel ux:Class="PizzaButton" Padding="15" Margin="15">
+		<string ux:Property="Text"/>
+		<Rectangle Layer="Background" CornerRadius="5" Color="#EFE"/>
+		<Label Value="{Property this.Text}"/>
+	</Panel>
+
+	<PageControl Color="#AAA">
+		<TitlePage/>
+		<PizzaPage/>
+		<ToppingsPage/>
+	</PageControl>
+</App>
