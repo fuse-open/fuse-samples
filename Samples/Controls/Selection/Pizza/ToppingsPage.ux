@@ -22,7 +22,7 @@
 	<StackPanel ItemSpacing="10">
 		<Label Value="Select up to 3 additional toppings"/>
 		<Panel Margin="5">	
-			<ColumnLayout ColumnSize="100" ColumnSpacing="7" ItemSpacing="7" Sizing="Fill"/>
+			<ColumnLayout ColumnSize="80" ColumnSpacing="7" ItemSpacing="7" Sizing="Fill"/>
 			<Selection Values="{sel}" MaxCount="3"/>
 			
 			<Panel ux:Class="Topping" Padding="5" BoxSizing="FillAspect">
@@ -65,5 +65,10 @@
 		</Panel>
 		<Label Value="{current}"/>
 		
+		<PizzaButton Alignment="BottomRight" Text="Delivery">
+			<Clicked><GoBack/></Clicked>
+		</PizzaButton>
+		
 	</StackPanel>
+	
 </Page>

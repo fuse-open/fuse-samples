@@ -1,0 +1,66 @@
+<Page ux:Class="PaymentPage">
+
+	<!-- A simple custom ComboBox. -->
+	<Panel ux:Class="ComboBox" HitTestMode="LocalBoundsAndChildren">
+		<object ux:Property="Items"/>
+		<string ux:Property="Value"/>
+		
+		<Panel ux:Name="TheOuter" Padding="5">
+			<Rectangle Layer="Background" Color="#BBB">
+				<Stroke Width="1" Color="#000"/>
+			</Rectangle>
+			<Label ux:Name="TheSelected"/>
+		
+			<Tapped>
+				<Set ThePopup.Value="true"/>
+			</Tapped>
+		</Panel>
+
+		<!-- Note, the ZOrdering of the popup only works here since our page lays out from top-to-bottom.
+			If you would need to overlap items before the ComboBox (thus above it), you'd need to place
+			this in an AlternateRoot with a LayoutMaster to this control. -->
+		<Panel ux:Name="TheList" Visibility="Hidden" Layer="Overlay" Padding="5">
+			<StackPanel Color="#FAA" Alignment="Top" BoxSizing="NoImplicitMax">
+				<Rectangle Layer="Background" Color="#DDD">
+					<Stroke Width="1" Color="#000"/>
+				</Rectangle>
+				<Selection Value="{Property this.Value}" MinCount="1" MaxCount="1"/>
+				<Each Items="{Property this.Items}">
+					<Panel Color="#0000" ux:Name="ThePanel">
+						<Selectable Value="{value}"/>
+						<Label Value="{label}"/>
+						<WhileSelected>
+							<Change ThePanel.Color="#AFAF"/>
+							<Change Target="TheSelected.Value" Value="{label}"/>
+						</WhileSelected>
+						
+						<Tapped>
+							<SelectItem/>
+							<Set ThePopup.Value="false"/>
+						</Tapped>
+					</Panel>
+				</Each>
+			</StackPanel>
+		</Panel>
+		
+		<WhileTrue Value="false" ux:Name="ThePopup">
+			<Change TheList.Visibility="Visible"/>
+			<Change TheOuter.Visibility="Hidden"/>
+		</WhileTrue>
+	</Panel>
+	
+	<JavaScript File="PaymentPage.js"/>
+	
+	<StackPanel ItemSpacing="10" Alignment="TopCenter">
+		<Label Value="How would you like to pay and have it delivered?"/>
+		
+		<Grid Columns="auto,1*" DefaultRow="auto" Margin="10" CellSpacing="10">
+			<Label Value="Payment"/>
+			<ComboBox Items="{paymentOpts}" Value="{payment}"/> 
+		
+			<Label Value="Delivery"/>
+			<ComboBox Items="{deliveryOpts}" Value="{delivery}"/>
+		</Grid>
+		<Label Value="{notice}" TextAlignment="Center" TextWrapping="Wrap"/>
+	</StackPanel>
+</Page>
