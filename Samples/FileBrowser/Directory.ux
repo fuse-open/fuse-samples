@@ -1,0 +1,40 @@
+<Page ux:Class="Directory">
+	<JavaScript File="Directory.js" />
+	<Router ux:Dependency="router" />
+
+	<WhileTrue Value="{hasListError}">
+		<Change entershadow.Opacity="0.4" />
+		<Panel Alignment="Center">
+			<Text Color="White" FontSize="40" Value="Access denied!" Margin="20" Alignment="Center" />
+			<Rectangle Color="#D11F1F" CornerRadius="10" />
+		</Panel>
+	</WhileTrue>
+
+	<Panel ux:Name="entershadow" Background="Black" Opacity="0" HitTestMode="None" />
+	<Panel ux:Name="whiteover" Background="White" Opacity="0" HitTestMode="None" />
+
+	<ScrollView Background="#373F51">
+		<StackPanel Padding="5">
+			<Text Value="{title}" Color="White" TextWrapping="Wrap" FontSize="35" Margin="25,12" />
+			<Each Items="{directories}">
+				<Panel Clicked="{clicked}" Margin="2" Color="#D8DBE2">
+					<Text Color="#373F51" Value="{name}" Margin="25,12,12,12" Alignment="VerticalCenter" />
+				</Panel>
+			</Each>
+			<Each Items="{files}">
+				<Grid Columns="1*,70" Margin="2" Padding="25,12,25,12" Background="#A9B5D1">
+					<Text Color="#373F51" Value="{name}" TextWrapping="Wrap" Alignment="VerticalCenter" />
+					<Text Color="#373F51" Value="{length}" Alignment="CenterRight" />
+				</Grid>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+
+	<EnteringAnimation>
+		<Change entershadow.Opacity="1" Duration="1"/>
+	</EnteringAnimation>
+	<ExitingAnimation>
+		<Change whiteover.Opacity="0.7" Duration="0.6"/>
+	</ExitingAnimation>
+
+</Page>
