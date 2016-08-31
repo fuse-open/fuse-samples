@@ -19,7 +19,7 @@
 			<Change TheCheck.Visibility="Visible"/>
 		</WhileSelected>
 		<Tapped>
-			<Select/>
+			<ToggleSelection/>
 		</Tapped>
 	</DockPanel>
 	

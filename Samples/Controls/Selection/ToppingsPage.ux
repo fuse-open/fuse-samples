@@ -31,7 +31,7 @@
 					<Change TheBack.Color="#CAF" Duration="0.2"/>
 				</WhileSelected>
 				<Tapped>
-					<Select/>
+					<ToggleSelection/>
 				</Tapped>
 				
 				<Selected>

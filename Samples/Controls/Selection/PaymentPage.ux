@@ -35,7 +35,7 @@
 						</WhileSelected>
 						
 						<Tapped>
-							<Select/>
+							<ToggleSelection/>
 							<Set ThePopup.Value="false"/>
 						</Tapped>
 					</Panel>
