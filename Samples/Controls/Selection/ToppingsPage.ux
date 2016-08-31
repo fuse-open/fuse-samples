@@ -5,14 +5,7 @@
 		
 		exports.current = Observable("")
 		function updateCurrent() {
-			var q = "Selected: "
-			for (var i=0; i < exports.sel.length; ++i) {
-				if (i > 0) {
-					q += ", "
-				}
-				q += exports.sel.getAt(i)
-			}
-			exports.current.value = q
+			exports.current.value = "Selected: " + exports.sel.toArray().join(",")
 		}
 		
 		exports.sel = Observable()
