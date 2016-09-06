@@ -1,4 +1,4 @@
-<App Theme="Basic">
+<App>
 
 	<JavaScript>
 	var Observable = require('FuseJS/Observable');
