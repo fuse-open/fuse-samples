@@ -30,7 +30,7 @@
 				<Change link.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
 				<Change crossIcon.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
 
-				<Rotate Target="crossIcon" Degrees="90" Duration="0.35" Easing="CubicInOut"/>
+				<Rotate Target="crossIcon" Degrees="45" Duration="0.35" Easing="CubicInOut"/>
 			</WhileTrue>
 
 			<Clicked>
