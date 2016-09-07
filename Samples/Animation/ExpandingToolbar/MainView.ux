@@ -1,4 +1,5 @@
 <App>
+	<iOS.StatusBarConfig Style="Light" />
 	<Panel Color="#1C1C49">
 
 		<Rectangle ux:Class="Icon" IconColor="#fff">
