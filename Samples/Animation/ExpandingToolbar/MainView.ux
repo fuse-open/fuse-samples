@@ -1,0 +1,40 @@
+<App>
+	<Panel Color="#1C1C49">
+
+		<Rectangle ux:Class="Icon" IconColor="#fff">
+			<FileSource ux:Property="IconFile"/>
+			<float4 ux:Property="IconColor"/>
+			<Image File="{Property this.IconFile}" Color="{Property this.IconColor}" Width="50%"/>
+		</Rectangle>
+		<Panel Height="60" Aspect="5" BoxSizing="FillAspect">
+			<Grid ColumnCount="5">
+				<Panel ux:Name="i5" Column="4">
+					<Icon ux:Name="crossIcon" Color="#fff" IconFile="Assets/cross.png" IconColor="#2589D4"/>
+				</Panel>
+				<Icon ux:Name="link" Column="3" Color="#018EF9" IconFile="Assets/link.png"/>
+				<Icon ux:Name="note" Column="2" Color="#0075CC" IconFile="Assets/note.png"/>
+				<Icon ux:Name="photo" Column="1" Color="#015B9E" IconFile="Assets/photo.png"/>
+				<Icon ux:Name="camera" Column="0" Color="#003C70" IconFile="Assets/camera.png"/>
+			</Grid>
+
+			<WhileTrue ux:Name="collapsed" Value="true">
+				<Move Target="camera" X="1" RelativeTo="PositionOffset" RelativeNode="i5" Duration="0.35" Easing="CubicInOut"/>
+				<Move Target="photo" X="1" RelativeTo="PositionOffset" RelativeNode="i5" Duration="0.35" Easing="CubicInOut"/>
+				<Move Target="note" X="1" RelativeTo="PositionOffset" RelativeNode="i5" Duration="0.35" Easing="CubicInOut"/>
+				<Move Target="link" X="1" RelativeTo="PositionOffset" RelativeNode="i5" Duration="0.35" Easing="CubicInOut"/>
+
+				<Change camera.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
+				<Change photo.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
+				<Change note.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
+				<Change link.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
+				<Change crossIcon.CornerRadius="30" Duration="0.35" Easing="CubicInOut"/>
+
+				<Rotate Target="crossIcon" Degrees="90" Duration="0.35" Easing="CubicInOut"/>
+			</WhileTrue>
+
+			<Clicked>
+				<Toggle Target="collapsed" />
+			</Clicked>
+		</Panel>
+	</Panel>
+</App>
