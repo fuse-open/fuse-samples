@@ -4,6 +4,8 @@ This example demonstrates the various aspects of the selection API by means of a
 
 ## Radio Buttons
 
+![Radio buttons](https://github.com/fusetools/fuse-samples/blob/master/Samples/Controls/Selection/gifs/radio-buttons.gif)
+
 `PizzaPage.ux` is a radio button style control: only one pizza can be selected at a time. This basic behaviours is created by setting both `MinCount` and `MaxCount` on the selection to `1`:
 
 	<Selection MinCount="1" MaxCount="1" ux:Name="PizzaSel"/>
@@ -21,6 +23,8 @@ The button to go to the next page doesn't appear until an item is selected. This
 	
 ## Multiple Selection
 
+![Multiple selection](https://github.com/fusetools/fuse-samples/blob/master/Samples/Controls/Selection/gifs/multiple.gif)
+
 `ToppingsPage.ux` allows the user to select up to 3 additional ingredients. This basic behavior is a `MaxCount` on the `Selection`:
 
 	<Selection Values="{sel}" MaxCount="3"/>
@@ -31,6 +35,8 @@ You can also see that we are binding `Values` to the `sel` JavaScript observable
 
 
 ## Dropdown Selection
+
+![Dropdown](https://github.com/fusetools/fuse-samples/blob/master/Samples/Controls/Selection/gifs/dropdown.gif)
 
 `PaymentPage.ux` shows how to create a dropdown list of options from a JavaScript array.
 
