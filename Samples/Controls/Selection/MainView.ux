@@ -1,0 +1,20 @@
+<App>
+	<Text ux:Class="Label" FontSize="24" Color="#002" TextWrapping="Wrap" TextAlignment="Center"/>
+	
+	<DockPanel ux:Class="PizzaButton" Padding="15" Margin="15">
+		<string ux:Property="Text"/>
+		<Rectangle Layer="Background" CornerRadius="5" Color="#EFE">
+			<Stroke Width="2" Color="#222"/>
+		</Rectangle>
+		<Rectangle Layer="Background" CornerRadius="5" Color="#0008" Offset="5,5"/>
+		<Label Value="{Property this.Text}"/>
+		<Image Alignment="VerticalCenter" Dock="Right" File="Assets/arrowright.png" Color="#510"/>
+	</DockPanel>
+
+	<PageControl Color="#AAA">
+		<TitlePage/>
+		<PizzaPage/>
+		<ToppingsPage/>
+		<PaymentPage/>
+	</PageControl>
+</App>

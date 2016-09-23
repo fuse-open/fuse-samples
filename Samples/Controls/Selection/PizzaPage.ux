@@ -1,0 +1,54 @@
+<Page ux:Class="PizzaPage">
+
+	<DockPanel ux:Class="PizzaType" Padding="5">
+		<string ux:Property="Title"/>
+		<string ux:Property="Ingredients"/>
+		
+		<Selectable Value="{Property this.Title}"/>
+		<Rectangle Layer="Background" CornerRadius="5" Color="#FFF" ux:Name="TheBack">
+		</Rectangle>
+		
+		<Image Dock="Right" File="Assets/checkmark.png" Color="#060" ux:Name="TheCheck"
+			Visibility="Hidden" Width="20"/>
+		<Text FontSize="30" Dock="Top" Value="{Property this.Title}"/>
+		<Text FontSize="12" Value="{Property this.Ingredients}"/>
+		
+		
+		<WhileSelected>
+			<Change TheBack.Color="#AFA" Duration="0.2"/>
+			<Change TheCheck.Visibility="Visible"/>
+		</WhileSelected>
+		<Tapped>
+			<ToggleSelection/>
+		</Tapped>
+	</DockPanel>
+	
+	<Selection MinCount="1" MaxCount="1" ux:Name="PizzaSel"/>
+
+	<DockPanel>
+		<Label Dock="Top" Value="Select one of our delicious wood stove pizzas" Margin="5"/>
+		<ScrollView>
+			<StackPanel ItemSpacing="5" Color="#CCC" Padding="10">
+				<PizzaType Title="Margherita" Ingredients="Mozarella, Basil, Tomatoes"/>
+				<PizzaType Title="Romana" Ingredients="Tomatoes, Mushrooms, Salami"/>
+				<PizzaType Title="Compagna" Ingredients="Ham, Mozarella, Peppers, Mushrooms"/>
+				<PizzaType Title="Capricciosa" Ingredients="Ham, Salami, Olives, Artichokes, Mushrooms"/>
+				<PizzaType Title="Quattro formaggi" Ingredients="Mozarella, Gruyere, Parmesan, Blue Cheese"/>
+				<PizzaType Title="Frutti di Mare" Ingredients="Mozarella, Seafood"/>
+				<PizzaType Title="Europa" Ingredients="Tuna, Egg, Spinach"/>
+				<PizzaType Title="Rucola" Ingredients="Tomatoes, Mozarella, Rucola, Peppers"/>
+				<PizzaType Title="Diavola" Ingredients="Salami, Hot Peppers, Rucola, Cheddar"/>
+				<PizzaType Title="Toscana" Ingredients="Eggplant, Onions, Corn"/>
+			</StackPanel>
+		</ScrollView>
+
+		<WhileString Value="{Property PizzaSel.Value}" Test="IsNotEmpty">
+			<Change TheNext.Visibility="Visible"/>
+		</WhileString>
+		<PizzaButton Dock="Bottom" Alignment="BottomRight" Text="Choose Toppings" 
+			Visibility="Hidden" ux:Name="TheNext">
+			<Clicked><GoBack/></Clicked>
+		</PizzaButton>
+	</DockPanel>
+
+</Page>
