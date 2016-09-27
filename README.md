@@ -74,8 +74,8 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
     <td><a href="Samples/Controls/Scrollbar">Scrollbar</a></td>
     <td><a href="Samples/DropdownMenu">Dropdown menu</a></td>
-    <td><a href="Samples/Controls/Circular">Circular control</a><td>
-	<td><a href="Samples/Controls/ButtonWithImage">Button with image</a><td>
+    <td><a href="Samples/Controls/Circular">Circular control</a></td>
+	<td><a href="Samples/Controls/ButtonWithImage">Button with image</a></td>
   </tr>
 </table>
 
