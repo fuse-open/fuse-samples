@@ -1,4 +1,4 @@
-<App ux:Class="MyApp" ClearColor="1,1,1,1">
+<App>
 	<DockPanel>
 		<Grid ColumnCount="2">
 			<Demo1/>
