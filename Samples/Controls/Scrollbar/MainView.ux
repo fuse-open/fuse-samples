@@ -1,4 +1,4 @@
-<App ClearColor="1,1,1,1">
+<App>
 	<ClientPanel>
 		<JavaScript>
 			var Observable = require("FuseJS/Observable")
