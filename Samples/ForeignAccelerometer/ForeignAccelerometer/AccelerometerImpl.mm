@@ -3,7 +3,6 @@
 
 @implementation AccelerometerImpl
 
-
 -(id) initWithCallback: (AccelerometerCallback) callback
 {
 	self = [super init];

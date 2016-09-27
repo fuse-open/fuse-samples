@@ -6,7 +6,7 @@ using Uno.Compiler.ExportTargetInterop;
 namespace ForeignAccelerometer
 {
 	extern(Android)
-	public class Accelerometer_Android	
+	internal class Accelerometer_Android	
 	{
 		extern(Android) Java.Object _impl;
 
@@ -18,8 +18,7 @@ namespace ForeignAccelerometer
 		[Foreign(Language.Java)]
 		protected extern(Android) void Init(AccelerometerUpdatedInternal updateDelegate)
 		@{
-			Object context = @{Android.Base.JNI.GetWrappedActivityObject():Call()};
-			com.samples.AccelerometerImpl impl = new com.samples.AccelerometerImpl(context, updateDelegate);
+			com.samples.AccelerometerImpl impl = new com.samples.AccelerometerImpl(updateDelegate);
 			@{Accelerometer_Android:Of(_this)._impl:Set(impl)};
 		@}
 
