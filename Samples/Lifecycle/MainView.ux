@@ -1,10 +1,8 @@
-<App >
-	<Panel>
-		<JavaScript File="MainView.js" />
-		<SolidColor ux:Name="backgroundColor" Color="#4CAF50" />
-		<WhileFalse Value="{focused}">
-			<Change backgroundColor.Color="#FF9800" Duration=".5" />
-		</WhileFalse>
-	</Panel>
+<App>
+	<JavaScript File="MainView.js" />
+	<Rectangle ux:Name="background" Color="#4CAF50" />
+	<WhileFalse Value="{focused}">
+		<Change background.Color="#FF9800" Duration=".5" />
+	</WhileFalse>
 </App>
 
