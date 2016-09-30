@@ -21,9 +21,15 @@ exports.deliveryOpts = mapOptions(deliveryOpts)
 // shows how to get original objects from selected values
 exports.notice = Observable("")
 function update() {
-	var q = paymentOpts[exports.payment.value].desc
+	var payOpt = paymentOpts[exports.payment.value]
+	var delOpt = deliveryOpts[exports.delivery.value]
+	//safety check (a binding may reset the value to null during rooting/unrooting)
+	if (!payOpt || !delOpt) {
+		return
+	}
 	
-	var cost = deliveryOpts[exports.delivery.value].cost
+	var q = payOpt.desc
+	var cost = delOpt.cost
 	if (cost > 0) {
 		q += " An extra delivery fee of $" + cost + " applies."
 	}
