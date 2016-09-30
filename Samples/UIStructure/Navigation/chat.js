@@ -9,15 +9,16 @@ exports.viewProfile = function(e) {
 	router.push( "home", {}, "contacts", {}, "view", exports.contact.value.name )
 }
 
-exports.contact = Observable(contacts.empty)
-
-chat.onParameterChanged( function(param) {
- 	if (contacts.isSame(exports.contact.value, param)) {	
- 		return
- 	}
- 	
- 	exports.contact.value = contacts.empty
-   	contacts.lookupContact(param, function(contact) {
-   		exports.contact.value = contact
-   	})
-})
+exports.contact = chat.Parameter.flatMap( function(param) {
+	var currentContact = exports.contact.value || contacts.empty;
+	
+	if(contacts.isSame(currentContact, param)) {
+		return Observable(currentContact);
+	}
+	
+	var newContact = Observable(contacts.empty);
+	contacts.lookupContact(param, function(contact) {
+   		newContact.value = contact;
+   	});
+	return newContact;
+});

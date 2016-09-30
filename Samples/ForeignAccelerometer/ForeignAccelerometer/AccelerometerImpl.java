@@ -3,6 +3,7 @@ package com.samples;
 import android.hardware.*;
 import android.content.Context;
 import com.foreign.ForeignAccelerometer.AccelerometerUpdatedInternal_float_float_float;
+import com.fuse.Activity;
 
 public class AccelerometerImpl
 {
@@ -10,7 +11,7 @@ public class AccelerometerImpl
 	SensorManager _manager;
 	Sensor _sensor;
 
-	public AccelerometerImpl(Object boxedContext, final AccelerometerUpdatedInternal_float_float_float handler)
+	public AccelerometerImpl(final AccelerometerUpdatedInternal_float_float_float handler)
 	{
 		_listener = new SensorEventListener() {
 			@Override
@@ -24,7 +25,7 @@ public class AccelerometerImpl
 			public void onAccuracyChanged(android.hardware.Sensor s, int a) {}
 		};
 
-		Context context = (Context)boxedContext;
+		Context context = (Context)Activity.getRootActivity();
 		_manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		_sensor = _manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	}
@@ -35,10 +36,5 @@ public class AccelerometerImpl
 
 	public void stop() {
 		_manager.unregisterListener(_listener);
-	}
-
-	public interface EventHandler
-	{
-		void onUpdated(float x, float y, float z);
 	}
 }

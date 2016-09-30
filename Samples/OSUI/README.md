@@ -46,68 +46,62 @@ In the third image, you can see that the bottom content is correctly responding 
 The code needed to get this effect is easy to describe with a single `.ux`-file:
 
 ```
-<App Theme="Basic" ux:Class="OsUiMinimalExample">
-
-	<DockPanel>
-		<Style>
-			<Text Margin="15,0,15,0" Alignment="HorizontalCenter" />
-		</Style>
-
+<App>
+	<DockPanel>	
 		<!-- The top section of the app -->
-		<StatusBarBackground ux:Name="sbb" DockPanel.Dock="Top" Visibility="Collapsed" />
+		<TopFrameBackground ux:Name="sbb" DockPanel.Dock="Top" Visibility="Collapsed" />
 		<Text DockPanel.Dock="Top">Hello, world! I'm on the top of you.</Text>
 
 		<!-- This is the main client area -->
-		<ScrollViewer DockPanel.Dock="Fill">
+		<ScrollView DockPanel.Dock="Fill">
 			<StackPanel>
 				<DockPanel>
-					<Text Alignment="VerticalCenter"
-					   DockPanel.Dock="Left">Type here:</Text>
-					<TextInput Alignment="VerticalCenter" />
+					<Text Margin="15,0,15,0" Alignment="VerticalCenter" DockPanel.Dock="Left">Type here:</Text>
+					<TextBox Margin="0,5" Alignment="VerticalCenter" />
 				</DockPanel>
 
 				<StackPanel Alignment="HorizontalCenter" Orientation="Horizontal">
-					<Text
-					   Alignment="VerticalCenter">Change layout in response to OS?</Text>
+					<Text Margin="15,0,15,0"  Alignment="VerticalCenter">Change layout in response to OS?</Text>
 					<Switch Alignment="VerticalCenter">
 						<!-- Turn on all of our OS responsive controls -->
-						<WhileToggled>
+						<WhileTrue>
 							<Change Target="sbb.Visibility" Value="Visible" />
 							<Change Target="bbb1.Visibility" Value="Visible" />
 							<Change Target="bbb2.Visibility" Value="Visible" />
-						</WhileToggled>
+						</WhileTrue>
 					</Switch>
 				</StackPanel>
 				<Panel Height="50" />
-				<Text TextWrapping="Wrap" ux:Name="Description">This example shows
-				controls that are hidden by OS adornments, such as the status bar,
-				navigation and keyboard. To make the app respond to these entities,
-				toggle the "respond to OS switch". You can also try the text input
-				field to see how it makes the app respond to the onscreen keyboard
-				if your device has one.</Text>
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap" ux:Name="Description">
+					This example shows controls that are hidden by OS adornments, such as the status bar, navigation and keyboard.
+					To make the app respond to these entities, toggle the "respond to OS switch".
+					You can also try the text input field to see how it makes the app respond to the onscreen keyboard
+					if your device has one.
+				</Text>
 
 				<!-- Fade out the description of the app when the keyboard is visible -->
-				<KeyboardVisible>
+				<WhileKeyboardVisible>
 					<Change Target="Description.Opacity" Value="0" Duration="0.5" />
-				</KeyboardVisible>
+				</WhileKeyboardVisible>
 			</StackPanel>
-		</ScrollViewer>
+		</ScrollView>
 
 		<!-- The bottom section of the app -->
 		<Grid ColumnCount="2" Background="White" DockPanel.Dock="Bottom" >
 			<StackPanel Alignment="Bottom">
-				<Text TextWrapping="Wrap">Bottom 1</Text>
-				<BottomBarBackground ux:Name="bbb1" Visibility="Collapsed" />
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap">Bottom 1</Text>
+				<BottomFrameBackground ux:Name="bbb1" Visibility="Collapsed" />
 			</StackPanel>
 			<StackPanel Alignment="Bottom">
-				<Text TextWrapping="Wrap">Bottom 2</Text>
-				<BottomBarBackground ux:Name="bbb2"
+				<Text Margin="15,0,15,0"  TextWrapping="Wrap">Bottom 2</Text>
+				<BottomFrameBackground ux:Name="bbb2"
 					Visibility="Collapsed" IncludesKeyboard="false" />
 			</StackPanel>
 		</Grid>
 	</DockPanel>
 
 </App>
+
 ```
 
 In this example, we have two pieces of text in the bottom part of the screen, both affected by a `BottomBarBackground`. The one on the left will honor both on-screen navigation and move when the keyboard appears. The one on the right will honor anything _but_ the on-screen keyboard, because the `IncludesKeyboard`-property is set to false. This is very helpful in situations where the on-screen real estate becomes so small you need to cherry pick which controls are to be shown when there is less room.
@@ -138,7 +132,7 @@ As an added bonus, we've made the company logo fade out in concert with the onse
 If you notice that your app doesn't respond well to the facilities the OS provides on screen, the quickest way to fix this is to create a `DockPanel` that holds your current controls. Typically, your UX-file looks like this:
 
 ```
-<App Theme="Basic" ux:Class="MyApp">
+<App>
 	<!-- Your app markup -->
 </App>
 ```
@@ -146,10 +140,11 @@ If you notice that your app doesn't respond well to the facilities the OS provid
 You can change this to:
 
 ```
-<App Theme="Basic" ux:Class="MyApp">
+<App>
 	<DockPanel>
 		<StatusBarBackground DockPanel.Dock="Top" />
 		<BottomBarBackground DockPanel.Dock="Bottom" />
+
 		<!-- Your app markup -->
 
 	</DockPanel>

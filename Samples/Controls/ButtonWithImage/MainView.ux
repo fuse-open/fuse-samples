@@ -1,5 +1,5 @@
 <App>
-    <ClientPanel>
+	<ClientPanel>
 
 		<!-- Provides a `FileImage` property that takes the name of a file -->
 		<DockPanel ux:Class="MyButtonFile" Padding="10">
@@ -51,5 +51,5 @@
 			</Panel>
 		</StackPanel>
 
-    </ClientPanel>
+	</ClientPanel>
 </App>

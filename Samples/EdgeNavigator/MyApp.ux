@@ -1,4 +1,4 @@
-<App >
+<App>
 	<EdgeNavigator HitTestMode="LocalBoundsAndChildren">
 		<Panel Width="150" EdgeNavigation.Edge="Left" Background="#f63" />
 

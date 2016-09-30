@@ -1,16 +1,21 @@
 {
-  "RootNamespace": "",
-  "Packages": [
-    "Fuse",
-    "FuseJS"
-  ],
-  "Mobile": {
-    "Orientations": "Portrait"
-  },
-  "Includes": [
-    "*",
-    "AccelerometerImpl.java:Java:Android",
-    "AccelerometerImpl.hh:CHeader:iOS",
-    "AccelerometerImpl.mm:CSource:iOS"
-  ]
+	"RootNamespace": "",
+	"Packages": [
+		"Fuse",
+		"FuseJS"
+	],
+	"Mobile": {
+		"Orientations": "Portrait"
+	},
+	"Includes": [
+		"AccelerometerExampleMovement.uno",
+		"MainView.ux",
+		
+		"ForeignAccelerometer/Accelerometer_Android.uno",
+		"ForeignAccelerometer/Accelerometer_iOS.uno",
+		"ForeignAccelerometer/Accelerometer.uno",
+		"ForeignAccelerometer/AccelerometerImpl.java:Java:Android",
+		"ForeignAccelerometer/AccelerometerImpl.hh:CHeader:iOS",
+		"ForeignAccelerometer/AccelerometerImpl.mm:CSource:iOS"
+	]
 }

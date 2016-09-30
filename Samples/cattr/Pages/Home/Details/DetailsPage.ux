@@ -29,7 +29,7 @@
 	</WhileTrue>
 
 	<Panel>
-		<Select Data="{pet}">
+		<With Data="{pet}">
 			<Panel>
 				<Button Text="Book playdate!!" Alignment="BottomRight" Margin="20" Padding="10" Clicked="{bookDate}" HitTestMode="LocalBoundsAndChildren" />
 
@@ -62,7 +62,7 @@
 					</DockPanel>
 				</DockPanel>
 			</Panel>
-		</Select>
+		</With>
 
 		<Blur ux:Name="mainPanelBlur" Radius="0" />
 	</Panel>

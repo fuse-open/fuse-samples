@@ -69,7 +69,7 @@ module.exports = {
 ## The UX
 
 ```
-<App Theme="Basic">
+<App>
     <StackPanel>
 		<JavaScript File="MainView.js" />
 		<Text FontSize="42" Value="Hello!" TextAlignment="Center"/>

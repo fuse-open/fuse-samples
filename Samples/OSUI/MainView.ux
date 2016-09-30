@@ -1,4 +1,4 @@
-<App  ux:Class="OsUiMinimalExample">
+<App>
 
 	<DockPanel>
 		
@@ -11,7 +11,7 @@
 			<StackPanel>
 				<DockPanel>
 					<Text Margin="15,0,15,0" Alignment="VerticalCenter" DockPanel.Dock="Left">Type here:</Text>
-					<TextInput Alignment="VerticalCenter" />
+					<TextBox Margin="0,5" Alignment="VerticalCenter" />
 				</DockPanel>
 
 				<StackPanel Alignment="HorizontalCenter" Orientation="Horizontal">

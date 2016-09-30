@@ -1,7 +1,9 @@
-<App  ux:Class="MainView" ux:AutoCtor="false" Background="#3C4959">
+<App Background="#3C4959">
 	<Panel>
-		<Circle ux:Name="myCircle" Width="40" Height="40" Fill="#F2AF5C">
-			<Scaling ux:Name="circleScale" />
+		<Circle Width="40" Height="40" Fill="#F2AF5C">
+			<InteractiveTransform ux:Name="transform" />
 		</Circle>
+		
+		<AccelerometerExampleMovement Target="transform" />
 	</Panel>
 </App>

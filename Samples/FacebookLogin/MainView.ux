@@ -1,4 +1,4 @@
-<App >
+<App>
 	<DockPanel>
 
 		<JavaScript File="Auth.js" ux:Global="Auth" />
@@ -6,9 +6,7 @@
 
 		<StatusBarBackground Dock="Top"/>
 		<BottomBarBackground Dock="Bottom"/>
-
-
-
+		
 		<Panel>
 			<Panel>
 				<WhileTrue Value="{showWebView}">

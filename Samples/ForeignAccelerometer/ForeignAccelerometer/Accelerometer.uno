@@ -14,7 +14,7 @@ namespace ForeignAccelerometer
 	}
 
 	public delegate void AccelerometerUpdated(object sender, AccelerometerUpdatedArgs args);
-
+	
 	public delegate void AccelerometerUpdatedInternal(float x, float y, float z);
 
 	public class Accelerometer
@@ -46,32 +46,17 @@ namespace ForeignAccelerometer
 		}
 
 		extern(Android)
-		public void Start()
-		{
-			_androidImpl.Start();
-		}
-
+		public void Start() { _androidImpl.Start(); }
 		extern(Android)
-		public void Stop()
-		{
-			_androidImpl.Start();
-		}
+		public void Stop() { _androidImpl.Stop(); }
 
 		extern(iOS)
-		public void Start()
-		{
-			_iosImpl.Start();
-		}
-
+		public void Start() { _iosImpl.Start(); }
 		extern(iOS)
-		public void Stop()
-		{
-			_iosImpl.Stop();
-		}
+		public void Stop() { _iosImpl.Stop(); }
 
 		extern(!MOBILE)
 		public void Start() {}
-
 		extern(!MOBILE)
 		public void Stop() {}
 	}
