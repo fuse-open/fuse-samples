@@ -1,4 +1,4 @@
-<App ux:Class="GameOfLife" Background="#fff">
+<App Background="#fff">
 	<ClientPanel>
 		<JavaScript File="Life.js"/>
 
