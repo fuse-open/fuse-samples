@@ -1,4 +1,4 @@
-<App ux:Class="Circular">
+<App>
 	<Panel ux:Class="ClockTick" ux:Name="self">
 		<string ux:Property="Text"/>
 		<float ux:Property="ClockValue"/>
