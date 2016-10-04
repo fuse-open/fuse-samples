@@ -3,7 +3,7 @@
 
 	<JavaScript File="DetailsPage.js" />
 
-	<WhiteText ux:Class="InfoText" TextColor="#fff7" Margin="0,20,0,5" />
+	<WhiteText ux:Class="InfoText" Color="#fff7" Margin="0,20,0,5" />
 
 	<Panel ux:Name="dialog" Alignment="VerticalCenter" Margin="40" Padding="20,40,20,0" Opacity="0">
 		<Rectangle Layer="Background" Fill="#fff" CornerRadius="2" Opacity=".8" />
