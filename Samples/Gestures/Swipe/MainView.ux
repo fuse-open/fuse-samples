@@ -18,7 +18,7 @@
 								<ImageFill Source="{DataToResource image}" StretchMode="UniformToFill"
 									Color="{tintColor}"/>
 							</Rectangle>
-							<Label Value="{name}" Alignment="VerticalCenter" Margin="5" TextColor="0,0,0,1"/>
+							<Label Value="{name}" Alignment="VerticalCenter" Margin="5" Color="0,0,0,1"/>
 
 							<WhileSwipeActive Source="DeleteSwipe">
 								<Image Layer="Overlay" File="dynamite.png" Alignment="Right" Margin="13"
@@ -39,7 +39,7 @@
 							ux:Name="DeleteNode">
 							<StackPanel Alignment="Center">
 								<Image File="cancel.png" Color="1,1,1,1" StretchMode="PixelPrecise"/>
-								<Label Margin="20,0,20,0" Alignment="Center" Value="Delete" TextColor="1,1,1,1"/>
+								<Label Margin="20,0,20,0" Alignment="Center" Value="Delete" Color="1,1,1,1"/>
 							</StackPanel>
 						</Panel>
 						<SwipeGesture Direction="Left" LengthNode="DeleteNode" ux:Name="DeleteSwipe" Type="Active"/>
@@ -54,7 +54,7 @@
 							<StackPanel Alignment="Center">
 								<Image File="unknown.png" Color="0,0,0,1" StretchMode="PixelPrecise"
 									ux:Name="MysteryIcon"/>
-								<Label Margin="20,0,20,0" Value="Mystery" TextColor="0,0,0,1"/>
+								<Label Margin="20,0,20,0" Value="Mystery" Color="0,0,0,1"/>
 							</StackPanel>
 							<Clicked>
 								<ToggleSwipeActive Target="SomethingSwipe"/>

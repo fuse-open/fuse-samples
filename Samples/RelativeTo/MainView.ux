@@ -26,7 +26,7 @@
 				<VerticalText Alignment="Center" Width="200">relativeNode</VerticalText>
 			</Rectangle>
 
-			<Text ux:Class="VerticalText" TransformOrigin="Center" Alignment="Bottom" TextColor="#000">
+			<Text ux:Class="VerticalText" TransformOrigin="Center" Alignment="Bottom" Color="#000">
 				<Rotation Degrees="-90" />
 			</Text>
 

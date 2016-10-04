@@ -37,7 +37,7 @@
 		<Rectangle Layer="Background" ux:Name="bgCol" Fill="{Property self.BackgroundColor}">
 			<Stroke Brush="{Property self.BorderColor}" Width="1" />
 		</Rectangle>
-		<Text Margin="10,0,0,0" Alignment="CenterLeft" Value="{Property self.Text}" FontSize="{Property self.FontSize}" TextColor="{Property self.TextColor}" />
+		<Text Margin="10,0,0,0" Alignment="CenterLeft" Value="{Property self.Text}" FontSize="{Property self.FontSize}" Color="{Property self.TextColor}" />
 
 	</Panel>
 
@@ -49,7 +49,7 @@
 		<Brush ux:Property="BorderColor" />
 		<float ux:Property="FontSize" />
 		<float4 ux:Property="TextColor" />
-		<Text Margin="10,0,0,0" FontSize="{Property self.FontSize}" TextColor="{Property self.TextColor}" Alignment="CenterLeft" Value="{Property self.Text}" />
+		<Text Margin="10,0,0,0" FontSize="{Property self.FontSize}" Color="{Property self.TextColor}" Alignment="CenterLeft" Value="{Property self.Text}" />
 		<Panel Layer="Background">
 			<Rectangle Layer="Background" Fill="{Property self.BackgroundColor}" Height="100%" Alignment="Top">
 				<!--Stroke Brush="{Property self.BorderColor}" Width="1" /-->
