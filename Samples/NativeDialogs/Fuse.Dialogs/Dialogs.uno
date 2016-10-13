@@ -81,7 +81,7 @@ namespace Fuse.Dialogs
 				if (_negativeButton != null)
 					builder.NegativeButton = _negativeButton;
 
-				builder.MakeDialog().Show();	
+				builder.MakeDialog().Show();
 			}
 
 		}
@@ -187,12 +187,12 @@ namespace Fuse.Dialogs
 			if (PositiveButton.HasValue) { }
 			if (NegativeButton.HasValue) { }
 			return new iOSDialog();
-		}		
+		}
 	}
 
+    [ForeignInclude(Language.Java,"com.foreign.Uno.Action")]
 	extern(Android) internal class AndroidDialogBuilder : DialogBuilder
 	{
-
 		class AndroidDialog : Dialog
 		{
 			readonly Java.Object _dialogHandle;
@@ -244,18 +244,6 @@ namespace Fuse.Dialogs
 			return new AndroidDialog(CreateAlertDialog(handle));
 		}
 
-		static void OnPositiveButtonClicked(object callback)
-		{
-			if (callback is Action)
-				((Action)callback)();
-		}
-
-		static void OnNegativeButtonClicked(object callback)
-		{
-			if (callback is Action)
-				((Action)callback)();
-		}
-
 		[Foreign(Language.Java)]
 		static Java.Object CreateAlertDialogBuilder()
 		@{
@@ -283,10 +271,10 @@ namespace Fuse.Dialogs
 		[Foreign(Language.Java)]
 		static void SetPositiveButton(Java.Object handle, string text, Action callback)
 		@{
-			final UnoObject callbackStore = callback;
+			final Action callbackStore = callback;
 			((android.app.AlertDialog.Builder)handle).setPositiveButton(text, new android.content.DialogInterface.OnClickListener() {
 					public void onClick(android.content.DialogInterface dialog, int which) {
-						@{OnPositiveButtonClicked(object):Call(callbackStore)};
+						callbackStore.run();
 					}
 				});
 		@}
@@ -294,10 +282,10 @@ namespace Fuse.Dialogs
 		[Foreign(Language.Java)]
 		static void SetNegativeButton(Java.Object handle, string text, Action callback)
 		@{
-			final UnoObject callbackStore = callback;
+			final Action callbackStore = callback;
 			((android.app.AlertDialog.Builder)handle).setNegativeButton(text, new android.content.DialogInterface.OnClickListener() {
 					public void onClick(android.content.DialogInterface dialog, int which) {
-						@{OnNegativeButtonClicked(object):Call(callbackStore)};
+						callbackStore.run();
 					}
 				});
 		@}
