@@ -283,7 +283,7 @@ namespace Fuse.Dialogs
 		[Foreign(Language.Java)]
 		static void SetPositiveButton(Java.Object handle, string text, Action callback)
 		@{
-			final Object callbackStore = callback;
+			final UnoObject callbackStore = callback;
 			((android.app.AlertDialog.Builder)handle).setPositiveButton(text, new android.content.DialogInterface.OnClickListener() {
 					public void onClick(android.content.DialogInterface dialog, int which) {
 						@{OnPositiveButtonClicked(object):Call(callbackStore)};
@@ -294,10 +294,10 @@ namespace Fuse.Dialogs
 		[Foreign(Language.Java)]
 		static void SetNegativeButton(Java.Object handle, string text, Action callback)
 		@{
-			final Object callbackStore = callback;
+			final UnoObject callbackStore = callback;
 			((android.app.AlertDialog.Builder)handle).setNegativeButton(text, new android.content.DialogInterface.OnClickListener() {
 					public void onClick(android.content.DialogInterface dialog, int which) {
-						@{OnNegativeButtonClicked(object):Call(callbackStore)};	
+						@{OnNegativeButtonClicked(object):Call(callbackStore)};
 					}
 				});
 		@}
