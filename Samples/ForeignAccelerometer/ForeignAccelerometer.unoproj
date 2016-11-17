@@ -11,6 +11,7 @@
 		"AccelerometerExampleMovement.uno",
 		"MainView.ux",
 		
+		"ForeignAccelerometer/AccelerometerModule.uno",
 		"ForeignAccelerometer/Accelerometer_Android.uno",
 		"ForeignAccelerometer/Accelerometer_iOS.uno",
 		"ForeignAccelerometer/Accelerometer.uno",

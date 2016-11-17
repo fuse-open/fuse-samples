@@ -1,4 +1,17 @@
 <App Background="#3C4959">
+	<JavaScript>
+		var accelerometer = require("Accelerometer");
+
+		accelerometer.on("update", function(x, y, z) {
+			console.log([x,y,z].join(", "));
+		});
+
+		accelerometer.start();
+
+		setTimeout(function() {
+			accelerometer.stop();
+		}, 5000);
+	</JavaScript>
 	<Panel>
 		<Circle Width="40" Height="40" Fill="#F2AF5C">
 			<InteractiveTransform ux:Name="transform" />
