@@ -1,0 +1,7 @@
+<App ux:Class="MyApp">
+    <ClientPanel>
+		<Viewport Perspective="200">
+			<MainView/>
+		</Viewport>
+	</ClientPanel>
+</App>
