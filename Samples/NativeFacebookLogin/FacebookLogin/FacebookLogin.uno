@@ -156,9 +156,7 @@ public class FacebookLogin
 				public void onSuccess(LoginResult loginResult)
 				{
 					AccessToken accessToken = loginResult.getAccessToken();
-					// TODO this should be UnoObject when https://github.com/fusetools/uno/issues/602
-					// has been fixed
-					Object unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
+					UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
 					onSuccess.run(unoAccessToken);
 				}
 
