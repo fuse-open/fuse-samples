@@ -14,7 +14,7 @@
 	<ButtonBase ux:Class="ArrowButton" Padding="5" Margin="5">
 		<float ux:Property="Degrees"/>
 		<Image File="Assets/play.png" Color="#000" Name="ArrowImage">
-			<Rotation Degrees="{Property this.Degrees}"/>
+			<Rotation Degrees="{ReadProperty this.Degrees}"/>
 		</Image>
 	</ButtonBase>
 	
@@ -84,7 +84,7 @@
 		<PlusButton X="50%" Y="25%" Anchor="50%,50%" Clicked="{goSlideTop}"/>
 		
 		<!-- A label to show the pages are changing, and that "back" is actually going back -->
-		<Circle Width="200" Height="200" Color="{Property this.Tint}" Alignment="Center">
+		<Circle Width="200" Height="200" Color="{ReadProperty this.Tint}" Alignment="Center">
 			<StackPanel Alignment="Center">
 				<Text FontSize="22" Value="{Resource Title}" Color="#000"/>
 				<Text Alignment="Center" FontSize="28" Value="{id}" Color="#666"/>

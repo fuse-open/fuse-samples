@@ -4,7 +4,7 @@
 		<double ux:Property="TimeOffset"/>
 		<SolidColor Color="0.8,0.96,0.99,1" ux:Name="TheColor"/>
 		
-		<Timeline PlayMode="Wrap" InitialProgress="{Property self.TimeOffset}"
+		<Timeline PlayMode="Wrap" InitialProgress="{ReadProperty self.TimeOffset}"
 			TimeMultiplier="0.9">
 			<Move KeyframeInterpolation="CatmullRom" RelativeTo="ParentSize">
 				<Keyframe X="0" Time="0"/>
@@ -26,7 +26,7 @@
 				<Keyframe Value="1" Time="2"/>
 			</Scale>
 		</Timeline>
-		<Timeline PlayMode="Wrap" InitialProgress="{Property self.TimeOffset}">
+		<Timeline PlayMode="Wrap" InitialProgress="{ReadProperty self.TimeOffset}">
 			<Move KeyframeInterpolation="Linear" RelativeTo="ParentSize">
 				<Keyframe Y="0" Time="0"/>
 				<Keyframe Y="1" Time="4"/>

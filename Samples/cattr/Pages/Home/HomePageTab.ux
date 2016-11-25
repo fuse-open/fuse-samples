@@ -2,7 +2,7 @@
 	<string ux:Property="Label" />
 	<PageControl ux:Dependency="pageControl" />
 	<Page ux:Dependency="page" />
-	<WhiteText Alignment="Center" Value="{Property this.Label}" />
+	<WhiteText Alignment="Center" Value="{ReadProperty this.Label}" />
 	<Clicked>
 		<NavigateTo NavigationContext="pageControl" Target="page" />
 	</Clicked>

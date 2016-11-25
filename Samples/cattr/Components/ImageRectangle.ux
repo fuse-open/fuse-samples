@@ -1,4 +1,4 @@
 <Rectangle ux:Class="ImageRectangle" CornerRadius="10">
 	<FileSource ux:Property="File" />
-	<ImageFill File="{Property this.File}" StretchMode="UniformToFill" />
+	<ImageFill File="{ReadProperty this.File}" StretchMode="UniformToFill" />
 </Rectangle>

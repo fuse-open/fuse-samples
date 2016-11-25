@@ -7,7 +7,7 @@
 			<Stroke Width="2" Color="#222"/>
 		</Rectangle>
 		<Rectangle Layer="Background" CornerRadius="5" Color="#0008" Offset="5,5"/>
-		<Label Value="{Property this.Text}"/>
+		<Label Value="{ReadProperty this.Text}"/>
 		<Image Alignment="VerticalCenter" Dock="Right" File="Assets/arrowright.png" Color="#510"/>
 	</DockPanel>
 

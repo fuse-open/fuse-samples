@@ -5,7 +5,7 @@
 		<Rectangle ux:Class="Icon" IconColor="#fff">
 			<FileSource ux:Property="IconFile"/>
 			<float4 ux:Property="IconColor"/>
-			<Image File="{Property this.IconFile}" Color="{Property this.IconColor}" Width="50%"/>
+			<Image File="{ReadProperty this.IconFile}" Color="{ReadProperty this.IconColor}" Width="50%"/>
 		</Rectangle>
 		<Panel Height="60" Aspect="5" BoxSizing="FillAspect">
 			<Grid ColumnCount="5">

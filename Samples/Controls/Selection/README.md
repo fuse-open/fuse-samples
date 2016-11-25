@@ -12,13 +12,13 @@ This example demonstrates the various aspects of the selection API by means of a
 
 A `PizzaType` class is created to make it easier to create all the items in the selection. The `Selectable` behavior is what makes the item selectable:
 
-	<Selectable Value="{Property this.Title}"/>
+	<Selectable Value="{ReadProperty this.Title}"/>
 	
 `Selection` and `Selectable` are the two key types that work together in creating a selection control.
 
 The button to go to the next page doesn't appear until an item is selected. This simple behavior is done by using the `Selection.Value` in a `WhileString` trigger.
 
-	<WhileString Value="{Property PizzaSel.Value}" Test="IsNotEmpty">
+	<WhileString Value="{ReadProperty PizzaSel.Value}" Test="IsNotEmpty">
 	
 	
 ## Multiple Selection

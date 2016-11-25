@@ -22,10 +22,10 @@
 				<string ux:Property="Value"/>
 				<Uno.UX.FileSource ux:Property="File"/>
 				
-				<Selectable Value="{Property this.Value}"/>
+				<Selectable Value="{ReadProperty this.Value}"/>
 
 				<Rectangle CornerRadius="5" Layer="Background" Color="#FFF" ux:Name="TheBack"/>
-				<Image File="{Property this.File}" Margin="10" ux:Name="TheImage"/>
+				<Image File="{ReadProperty this.File}" Margin="10" ux:Name="TheImage"/>
 				
 				<WhileSelected>
 					<Change TheBack.Color="#CAF" Duration="0.2"/>
