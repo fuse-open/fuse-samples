@@ -2,7 +2,7 @@
 	<Panel ux:Class="ClockTick" ux:Name="self">
 		<string ux:Property="Text"/>
 		<float ux:Property="ClockValue"/>
-	<Text Alignment="Center" Value="{Property self.Text}" FontSize="24" Color="0,0,0,1"/>
+	<Text Alignment="Center" Value="{ReadProperty self.Text}" FontSize="24" Color="0,0,0,1"/>
 	</Panel>
 
 	<Panel ux:Class="ClockHand" Anchor="0%,50%" X="50%" Y="50%" Width="29.5%" Height="10%"
@@ -88,12 +88,12 @@
 
 				<ClockHand ux:Name="TheHourLine">
 					<Rotation ux:Name="HourRotate"/>
-					<Attractor Target="HourRotate.Degrees" Value="{Property HourSlide.DegreesValue}"
+					<Attractor Target="HourRotate.Degrees" Value="{ReadProperty HourSlide.DegreesValue}"
 						Type="SmoothSnap" Unit="Degrees"/>
 
 					<Attractor Target="TheHourLine.Width" ux:Name="HourLineAttractor"
 						Type="SmoothSnap" Unit="Points"/>
-					<RangeAnimation Value="{Property HourSelect.ValueY}" Minimum="0" Maximum="1">
+					<RangeAnimation Value="{ReadProperty HourSelect.ValueY}" Minimum="0" Maximum="1">
 						<Change HourLineAttractor.Value="41.5"/>
 					</RangeAnimation>
 				</ClockHand>
@@ -143,7 +143,7 @@
 
 				<ClockHand Width="41.5%">
 					<Rotation ux:Name="MinuteRotate"/>
-					<Attractor Target="MinuteRotate.Degrees" Value="{Property MinuteSlide.DegreesValue}"
+					<Attractor Target="MinuteRotate.Degrees" Value="{ReadProperty MinuteSlide.DegreesValue}"
 						Type="SmoothSnap" Unit="Degrees"/>
 				</ClockHand>
 

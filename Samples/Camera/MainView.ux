@@ -2,7 +2,7 @@
 	<JavaScript File="main.js"/>
 	<Panel ux:Class="FatButton" Background="#FFFFFF" Margin="0,5,0,5" Text="">
 		<string ux:Property="Text" />
-		<Button Text="{Property this.Text}" Padding="5,5,5,5" />
+		<Button Text="{ReadProperty this.Text}" Padding="5,5,5,5" />
 	</Panel>
 	<ClientPanel>
 		<WhileEmpty Items="{imagePath}">

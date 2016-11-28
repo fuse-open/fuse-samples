@@ -4,10 +4,10 @@
 		<float ux:Property="TimeOffset"/>
 		<Translation RelativeTo="ParentSize" ux:Name="TheTrans"/>
 		<WhileVisible>
-			<Cycle Target="TheTrans.X" Low="0" High="1" ProgressOffset="{Property self.TimeOffset}"
+			<Cycle Target="TheTrans.X" Low="0" High="1" ProgressOffset="{ReadProperty self.TimeOffset}"
 				Frequency="0.2" Waveform="Sawtooth" Easing="CircularOut"/>
 			<Cycle Target="self.Opacity" Low="0" High="1" Waveform="Sawtooth" Frequency="0.2"
-				ProgressOffset="{Property self.TimeOffset}" Easing="QuinticOut"/>
+				ProgressOffset="{ReadProperty self.TimeOffset}" Easing="QuinticOut"/>
 		</WhileVisible>
 	</Circle>
 

@@ -7,9 +7,9 @@
 			<Panel ux:InnerClass="MoveIt" Color="#AAF" Padding="2" Alignment="Center">
 				<string ux:Property="Text"/>
 				<Size ux:Property="Value"/>
-				<Text FontSize="20" Value="{Property this.Text}"/>
+				<Text FontSize="20" Value="{ReadProperty this.Text}"/>
 				<Clicked>
-					<Set Target="A1.Value" Value="{Property this.Value}"/>
+					<Set Target="A1.Value" Value="{ReadProperty this.Value}"/>
 				</Clicked>
 			</Panel>
 			<MoveIt Text="&lt;" Value="0"/>

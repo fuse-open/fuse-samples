@@ -34,10 +34,10 @@
 		<Brush ux:Property="BorderColor" />
 		<float ux:Property="FontSize" />
 		<float4 ux:Property="TextColor" />
-		<Rectangle Layer="Background" ux:Name="bgCol" Fill="{Property self.BackgroundColor}">
-			<Stroke Brush="{Property self.BorderColor}" Width="1" />
+		<Rectangle Layer="Background" ux:Name="bgCol" Fill="{ReadProperty self.BackgroundColor}">
+			<Stroke Brush="{ReadProperty self.BorderColor}" Width="1" />
 		</Rectangle>
-		<Text Margin="10,0,0,0" Alignment="CenterLeft" Value="{Property self.Text}" FontSize="{Property self.FontSize}" Color="{Property self.TextColor}" />
+		<Text Margin="10,0,0,0" Alignment="CenterLeft" Value="{ReadProperty self.Text}" FontSize="{ReadProperty self.FontSize}" Color="{ReadProperty self.TextColor}" />
 
 	</Panel>
 
@@ -49,10 +49,10 @@
 		<Brush ux:Property="BorderColor" />
 		<float ux:Property="FontSize" />
 		<float4 ux:Property="TextColor" />
-		<Text Margin="10,0,0,0" FontSize="{Property self.FontSize}" Color="{Property self.TextColor}" Alignment="CenterLeft" Value="{Property self.Text}" />
+		<Text Margin="10,0,0,0" FontSize="{ReadProperty self.FontSize}" Color="{ReadProperty self.TextColor}" Alignment="CenterLeft" Value="{ReadProperty self.Text}" />
 		<Panel Layer="Background">
-			<Rectangle Layer="Background" Fill="{Property self.BackgroundColor}" Height="100%" Alignment="Top">
-				<!--Stroke Brush="{Property self.BorderColor}" Width="1" /-->
+			<Rectangle Layer="Background" Fill="{ReadProperty self.BackgroundColor}" Height="100%" Alignment="Top">
+				<!--Stroke Brush="{ReadProperty self.BorderColor}" Width="1" /-->
 			</Rectangle>
 		</Panel>
 	</Panel>
@@ -63,17 +63,17 @@
 	<Panel Width="200" Height="40">
 		<DataBinding Target="menu.Selected" Key="selected" />
 		<Rectangle>
-			<Stroke Brush="{Property menu.BorderColor}" Width="1" />
+			<Stroke Brush="{ReadProperty menu.BorderColor}" Width="1" />
 		</Rectangle>
-		<DropdownSelectedItem TextColor="{Property menu.TextColor}" FontSize="{Property menu.FontSize}" Text="{selected}" BackgroundColor="{Property menu.BackgroundColor}" BorderColor="{Property menu.BorderColor}" />
+		<DropdownSelectedItem TextColor="{ReadProperty menu.TextColor}" FontSize="{ReadProperty menu.FontSize}" Text="{selected}" BackgroundColor="{ReadProperty menu.BackgroundColor}" BorderColor="{ReadProperty menu.BorderColor}" />
 		<Clicked>
 			<Toggle Target="expandDropdown" />
 		</Clicked>
 
 		<WhileTrue ux:Name="expandDropdown">
 			<StackPanel Offset="0,40" >
-				<Each Items="{Property menu.ListItems}" >
-					<DropdownOption FontSize="{Property menu.FontSize}" TextColor="{Property menu.TextColor}" Text="{name}" BackgroundColor="{Property menu.BackgroundColor}" Clicked="{onSelected}" BorderColor="{Property menu.BorderColor}" />
+				<Each Items="{ReadProperty menu.ListItems}" >
+					<DropdownOption FontSize="{ReadProperty menu.FontSize}" TextColor="{ReadProperty menu.TextColor}" Text="{name}" BackgroundColor="{ReadProperty menu.BackgroundColor}" Clicked="{onSelected}" BorderColor="{ReadProperty menu.BorderColor}" />
 				</Each>
 			</StackPanel>
 		</WhileTrue>

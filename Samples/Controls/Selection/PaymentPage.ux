@@ -24,8 +24,8 @@
 				<Rectangle Layer="Background" Color="#DDD">
 					<Stroke Width="1" Color="#000"/>
 				</Rectangle>
-				<Selection Value="{Property this.Value}" MinCount="1" MaxCount="1"/>
-				<Each Items="{Property this.Items}">
+				<Selection Value="{ReadProperty this.Value}" MinCount="1" MaxCount="1"/>
+				<Each Items="{ReadProperty this.Items}">
 					<Panel Color="#0000" ux:Name="ThePanel">
 						<Selectable Value="{value}"/>
 						<Label Value="{label}"/>

@@ -33,7 +33,7 @@
 			</DoubleTapped>
 			
 			<!-- close when it gets small enough -->
-			<WhileFloat Value="{Property TheTransform.ZoomFactor}" LessThan="0.7">
+			<WhileFloat Value="{ReadProperty TheTransform.ZoomFactor}" LessThan="0.7">
 				<!-- the gestures will be active at this time, so we must explicitly cancel them -->
 				<CancelInteractions/>
 				<Set ViewerVisible.Value="false"/>

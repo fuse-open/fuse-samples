@@ -4,14 +4,14 @@
 		<string ux:Property="Title"/>
 		<string ux:Property="Ingredients"/>
 		
-		<Selectable Value="{Property this.Title}"/>
+		<Selectable Value="{ReadProperty this.Title}"/>
 		<Rectangle Layer="Background" CornerRadius="5" Color="#FFF" ux:Name="TheBack">
 		</Rectangle>
 		
 		<Image Dock="Right" File="Assets/checkmark.png" Color="#060" ux:Name="TheCheck"
 			Visibility="Hidden" Width="20"/>
-		<Text FontSize="30" Dock="Top" Value="{Property this.Title}"/>
-		<Text FontSize="12" Value="{Property this.Ingredients}"/>
+		<Text FontSize="30" Dock="Top" Value="{ReadProperty this.Title}"/>
+		<Text FontSize="12" Value="{ReadProperty this.Ingredients}"/>
 		
 		
 		<WhileSelected>
@@ -42,7 +42,7 @@
 			</StackPanel>
 		</ScrollView>
 
-		<WhileString Value="{Property PizzaSel.Value}" Test="IsNotEmpty">
+		<WhileString Value="{ReadProperty PizzaSel.Value}" Test="IsNotEmpty">
 			<Change TheNext.Visibility="Visible"/>
 		</WhileString>
 		<PizzaButton Dock="Bottom" Alignment="BottomRight" Text="Choose Toppings" 

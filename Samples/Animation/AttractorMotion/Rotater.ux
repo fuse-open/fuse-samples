@@ -19,23 +19,23 @@
 		
 		<Circle LengthAngleDegrees="15" ux:Name="TheCircle">
 			<Stroke Width="20" Alignment="Inside" Color="#080"/>
-			<Attractor Target="TheCircle.StartAngleDegrees" Value="{Property TheBehavior.DegreesValue}"
+			<Attractor Target="TheCircle.StartAngleDegrees" Value="{ReadProperty TheBehavior.DegreesValue}"
 				Unit="Degrees" Type="SmoothSnap"/>
 		</Circle>
 		
 		<Circle LengthAngleDegrees="15" ux:Name="TheCircle2">
 			<Stroke Width="20" Alignment="Inside" Color="#008" Offset="-20"/>
-			<Attractor Target="TheCircle2.StartAngleDegrees" Value="{Property TheBehavior.DegreesValue}"
+			<Attractor Target="TheCircle2.StartAngleDegrees" Value="{ReadProperty TheBehavior.DegreesValue}"
 				Unit="Degrees" Type="Elastic"/>
 		</Circle>
 		
 		<Circle LengthAngleDegrees="15" ux:Name="TheCircle3">
 			<Stroke Width="20" Alignment="Inside" Color="#800" Offset="-40"/>
-			<Attractor Target="TheCircle3.StartAngleDegrees" Value="{Property TheBehavior.DegreesValue}"
+			<Attractor Target="TheCircle3.StartAngleDegrees" Value="{ReadProperty TheBehavior.DegreesValue}"
 				Unit="Degrees" Easing="BounceOut" Duration="1" Distance="90"/>
 		</Circle>
 		
-		<Circle Color="#EEE" LengthAngleDegrees="15" StartAngleDegrees="{Property TheBehavior.DegreesValue}"/>
+		<Circle Color="#EEE" LengthAngleDegrees="15" StartAngleDegrees="{ReadProperty TheBehavior.DegreesValue}"/>
 		<Circle Color="#DDD"/>
 		
 	</RangeControl>
