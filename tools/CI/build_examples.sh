@@ -53,7 +53,9 @@ $ROOTDIR/tools/CI/get-fuse.sh $FUSEDIR $CI_SERVER_URL $CI_SERVER_AUTH
 echo "Setting paths"
 if [ "$MONO" != "" ]; then 
     sed -i '' "s+ Packages+ $FUSEDIR/Packages+" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
-    sed -i '' "s+/usr/local/share/uno/Packages++" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
+    sed -i '' "s+.*/usr/local/share/uno/Packages++" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
+    sed -i '' "s+InstallDirectory:.*+InstallDirectory: InstalledPackages+" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
+    sed -i '' "s+\([a-zA-Z]*\.packages\)+../../\1+" $FUSEDIR/Fuse.app/Contents/Fuse.unoconfig
     echo -n "/Library/Frameworks/Mono.framework/Versions/Current" > $FUSEDIR/Fuse.app/Contents/.mono_root
     UNO=$FUSEDIR/Fuse.app/Contents/Uno/uno.exe
     FUSE=$FUSEDIR/Fuse.app/Contents/MacOS/Fuse
@@ -62,11 +64,11 @@ else
     echo "PACKAGES is $PACKAGES"
     sed -i'' "s+ Packages+ $PACKAGES+" $FUSEDIR/Fuse.unoconfig
     sed -i'' "s+.*PROGRAMDATA.*++" $FUSEDIR/Fuse.unoconfig
+    sed -i'' "s+InstallDirectory:.*+InstallDirectory: InstalledPackages+" $FUSEDIR/Fuse.unoconfig
     UNO=$FUSEDIR/uno.exe
     FUSE=$FUSEDIR/Fuse.exe
     echo ""
 fi
-
 
 echo "Bulding examples"
 if [ $ACTION == "build" ]; then
