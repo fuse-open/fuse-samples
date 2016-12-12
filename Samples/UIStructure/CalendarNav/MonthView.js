@@ -69,11 +69,10 @@ date.onValueChanged( function(v) {
 })
 
 exports.monthLabel = date.map( function(v) {
-	var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
-	return months[v.getMonth()] + " " + v.getFullYear()
+	return DateTime.monthLabels[v.getMonth()] + " " + v.getFullYear()
 })
 
-exports.daysOfWeek = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
+exports.daysOfWeek = DateTime.dayLabels
 
 exports.openDay = function(args) {
 	var day = args.data.day

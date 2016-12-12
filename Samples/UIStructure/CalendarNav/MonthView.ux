@@ -4,6 +4,8 @@
 	
 	<Router ux:Dependency="router"/>
 	<JavaScript File="MonthView.js"/>
+
+	<Rectangle Color="#FFF0" Visibility="Hidden" ux:Name="blockView"/>
 	
 	<DockPanel Color="{Resource ColorDark}" Padding="5">
 		<Grid Dock="Top" Columns="auto,1*,auto" CellSpacing="5" Margin="0,0,0,5">
@@ -54,6 +56,8 @@
 	</Transition>
 	
 	<Transition To="day">
+		<Change blockView.Color="#4448" Duration="0.4"/>
+		<Change blockView.Visibility="Visible"/>
 	</Transition>
 	
 	<Transition>

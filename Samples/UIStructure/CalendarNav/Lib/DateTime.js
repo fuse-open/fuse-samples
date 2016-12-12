@@ -18,3 +18,7 @@ exports.nextDay = function(date) {
 exports.dayOfWeek = function(date) {
 	return (date.getDay() + 6) % 7 //shift to Mon-Sun
 }
+
+exports.monthLabels = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+
+exports.dayLabels = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
