@@ -7,13 +7,18 @@
 			var d = new Date()
 			router.goto( "month", { month: d.getMonth(), year: d.getFullYear() } )
 		</JavaScript>
-		<Navigator>
+		<Navigator SwipeBack="Down">
 			<NavigatorSwipe Direction="Left" How="GotoBookmark" Bookmark="nextMonth"
-				Style="fromRight"/>
+				Style="fromRight" IsEnabled="false" ux:Name="swipeLeft"/>
 			<NavigatorSwipe Direction="Right" How="GotoBookmark" Bookmark="prevMonth"
-				Style="fromLeft"/>
+				Style="fromLeft" IsEnabled="false" ux:Name="swipeRight"/>
+				
+			<WhilePageActive NameEquals="month" Threshold="0">
+				<Change swipeLeft.IsEnabled="true"/>
+				<Change swipeRight.IsEnabled="true"/>
+			</WhilePageActive>
 			
-			<MonthView ux:Template="month" router="router"/>
+			<MonthView ux:Template="month" router="router" SwipeBack="None"/>
 			<DayView ux:Template="day" router="router" ZOffset="1"/>
 			
 		</Navigator>

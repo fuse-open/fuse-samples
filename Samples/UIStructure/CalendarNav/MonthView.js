@@ -8,8 +8,6 @@ this.Parameter.onValueChanged( function(value) {
 })
 
 exports.activated = function() {
-	console.log( "Activated: " + date.value )
-	
 	var p = new Date(date.value.valueOf())
 	p.setMonth( p.getMonth() - 1)
 	router.bookmark({
