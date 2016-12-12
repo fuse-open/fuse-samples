@@ -1,0 +1,12 @@
+<App>
+	<Router ux:Name="router"/>
+	<ClientPanel>
+		<JavaScript>
+			var d = new Date()
+			router.goto( "month", { month: d.getMonth(), year: d.getFullYear() } )
+		</JavaScript>
+		<Navigator>
+			<MonthView ux:Template="month" router="router"/>
+		</Navigator>
+	</ClientPanel>
+</App>

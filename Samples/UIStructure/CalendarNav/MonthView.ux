@@ -1,0 +1,48 @@
+<Page ux:Class="MonthView" Remove="None">
+	<!-- You cannot use Activated="{activated}" on the `Page` itself due to JavaScript scope rules -->
+	<Activated Handler="{activated}"/>
+	
+	<Router ux:Dependency="router"/>
+	<JavaScript File="MonthView.js"/>
+	
+	<DockPanel Color="#888" Padding="5">
+		<Grid Dock="Top" Columns="auto,1*,auto" CellSpacing="5">
+			<Panel Color="#FFF" Width="40" Height="40">
+				<Clicked>
+					<RouterModify Bookmark="prevMonth" Style="fromLeft"/>
+				</Clicked>
+			</Panel>
+			<Text FontSize="30" Value="{month}" TextAlignment="Center"/>
+			<Panel Color="#FFF" Width="40" Height="40">
+				<Clicked>
+					<RouterModify Bookmark="nextMonth" Style="fromRight"/>
+				</Clicked>
+			</Panel>
+		</Grid>
+	
+		<Grid ColumnCount="7" CellSpacing="5">
+			<Each Items="{days}" MatchKey="type">
+				<Rectangle Color="#CCC" ux:Template="fill"/>
+				<Rectangle Color="#FFF" ux:Template="day">
+					<Text FontSize="30" Color="#222" Alignment="TopLeft" Value="{dayOfMonth}" Margin="5"/>
+				</Rectangle>
+			</Each>
+		</Grid>
+	</DockPanel>
+	
+	<Transition Style="fromLeft" Direction="ToActive">
+		<Move X="-1" RelativeTo="ParentSize" Duration="0.3"/>
+	</Transition>
+	<Transition Style="fromRight" Direction="ToActive">
+		<Move X="1" RelativeTo="ParentSize" Duration="0.3"/>
+	</Transition>
+	
+	<Transition Style="fromRight" Direction="ToInactive">
+		<Move X="-1" RelativeTo="ParentSize" Duration="0.3"/>
+	</Transition>
+	<Transition Style="fromLeft" Direction="ToInactive">
+		<Move X="1" RelativeTo="ParentSize" Duration="0.3"/>
+	</Transition>
+	
+	<Transition/>
+</Page>
