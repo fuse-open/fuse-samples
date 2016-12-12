@@ -1,27 +1,15 @@
 var Observable = require("FuseJS/Observable")
+var DateTime = require("Lib/DateTime")
 
-function dateMonthDays(date) {
-    var d= new Date(date.getFullYear(), date.getMonth()+1, 0)
-    return d.getDate()
-}
-
-function dateFirst(date) {
-	var d = new Date(date.valueOf())
-	d.setDate(1)
-	return d
-}
-
-function dateDayOfWeek(date) {
-	return (date.getDay() + 7) % 7 //shift to Mon-Sun
-}
-
-var date = Observable(dateFirst(new Date()))
+var date = Observable(DateTime.first(new Date()))
 
 this.Parameter.onValueChanged( function(value) {
 	date.value = new Date(value.year, value.month,1)
 })
 
 exports.activated = function() {
+	console.log( "Activated: " + date.value )
+	
 	var p = new Date(date.value.valueOf())
 	p.setMonth( p.getMonth() - 1)
 	router.bookmark({
@@ -37,36 +25,57 @@ exports.activated = function() {
 	})
 }
 
-function FillDay() {
+function FillDay(day) {
 	this.type = "fill"
+	this.day = day
 }
 
-function Day(dom) {
+function Day(day) {
 	this.type = "day"
-	this.dayOfMonth = dom
+	this.day = day
+	this.dayOfMonth = day.getDate()
 }
 
 //TODO: someway to do this with `.map`
 exports.days = Observable()
 date.onValueChanged( function(v) {
-	var first = dateFirst(v)
-	var num = dateMonthDays(v)
+	var first = DateTime.first(v)
+	var num = DateTime.monthDays(v)
 	
 	var days = []
 	
-	var fill = dateDayOfWeek(first)
-	for (var i=0; i < fill; ++i) {
-		days.push( new FillDay() )
+	var day = first
+	var start = DateTime.dayOfWeek(first)
+	day.setDate(day.getDate() - start)
+	for (var i=0; i < start; ++i) {
+		days.push( new FillDay(day) )
+		day = DateTime.nextDay(day)
+	}
+
+	for (var i=0; i < num; ++i) {
+		days.push( new Day(day) )
+		day = DateTime.nextDay(day)
 	}
 	
-	for (var i=0; i < num; ++i) {
-		days.push( new Day(i+1) )
+	var end = (num + start) % 7
+	if (end > 0) {
+		for (var i=end; i < 7; ++i) {
+			days.push( new FillDay(day) );
+			day = DateTime.nextDay(day)
+		}
 	}
 
 	exports.days.replaceAll(days)
 })
 
-exports.month = date.map( function(v) {
+exports.monthLabel = date.map( function(v) {
 	var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
-	return months[v.getMonth()]
+	return months[v.getMonth()] + " " + v.getFullYear()
 })
+
+exports.daysOfWeek = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]
+
+exports.openDay = function(args) {
+	var day = args.data.day
+	router.push( "day", { month: day.getMonth(), year: day.getFullYear(), day: day.getDate() })
+}

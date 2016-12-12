@@ -7,5 +7,6 @@
   "Projects": [],
   "Includes": [
 	"*",
+	"Lib/*.js:Bundle",
   ]
 }

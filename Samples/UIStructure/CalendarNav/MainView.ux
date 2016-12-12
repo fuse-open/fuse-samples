@@ -1,12 +1,21 @@
 <App>
+	<Resources/>
 	<Router ux:Name="router"/>
+	
 	<ClientPanel>
 		<JavaScript>
 			var d = new Date()
 			router.goto( "month", { month: d.getMonth(), year: d.getFullYear() } )
 		</JavaScript>
 		<Navigator>
+			<NavigatorSwipe Direction="Left" How="GotoBookmark" Bookmark="nextMonth"
+				Style="fromRight"/>
+			<NavigatorSwipe Direction="Right" How="GotoBookmark" Bookmark="prevMonth"
+				Style="fromLeft"/>
+			
 			<MonthView ux:Template="month" router="router"/>
+			<DayView ux:Template="day" router="router" ZOffset="1"/>
+			
 		</Navigator>
 	</ClientPanel>
 </App>
