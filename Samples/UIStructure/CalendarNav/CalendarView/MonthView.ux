@@ -10,7 +10,7 @@
 	<DockPanel Color="{Resource ColorDark}" Padding="5">
 		<Grid Dock="Top" Columns="auto,1*,auto" CellSpacing="5" Margin="0,0,0,5">
 			<Panel Color="{Resource ColorHigh}" Width="35" Height="35">
-				<Image File="Assets/arrowleft.png" Color="{Resource ColorTextPrime}"/>
+				<Image File="../Assets/arrowleft.png" Color="{Resource ColorTextPrime}"/>
 				<Clicked>
 					<RouterModify Bookmark="prevMonth" Style="fromLeft"/>
 				</Clicked>
@@ -19,7 +19,7 @@
 				<Text FontSize="25" Color="{Resource ColorTextPrime}" Value="{monthLabel}" TextAlignment="Center" Alignment="VerticalCenter"/>
 			</Panel>
 			<Panel Color="{Resource ColorHigh}" Width="35" Height="35">
-				<Image File="Assets/arrowright.png" Color="{Resource ColorTextPrime}"/>
+				<Image File="../Assets/arrowright.png" Color="{Resource ColorTextPrime}"/>
 				<Clicked>
 					<RouterModify Bookmark="nextMonth" Style="fromRight"/>
 				</Clicked>

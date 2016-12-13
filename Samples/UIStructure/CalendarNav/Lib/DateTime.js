@@ -1,3 +1,5 @@
+/* A simple DateTime library used by this example */
+
 exports.monthDays = function(date) {
     var d= new Date(date.getFullYear(), date.getMonth()+1, 0)
     return d.getDate()

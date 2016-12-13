@@ -3,7 +3,7 @@
 	<JavaScript File="DayView.js"/>
 	<Panel Color="{Resource ColorWhite}" Padding="10">
 		<Rectangle CornerRadius="5,5,0,0" Color="{Resource ColorWhite}" Layer="Background"/>
-		<Image Alignment="TopRight" File="Assets/cross.png" Color="{Resource ColorTextPrime}">
+		<Image Alignment="TopRight" File="../Assets/cross.png" Color="{Resource ColorTextPrime}">
 			<Clicked>
 				<RouterModify How="GoBack"/>
 			</Clicked>
