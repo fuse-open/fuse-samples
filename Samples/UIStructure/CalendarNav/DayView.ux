@@ -8,7 +8,7 @@
 				<RouterModify How="GoBack"/>
 			</Clicked>
 		</Image>
-		<Text Alignment="TopCenter" FontSize="30" Value="{label}" Color="{Resource ColorTextPrime}"/>
+		<Text Alignment="TopCenter" FontSize="25" Value="{label}" Color="{Resource ColorTextPrime}"/>
 	</Panel>
 	
 	<Transition>

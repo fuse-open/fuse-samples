@@ -9,16 +9,16 @@
 	
 	<DockPanel Color="{Resource ColorDark}" Padding="5">
 		<Grid Dock="Top" Columns="auto,1*,auto" CellSpacing="5" Margin="0,0,0,5">
-			<Panel Color="{Resource ColorHigh}" Width="40" Height="40">
+			<Panel Color="{Resource ColorHigh}" Width="35" Height="35">
 				<Image File="Assets/arrowleft.png" Color="{Resource ColorTextPrime}"/>
 				<Clicked>
 					<RouterModify Bookmark="prevMonth" Style="fromLeft"/>
 				</Clicked>
 			</Panel>
 			<Panel Color="{Resource ColorHigh}">
-				<Text FontSize="30" Color="{Resource ColorTextPrime}" Value="{monthLabel}" TextAlignment="Center"/>
+				<Text FontSize="25" Color="{Resource ColorTextPrime}" Value="{monthLabel}" TextAlignment="Center" Alignment="VerticalCenter"/>
 			</Panel>
-			<Panel Color="{Resource ColorHigh}" Width="40" Height="40">
+			<Panel Color="{Resource ColorHigh}" Width="35" Height="35">
 				<Image File="Assets/arrowright.png" Color="{Resource ColorTextPrime}"/>
 				<Clicked>
 					<RouterModify Bookmark="nextMonth" Style="fromRight"/>
@@ -29,13 +29,13 @@
 		<Grid ColumnCount="7" CellSpacing="3" DefaultRow="1*" Rows="auto">
 			<Each Items="{daysOfWeek}">
 				<Panel Color="{Resource ColorWhite}">
-					<Text FontSize="22" Value="{}" TextAlignment="Center" Color="{Resource ColorTextSecond}"/>
+					<Text FontSize="18" Value="{}" TextAlignment="Center" Color="{Resource ColorTextSecond}"/>
 				</Panel>
 			</Each>
 			<Each Items="{days}" MatchKey="type">
 				<Rectangle Color="{Resource ColorWhiteHalf}" ux:Template="fill"/>
 				<Rectangle Color="{Resource ColorWhite}" ux:Template="day" Clicked="{openDay}">
-					<Text FontSize="30" Color="#222" Alignment="TopLeft" Value="{dayOfMonth}" Margin="5"/>
+					<Text FontSize="25" Color="#222" Alignment="TopLeft" Value="{dayOfMonth}" Margin="5"/>
 				</Rectangle>
 			</Each>
 		</Grid>
