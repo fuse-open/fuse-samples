@@ -13,6 +13,9 @@ using Uno.Compiler.ExportTargetInterop;
 [ForeignInclude(Language.Java, "android.content.Intent")]
 [ForeignInclude(Language.Java, "com.facebook.*")]
 [ForeignInclude(Language.Java, "com.facebook.appevents.AppEventsLogger")]
+[ForeignInclude(Language.Java, "org.json.JSONObject")]
+[ForeignInclude(Language.Java, "org.json.JSONException")]
+[ForeignInclude(Language.Java, "android.os.Bundle")]
 [ForeignInclude(Language.Java, "com.facebook.login.*")]
 [ForeignInclude(Language.Java, "com.fuse.Activity")]
 public class FacebookLogin
@@ -119,6 +122,32 @@ public class FacebookLogin
 		}
 	}
 
+	public class User
+	{
+		extern(Android) string _id;
+		extern(Android) string _name;
+		extern(Android) string _email;
+
+		public extern(Android) User(String id, String name, String email)
+		{
+			_id = id;
+			_name = name;
+			_email = email;
+		}
+
+		public extern(Android) string getId() {
+			return _id;
+		}
+
+		public extern(Android) string getName() {
+			return _name;
+		}
+
+		public extern(Android) string getEmail() {
+			return _email;
+		}
+	}
+
 	[Foreign(Language.ObjC)]
 	public extern(iOS) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
 	@{
@@ -145,8 +174,8 @@ public class FacebookLogin
 	@}
 
 	[Foreign(Language.Java)]
-	[Require("Entity", "AccessToken(Java.Object)")]
-	public extern(Android) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
+	[Require("Entity", "User(string, string, string)")]
+	public extern(Android) void Login(Action<User> onSuccess, Action onCancelled, Action<string> onError)
 	@{
 		CallbackManager callbackManager = (CallbackManager)@{FacebookLogin:Of(_this)._callbackManager:Get()};
 		LoginManager.getInstance().registerCallback(callbackManager,
@@ -158,8 +187,32 @@ public class FacebookLogin
 					AccessToken accessToken = loginResult.getAccessToken();
 					// TODO this should be UnoObject when https://github.com/fusetools/uno/issues/602
 					// has been fixed
-					UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
-					onSuccess.run(unoAccessToken);
+					//UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
+					//onSuccess.run(unoAccessToken);
+
+					GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                try {
+                                    String fbUserId = object.getString("id");
+                                    String fbUserName = object.getString("name");
+                                    String fbEmail = object.getString("email");
+
+									UnoObject user = @{User(string, string, string):New(fbUserId, fbUserName, fbEmail)};
+									onSuccess.run(user);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+	                Bundle parameters = new Bundle();
+	                parameters.putString("fields", "id,name,email");
+	                request.setParameters(parameters);
+	                request.executeAsync();
 				}
 
 				@Override
@@ -175,6 +228,6 @@ public class FacebookLogin
 				}
 			}
 		);
-		LoginManager.getInstance().logInWithReadPermissions(Activity.getRootActivity(), java.util.Arrays.asList("public_profile"));
+		LoginManager.getInstance().logInWithReadPermissions(Activity.getRootActivity(), java.util.Arrays.asList("public_profile", "email"));
 	@}
 }
