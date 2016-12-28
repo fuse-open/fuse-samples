@@ -124,32 +124,32 @@ public class FacebookLogin
 
 	public class User
 	{
-		extern(Android) string _id;
-		extern(Android) string _name;
-		extern(Android) string _email;
+		extern string _id;
+		extern string _name;
+		extern string _email;
 
-		public extern(Android) User(String id, String name, String email)
+		public  User(String id, String name, String email)
 		{
 			_id = id;
 			_name = name;
 			_email = email;
 		}
 
-		public extern(Android) string getId() {
+		public string getId() {
 			return _id;
 		}
 
-		public extern(Android) string getName() {
+		public string getName() {
 			return _name;
 		}
 
-		public extern(Android) string getEmail() {
+		public string getEmail() {
 			return _email;
 		}
 	}
 
 	[Foreign(Language.ObjC)]
-	public extern(iOS) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
+	public extern(iOS) void Login(Action<User> onSuccess, Action onCancelled, Action<string> onError)
 	@{
 		FBSDKLoginManager* login = [[FBSDKLoginManager alloc] init];
 		[login
@@ -167,8 +167,22 @@ public class FacebookLogin
 					onCancelled();
 					return;
 				}
-				id<UnoObject> unoAccessToken = @{AccessToken(ObjC.Object):New(result.token)};
-				onSuccess(unoAccessToken);
+				if ([FBSDKAccessToken currentAccessToken])
+				{
+					NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    				[parameters setValue:@"id,name,email" forKey:@"fields"];
+
+				    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:param] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+					    if (!error)
+						{
+							UnoObject user = @{User(string, string, string):New(result, result[@"name"], result[@"email"])};
+							onSuccess.run(user);
+					    }
+				    }];
+				 }
+				/*id<UnoObject> unoAccessToken = @{AccessToken(ObjC.Object):New(result.token)};
+				onSuccess(unoAccessToken);*/
+
 			}
 		];
 	@}
