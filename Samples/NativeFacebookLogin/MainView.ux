@@ -1,0 +1,23 @@
+<App>
+  <JavaScript>
+    var FacebookLogin = require("FacebookLogin");
+
+    function login() {
+      FacebookLogin.login().then(function(result) {
+        console.log("Login successful");
+      }, function(err) {
+        console.log("Login failed: " + err);
+      });
+    }
+
+    module.exports = {
+      login: login,
+    };
+  </JavaScript>
+  <DockPanel>
+    <StatusBarBackground Dock="Top" />
+    <StackPanel>
+      <Button Text="Login with Facebook" Clicked="{login}" />
+    </StackPanel>
+  </DockPanel>
+</App>
