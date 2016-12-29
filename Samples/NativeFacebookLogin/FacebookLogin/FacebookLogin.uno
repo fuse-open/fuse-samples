@@ -108,20 +108,6 @@ public class FacebookLogin
 	{
 	}
 
-	public class AccessToken
-	{
-		extern(iOS) ObjC.Object _token;
-		extern(Android) Java.Object _token;
-		public extern(iOS) AccessToken(ObjC.Object token)
-		{
-			_token = token;
-		}
-		public extern(Android) AccessToken(Java.Object token)
-		{
-			_token = token;
-		}
-	}
-
 	public class User
 	{
 		extern string _id;
@@ -169,20 +155,17 @@ public class FacebookLogin
 				}
 				if ([FBSDKAccessToken currentAccessToken])
 				{
-					NSMutableDictionary* param = [NSMutableDictionary dictionary];
+					NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     				[parameters setValue:@"id,name,email" forKey:@"fields"];
 
-				    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:param] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+				    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 					    if (!error)
 						{
-							UnoObject user = @{User(string, string, string):New(result, result[@"name"], result[@"email"])};
-							onSuccess.run(user);
+							id<UnoObject> user = @{User(string, string, string):New(result[@"id"], result[@"name"], result[@"email"])};
+							onSuccess(user);
 					    }
 				    }];
 				 }
-				/*id<UnoObject> unoAccessToken = @{AccessToken(ObjC.Object):New(result.token)};
-				onSuccess(unoAccessToken);*/
-
 			}
 		];
 	@}
@@ -199,10 +182,6 @@ public class FacebookLogin
 				public void onSuccess(LoginResult loginResult)
 				{
 					AccessToken accessToken = loginResult.getAccessToken();
-					// TODO this should be UnoObject when https://github.com/fusetools/uno/issues/602
-					// has been fixed
-					//UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
-					//onSuccess.run(unoAccessToken);
 
 					GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
