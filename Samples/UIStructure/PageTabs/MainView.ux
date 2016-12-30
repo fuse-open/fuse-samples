@@ -37,10 +37,10 @@
 		<Page ux:Class="MyPage" Color="#AAA">
 			<float4 ux:Property="Highlight"/>
 			<!-- This lets us bind our property to a Resource, so the Dot can reference it as {Page Highlight} -->
-			<ResourceFloat4 Key="Highlight" Value="{Property this.Highlight}"/>
+			<ResourceFloat4 Key="Highlight" Value="{ReadProperty this.Highlight}"/>
 			
-			<Rectangle Margin="25" CornerRadius="50" Color="{Property this.Highlight}">
-				<Text Color="#000" Value="{Property this.Title}" Alignment="Center"/>
+			<Rectangle Margin="25" CornerRadius="50" Color="{ReadProperty this.Highlight}">
+				<Text Color="#000" Value="{ReadProperty this.Title}" Alignment="Center"/>
 			</Rectangle>
 		</Page>
 		
