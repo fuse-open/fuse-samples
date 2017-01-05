@@ -8,6 +8,7 @@
     "FuseJS"
   ],
   "Includes": [
-    "*"
+    "*",
+    "Auth.js:Bundle"
   ]
 }

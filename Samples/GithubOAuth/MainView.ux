@@ -10,7 +10,6 @@
 			</ExitingAnimation>
 		</Page>
 
-		<JavaScript File="Auth.js" ux:Global="Auth"/>
 		<JavaScript File="MainView.js" />
 		<StatusBarBackground Dock="Top" />
 		<Grid Dock="Top" ColumnCount="3" Navigation="nav" Height="50">
