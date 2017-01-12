@@ -5,7 +5,7 @@
     function login() {
       FacebookLogin.login().then(function(user) {
         console.log(JSON.stringify(user));
-        // {"id":"XXXXXXXXX","email":"XXXCX@hotmail.com","name":"Jesús Martínez"}
+        // {"id":"XXXXXXXXX","email":"XXXCX@hotmail.com","name":"Jesús Martínez", "tokenString": "NUMBER5_L3TTERS_NUMB3RS_LETTERS"}
       }, function(err) {
         console.log("Login failed: " + err);
       });

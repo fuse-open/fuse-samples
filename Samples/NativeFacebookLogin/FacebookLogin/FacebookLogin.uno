@@ -107,32 +107,20 @@ public class FacebookLogin
 	static extern(!iOS) void OpenFacebookURL(string url)
 	{
 	}
-	
-	public class AccessToken
-	{
-		extern(iOS) ObjC.Object _token;
-		extern(Android) Java.Object _token;
-		public extern(iOS) AccessToken(ObjC.Object token)
-		{
-			_token = token;
-		}
-		public extern(Android) AccessToken(Java.Object token)
-		{
-			_token = token;
-		}
-	}
 
 	public class User
 	{
 		extern string _id;
 		extern string _name;
 		extern string _email;
+		extern string _token;
 
-		public  User(String id, String name, String email)
+		public User(String id, String name, String email, String token)
 		{
 			_id = id;
 			_name = name;
 			_email = email;
+			_token = token;
 		}
 
 		public string getId() {
@@ -145,6 +133,10 @@ public class FacebookLogin
 
 		public string getEmail() {
 			return _email;
+		}
+
+		public string getTokenString() {
+			return _token;
 		}
 	}
 
@@ -175,7 +167,7 @@ public class FacebookLogin
 				    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 					    if (!error)
 						{
-							id<UnoObject> user = @{User(string, string, string):New(result[@"id"], result[@"name"], result[@"email"])};
+							id<UnoObject> user = @{User(string, string, string, string):New(result[@"id"], result[@"name"], result[@"email"], [FBSDKAccessToken currentAccessToken].tokenString)};
 							onSuccess(user);
 					    }
 				    }];
@@ -185,7 +177,7 @@ public class FacebookLogin
 	@}
 
 	[Foreign(Language.Java)]
-	[Require("Entity", "User(string, string, string)")]
+	[Require("Entity", "User(string, string, string, string)")]
 	public extern(Android) void Login(Action<User> onSuccess, Action onCancelled, Action<string> onError)
 	@{
 		CallbackManager callbackManager = (CallbackManager)@{FacebookLogin:Of(_this)._callbackManager:Get()};
@@ -195,7 +187,7 @@ public class FacebookLogin
 				@Override
 				public void onSuccess(LoginResult loginResult)
 				{
-					AccessToken accessToken = loginResult.getAccessToken();
+					final AccessToken accessToken = loginResult.getAccessToken();
 
 					GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
@@ -208,8 +200,9 @@ public class FacebookLogin
                                     String fbUserId = object.getString("id");
                                     String fbUserName = object.getString("name");
                                     String fbEmail = object.getString("email");
+									String tokenString = accessToken.getToken();
 
-									UnoObject user = @{User(string, string, string):New(fbUserId, fbUserName, fbEmail)};
+									UnoObject user = @{User(string, string, string, string):New(fbUserId, fbUserName, fbEmail, tokenString)};
 									onSuccess.run(user);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

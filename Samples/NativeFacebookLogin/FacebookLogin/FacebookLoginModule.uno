@@ -81,6 +81,7 @@ public class FacebookLoginModule : NativeModule
         wrapperObject["id"] = user.getId();
         wrapperObject["email"] =  user.getEmail();
         wrapperObject["name"] =  user.getName();
+        wrapperObject["tokenString"] = user.getTokenString();
         return wrapperObject;
     }
 }
