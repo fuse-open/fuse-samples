@@ -7,7 +7,7 @@ using Uno;
 [UXGlobalModule]
 public class FacebookLoginModule : NativeModule
 {
-	class FacebookLoginPromise : Promise<FacebookLogin.AccessToken>
+	class FacebookLoginPromise : Promise<FacebookLogin.User>
 	{
 		readonly FacebookLogin _facebookLogin;
 
@@ -67,16 +67,21 @@ public class FacebookLoginModule : NativeModule
 
 		_instance = this;
 		Resource.SetGlobalKey(_instance, "FacebookLogin");
-		AddMember(new NativePromise<FacebookLogin.AccessToken, External>("login", Login, Converter));
+		AddMember(new NativePromise<FacebookLogin.User, Fuse.Scripting.Object>("login", Login, Converter));
 	}
 
-	Future<FacebookLogin.AccessToken> Login(object[] args)
+	Future<FacebookLogin.User> Login(object[] args)
 	{
 		return new FacebookLoginPromise(_facebookLogin);
 	}
 
-	External Converter(Context context, FacebookLogin.AccessToken accessToken)
-	{
-		return new External(accessToken);
-	}
+	static Fuse.Scripting.Object Converter(Context context, FacebookLogin.User user)
+    {
+        var wrapperObject = context.NewObject();
+        wrapperObject["id"] = user.getId();
+        wrapperObject["email"] =  user.getEmail();
+        wrapperObject["name"] =  user.getName();
+        wrapperObject["tokenString"] = user.getTokenString();
+        return wrapperObject;
+    }
 }

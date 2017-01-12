@@ -13,6 +13,9 @@ using Uno.Compiler.ExportTargetInterop;
 [ForeignInclude(Language.Java, "android.content.Intent")]
 [ForeignInclude(Language.Java, "com.facebook.*")]
 [ForeignInclude(Language.Java, "com.facebook.appevents.AppEventsLogger")]
+[ForeignInclude(Language.Java, "org.json.JSONObject")]
+[ForeignInclude(Language.Java, "org.json.JSONException")]
+[ForeignInclude(Language.Java, "android.os.Bundle")]
 [ForeignInclude(Language.Java, "com.facebook.login.*")]
 [ForeignInclude(Language.Java, "com.fuse.Activity")]
 public class FacebookLogin
@@ -48,7 +51,7 @@ public class FacebookLogin
 			{
 				return callbackManager.onActivityResult(requestCode, resultCode, data);
 			}
-			
+
 		});
 	@}
 
@@ -105,22 +108,40 @@ public class FacebookLogin
 	{
 	}
 
-	public class AccessToken
+	public class User
 	{
-		extern(iOS) ObjC.Object _token;
-		extern(Android) Java.Object _token;
-		public extern(iOS) AccessToken(ObjC.Object token)
+		extern string _id;
+		extern string _name;
+		extern string _email;
+		extern string _token;
+
+		public User(String id, String name, String email, String token)
 		{
+			_id = id;
+			_name = name;
+			_email = email;
 			_token = token;
 		}
-		public extern(Android) AccessToken(Java.Object token)
-		{
-			_token = token;
+
+		public string getId() {
+			return _id;
+		}
+
+		public string getName() {
+			return _name;
+		}
+
+		public string getEmail() {
+			return _email;
+		}
+
+		public string getTokenString() {
+			return _token;
 		}
 	}
 
 	[Foreign(Language.ObjC)]
-	public extern(iOS) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
+	public extern(iOS) void Login(Action<User> onSuccess, Action onCancelled, Action<string> onError)
 	@{
 		FBSDKLoginManager* login = [[FBSDKLoginManager alloc] init];
 		[login
@@ -138,15 +159,26 @@ public class FacebookLogin
 					onCancelled();
 					return;
 				}
-				id<UnoObject> unoAccessToken = @{AccessToken(ObjC.Object):New(result.token)};
-				onSuccess(unoAccessToken);
+				if ([FBSDKAccessToken currentAccessToken])
+				{
+					NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+					[parameters setValue:@"id,name,email" forKey:@"fields"];
+
+				    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+					    if (!error)
+						{
+							id<UnoObject> user = @{User(string, string, string, string):New(result[@"id"], result[@"name"], result[@"email"], [FBSDKAccessToken currentAccessToken].tokenString)};
+							onSuccess(user);
+					    }
+				    }];
+				 }
 			}
 		];
 	@}
 
 	[Foreign(Language.Java)]
-	[Require("Entity", "AccessToken(Java.Object)")]
-	public extern(Android) void Login(Action<AccessToken> onSuccess, Action onCancelled, Action<string> onError)
+	[Require("Entity", "User(string, string, string, string)")]
+	public extern(Android) void Login(Action<User> onSuccess, Action onCancelled, Action<string> onError)
 	@{
 		CallbackManager callbackManager = (CallbackManager)@{FacebookLogin:Of(_this)._callbackManager:Get()};
 		LoginManager.getInstance().registerCallback(callbackManager,
@@ -155,9 +187,32 @@ public class FacebookLogin
 				@Override
 				public void onSuccess(LoginResult loginResult)
 				{
-					AccessToken accessToken = loginResult.getAccessToken();
-					UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
-					onSuccess.run(unoAccessToken);
+					final AccessToken accessToken = loginResult.getAccessToken();
+
+					GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                try {
+                                    String fbUserId = object.getString("id");
+                                    String fbUserName = object.getString("name");
+                                    String fbEmail = object.getString("email");
+									String tokenString = accessToken.getToken();
+
+									UnoObject user = @{User(string, string, string, string):New(fbUserId, fbUserName, fbEmail, tokenString)};
+									onSuccess.run(user);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+	                Bundle parameters = new Bundle();
+	                parameters.putString("fields", "id,name,email");
+	                request.setParameters(parameters);
+	                request.executeAsync();
 				}
 
 				@Override
@@ -173,6 +228,6 @@ public class FacebookLogin
 				}
 			}
 		);
-		LoginManager.getInstance().logInWithReadPermissions(Activity.getRootActivity(), java.util.Arrays.asList("public_profile"));
+		LoginManager.getInstance().logInWithReadPermissions(Activity.getRootActivity(), java.util.Arrays.asList("public_profile", "email"));
 	@}
 }
