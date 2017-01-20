@@ -1,0 +1,53 @@
+<App>
+	<ClientPanel Color="#AAA">
+		<Panel Dock="Top">
+			<!-- PageIndicator is a StackPanel, so we can set those properties -->
+			<PageIndicator Navigation="mainNav" Orientation="Horizontal" ItemSpacing="10"
+				Alignment="Center" Margin="5">
+				
+				<!-- The "Dot" template is instantiated for each Page in the Navigation -->
+				<DockPanel ux:Template="Dot" Color="#CCC" Padding="10,5">
+					<Rectangle Layer="Background">
+						<Stroke Alignment="Outside" Width="2" Color="#0000" ux:Name="theStroke"/>
+					</Rectangle>
+					
+					<!-- Get the highlight color of the page, stored as a Resource on the page -->
+					<Circle Dock="Left" Margin="0,0,10,0" BoxSizing="FillAspect" Color="{Page Highlight}"
+						Opacity="0.2" ux:Name="theDot"/>
+					<!-- The Page.Title is implicitly a Resource of the page -->
+					<Text Color="#000" Value="{Page Title}"/>
+					
+					<!-- Using activating animation to show partial transitions as the user is swiping -->
+					<ActivatingAnimation>
+						<Change theStroke.Color="#008F"/>
+					</ActivatingAnimation>
+					<!-- The threshold on this WhileActive ensures the trigger will only be active on one tab at a time -->
+					<WhileActive Threshold="0.5">
+						<Change theDot.Opacity="1" Duration="0.3"/>
+					</WhileActive>
+					
+					<Clicked>
+						<!-- {Page Visual} is a special binding which refers to the page itself -->
+						<NavigateTo Target="{Page Visual}"/>
+					</Clicked>
+				</DockPanel>
+			</PageIndicator>
+		</Panel>
+		
+		<Page ux:Class="MyPage" Color="#AAA">
+			<float4 ux:Property="Highlight"/>
+			<!-- This lets us bind our property to a Resource, so the Dot can reference it as {Page Highlight} -->
+			<ResourceFloat4 Key="Highlight" Value="{ReadProperty this.Highlight}"/>
+			
+			<Rectangle Margin="25" CornerRadius="50" Color="{ReadProperty this.Highlight}">
+				<Text Color="#000" Value="{ReadProperty this.Title}" Alignment="Center"/>
+			</Rectangle>
+		</Page>
+		
+		<PageControl ux:Name="mainNav">
+			<MyPage Title="One" Highlight="#AFA"/>
+			<MyPage Title="Two" Highlight="#AFF"/>
+			<MyPage Title="Three" Highlight="#FFA"/>
+		</PageControl>
+	</ClientPanel>
+</App>
