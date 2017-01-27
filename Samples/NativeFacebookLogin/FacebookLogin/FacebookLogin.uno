@@ -104,19 +104,31 @@ public class FacebookLogin
 	static extern(!iOS) void OpenFacebookURL(string url)
 	{
 	}
-
+	
 	public class AccessToken
 	{
 		extern(iOS) ObjC.Object _token;
-		extern(Android) Java.Object _token;
+		extern(Android) Java.Object _token;		
 		public extern(iOS) AccessToken(ObjC.Object token)
 		{
 			_token = token;
 		}
 		public extern(Android) AccessToken(Java.Object token)
 		{
-			_token = token;
+			_token = token;						
 		}
+
+		public extern(Android) string AsString() {
+			var token = GetToken(_token);
+			debug_log ("Token from Java: " + token);
+			return token;
+		}
+
+		[Foreign(Language.Java)]
+		extern(Android) string GetToken(Java.Object token) 
+		@{
+			return ((com.facebook.AccessToken)token).getToken();
+		@}
 	}
 
 	[Foreign(Language.ObjC)]
@@ -155,7 +167,7 @@ public class FacebookLogin
 				@Override
 				public void onSuccess(LoginResult loginResult)
 				{
-					AccessToken accessToken = loginResult.getAccessToken();
+					com.facebook.AccessToken accessToken = loginResult.getAccessToken();										
 					UnoObject unoAccessToken = @{AccessToken(Java.Object):New(accessToken)};
 					onSuccess.run(unoAccessToken);
 				}
