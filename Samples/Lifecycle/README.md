@@ -8,7 +8,7 @@ To listen to life-cycle events, import `FuseJS/Lifecycle` using `require`, and s
 
 ## Losing and gaining control
 
-The events `onEnteringInteractive` and `onExitedInteractive` are used to handle loss and gain of control. On desktop, this would fire when you loose/gain focus of the app's window. On mobile devices, they will fire when something else is overlaying the app on the screen(f.ex the notification bar on Android, or the overlaying chat window from Facebook Messenger. Note that the app is still running in the background in these two examples)
+The events `onEnteringInteractive` and `onExitedInteractive` are used to handle loss and gain of control. These will fire when something else is overlaying the app on the screen (for example the notification bar on Android, or the overlaying chat window from Facebook Messenger. Note that the app is still running in the background in these two examples).
 
 ```
 Lifecycle.onEnteringInteractive = function(){
@@ -48,7 +48,7 @@ Here is an illustration of how the different app-states relates to each other:
 
 ![illustration](UnoApplicationLifecycle.png)
 
-Take a look at the [JavaScript documentation](https://www.fusetools.com/learn/fusejs#lifecycle) for more details.
+Take a look at the [JavaScript documentation](https://www.fusetools.com/docs/fusejs/lifecycle) for more details.
 
 ## The JavaScript
 
@@ -86,13 +86,11 @@ module.exports = {
 ## The UX
 
 ```
-<App Theme="Basic">
-	<Panel>
-		<JavaScript File="MainView.js" />
-		<SolidColor ux:Name="backgroundColor" Color="#4CAF50" />
-		<WhileFalse Value="{focused}">
-			<Change backgroundColor.Color="#FF9800" Duration=".5" />
-		</WhileFalse>
-	</Panel>
+<App>
+	<JavaScript File="MainView.js" />
+	<Rectangle ux:Name="background" Color="#4CAF50" />
+	<WhileFalse Value="{focused}">
+		<Change background.Color="#FF9800" Duration=".5" />
+	</WhileFalse>
 </App>
 ```

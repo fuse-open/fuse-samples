@@ -1,0 +1,269 @@
+<DockPanel ux:Class="MainView">
+	<Router ux:Name="router"/>
+	<JavaScript File="MainView.js"/>
+	
+	<Panel ux:Class="ButtonBase" Padding="10">
+		<Rectangle Layer="Background" Color="#90a4ae" CornerRadius="5"/>
+	</Panel>
+	
+	<ButtonBase ux:Class="MyButton" Padding="5">
+		<string ux:Property="Text"/>
+		<Text Value="{ReadProperty this.Text}" Color="#000"/>
+	</ButtonBase>
+	
+	<ButtonBase ux:Class="ArrowButton" Padding="5" Margin="5">
+		<float ux:Property="Degrees"/>
+		<Image File="Assets/play.png" Color="#000" Name="ArrowImage">
+			<Rotation Degrees="{ReadProperty this.Degrees}"/>
+		</Image>
+	</ButtonBase>
+	
+	<ButtonBase ux:Class="PlusButton" Padding="5" Margin="5">
+		<Rectangle Layer="Background" Color="#90a4ae" CornerRadius="5"/>
+		<Image File="Assets/plus.png" Color="#000"/>
+	</ButtonBase>
+	
+	<ButtonBase ux:Class="CornerButton" Padding="5" Margin="5">
+		<Rectangle Layer="Background" Color="#90a4ae" CornerRadius="5"/>
+		<Image File="Assets/star.png" Color="#000"/>
+	</ButtonBase>
+	
+	<Page ux:Class="CornerPage" Color="#b0bec5">
+		<Rectangle Layer="Overlay" Color="#FFF" Visibility="Hidden" ux:Name="Cover"
+			Opacity="0"/>
+		<StackPanel Alignment="Center" ItemSpacing="5">
+			<MyButton Clicked="{goBack}" Text="Back"/>
+			<MyButton Clicked="{goPopup}" Text="Popup"/>
+		</StackPanel>
+		<Transition To="Popup" AutoRelease="false">
+			<Change Cover.Opacity="0.5" Duration="0.3"/>
+			<Change Cover.Visibility="Visible"/>
+		</Transition>
+	</Page>
+
+	<!-- Title Bar -->
+	<Panel Navigation="TheNav" Color="#eceff1" Dock="Top" Padding="3">
+		<Text FontSize="18" Value="{Page Title}" Alignment="Center"/>
+		<Panel Navigation="router" Alignment="Left">
+			<Image File="Assets/arrowleft.png"
+				Clicked="{goBack}" Color="#333" ux:Name="backArrow" Visibility="Hidden"/>
+			<WhileCanGoBack>
+				<Change backArrow.Visibility="Visible"/>
+			</WhileCanGoBack>
+		</Panel>
+	</Panel>
+
+	<!-- The primary application page -->
+	<Page ux:Class="MainPage" Tint="#AAA8" ExplicitTransformOrigin="50%,50%" Color="#b0bec5">
+		<float4 ux:Property="Tint"/>
+		<JavaScript>
+			exports.id = this.Parameter.map( function(p) {
+				return p.id
+			})
+		</JavaScript>
+		
+		<!-- A decoration so the transition is more apparent -->
+		<Rectangle Layer="Background" Margin="20">
+			<Stroke Width="5" Color="#cfd8dc"/>
+		</Rectangle>
+
+		<!-- Buttons that perform navigation to the other pages -->
+		<CornerButton Alignment="BottomRight" Clicked="{goBottomRight}"/>
+		<CornerButton Alignment="TopLeft" Clicked="{goTopLeft}"/>
+		
+		<StackPanel Alignment="CenterRight" ItemSpacing="10">
+			<ArrowButton Clicked="{goRight1}" Degrees="0"/>
+			<ArrowButton Clicked="{goRight2}" Degrees="0"/>
+		</StackPanel>
+		
+		<ArrowButton Alignment="TopCenter" Clicked="{goTop}"  Degrees="-90"/>
+		<ArrowButton Alignment="CenterLeft" Clicked="{goLeft}" Degrees="180"/>
+		<ArrowButton Alignment="BottomCenter" Clicked="{goBottom}" Degrees="90"/>
+		
+		<PlusButton X="50%" Y="75%" Anchor="50%,50%" Clicked="{goPopupBottom}"/>
+		<PlusButton X="50%" Y="25%" Anchor="50%,50%" Clicked="{goSlideTop}"/>
+		
+		<!-- A label to show the pages are changing, and that "back" is actually going back -->
+		<Circle Width="200" Height="200" Color="{ReadProperty this.Tint}" Alignment="Center">
+			<StackPanel Alignment="Center">
+				<Text FontSize="22" Value="{Resource Title}" Color="#000"/>
+				<Text Alignment="Center" FontSize="28" Value="{id}" Color="#666"/>
+			</StackPanel>
+		</Circle>
+		
+		<!-- Transitions to the other primary pages -->
+		<Transition To="Right1,Right2">
+			<Move X="-1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+		</Transition>
+		<Transition To="Left">
+			<Move X="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+		</Transition>
+		<Transition To="Top">
+			<Move Y="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+		</Transition>
+		<Transition To="Bottom">
+			<Move Y="-1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+		</Transition>
+		
+		<Transition To="BottomRight">
+			<Change this.ExplicitTransformOrigin="100%,100%"/>
+			<Rotate Degrees="-90" Duration="0.4" Easing="CubicOut" EasingBack="CubicIn"/>
+		</Transition>
+		
+		<Transition To="TopLeft" Direction="ToInactive">
+			<Change this.ExplicitTransformOrigin="0%,0%"/>
+			<Rotate Degrees="90" Duration="0.4" Easing="CubicOut"/>
+		</Transition>
+		<Transition To="TopLeft" Direction="ToActive">
+			<Change this.ExplicitTransformOrigin="0%,0%"/>
+			<Rotate Degrees="-90" Duration="0.4" Easing="CubicIn"/>
+		</Transition>
+		
+		<Transition To="PopupBottom" AutoRelease="false">
+			<Change this.ExplicitTransformOrigin="50%,0%"/>
+			<Rotate DegreesX="15" Duration="0.4" Easing="SinusoidalInOut"/>
+			<Move Z="50" Duration="0.3"/>
+			<Change this.ZOffset="-1"/>
+			<!-- Prevent interaction with the still visible MainPage -->
+			<Change this.HitTestMode="None"/>
+		</Transition>
+	</Page>
+		
+	<Navigator DefaultTemplate="Main" GotoState="Unchanged" ux:Name="TheNav"
+		ClipToBounds="true" Remove="Released">
+		
+		<MainPage ux:Template="Main" Title="Starting Page">
+			<Transition>
+				<Scale Factor="0.5" Duration="0.3"/>
+				<Change Main.ZOffset="-1"/>
+			</Transition>
+		</MainPage>
+		
+		<MainPage ux:Template="Right1" Title="Right1" Tint="#CFB8">
+			<Transition>
+				<Move X="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+			</Transition>
+		</MainPage>
+		<MainPage ux:Template="Right2" Title="Right2" Tint="#CFC8">
+			<Transition>
+				<Move X="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+			</Transition>
+		</MainPage>
+		
+		<MainPage ux:Template="Left" Title="Left" Tint="#BCF8">
+			<Transition>
+				<Move X="-1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+			</Transition>
+		</MainPage>
+		
+		<MainPage ux:Template="Top" Title="Top" Tint="#FBC8">
+			<Transition>
+				<Move Y="-1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+			</Transition>
+		</MainPage>
+		
+		<MainPage ux:Template="Bottom" Title="Bottom" Tint="#CBF8">
+			<Transition>
+				<Move Y="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicInOut"/>
+			</Transition>
+		</MainPage>
+		
+		<Page ux:Template="Popup" Alignment="Center" Width="250" Height="250" Padding="20"
+			ZOffset="1" Title="Popup View">
+			<DropShadow/>
+			
+			<Rectangle Layer="Background" Color="#cfd8dc" CornerRadius="10"/>
+			<MyButton Alignment="Center" Clicked="{goBack}" Text="Back"/>
+			<Transition From="BottomRight">
+				<Move X="1" Y="1" RelativeTo="ParentSize" Duration="0.3"/>
+			</Transition>
+			<Transition From="TopLeft">
+				<Move X="-1" Y="-1" RelativeTo="ParentSize" Duration="0.3"/>
+			</Transition>
+			<Transition>
+				<Move Y="-1" RelativeTo="ParentSize" Duration="0.3"/>
+			</Transition>
+		</Page>
+		
+		<CornerPage ux:Template="BottomRight" Color="#607d8b" Title="Bottom Right"
+			ExplicitTransformOrigin="100%,100%">
+			<Transition>
+				<Rotate Degrees="90" DurationBack="1.4" EasingBack="BounceIn"
+					Duration="0.4" Easing="CubicOut"/>
+			</Transition>
+		</CornerPage>
+		
+		<CornerPage ux:Template="TopLeft" Color="#607d8b" Title="Top Left"
+			ExplicitTransformOrigin="0%,0%">
+			<Transition Direction="ToActive">
+				<Rotate Degrees="-90" Duration="0.4" Easing="CubicIn" />
+			</Transition>
+			<Transition Direction="ToInactive">
+				<Rotate Degrees="90" Duration="0.4" Easing="CubicOut" />
+			</Transition>
+		</CornerPage>
+	
+		<Page X="50%" Y="75%" Anchor="50%,50%" Width="80%"
+			Height="40%" ux:Template="PopupBottom" Title="Popup Bottom">
+			<DropShadow/>
+			<Transition Direction="ToActive">
+				<Scale Factor="0" Duration="0.4" Easing="BackIn"/>
+			</Transition>
+			<Transition Direction="ToInactive">
+				<Move Y="1.5" RelativeTo="Size" Duration="0.4" Easing="BackIn"/>
+			</Transition>
+			<Transition To="PopupTop" AutoRelease="false"/>
+			<Rectangle Layer="Background" Color="#546e7a" CornerRadius="10"/>
+		
+			<StackPanel Alignment="Center" ItemSpacing="10">
+				<MyButton Clicked="{goBack}" Text="Back"/>
+				<MyButton Clicked="{goPopupTop}" Text="Popup Top"/>
+			</StackPanel>
+		</Page>
+		
+		<Page X="50%" Y="25%" Anchor="50%,50%" Width="20%"
+			Height="20%" ux:Template="PopupTop" Reuse="Removed">
+			<JavaScript>
+				exports.id = PopupTop.Parameter.map( function(p) {
+					return p.id
+				})
+				exports.title = PopupTop.Parameter.map( function(p) {
+					return "Popup Top " + p.id
+				})
+			</JavaScript>
+			<ResourceString Key="Title" Value="{title}"/>
+			
+			<DropShadow/>
+			<Transition Direction="FromFront">
+				<Move X="1" RelativeTo="ParentSize" Duration="0.4" Easing="SinusoidalInOut"/>
+			</Transition>
+			<Transition Direction="ToFront">
+				<Scale Factor="2" Duration="0.4"/>
+				<Change PopupTop.Opacity="0" Duration="0.4"/>
+			</Transition>
+			<Transition AutoRelease="false">
+				<Move X="-0.25" RelativeTo="ParentSize" Duration="0.4" Easing="SinusoidalInOut"/>
+			</Transition>
+			<Rectangle Layer="Background" Color="#546e7a" CornerRadius="10"/>
+			<Text Value="{id}" Alignment="Center" Color="#FFF"/>
+		</Page>
+		
+		<Page ux:Template="SlideTop" Color="#546e7a" Title="Slide Top">
+			<Transition From="Main,Left,Right,Top,Bottom">
+				<Move Y="-1" Duration="0.3" RelativeTo="ParentSize" Easing="SinusoidalInOut"/>
+			</Transition>
+			<!-- do not specify a default transition, will fallback to Navigator default if nothing matches -->
+			
+			<StackPanel Alignment="Center" ItemSpacing="10">
+				<MyButton Clicked="{goBack}" Text="Back"/>
+				<MyButton Clicked="{goSlideTop}" Text="Next SlideTop"/>
+			</StackPanel>
+			
+			<Rectangle Layer="Background" Margin="20">
+				<Stroke Width="5" Color="#cfd8dc"/>
+			</Rectangle>
+		</Page>
+		
+	</Navigator>
+	
+</DockPanel>

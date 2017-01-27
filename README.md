@@ -49,6 +49,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
   	<td><a href="Samples/NativeDialogs">Native dialogs</a></td>
 	<td><a href="Samples/Localization">Localization</a></td>
+	<td><a href="Samples/ForeignAccelerometer">Accelerometer</a></td>
   </tr>
 </table>
 
@@ -62,6 +63,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
 	<td><a href="Samples/RelativeTo">RelativeTo</a></td>
 	<td><a href="Samples/Animation/MixOp">MixOp</a></td>
   </tr>
+    <tr>
+    <td><a href="Samples/Animation/ExpandingToolbar">Expanding Toolbar</a></td>
+  </tr>
 </table>
 
 ## Custom Controls
@@ -70,8 +74,8 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
     <td><a href="Samples/Controls/Scrollbar">Scrollbar</a></td>
     <td><a href="Samples/DropdownMenu">Dropdown menu</a></td>
-    <td><a href="Samples/Controls/Circular">Circular control</a><td>
-	<td><a href="Samples/Controls/ButtonWithImage">Button with image</a><td>
+    <td><a href="Samples/Controls/Circular">Circular control</a></td>
+	<td><a href="Samples/Controls/ButtonWithImage">Button with image</a></td>
   </tr>
 </table>
 

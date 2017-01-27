@@ -1,5 +1,5 @@
 var Observable = require("FuseJS/Observable")
-var state = require("App/state.js")
+var state = require("./state.js")
 
 var contacts = Observable({
 	name: "mortoray", 

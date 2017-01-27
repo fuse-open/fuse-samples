@@ -1,11 +1,29 @@
-<App >
-	<DockPanel>
-		<JavaScript File="MainView.js" />
-		<StatusBarBackground Dock="Top"/>
-		<StackPanel Dock="Fill">
-			<Text FontSize="32" TextAlignment="Center">Camera example</Text>
-			<Button Text="Take picture" Clicked="{takePicture}" />
-			<Image File="{image}"/>
+<App Background="#EEE">
+	<JavaScript File="main.js"/>
+	<Panel ux:Class="FatButton" Background="#FFFFFF" Margin="0,5,0,5" Text="">
+		<string ux:Property="Text" />
+		<Button Text="{ReadProperty this.Text}" Padding="5,5,5,5" />
+	</Panel>
+	<ClientPanel>
+		<WhileEmpty Items="{imagePath}">
+				<Image File="assets/cam_icon.png" StretchMode="PixelPrecise"/>
+		</WhileEmpty>
+		<WhileNotEmpty Items="{imagePath}">
+			<DockPanel Dock="Fill">
+				<Text Value="{imageName}" Dock="Top" Alignment="Center"/>
+				<Image File="{imagePath}" StretchMode="Uniform" />
+				<Text Value="{imageSize}" Dock="Bottom" Alignment="Center"/>
+			</DockPanel>
+		</WhileNotEmpty>
+		<StackPanel Dock="Bottom">
+			<Text FontSize="12" Margin="5,5,5,5">Click buttons to perform tests</Text>
+			<FatButton Text="Push 320x320 square picture to cameraroll" Clicked="{takePicture}"/>
+			<FatButton Text="Take aspect corrected 100x100 picture via buffer" Clicked="{takeSmallPicture}"/>
+			<FatButton Text="Take cropped 320x320 picture" Clicked="{takeCroppedPicture}"/>
+			<FatButton Text="Get picture from cameraroll" Clicked="{selectImage}"/>
+			<WhileNotEmpty Items="{imagePath}">
+				<FatButton Text="Reload last picture via base64" Clicked="{b64Test}"/>
+			</WhileNotEmpty>
 		</StackPanel>
-	</DockPanel>
+	</ClientPanel>
 </App>

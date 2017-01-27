@@ -1,4 +1,4 @@
-<App ux:Class="NavigatorApp" ClearColor="#AAA">
+<App>
 	<Router ux:Name="router" />
 
 	<Text ux:Class="Label" FontSize="24"/>

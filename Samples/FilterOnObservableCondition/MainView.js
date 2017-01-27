@@ -35,9 +35,9 @@ var items = Observable(
 	new Color('#FFFF00', 'Other 5', COLOR_TYPES.OTHER)
 );
 
-var filteredItems = items.where(function(x){
-	return Observable(function() {
-		return x.category === currentCategory.value || currentCategory.value === COLOR_TYPES.ALL;
+var filteredItems = currentCategory.flatMap(function(category){
+	return items.where(function(item){
+		return item.category === category || category === COLOR_TYPES.ALL;
 	});
 });
 

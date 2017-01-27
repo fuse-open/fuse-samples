@@ -1,11 +1,12 @@
 var Observable = require("FuseJS/Observable")
 var contacts = require("App/contacts.js")
 
-exports.contact = Observable(contacts.empty)
-
-view.onParameterChanged( function(param) {
-	exports.contact.value = contacts.empty
+exports.contact = view.Parameter.flatMap( function(param) {
+	var newContact = Observable(contacts.empty);
+	
 	contacts.lookupContact(param, function(contact) {
-		exports.contact.value = contact
-	})
-})
+		newContact.value = contact;
+	});
+	
+	return newContact;
+});

@@ -17,7 +17,7 @@ module.exports = {
 In `UX` basic usage would like the following:
 
 ```XML
-<App Theme="Basic">
+<App>
 	<Localization ux:Global="Localization" />
 	<ClientPanel>
 		<JavaScript File="MainView.js" />

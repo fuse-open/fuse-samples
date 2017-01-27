@@ -6,7 +6,7 @@ namespace ForeignAccelerometer
 {
 	[Require("Source.Include", "AccelerometerImpl.hh")]
 	extern(iOS)
-	class Accelerometer_iOS
+	internal class Accelerometer_iOS
 	{
 
 		extern(iOS) ObjC.Object _impl;

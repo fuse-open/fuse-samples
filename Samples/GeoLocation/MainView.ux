@@ -1,4 +1,4 @@
-<App >
+<App>
 	<DockPanel>
 		<StatusBarBackground Dock="Top" />
 		<BottomBarBackground Dock="Bottom" />

@@ -3,7 +3,7 @@
 
 	<JavaScript File="DetailsPage.js" />
 
-	<WhiteText ux:Class="InfoText" TextColor="#fff7" Margin="0,20,0,5" />
+	<WhiteText ux:Class="InfoText" Color="#fff7" Margin="0,20,0,5" />
 
 	<Panel ux:Name="dialog" Alignment="VerticalCenter" Margin="40" Padding="20,40,20,0" Opacity="0">
 		<Rectangle Layer="Background" Fill="#fff" CornerRadius="2" Opacity=".8" />
@@ -29,7 +29,7 @@
 	</WhileTrue>
 
 	<Panel>
-		<Select Data="{pet}">
+		<With Data="{pet}">
 			<Panel>
 				<Button Text="Book playdate!!" Alignment="BottomRight" Margin="20" Padding="10" Clicked="{bookDate}" HitTestMode="LocalBoundsAndChildren" />
 
@@ -62,7 +62,7 @@
 					</DockPanel>
 				</DockPanel>
 			</Panel>
-		</Select>
+		</With>
 
 		<Blur ux:Name="mainPanelBlur" Radius="0" />
 	</Panel>

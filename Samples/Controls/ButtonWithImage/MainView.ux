@@ -1,12 +1,12 @@
 <App>
-    <ClientPanel>
+	<ClientPanel>
 
 		<!-- Provides a `FileImage` property that takes the name of a file -->
 		<DockPanel ux:Class="MyButtonFile" Padding="10">
 			<Uno.UX.FileSource ux:Property="FileImage"/>
 			<string ux:Property="Text"/>
-			<Image File="{Property this.FileImage}" Dock="Left" Color="0,0.2,0.2,1"/>
-			<Text Alignment="Center" Value="{Property this.Text}"/>
+			<Image File="{ReadProperty this.FileImage}" Dock="Left" Color="0,0.2,0.2,1"/>
+			<Text Alignment="Center" Value="{ReadProperty this.Text}"/>
 			<Rectangle Layer="Background" Color="0.9,1,1,1"/>
 		</DockPanel>
 
@@ -14,8 +14,8 @@
 		<DockPanel ux:Class="MyButtonSource" Padding="10">
 			<ImageSource ux:Property="Image"/>
 			<string ux:Property="Text"/>
-			<Image Source="{Property this.Image}" Dock="Left" Color="0,0.2,0.2,1"/>
-			<Text Alignment="Center" Value="{Property this.Text}"/>
+			<Image Source="{ReadProperty this.Image}" Dock="Left" Color="0,0.2,0.2,1"/>
+			<Text Alignment="Center" Value="{ReadProperty this.Text}"/>
 			<Rectangle Layer="Background" Color="0.9,1,1,1"/>
 		</DockPanel>
 
@@ -51,5 +51,5 @@
 			</Panel>
 		</StackPanel>
 
-    </ClientPanel>
+	</ClientPanel>
 </App>

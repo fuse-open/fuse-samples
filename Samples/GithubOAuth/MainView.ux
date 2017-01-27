@@ -33,7 +33,7 @@
 									<Stroke Brush="#aaa" Width="1" />
 								</Rectangle>
 								<Text Value="{name}" FontSize="22"/>
-								<Text Value="{owner}" FontSize="16" TextColor="#444"/>
+								<Text Value="{owner}" FontSize="16" Color="#444"/>
 								<Clicked>
 									<Callback Handler="{clicked_handler}" />
 									<NavigateTo Target="issuesPage" NavigationContext="nav" />
@@ -63,7 +63,7 @@
 								</Panel>
 								<Grid RowCount="2">
 									<Text Value="{title}" FontSize="22"/>
-									<Text Value="{author}" FontSize="16" TextColor="#444"/>
+									<Text Value="{author}" FontSize="16" Color="#444"/>
 								</Grid>
 								<Panel ux:Name="issueBody" Visibility="Collapsed" Dock="Bottom">
 									<Text Value="{body}" TextWrapping="Wrap"/>

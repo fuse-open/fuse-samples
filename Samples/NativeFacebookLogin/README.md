@@ -2,7 +2,7 @@
 
 This sample shows how we can get Facebook login working with Fuse using the
 Facebook Android and iOS SDKs.
-It is part of the tutorial over at [https://www.fusetools.com/docs/native-interop/facebook-login](Fuse's docs page),
+It is part of the tutorial over at [Fuse's docs page](https://www.fusetools.com/docs/native-interop/facebook-login),
 so head over there if that's not where you came from!
 
 The main login functionality is implemented in the `FacebookLogin` Uno project
@@ -20,5 +20,5 @@ dependency will then be handled automatically by Gradle.
 
 Use e.g. `uno build --target=Android -DGRADLE --run`.
 
-To build for iOS, you currently have to download the Facebook SDK for iOS
-manually. It needs to be extracted in `FacebookSDKs-iOS` in the `FacebookLogin` folder.
+To build for iOS, use .e.g `uno build --target=iOS --run`. The Facebook SDK for
+iOS will be downloaded automatically.

@@ -1,14 +1,9 @@
 var Observable = require("FuseJS/Observable");
 
-var currentPet = Observable("");
-
-this.onParameterChanged(function(param) {
-	currentPet.value = param.pet;
-});
-
 module.exports = {
-	currentPet: currentPet,
-
+	currentPet: this.Parameter.map(function(param) {
+		return param.pet;
+	}),
 	goBack: function() {
 		router.goBack();
 	}

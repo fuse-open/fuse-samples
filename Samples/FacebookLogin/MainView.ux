@@ -1,4 +1,4 @@
-<App >
+<App>
 	<DockPanel>
 
 		<JavaScript File="Auth.js" ux:Global="Auth" />
@@ -6,9 +6,7 @@
 
 		<StatusBarBackground Dock="Top"/>
 		<BottomBarBackground Dock="Bottom"/>
-
-
-
+		
 		<Panel>
 			<Panel>
 				<WhileTrue Value="{showWebView}">
@@ -60,7 +58,7 @@
 					   Alignment="Center">
 					<Rectangle Layer="Background" CornerRadius="4" Fill="#3B5998" />
 					<Image File="FB-f-Logo__white_512.png" Dock="Left" Margin="8,8,10,8"/>
-					<Text Value="Login with facebook" Alignment="Center" TextColor="#fff"
+					<Text Value="Login with facebook" Alignment="Center" Color="#fff"
 						  FontSize="20"/>
 				</DockPanel>
 			</WhileFalse>
