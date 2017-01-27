@@ -68,6 +68,7 @@ public class FacebookLoginModule : NativeModule
 		_instance = this;
 		Resource.SetGlobalKey(_instance, "FacebookLogin");
 		AddMember(new NativePromise<FacebookLogin.AccessToken, External>("login", Login, Converter));
+		AddMember(new NativeFunction("tokenAsString", (NativeCallback)GetAccessTokenAsString));
 	}
 
 	Future<FacebookLogin.AccessToken> Login(object[] args)
@@ -79,4 +80,10 @@ public class FacebookLoginModule : NativeModule
 	{
 		return new External(accessToken);
 	}
+
+	object GetAccessTokenAsString(Context c, object[] args) {
+		External obj = (External)args[0];
+		var token = (FacebookLogin.AccessToken)obj.Object;
+		return token.AsString();	
+	}	
 }

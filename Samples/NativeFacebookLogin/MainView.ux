@@ -1,23 +1,30 @@
 <App>
   <JavaScript>
     var FacebookLogin = require("FacebookLogin");
+    var Observable = require('FuseJS/Observable');
+
+    var accessToken = Observable('Not logged in');
 
     function login() {
       FacebookLogin.login().then(function(result) {
-        console.log("Login successful");
+        console.log("Login successful: " + FacebookLogin.tokenAsString(result));
+        accessToken.value = FacebookLogin.tokenAsString(result);
       }, function(err) {
         console.log("Login failed: " + err);
+        accessToken.value = 'Login failed miserably';
       });
     }
 
     module.exports = {
       login: login,
+      accessToken: accessToken
     };
   </JavaScript>
   <DockPanel>
     <StatusBarBackground Dock="Top" />
     <StackPanel>
       <Button Text="Login with Facebook" Clicked="{login}" />
+      <Text Value="{accessToken}" />
     </StackPanel>
   </DockPanel>
 </App>
