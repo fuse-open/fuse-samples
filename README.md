@@ -46,6 +46,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/UserEvents">UserEvents</a></td>
     <td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
   </tr>
+  <tr>
+	  <td><a href="Samples/UIStructure/PageTabs">Page tabs</a></td>
+  </tr>
 </table>
 
 ## Foreign code
