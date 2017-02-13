@@ -38,16 +38,14 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   </tr>
   <tr>
     <td><a href="Samples/Navigation">Navigator and router</a></td>
+    <td><a href="Samples/PageTabs">Page tabs</a></td>
     <td><a href="Samples/Swipe">Swipe gesture</a></td>
     <td><a href="Samples/OSUI">Top-/BottomFrameBackground</a></td>
-    <td><a href="Samples/Transition">Transition</a></td>
   </tr>
   <tr>
+    <td><a href="Samples/Transition">Transition</a></td>
     <td><a href="Samples/UserEvents">UserEvents</a></td>
     <td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
-  </tr>
-  <tr>
-	  <td><a href="Samples/UIStructure/PageTabs">Page tabs</a></td>
   </tr>
 </table>
 
