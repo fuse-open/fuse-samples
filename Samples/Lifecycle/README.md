@@ -8,41 +8,38 @@ To listen to life-cycle events, import `FuseJS/Lifecycle` using `require`, and s
 
 ## Losing and gaining control
 
-The events `onEnteringInteractive` and `onExitedInteractive` are used to handle loss and gain of control. These will fire when something else is overlaying the app on the screen (for example the notification bar on Android, or the overlaying chat window from Facebook Messenger. Note that the app is still running in the background in these two examples).
+`Lifecycle` module is an `EventEmitter`, so the methods from [EventEmitter](https://www.fusetools.com/docs/fusejs/eventemitter) can be used to listen to events.
+
+The events `enteringInteractive` and `exitedInteractive` are used to handle loss and gain of control. These will fire when something else is overlaying the app on the screen (for example the notification bar on Android, or the overlaying chat window from Facebook Messenger. Note that the app is still running in the background in these two examples).
 
 ```
-Lifecycle.onEnteringInteractive = function(){
+Lifecycle.on("enteringInteractive", function() {
     focused.value = true;
-};
+});
 
-Lifecycle.onExitedInteractive = function(){
+Lifecycle.on("exitedInteractive", function() {
     focused.value = false;
-};
+});
 ```
 
 ## App entrance and exit
 
-The events `onEnteringForeground` and `onEnteringBackground` are called when the app starts/resumes, or is suspended.
+The events `enteringForeground` and `enteringBackground` are called when the app starts/resumes, or is suspended.
 
 ```
-Lifecycle.onEnteringForeground = function() {
+Lifecycle.on("enteringForeground", function() {
     console.log("Hello!");
-}
+});
 
-Lifecycle.onEnteringBackground = function() {
+Lifecycle.on("enteringBackground", function() {
     console.log("See you later!");
-}
+});
 ```
 
 ## App termination
 
-The event `onTerminating` is called when the app is about to be terminated.
+There is no `terminating` event and the reason for that is explained in [Lifecycle docs](https://www.fusetools.com/docs/fusejs/lifecycle#no-code-terminating-code-event)
 
-```
-Lifecycle.onTerminating  = function() {
-    console.log("Goodbye!");
-}
-```
 
 Here is an illustration of how the different app-states relates to each other:
 
@@ -58,25 +55,21 @@ var Lifecycle = require('FuseJS/Lifecycle');
 
 var focused = Observable(true);
 
-Lifecycle.onEnteringInteractive = function(){
+Lifecycle.on("enteringInteractive", function() {
     focused.value = true;
-};
+});
 
-Lifecycle.onExitedInteractive = function(){
+Lifecycle.on("exitedInteractive", function() {
     focused.value = false;
-};
+});
 
-Lifecycle.onTerminating  = function() {
-    console.log("Goodbye!");
-}
-
-Lifecycle.onEnteringForeground = function() {
+Lifecycle.on("enteringForeground", function() {
     console.log("Hello!");
-}
+});
 
-Lifecycle.onEnteringBackground = function() {
+Lifecycle.on("enteringBackground", function() {
     console.log("See you later!");
-}
+});
 
 module.exports = {
     focused: focused
@@ -87,10 +80,10 @@ module.exports = {
 
 ```
 <App>
-	<JavaScript File="MainView.js" />
-	<Rectangle ux:Name="background" Color="#4CAF50" />
-	<WhileFalse Value="{focused}">
-		<Change background.Color="#FF9800" Duration=".5" />
-	</WhileFalse>
+    <JavaScript File="MainView.js" />
+    <Rectangle ux:Name="background" Color="#4CAF50" />
+    <WhileFalse Value="{focused}">
+        <Change background.Color="#FF9800" Duration=".5" />
+    </WhileFalse>
 </App>
 ```
