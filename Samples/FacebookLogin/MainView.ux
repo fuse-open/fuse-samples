@@ -1,7 +1,6 @@
 <App>
 	<DockPanel>
 
-		<JavaScript File="Auth.js" ux:Global="Auth" />
 		<JavaScript File="MainView.js" />
 
 		<StatusBarBackground Dock="Top"/>
