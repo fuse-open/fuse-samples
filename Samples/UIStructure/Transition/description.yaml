@@ -1,0 +1,13 @@
+name: Transition Example
+desc: This example shows a variety of page transitions during navigation.
+api:
+    -
+        class: Fuse.Triggers.Transition
+        desc: Performs a variety of page-to-page transitions, varying the animation based on page name, state and transition type.
+    -
+        class: Fuse.Elements.Viewport
+        desc: Uses a 3d rotation for a page transition effect.
+    -
+        class: Fuse.Controls.Navigator
+        desc: Has several pages with varying animations during transition.
+        

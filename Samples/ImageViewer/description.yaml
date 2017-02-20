@@ -1,0 +1,32 @@
+name: Pan, Zoom, and Rotate gestures
+desc: This demo creates a simple image viewer that uses `ZoomGesture`, `RotateGesture` and `PanGesture`.
+last-reviewed: 2017-02-20
+api:
+    -
+        class: Fuse.Elements.InteractiveTransform
+        desc: Coordinates the transform values for several gestures on an image viewer.
+    -
+        class: Fuse.Animations.Attractor
+        desc: Provides smooth animation as the user manipulates the image.
+    -
+        class: Fuse.Triggers.Actions.CanelInteractions
+        desc: Dismisses user gestures when the image view is closed.
+    -
+        class: Fuse.Triggers.Timeline
+        desc: Used to create a gallery to full-screen animation of an image.
+    -
+        class: Fuse.Triggers.Actions.PulseBackward
+        desc: Used to transition between a dynamic source and fixed target state.
+    -
+        class: Fuse.Triggers.WhileWindowPortrait
+        desc: Adjusts the gallery layout based on device orientation.
+    -
+        class: Fuse.Gestures.ZoomGesture
+        desc: Zooms an image in an image viewer. Provides a shrink to dismiss feature.
+    -
+        class: Fuse.Gestures.PanGesture
+        desc: Pans an image, constrained to it's visual extents, in an image viewer.
+    -
+        class: Fuse.Gestures.RotateGesture
+        desc: Rotates an image, in fixed increments, in an image viewer.
+        

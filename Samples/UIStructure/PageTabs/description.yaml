@@ -1,0 +1,9 @@
+name: Simple navigation tab bar
+desc: This example shows how to create a navigation tab bar.
+api:
+    -
+        class: Fuse.Controls.PageIndicator
+        desc: Creates a tab for each Page, with a page specific color, and allows navigation to it.
+    -
+        class: Fuse.Navigation.PageResourceBinding
+        desc: Binds to page specific resources in the tab bar.

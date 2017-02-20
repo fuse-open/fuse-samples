@@ -1,0 +1,10 @@
+name: Context sensitive status indicators
+desc: This examples shows how to add context-sensitive elements to a title bar and status bar.
+api:
+    -   
+        class: Fuse.AlternateRoot
+        desc: Used to place page indicators in a global status bar.
+    -
+        class: Fuse.Navigation.WhileActive
+        desc: Modifies the state of a status bar while a page is active.
+        
