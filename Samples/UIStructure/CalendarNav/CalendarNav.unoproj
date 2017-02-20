@@ -1,0 +1,12 @@
+{
+  "InternalsVisibleTo": [],
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+  ],
+  "Projects": [],
+  "Includes": [
+	"*",
+	"Lib/*.js:Bundle",
+  ]
+}

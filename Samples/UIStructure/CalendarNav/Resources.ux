@@ -1,0 +1,12 @@
+<NodeGroup ux:Class="Resources">
+	<float4 ux:Key="ColorTextPrime" ux:Value="#000000DD"/>
+	<float4 ux:Key="ColorTextSecond" ux:Value="#00000088"/>
+	
+	<float4 ux:Key="ColorDark" ux:Value="#3f51b5"/>
+	<float4 ux:Key="ColorMid" ux:Value="#7986cb"/>
+	<float4 ux:Key="ColorWhite" ux:Value="#e8eaf6"/>
+	<float4 ux:Key="ColorHigh" ux:Value="#c5cae9"/>
+	<float4 ux:Key="ColorAccent" ux:Value="#ffd180"/>
+	
+	<float4 ux:Key="ColorWhiteHalf" ux:Value="#7986cb88"/>
+</NodeGroup>

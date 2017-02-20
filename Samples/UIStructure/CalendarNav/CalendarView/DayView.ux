@@ -1,0 +1,17 @@
+<Page ux:Class="DayView" Padding="25,25,25,0">
+	<Router ux:Dependency="router"/>
+	<JavaScript File="DayView.js"/>
+	<Panel Color="{Resource ColorWhite}" Padding="10">
+		<Rectangle CornerRadius="5,5,0,0" Color="{Resource ColorWhite}" Layer="Background"/>
+		<Image Alignment="TopRight" File="../Assets/cross.png" Color="{Resource ColorTextPrime}">
+			<Clicked>
+				<RouterModify How="GoBack"/>
+			</Clicked>
+		</Image>
+		<Text Alignment="TopCenter" FontSize="25" Value="{label}" Color="{Resource ColorTextPrime}"/>
+	</Panel>
+	
+	<Transition>
+		<Move Y="1" RelativeTo="ParentSize" Duration="0.4" Easing="CubicIn"/>
+	</Transition>
+</Page>

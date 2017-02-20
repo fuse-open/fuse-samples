@@ -1,0 +1,10 @@
+<App>
+	<Resources/>
+	<Router ux:Name="router"/>
+	
+	<ClientPanel>
+		<Navigator DefaultPath="calendar">
+			<CalendarView router="router" ux:Template="calendar"/>
+		</Navigator>
+	</ClientPanel>
+</App>
