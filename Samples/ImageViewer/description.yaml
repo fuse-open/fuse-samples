@@ -9,7 +9,7 @@ api:
         class: Fuse.Animations.Attractor
         desc: Provides smooth animation as the user manipulates the image.
     -
-        class: Fuse.Triggers.Actions.CanelInteractions
+        class: Fuse.Triggers.Actions.CancelInteractions
         desc: Dismisses user gestures when the image view is closed.
     -
         class: Fuse.Triggers.Timeline

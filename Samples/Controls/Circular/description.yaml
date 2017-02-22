@@ -8,7 +8,7 @@ api:
         class: Fuse.Controls.RangeControl2d
         desc: Creates a two-ring selection for hour selection on a clock face.
     -
-        class: Fuse.Gesture.CircularRangeBehavior
+        class: Fuse.Gestures.CircularRangeBehavior
         desc: Creates a selection for hours and minutes on a clock face.
     -
         class: Fuse.Triggers.InteractionCompleted
