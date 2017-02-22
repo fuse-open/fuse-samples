@@ -3,10 +3,10 @@ desc: This example shows two different ways to create a custom button that has a
 api:
     -
         class: Fuse.Resources.FileImageSource
-        desc: Used to supply an Image as a resource to a custom button class.
+        desc: Supplies an Image as a resource to a custom button class.
     -
         class: Fuse.Resources.ImageSource
-        desc: Used to declare a ux:Property for a custom button that accepts an image source.
+        desc: Declares a ux:Property for a custom button that accepts an image source.
     -
-        class: Fuse.UX.FileSource
-        desc: Used to declare a ux:property for a custom buttan that accepts an image file path.
+        class: Uno.UX.FileSource
+        desc: Declares a ux:property for a custom button that accepts an image file path.
