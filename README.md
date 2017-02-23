@@ -43,6 +43,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   </tr>
   <tr>
 	  <td><a href="Samples/UIStructure/PageTabs">Page tabs</a></td>
+    <td><a href="Samples/PlaySound">PlaySound</a></td>
   </tr>
 </table>
 

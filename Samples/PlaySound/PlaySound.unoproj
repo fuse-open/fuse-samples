@@ -1,0 +1,12 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Audio"
+  ],
+  "Includes": [
+    "*",
+    "Sounds/*.wav:Bundle"
+  ]
+}
