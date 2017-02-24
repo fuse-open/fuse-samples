@@ -37,14 +37,14 @@
 		</Panel>
 
 		<Grid ux:Name="thePad" RowCount="4" ColumnCount="2" CellSpacing="8" Margin="8">
-			<SoundPad Label="Kick" Sample="Sounds/Kick.wav" />
-			<SoundPad Label="Ride Cymbal" Sample="Sounds/RideCymbal.wav" />
-			<SoundPad Label="Floor Tom" Sample="Sounds/FloorTom.wav" />
-			<SoundPad Label="Mid Hat" Sample="Sounds/MidHat.wav" />
-			<SoundPad Label="Mid Tom" Sample="Sounds/MidTom.wav" />
-			<SoundPad Label="Open Hat" Sample="Sounds/OpenHat1.wav" />
-			<SoundPad Label="High Tom" Sample="Sounds/HighTom.wav" />
-			<SoundPad Label="Crash Cymbal" Sample="Sounds/CrashCymbal.wav" />
+			<SoundPad Label="Kick 1" Sample="Sounds/Kick1.wav" />
+			<SoundPad Label="Kick 2" Sample="Sounds/Kick2.wav" />
+			<SoundPad Label="Snare 1" Sample="Sounds/Snare1.wav" />
+			<SoundPad Label="Snare 2" Sample="Sounds/Snare2.wav" />
+			<SoundPad Label="Snare 3" Sample="Sounds/Snare3.wav" />
+			<SoundPad Label="Perc 1" Sample="Sounds/Perc1.wav" />
+			<SoundPad Label="Perc 2" Sample="Sounds/Perc2.wav" />
+			<SoundPad Label="Perc 3" Sample="Sounds/Perc3.wav" />
 		</Grid>
 
 	</DockPanel>
