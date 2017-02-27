@@ -1,0 +1,26 @@
+<App>
+	<Container ux:Class="Item" Subtree="innerPanel" Margin="10">
+		<StackLayout/>
+		<string ux:Property="Title"/>
+		<Rectangle ux:Binding="Children" Layer="Background" 
+			StrokeColor="#646" StrokeWidth="1" CornerRadius="5" Color="#FFF"/>
+		<Rectangle ux:Binding="Children" CornerRadius="5,5,0,0" Color="#646" Padding="2">
+			<Text Alignment="Center" Value="{Property this.Title}" Color="#FFF" FontSize="18"/>
+		</Rectangle>
+		
+		<Panel ux:Name="innerPanel" Margin="10" ux:Binding="Children"/>
+	</Container>
+	
+	<ClientPanel Color="#AAA">
+		<ScrollView>
+			<StackPanel>
+				<ItemJaggedLine/>
+				<ItemDecoratedCurve/>
+				<ItemTangentLine/>
+				<ItemEllipticalProgress/>
+				<ItemPathLogo/>
+				<ItemPathJS/>
+			</StackPanel>
+		</ScrollView>
+	</ClientPanel>
+</App>

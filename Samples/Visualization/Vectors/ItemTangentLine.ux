@@ -1,0 +1,31 @@
+<Item ux:Class="ItemTangentLine" Title="Tangent Line">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		exports.degrees = Observable(90)
+		exports.strength = Observable(1.0)
+		
+		exports.tangent = Observable( function() {
+			var angle = exports.degrees.value / 360 * Math.PI * 2
+			var str = exports.strength.value
+			return [ str * Math.cos(angle), str * Math.sin(angle) ]
+		})
+	</JavaScript>
+	<StackPanel>
+		<Grid Columns="auto,1*,auto">
+			<Text Value="Angle"/>
+			<Slider Minimum="-180" Maximum="180" Value="{degrees}"/>
+			<Text Value="{degrees}°"/>
+			
+			<Text Value="Strength"/>
+			<Slider Minimum="0.1" Maximum="3.0" Value="{strength}"/>
+			<Text Value="{strength}"/>
+		</Grid>
+		
+		<Curve StrokeWidth="5" StrokeColor="#000" Height="200">
+			<CurvePoint At="0,0.5"/>
+			<CurvePoint At="0.5,0.5" Tangent="{tangent}"/>
+			<CurvePoint At="1,0.5"/>
+		</Curve>
+	</StackPanel>
+</Item>

@@ -1,0 +1,20 @@
+<Item ux:Class="ItemJaggedLine" Title="Jagged Line">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		// use x,y arrays to bind directly to the `CurvePoint.At` `float2` property
+		exports.locs = Observable(
+			[0,1],
+			[0.2,0],
+			[0.4,1],
+			[0.6,0],
+			[0.8,1],
+			[1,0]
+		)
+	</JavaScript>
+	<Curve StrokeWidth="10" StrokeColor="#000" Height="200" Style="Straight">
+		<Each Items="{locs}">
+			<CurvePoint At="{}"/>
+		</Each>
+	</Curve>
+</Item>

@@ -1,0 +1,19 @@
+<Item ux:Class="ItemEllipticalProgress" Title="Elliptical Progress">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		exports.progress = Observable(0.5)
+	</JavaScript>
+	<StackPanel>
+		<Slider Minimum="0" Maximum="1" Value="{progress}"/>
+
+		<Panel Height="200">
+			<Arc StartAngleDegrees="130" LengthAngleDegrees="{progress} * 280" 
+				StrokeWidth="6" StrokeColor="#262"/>
+			<Arc StartAngleDegrees="130" LengthAngleDegrees="280" StrokeWidth="10" StrokeColor="#AAA"/>
+			<Ellipse Color="#AFA">
+				<Scaling Factor="{progress}"/>
+			</Ellipse>
+		</Panel>
+	</StackPanel>
+</Item>
