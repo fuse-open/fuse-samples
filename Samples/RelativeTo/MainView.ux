@@ -1,8 +1,8 @@
-<App >
+<App>
 	<DockPanel>
-		<TopFrameBackground Dock="Top" />
+		<StatusBarBackground Dock="Top" />
 		<Panel>
-			<Rectangle ux:Name="newLayoutMaster" Width="50" Height="50" Color="#8889" Alignment="TopLeft" Margin="20,50"/>
+			<Rectangle ux:Name="newLayoutMaster" Width="50" Height="50" Color="#8889" Alignment="TopLeft" Margin="20,50" />
 			<StackPanel Alignment="Top">
 				<TextInput PlaceholderText="Click me to show the keyboard" Alignment="Center">
 					<WhileKeyboardVisible>
@@ -39,18 +39,18 @@
 
 
 
-				<Rectangle ux:Name="rect1" Width="50" Height="50" Color="#f00" Alignment="Bottom"/>
-				<Rectangle ux:Name="rect2" Width="50" Height="50" Color="#0f0" Alignment="Bottom"/>
-				<Rectangle ux:Name="rect3" Width="50" Height="50" Color="#00f" Alignment="Bottom"/>
+				<Rectangle ux:Name="rect1" Width="50" Height="50" Color="#f00" Alignment="Bottom" />
+				<Rectangle ux:Name="rect2" Width="50" Height="50" Color="#0f0" Alignment="Bottom" />
+				<Rectangle ux:Name="rect3" Width="50" Height="50" Color="#00f" Alignment="Bottom" />
 				<Panel Alignment="Bottom" Width="50" Height="50">
 					<Rectangle ux:Name="rect4" Width="50" Height="50" Color="#0ff" LayoutMaster="layoutMaster">
 						<LayoutAnimation>
 							<Move RelativeTo="PositionChange" X="1" Y="1" Duration="0.5" />
 						</LayoutAnimation>
 					</Rectangle>
-					<Rectangle ux:Name="layoutMaster" Width="50" Height="50"/>
+					<Rectangle ux:Name="layoutMaster" Width="50" Height="50" />
 				</Panel>
-				<Rectangle ux:Name="rect5" Width="50" Height="50" Color="#f0f" Alignment="Bottom"/>
+				<Rectangle ux:Name="rect5" Width="50" Height="50" Color="#f0f" Alignment="Bottom" />
 			</Grid>
 		</Panel>
 	</DockPanel>
