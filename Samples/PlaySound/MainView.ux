@@ -1,0 +1,51 @@
+<App Background="#000">
+	<iOS.StatusBarConfig Style="Light" />
+
+	<WhileWindowLandscape>
+		<Change thePad.RowCount="2" />
+		<Change thePad.ColumnCount="4" />
+	</WhileWindowLandscape>
+
+	<Panel ux:Class="SoundPad">
+		<string ux:Property="Label" />
+		<FileSource ux:Property="Sample" />
+		<Text Value="{ReadProperty Label}" Alignment="Center" FontSize="16" Color="#111" />
+		<Circle ux:Name="ledIndicator" Alignment="TopLeft" Width="10" Height="10" Color="#555" Margin="10">
+			<Stroke Width="1" Color="#111" />
+			<Circle ux:Name="glow" Width="120%" Height="120" Color="#0099FF" Visibility="Collapsed">
+				<Blur />
+			</Circle>
+		</Circle>
+		<Rectangle Color="#333" CornerRadius="10">
+			<Stroke Width="1" Color="#111" />
+			<Shadow Color="#555" Angle="115" />
+		</Rectangle>
+		<Pressed>
+			<PlaySound File="{ReadProperty Sample}" />
+			<Scale Factor="0.98" Duration="0.04" DurationBack="0.08" />
+			<Change ledIndicator.Color="#0099FF" Delay="0" DelayBack="0.12" />
+			<Change glow.Visibility="Visible" Delay="0" DelayBack="0.12" />
+		</Pressed>
+	</Panel>
+
+	<DockPanel>
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground IncludesKeyboard="false" Dock="Bottom" />
+		<Panel Dock="Top" Height="56">
+			<Text Alignment="Center" Value="FuseDrums" Color="#0099FF" FontSize="24" />
+			<Rectangle Alignment="Bottom" Height="1" Color="#555" />
+		</Panel>
+
+		<Grid ux:Name="thePad" RowCount="4" ColumnCount="2" CellSpacing="8" Margin="8">
+			<SoundPad Label="Kick 1" Sample="Sounds/Kick1.wav" />
+			<SoundPad Label="Kick 2" Sample="Sounds/Kick2.wav" />
+			<SoundPad Label="Snare 1" Sample="Sounds/Snare1.wav" />
+			<SoundPad Label="Snare 2" Sample="Sounds/Snare2.wav" />
+			<SoundPad Label="Snare 3" Sample="Sounds/Snare3.wav" />
+			<SoundPad Label="Perc 1" Sample="Sounds/Perc1.wav" />
+			<SoundPad Label="Perc 2" Sample="Sounds/Perc2.wav" />
+			<SoundPad Label="Perc 3" Sample="Sounds/Perc3.wav" />
+		</Grid>
+
+	</DockPanel>
+</App>
