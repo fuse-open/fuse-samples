@@ -6,35 +6,40 @@ This example shows two different ways to create a custom button that has an imag
 
 `MyButtonFile` shows how to expose a `FileImage` property. This works just like the `Image.File` property and a filename is provided directly.
 
-	<MyButtonFile FileImage="cancel.png" Text="Cancel"/>
+	<MyButtonFile FileImage="cancel.png" Text="Cancel" />
 	
 This approach is perhaps the easier to understand, but is less versatile.
 	
 ## Using a ImageSource property
 
-The `MyButtonSource` shows how to expose a `Image` property. This works just like the `Image.Source` property, thus supporting a variety use-cases.
+The `MyButtonSource` shows how to expose a `Image` property. This works just like the `Image.Source` property, thus supporting a variety of use-cases.
 
 You can create free `ImageSource` objects and use them:
 
-	<FileImageSource File="cancel.png" ux:Name="iconCancel" ux:AutoBind="false"/>
-	<MyButtonSource Image="iconCancel" Text="Cancel"/>
+	<FileImageSource ux:Name="iconCancel" File="cancel.png" ux:AutoBind="false" />
+	<MyButtonSource Image="iconCancel" Text="Cancel" />
 	
 You can use the resource system:
 
-	<FileImageSource File="cancel.png" ux:Key="IconCancel"/>
-	<MyButtonSource Image="{Resource IconCancel}" Text="Cancel"/>
+	<FileImageSource ux:Key="IconCancel" File="cancel.png" />
+	<MyButtonSource Image="{Resource IconCancel}" Text="Cancel" />
 	
 The resource system is also useful if you want to specify the button in JavaScript:
 
-	<FileImageSource File="cancel.png" ux:Key="IconCancel"/>
+	<FileImageSource ux:Key="IconCancel" File="cancel.png" />
 	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		exports.useIcon = Observable("IconCancel")
-		exports.useText = "Cancel"
+		var Observable = require("FuseJS/Observable");
+		var useIcon = Observable("IconCancel");
+		var useText = "Cancel";
+
+		module.exports = {
+			useIcon: useIcon,
+			useText: useText
+		};
 	</JavaScript>
-	<MyButtonSource Image="{DataToResource useIcon}" Text="{useText}"/>
+	<MyButtonSource Image="{DataToResource useIcon}" Text="{useText}" />
 	
 You can also use global's if you want:
 
-	<FileImageSource File="cancel.png" ux:Global="GlobalCancel"/>
-	<MyButtonSource Image="GlobalCancel" Text="Cancel"/>
+	<FileImageSource ux:Global="GlobalCancel" File="cancel.png" />
+	<MyButtonSource Image="GlobalCancel" Text="Cancel" />
