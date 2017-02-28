@@ -7,13 +7,13 @@
 	<Panel ux:Class="ClockHand" Anchor="0%,50%" X="50%" Y="50%" Width="29.5%" Height="10%"
 		TransformOrigin="Anchor" SnapToPixels="false">
 		<Circle Alignment="CenterLeft" Height="20%" Aspect="1" BoxSizing="FillAspect"
-			Fill="#3df6" Anchor="50%,50%" SnapToPixels="false" />
+			Color="#3df6" Anchor="50%,50%" SnapToPixels="false" />
 		<Circle Alignment="CenterRight" Height="100%" Aspect="1" BoxSizing="FillAspect"
-			Fill="#3df3" Anchor="50%,50%" SnapToPixels="false" />
+			Color="#3df3" Anchor="50%,50%" SnapToPixels="false" />
 		<Circle Alignment="CenterRight" Height="20%" Aspect="1" BoxSizing="FillAspect"
-			Fill="#3df6" Anchor="50%,50%" SnapToPixels="false" />
+			Color="#3df6" Anchor="50%,50%" SnapToPixels="false" />
 		<Rectangle Alignment="VerticalCenter" Height="3%" MinHeight="1"
-			Fill="#3df3" SnapToPixels="false" />
+			Color="#3df3" SnapToPixels="false" />
 	</Panel>
 
 	<ClientPanel Background="#ccc">
@@ -36,7 +36,7 @@
 			var displayHours = hours.map(function(x) {
 				return formatTime(x);
 			});
-			
+
 			var minutes = Observable(0);
 			var displayMinutes = minutes.map(function(x) {
 				return formatTime(x);
@@ -101,7 +101,7 @@
 					<Set ShowMinutes.Value="true" />
 				</InteractionCompleted>
 
-				<Circle Layer="Background" Fill="#fff" />
+				<Circle Layer="Background" Color="#fff" />
 				<Panel>
 					<CircleLayout Radius="0.75" StartAngleDegrees="-90" EndAngleDegrees="270" />
 					<ClockTick Text="00" />
@@ -146,7 +146,7 @@
 						Type="SmoothSnap" Unit="Degrees" />
 				</ClockHand>
 
-				<Circle Layer="Background" Fill="#fff" />
+				<Circle Layer="Background" Color="#fff" />
 				<Panel>
 					<CircleLayout ItemSpacingDegrees="5" StartAngleDegrees="-90" EndAngleDegrees="270" />
 					<ClockTick Text="00" />
