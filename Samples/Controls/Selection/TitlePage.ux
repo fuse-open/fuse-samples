@@ -1,13 +1,13 @@
 <Page ux:Class="TitlePage" HitTestMode="LocalBounds">
 	<StackPanel Alignment="Center">
-		<Text TextAlignment="Center" Value="Tasty's" Color="#510" FontSize="50"/>
-		<Image File="Assets/pizza.png" Margin="-25" ZOffset="-1" Width="150"/>
-		<Text TextAlignment="Center" Value="Pizza" Color="#510" FontSize="50"/>
+		<Text TextAlignment="Center" Value="Tasty's" Color="#510" FontSize="50" />
+		<Image File="Assets/pizza.png" Margin="-25" ZOffset="-1" Width="150" />
+		<Text TextAlignment="Center" Value="Pizza" Color="#510" FontSize="50" />
 	</StackPanel>
 	
-	<Text Alignment="BottomCenter" Margin="5" Value="Tap to continue"/>
+	<Text Alignment="BottomCenter" Margin="5" Value="Tap to continue" />
 	
 	<Tapped>
-		<GoBack/>
+		<GoBack />
 	</Tapped>
 </Page>
