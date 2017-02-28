@@ -1,0 +1,24 @@
+{
+  "iOS": {
+    "BundleIdentifier": "com.uno.test",
+  },
+  "Android": {
+    "Package": "com.uno.test",
+    "Activity": "MainActivity",
+    "SDK": {
+      "MinVersion": "15",
+      "CompileVersion": "23",
+    }
+  },
+  "Packages": [
+    "Fuse",
+    "Uno.Permissions",
+  ],
+  "Projects": [
+    "FacebookLogin/FacebookLogin.unoproj",
+  ],
+  "Includes": [
+    "FacebookAppId.uxl",
+    "MainView.ux",
+  ],
+}

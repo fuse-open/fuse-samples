@@ -2,3 +2,6 @@
 .cache/
 build/
 .uno/
+.DS_Store
+Samples/NativeFacebookLogin/FacebookLogin/FacebookSDKs-iOS/
+Samples/NativeFacebookLogin/FacebookLogin/.stuff/

@@ -1,0 +1,17 @@
+{
+  "IsTransitive": true,
+  "Packages": [
+    "Fuse",
+    "Fuse.Platform",
+    "Fuse.Scripting",
+    "FuseJS",
+    "Uno.Permissions",
+    "Uno.Threading",
+  ],
+  "Includes": [
+    "FacebookLogin.uno",
+    "FacebookLogin.uxl",
+    "FacebookLoginModule.uno",
+    "FacebookSDKs-iOS.stuff"
+  ],
+}
