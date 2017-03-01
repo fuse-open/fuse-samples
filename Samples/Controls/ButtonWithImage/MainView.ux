@@ -3,51 +3,56 @@
 
 		<!-- Provides a `FileImage` property that takes the name of a file -->
 		<DockPanel ux:Class="MyButtonFile" Padding="10">
-			<Uno.UX.FileSource ux:Property="FileImage"/>
-			<string ux:Property="Text"/>
-			<Image File="{ReadProperty this.FileImage}" Dock="Left" Color="0,0.2,0.2,1"/>
-			<Text Alignment="Center" Value="{ReadProperty this.Text}"/>
-			<Rectangle Layer="Background" Color="0.9,1,1,1"/>
+			<FileSource ux:Property="FileImage" />
+			<string ux:Property="Text" />
+			<Image File="{ReadProperty FileImage}" Dock="Left" Color="#033" />
+			<Text Alignment="Center" Value="{ReadProperty Text}" />
+			<Rectangle Layer="Background" Color="#dff" />
 		</DockPanel>
 
 		<!-- Provides an `Image` property that is bound to an ImageSource -->
 		<DockPanel ux:Class="MyButtonSource" Padding="10">
-			<ImageSource ux:Property="Image"/>
-			<string ux:Property="Text"/>
-			<Image Source="{ReadProperty this.Image}" Dock="Left" Color="0,0.2,0.2,1"/>
-			<Text Alignment="Center" Value="{ReadProperty this.Text}"/>
-			<Rectangle Layer="Background" Color="0.9,1,1,1"/>
+			<ImageSource ux:Property="Image" />
+			<string ux:Property="Text" />
+			<Image Source="{ReadProperty Image}" Dock="Left" Color="#033" />
+			<Text Alignment="Center" Value="{ReadProperty Text}" />
+			<Rectangle Layer="Background" Color="#dff" />
 		</DockPanel>
 
 		<!-- The extra wrapping panels are just to add clarity in the example -->
 		<StackPanel Alignment="Center" ItemSpacing="10">
 			<Panel>
-				<MyButtonFile FileImage="cancel.png" Text="Cancel"/>
+				<MyButtonFile FileImage="cancel.png" Text="Cancel" />
 			</Panel>
 
 			<Panel>
-				<FileImageSource File="cancel.png" ux:Name="iconCancel" ux:AutoBind="false"/>
-				<MyButtonSource Image="iconCancel" Text="Cancel"/>
+				<FileImageSource ux:Name="iconCancel" File="cancel.png" ux:AutoBind="false" />
+				<MyButtonSource Image="iconCancel" Text="Cancel" />
 			</Panel>
 
 			<Panel>
-				<FileImageSource File="cancel.png" ux:Key="IconCancel"/>
-				<MyButtonSource Image="{Resource IconCancel}" Text="Cancel"/>
+				<FileImageSource ux:Key="IconCancel" File="cancel.png" />
+				<MyButtonSource Image="{Resource IconCancel}" Text="Cancel" />
 			</Panel>
 
 			<Panel>
-				<FileImageSource File="cancel.png" ux:Key="IconCancel"/>
+				<FileImageSource ux:Key="IconCancel" File="cancel.png" />
 				<JavaScript>
-					var Observable = require("FuseJS/Observable")
-					exports.useIcon = Observable("IconCancel")
-					exports.useText = "Cancel"
+					var Observable = require("FuseJS/Observable");
+					var useIcon = Observable("IconCancel");
+					var useText = "Cancel";
+
+					module.exports = {
+						useIcon: useIcon,
+						useText: useText
+					};
 				</JavaScript>
-				<MyButtonSource Image="{DataToResource useIcon}" Text="{useText}"/>
+				<MyButtonSource Image="{DataToResource useIcon}" Text="{useText}" />
 			</Panel>
 
 			<Panel>
-				<FileImageSource File="cancel.png" ux:Global="GlobalCancel"/>
-				<MyButtonSource Image="GlobalCancel" Text="Cancel"/>
+				<FileImageSource ux:Global="GlobalCancel" File="cancel.png" />
+				<MyButtonSource Image="GlobalCancel" Text="Cancel" />
 			</Panel>
 		</StackPanel>
 

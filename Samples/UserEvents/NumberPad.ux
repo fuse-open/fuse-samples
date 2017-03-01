@@ -1,33 +1,33 @@
 <Panel ux:Class="NumberPad">
 	<!-- declare convenience triggers -->
-	<OnUserEvent ux:Class="NumberSelected" Name="NumberSelected"/>
-	<OnUserEvent ux:Class="NumberCleared" Name="NumberCleared"/>
-	<OnUserEvent ux:Class="NumberBack" Name="NumberBack"/>
+	<OnUserEvent ux:Class="NumberSelected" EventName="numberSelected" />
+	<OnUserEvent ux:Class="NumberCleared" EventName="numberCleared" />
+	<OnUserEvent ux:Class="NumberBack" EventName="numberBack" />
 	
 	<!-- these events are raised by this component -->
-	<UserEvent ux:Name="NumberSelected"/>
-	<UserEvent ux:Name="NumberCleared"/>
-	<UserEvent ux:Name="NumberBack"/>
+	<UserEvent ux:Name="numberSelected" />
+	<UserEvent ux:Name="numberCleared" />
+	<UserEvent ux:Name="numberBack" />
 
-	<JavaScript File="NumberPad.js"/>
+	<JavaScript File="NumberPad.js" />
+
 	<Grid ColumnCount="3" CellSpacing="5">
 		<Each Items="{numbers}">
-			<Panel Color="1,1,1,1" Width="50" Height="50" Clicked="{select}" HitTestMode="LocalBounds"
-				ux:Name="self">
+			<Panel ux:Name="self" Color="#FFF" Width="50" Height="50" Clicked="{select}" HitTestMode="LocalBounds">
 				<Match Value="{}">
 					<Case String="*">
-						<Image File="arrowleft.png" Color="0,0,0,1" Alignment="Center"/>
+						<Image File="arrowleft.png" Color="#000" Alignment="Center" />
 					</Case>
 					<Case String="c">
-						<Image File="cancel.png" Color="0,0,0,1" Alignment="Center"/>
+						<Image File="cancel.png" Color="#000" Alignment="Center" />
 					</Case>
 					<Case IsDefault="true">
-						<Text Value="{}" FontSize="40" Alignment="Center" Color="0,0,0,1"/>
+						<Text Value="{}" FontSize="40" Alignment="Center" Color="#000" />
 					</Case>
 				</Match>
 				
 				<Clicked>
-					<Change self.Color="0.8,1,1,1" Duration="0.3"/>
+					<Change self.Color="#cff" Duration="0.3" />
 				</Clicked>
 			</Panel>
 		</Each>

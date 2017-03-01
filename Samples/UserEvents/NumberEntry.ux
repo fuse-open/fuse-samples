@@ -1,13 +1,18 @@
-<Panel ux:Class="NumberEntry">
-	<!-- This example is a bit contrived, here you're better off just linking the Output.Value directly
-		to a `string` property on this control -->
-	<Text ux:Dependency="Output"/>
-	<DataBinding Target="Output.Value" Key="pin"/>
-	<JavaScript File="NumberEntry.js"/>
+<StackPanel ux:Class="NumberEntry" Padding="5" ItemSpacing="5" Color="#AAA">
+
+	<JavaScript File="NumberEntry.js" />
 	
-	<NumberPad>
-		<NumberSelected Handler="{selected}"/>
-		<NumberCleared Handler="{cleared}"/>
-		<NumberBack Handler="{back}"/>
-	</NumberPad>
-</Panel>
+	<Panel Padding="5">
+		<Rectangle Layer="Background" Color="#FFF" CornerRadius="10" />
+		<Text Value="{pin}" TextAlignment="Center" FontSize="40" />
+	</Panel>
+
+	<Panel>
+		<NumberPad>
+			<NumberSelected Handler="{selected}" />
+			<NumberCleared Handler="{cleared}" />
+			<NumberBack Handler="{back}" />
+		</NumberPad>
+	</Panel>
+
+</StackPanel>

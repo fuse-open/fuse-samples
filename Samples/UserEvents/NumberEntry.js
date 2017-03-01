@@ -1,32 +1,36 @@
-var Observable = require( "FuseJS/Observable" )
-exports.pin = Observable("####")
-var init = false
+var Observable = require( "FuseJS/Observable");
+var pin = Observable("####");
+var init = false;
 
-exports.selected = function(args) {	
+function selected(args) {	
 	if (!init) {
-		exports.pin.value = "" + args.number
-		init = true
-		return
+		pin.value = "" + args.number;
+		init = true;
+		return;
 	}
-	
-	if (exports.pin.value.length >= 4) {
-		return
+	if (pin.value.length >= 4) {
+		return;
 	}
-	
-	exports.pin.value += "" + args.number
-}
+	pin.value += "" + args.number;
+};
 
-exports.cleared = function(args) {
-	init = false
-	exports.pin.value = "####"
-}
+function cleared(args) {
+	init = false;
+	pin.value = "####";
+};
 
-exports.back = function(args) {
-	var len = exports.pin.value.length
+function back(args) {
+	var len = pin.value.length;
 	if (len < 2) {
-		exports.cleared()
-		return
+		cleared();
+		return;
 	}
-	
-	exports.pin.value = exports.pin.value.substring(0,len-1)
-}
+	pin.value = pin.value.substring(0,len-1);
+};
+
+module.exports = {
+	pin: pin,
+	selected: selected,
+	cleared: cleared,
+	back: back
+};
