@@ -7,6 +7,7 @@ This app do not work in preview on desktop since it require FuseJS/InterApp to l
 This sample show how you can use the FuseJS/InterApp package to log in with Azure AD B2C Account.
 
 For more information about Azure AD B2C check out this link:
+
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/
 
 ## Setup
@@ -18,11 +19,13 @@ The redirect_url used in this sample is the default OAuth 2.0 uri: 'urn:ietf:wg:
 ## Azure Active Directory B2C: Extensible policy framework
 
 Azure extend the OAuth flow with Extensible policies. For more information check out this link:
+
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-policies
 
 ## Azure Active Directory B2C: Customize the Azure AD B2C user interface (UI)
 
 If you want to customize the login experience check out this link:
+
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-ui-customization
 
 ## Running the app
