@@ -1,0 +1,16 @@
+{
+  "Mobile": {
+    "UriScheme": "urn"
+  },
+  "RootNamespace": "",
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Launcher"
+  ],
+  "Includes": [
+    "*",
+    "Auth.js:Bundle",
+    "Azure-AD-B2C-OAuth.js:Bundle"
+  ]
+}
