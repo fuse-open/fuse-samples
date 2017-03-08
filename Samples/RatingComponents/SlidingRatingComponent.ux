@@ -9,7 +9,7 @@
 
         var total = this.Stars;
         var rating = this.Rating.mapTwoWay(function(v) {
-            progress.value = v * 20;
+            progress.value = v * (100 / total.value);
             return v;
         }, function(v, sv) {
             return v;
@@ -27,7 +27,7 @@
         }
 
         progress.onValueChanged(module, function(x) {
-            var newVal = Math.round((x * 5) / 50) / 2;
+            var newVal = Math.round((x * total.value) / 50) / 2;
             if (currentRating.value != newVal) currentRating.value = newVal;
         });
 
@@ -66,17 +66,16 @@
     </RangeControl>
 
     <Panel ux:Class="TheStar">
-        <FileSource ux:Property="Image" />
         <Scaling ux:Name="starScaling" Factor="1" />
         <WhileFalse Value="{isActive}">
             <Change starScaling.Factor="0.86" Duration="0.16" />
         </WhileFalse>
-        <Image File="{ReadProperty Image}" Color="#FFC107" />
+        <Image File="{image}" Color="#FFC107" />
     </Panel>
     
     <StackPanel Orientation="Horizontal">
         <Each Items="{stars}">
-            <TheStar Image="{image}" />
+            <TheStar />
         </Each>
     </StackPanel>
 </Panel>

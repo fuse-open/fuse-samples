@@ -20,8 +20,8 @@
 
     <ClientPanel>
         <StackPanel Alignment="Center" ItemSpacing="24">
-            <StaticRatingComponent Stars="5" Rating="{staticRating}" />
-            <SlidingRatingComponent Stars="5" Rating="{slidingRating}" />
+            <StaticRatingComponent Stars="5" Rating="{staticRating}" Alignment="Center" />
+            <SlidingRatingComponent Stars="5" Rating="{slidingRating}" Alignment="Center" />
         </StackPanel>
     </ClientPanel>
 </App>
