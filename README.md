@@ -81,6 +81,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/Controls/Circular">Circular control</a></td>
 	<td><a href="Samples/Controls/ButtonWithImage">Button with image</a></td>
   </tr>
+  <tr>
+    <td><a href="Samples/RatingComponents">Rating controls</a></td>
+  </tr>
 </table>
 
 ## Misc

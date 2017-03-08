@@ -1,0 +1,82 @@
+<Panel ux:Class="SlidingRatingComponent" Height="40">
+    <float ux:Property="Rating" />
+    <int ux:Property="Stars" />
+    
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+        var progress = Observable(0);
+        var currentRating = Observable(0);
+
+        var total = this.Stars;
+        var rating = this.Rating.mapTwoWay(function(v) {
+            progress.value = v * 20;
+            return v;
+        }, function(v, sv) {
+            return v;
+        });
+
+        var stars = [];
+        for (var i = 0; i < total.value; i++) {
+            stars.push(new Star(i));
+        }
+
+        function Star(id) {
+            this.id = id;
+            this.isActive = Observable(false);
+            this.image = Observable("Assets/star-empty.png");
+        }
+
+        progress.onValueChanged(module, function(x) {
+            var newVal = Math.round((x * 5) / 50) / 2;
+            if (currentRating.value != newVal) currentRating.value = newVal;
+        });
+
+        currentRating.onValueChanged(module, function(x) {
+            rating.value = x;
+        });
+
+        rating.onValueChanged(module, function(x) {
+            var floored = Math.floor(x);
+            var paintHalf = (x - floored) > 0;
+            stars.forEach(function(s) {
+                if (s.id == (floored - 1) && !paintHalf) {
+                    s.image.value = "Assets/star-full.png";
+                    s.isActive.value = true;
+                } else if (s.id == floored && paintHalf) {
+                    s.image.value = "Assets/star-half.png";
+                    s.isActive.value = true;
+                } else if (s.id < floored) {
+                    s.image.value = "Assets/star-full.png";
+                    s.isActive.value = false;
+                } else {
+                    s.image.value = "Assets/star-empty.png";
+                    s.isActive.value = false;
+                }
+            });
+        });
+
+        module.exports = {
+            progress: progress,
+            stars: stars
+        };
+    </JavaScript>
+
+    <RangeControl Value="{progress}" UserStep="10" HitTestMode="LocalBounds">
+        <LinearRangeBehavior />
+    </RangeControl>
+
+    <Panel ux:Class="TheStar">
+        <FileSource ux:Property="Image" />
+        <Scaling ux:Name="starScaling" Factor="1" />
+        <WhileFalse Value="{isActive}">
+            <Change starScaling.Factor="0.86" Duration="0.16" />
+        </WhileFalse>
+        <Image File="{ReadProperty Image}" Color="#FFC107" />
+    </Panel>
+    
+    <StackPanel Orientation="Horizontal">
+        <Each Items="{stars}">
+            <TheStar Image="{image}" />
+        </Each>
+    </StackPanel>
+</Panel>

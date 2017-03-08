@@ -1,0 +1,56 @@
+<StackPanel ux:Class="StaticRatingComponent" Height="40" Orientation="Horizontal">
+    <int ux:Property="Rating" />
+    <int ux:Property="Stars" />
+    
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+
+        var total = this.Stars;
+        var rating = this.Rating.mapTwoWay(function(v) {
+            return v;
+        }, function(v, sv) {
+            return v;
+        });
+
+        var stars = [];
+        for (var i = 0; i < total.value; i++) {
+            stars.push(new Star(i));
+        }
+
+        function Star(id) {
+            this.id = id;
+            this.isActive = Observable(false);
+        }
+
+        function selectStar(args) {
+            rating.value = args.data.id + 1;
+        }
+
+        rating.onValueChanged(module, function(x) {
+            stars.forEach(function(s) {
+                if (s.id < x) {
+                    s.isActive.value = true;
+                } else {
+                    s.isActive.value = false;
+                }
+            });
+        });
+
+        module.exports = {
+            stars: stars,
+            selectStar: selectStar
+        };
+    </JavaScript>
+
+    <Each Items="{stars}">
+        <Panel HitTestMode="LocalBounds">
+            <Clicked>
+                <Callback Handler="{selectStar}" />
+            </Clicked>
+            <WhileTrue Value="{isActive}">
+                <Change theStar.Color="#FFC107" Duration="0.16" />
+            </WhileTrue>
+            <Image ux:Name="theStar" File="Assets/star.png" Color="#9E9E9E" />
+        </Panel>
+    </Each>
+</StackPanel>

@@ -1,0 +1,27 @@
+<App Background="#fff">
+
+    <JavaScript>
+        var Observable = require("FuseJS/Observable");
+        var staticRating = Observable(2);
+        var slidingRating = Observable(3);
+
+        staticRating.onValueChanged(module, function(x) {
+            console.log("staticRating changed to: " + x);
+        });
+        slidingRating.onValueChanged(module, function(x) {
+            console.log("slidingRating changed to: " + x);
+        });
+
+        module.exports = {
+            staticRating: staticRating,
+            slidingRating, slidingRating
+        };
+    </JavaScript>
+
+    <ClientPanel>
+        <StackPanel Alignment="Center" ItemSpacing="24">
+            <StaticRatingComponent Stars="5" Rating="{staticRating}" />
+            <SlidingRatingComponent Stars="5" Rating="{slidingRating}" />
+        </StackPanel>
+    </ClientPanel>
+</App>
