@@ -1,0 +1,86 @@
+<App Background="#228">
+	<JavaScript>
+
+		var AzureADB2COAuth = require("Azure-AD-B2C-OAuth");
+
+		function signUp() {
+			AzureADB2COAuth.OAuthSignUp();
+		}
+
+		function signIn() {
+			AzureADB2COAuth.OAuthSignIn();
+		}
+
+		function signOut() {
+			AzureADB2COAuth.OAuthLogout();
+		}
+
+		function oAuthInfo() {
+			var currentOAuthInfo = AzureADB2COAuth.OAuthInfo();
+			console.log("OAuthInfo: "+ JSON.stringify(currentOAuthInfo));
+		}
+
+		module.exports = {
+			SignUp: signUp,
+			SignIn: signIn,
+			SignOut: signOut,
+			OAuthInfo: oAuthInfo,
+			IsUserLoggingIn: AzureADB2COAuth.IsUserLoggingIn,
+			IsUserLoggedIn: AzureADB2COAuth.IsUserLoggedIn,
+			UserFirstName: AzureADB2COAuth.UserFirstName,
+			UserLastName: AzureADB2COAuth.UserLastName,
+			UserEmail: AzureADB2COAuth.UserEmail,
+		}
+
+	</JavaScript>
+
+	<Panel ux:Class="ButtonBig">
+		<string ux:Property="Text" />
+	    <Panel HitTestMode="LocalBounds" Margin="10,10,13,13" Color="#f3f7f5" Padding="80,20,80,20">
+	        <Text ux:Name="Button" Value="{Property this.Text}" TextColor="#655551" Alignment="Center" TextAlignment="Center" Margin="10,0,10,0" FontSize="20"/>
+	    </Panel>
+	    <DropShadow />
+	</Panel>
+
+	<StackPanel Alignment="Center">
+
+		<!-- Not logged in -->
+		<StackPanel ux:Name="signIn">
+			<ButtonBig Text="Sign Up" Margin="0,0,0,10">
+				<Clicked Handler="{SignUp}" />
+			</ButtonBig>
+			<ButtonBig Text="Sign In" Margin="0,0,0,10">
+				<Clicked Handler="{SignIn}" />
+			</ButtonBig>
+		</StackPanel>
+
+		<!-- Logged in -->
+		<StackPanel ux:Name="signedOut">
+			<ButtonBig Text="Sign Out" Margin="0,0,0,10">
+				<Clicked Handler="{SignOut}" />
+			</ButtonBig>
+			<ButtonBig Text="OAuthInfo" Margin="0,0,0,10">
+				<Clicked Handler="{OAuthInfo}" />
+			</ButtonBig>
+		</StackPanel>
+
+		<Text TextColor="#fff" Margin="0,10,0,0" Alignment="Center" FontSize="13" Opacity="0.9" Value="Logging in: {IsUserLoggingIn}" />
+
+		<Text TextColor="#fff" Margin="0,10,0,0" Alignment="Center" FontSize="13" Opacity="0.9" Value="Logged In: {IsUserLoggedIn}" />
+
+		<Text TextColor="#fff" Margin="0,10,0,0" Alignment="Center" FontSize="13" Opacity="0.9" Value="First Name: {UserFirstName}" />
+
+		<Text TextColor="#fff" Margin="0,10,0,0" Alignment="Center" FontSize="13" Opacity="0.9" Value="Last Name: {UserLastName}" />
+
+		<Text TextColor="#fff" Margin="0,10,0,0" Alignment="Center" FontSize="13" Opacity="0.9" Value="Email: {UserEmail}" />
+	</StackPanel>
+
+	<WhileTrue Value="{IsUserLoggedIn}">
+		<Change Target="signIn.Visibility" Value="Collapsed" />
+	</WhileTrue>
+
+	<WhileFalse Value="{IsUserLoggedIn}">
+		<Change Target="signedOut.Visibility" Value="Collapsed" />
+	</WhileFalse>
+
+</App>
