@@ -17,4 +17,4 @@ The dimensions of the returned image can differ if the original aspect is differ
 
 The sample js is extensively commented and goes through some somewhat arbitrary use cases.
 
-You can find the official Camera API documentation [here](https://www.fusetools.com/learn/fusejs#camera).
+You can find the official Camera API documentation [here](https://www.fusetools.com/docs/fuse/camera/camera).
