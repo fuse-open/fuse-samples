@@ -1,4 +1,4 @@
-# Selection API Examples
+# Pizza Selection Examples
 
 This example demonstrates the various aspects of the selection API by means of a pseudo-pizza delivery app.
 
@@ -21,7 +21,7 @@ The button to go to the next page doesn't appear until an item is selected. This
 	<WhileString Value="{ReadProperty pizzaSel.Value}" Test="IsNotEmpty">
 	
 	
-## Multiple Selection
+## Multiple Selection	
 
 ![Multiple selection](https://github.com/fusetools/fuse-samples/blob/master/Samples/Controls/Selection/gifs/multiple.gif)
 

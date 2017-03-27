@@ -1,0 +1,15 @@
+name: Using the RelativeTo and RelativeNode properties
+desc: This sample shows the use of the RelativeTo property for the Move animator.
+api:
+    -
+        class: Fuse.Animations.Move
+        desc: Used in various places to illustrate the use of the RelativeTo property.
+    -
+        class: Fuse.Gestures.WhilePressed
+        desc: Used to trigger a set of Move animators.
+    -
+        class: Fuse.Triggers.LayoutAnimation
+        desc: Used to move a rectangle in response to it changing position.
+    -
+        class: Fuse.Triggers.WhileKeyboardVisible
+        desc: Used to move the content upwards while the keyboard is visible on screen.

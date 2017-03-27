@@ -1,0 +1,10 @@
+name: Modal confirmation screen
+desc: This example shows how to create a modal confirmation screen.
+api:
+    -   
+        class: Fuse.AlternateRoot
+        desc: Places a panel far up in the UI tree to make it the top-most one.
+    -
+        class: Fuse.Resources.ResourceObject
+        desc: Assigns a node to a resource for use later in an `AlternateRoot`.
+        

@@ -1,0 +1,25 @@
+name: Pizza Selection
+desc: This example demonstrates the various aspects of the selection API by means of a pseudo-pizza delivery app.
+api:
+    -
+        class: Fuse.Selection.Selection
+        desc: Creates a multiple select, radio buttons, and a drop-down.
+    -
+        class: Fuse.Selection.Selectable
+        desc: Used UX and JavaScript specified options for selections.
+    -
+        class: Fuse.Selection.Selected
+        desc: Animates an option when it is selected.
+    -
+        class: Fuse.Selection.Deselected
+        desc: Animates an option when it is deselected.
+    -
+        class: Fuse.Selection.ToggleSelection
+        desc: Modifies the selection of an item when the user taps it.
+    -
+        class: Fuse.Selection.WhileSelected
+        desc: Changes the appearance of an item while it is selected.
+    -
+        class: Fuse.Layouts.ColumnLayout
+        desc: Adapts the layout of selection options based on screen size.
+        

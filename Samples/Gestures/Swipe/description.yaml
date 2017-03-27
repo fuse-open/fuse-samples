@@ -1,0 +1,18 @@
+name: List items with swipe gestures
+desc: This example displays a list of items that each lets the user swipe left or right to reveal actions that can be performed on the item.
+api:
+    -
+        class: Fuse.Gestures.SwipeGesture
+        desc: Lets the user swipe in a direction to reveal hidden buttons.
+    -
+        class: Fuse.Gestures.WhileSwipeActive
+        desc: Shows an image overlay while the state of the SwipeGesture is set to active.
+    -
+        class: Fuse.Gestures.SwipingAnimation
+        desc: Moves the list item while swiping so that the hidden buttons are revealed.
+    -
+        class: Fuse.Gestures.Swiped
+        desc: Changes the fill color when the swipe gesture has been activated.
+    -
+        class: Fuse.Gestures.ToggleSwipeActive
+        desc: Toggles the active state of the swipe back to false when a button is clicked.

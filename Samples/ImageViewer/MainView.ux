@@ -52,33 +52,23 @@
 			</WhileTrue>
 			
 			<ZoomGesture Target="TheTransform" Minimum="1" Maximum="3" ux:Name="TheZoom"/>
-			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer" TimeMultiplier="2"/>
-			<!--
-				What has happend to SimulationType?
-			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer"
-				SimulationType="ElasticForceNormalized" TimeMultiplier="2"/>-->
+			<Attractor Target="TheTransform.ZoomFactor" ux:Name="TheZoomer" TimeMultiplier="2"
+				Type="Elastic" Unit="Normalized"/>
 				
 			<RotateGesture Target="TheTransform" ux:Name="TheRotate" StepDegrees="30"/>
-			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater" TimeMultiplier="0.5"/>
-			<!--
-				What has happend to SimulationType?
-			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater"
-				SimulationType="ElasticForceAngular" TimeMultiplier="0.5"/>-->
+			<Attractor Target="TheTransform.Rotation" ux:Name="TheRotater" TimeMultiplier="0.5"
+				Type="Elastic" Unit="Radians"/>
 			
 			<PanGesture Target="TheTransform" Constraint="TheViewerImage" ux:Name="ThePan"/>
-			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner" />
-			<!--
-				What has happend to SimulationType?
-			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner"
-				SimulationType="ElasticForcePoints"/>-->
+			<Attractor Target="TheTransform.Translation" ux:Name="ThePanner" 
+				Type="Elastic" Unit="Points"/>
 				
 			<!-- the user might start interacting while the attractors are still running, stop that -->
 			<WhileInteracting>
-				<!-- TODO: https://github.com/fusetools/fuselibs/issues/1344 -->
 				<!-- Fix will be released soon -->
-				<!--<Change Target="TheZoomer.IsEnabled" Value="false"/>
+				<Change Target="TheZoomer.IsEnabled" Value="false"/>
 				<Change Target="TheRotater.IsEnabled" Value="false"/>
-				<Change Target="ThePanner.IsEnabled" Value="false"/>-->
+				<Change Target="ThePanner.IsEnabled" Value="false"/>
 			</WhileInteracting>
 			
 			<!-- A wrapping panel to ensure the InteractiveTransform and layout transforms don't

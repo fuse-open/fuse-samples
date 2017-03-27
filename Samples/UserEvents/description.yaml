@@ -1,0 +1,13 @@
+name: A component with custom events
+desc: This example creates a number pad entry component showing how to define and raise user events.
+api:
+    -
+        class: Fuse.UserEvent
+        desc: Creates custom events to for a reusable number pad component.
+    -
+        class: Fuse.Triggers.OnUserEvent
+        desc: Responds to custom events from a reusable number pad component.
+    -   
+        class: Fuse.Reactive.Match
+        desc: Provides different visuals for an array of number page buttons.
+        

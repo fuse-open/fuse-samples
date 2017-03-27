@@ -1,0 +1,9 @@
+name: Scrollbar
+desc: Shows a scrolling indicator for a `ScrollView` that is only visible while the user is actively scrolling.
+api:
+    -
+        class: Fuse.Triggers.ScrollingAnimation
+        desc: Moves a thumb indicator relative to the scroll position.
+    -
+        class: Fuse.Triggers.WhileInteracting
+        desc: Displays a scroll bar only while the user is scrolling.
