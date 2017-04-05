@@ -1,0 +1,18 @@
+name: Circular layout and range control
+desc: This example creates a time picker for hours and minutes with a circular layout.
+api:
+    -   
+        class: Fuse.Layouts.CircleLayout
+        desc: Arranges hour and minute values around a clock face.
+    -
+        class: Fuse.Controls.RangeControl2d
+        desc: Creates a two-ring selection for hour selection on a clock face.
+    -
+        class: Fuse.Gestures.CircularRangeBehavior
+        desc: Creates a selection for hours and minutes on a clock face.
+    -
+        class: Fuse.Triggers.InteractionCompleted
+        desc: Progresses to minute selection after the user has selected an hour.
+    -
+        class: Fuse.Triggers.RangeAnimation
+        desc: Animates the change between selecting from two levels in a two-ring hour selection.

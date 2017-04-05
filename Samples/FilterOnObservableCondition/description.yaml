@@ -1,0 +1,12 @@
+name: Filter on Observable condition
+desc: This example shows how one can filter a list based on a condition which itself is an Observable event.
+api:
+    -
+        class: Fuse.Triggers.AddingAnimation
+        desc: Animated a list item as it is added to the list.
+    -
+        class: Fuse.Triggers.RemovingAnimation
+        desc: Animated a list item as it is removed from the list.
+    -
+        class: Fuse.Triggers.LayoutAnimation
+        desc: Animates the remaining part of the list when an item is removed.

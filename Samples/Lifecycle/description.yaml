@@ -1,0 +1,6 @@
+name: Lifecycle
+desc: This example uses the lifecycle API to change the background color when the app exits the interactive state.
+api:
+    -
+        class: FuseJS.Lifecycle
+        desc: Uses the lifecycle API to change the apps background color.

@@ -1,0 +1,6 @@
+name: Animation using repeating Cycle
+desc: A continous animation of dots appearing from the left and moving to the right.
+api:
+    -
+        class: Fuse.Animations.Cycle
+        desc: Configures a variety of properties to create a structured visual animation.

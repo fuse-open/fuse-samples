@@ -1,0 +1,12 @@
+name: Taking pictures from JavaScript
+desc: This example uses the FuseJS Camera, ImageTools and CameraRoll APIs to acquire and manipulate images from JavaScript.
+api:
+    -   
+        class: Fuse.Reactive.WhileEmpty
+        desc: Is used to show an image while the user has yet to take a picture.
+    -
+        class: Fuse.Reactive.WhileNotEmpty
+        desc: Is used to display a picture after the user has taken it with the camera.
+    -
+        class: Fuse.Camera.Camera
+        desc: The Camera module is used from JavaScript to take a picture using the default platform camera app.

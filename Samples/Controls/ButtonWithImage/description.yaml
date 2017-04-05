@@ -1,0 +1,12 @@
+name: Creating a custom button with an image
+desc: This example shows two different ways to create a custom button that has an image and text as properties. Which approach you use depends on what is most convenient in your application.
+api:
+    -
+        class: Fuse.Resources.FileImageSource
+        desc: Supplies an Image as a resource to a custom button class.
+    -
+        class: Fuse.Resources.ImageSource
+        desc: Declares a ux:Property for a custom button that accepts an image source.
+    -
+        class: Uno.UX.FileSource
+        desc: Declares a ux:property for a custom button that accepts an image file path.

@@ -1,0 +1,6 @@
+name: EdgeNavigator example
+desc: A minimal example showing off the EdgeNavigator control.
+api:
+    -
+        class: Fuse.Controls.EdgeNavigator
+        desc: Displays an edge menu when swiping from the left edge.

@@ -1,0 +1,6 @@
+name: GPS Basics Fuse Example
+desc: This is a really basic app showing 3 different ways to use FuseJS GeoLocation API to get the location of our device.
+api:
+    -
+        class: Fuse.GeoLocation.GeoLocation
+        desc: Used to get the users current position.

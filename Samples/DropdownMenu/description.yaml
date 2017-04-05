@@ -1,0 +1,12 @@
+name: A custom dropdown menu
+desc: This example creates custom dropdown menu.
+api:
+    -
+        class: Fuse.Triggers.WhileTrue
+        desc: Is used to toggle the expanded state of the dropdown menu.
+    -
+        class: Fuse.Triggers.Actions.Toggle
+        desc: Is used to toggle the WhileTrue trigger containing the expanded state of the dropdown menu.
+    -
+        class: Fuse.Reactive.DataBinding
+        desc: Used to create an explicit data-binding from the Selected state of the dropdown menu.

@@ -1,0 +1,18 @@
+name: A file browser
+desc: This example uses the FileSystem JavaScript API to browser the local file system using the Router and Navigator.
+api:
+    -
+        class: Fuse.FileSystem.FileSystemModule
+        desc: Is used to query the file system for information.
+    -
+        class: Fuse.Controls.Navigator
+        desc: Is used to navigate between the various folders of the file system.
+    -
+        class: Fuse.Navigation.Router
+        desc: Is used to manage the navigation history through the file system.
+    -
+        class: Fuse.Navigation.EnteringAnimation
+        desc: Animates the opacity of the directory page background as it enters.
+    -
+        class: Fuse.Navigation.ExitingAnimation
+        desc: Animates the opacity of the directory page background as it exits.

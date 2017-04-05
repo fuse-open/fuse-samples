@@ -1,0 +1,7 @@
+name: Conway's Game of Life
+desc: This project uses an array of JavaScript Observables to produce a grid in the interface.
+api:
+    -
+        class: Fuse.Controls.Grid
+        desc: A grid bound to a JavaScript data set.
+ 
