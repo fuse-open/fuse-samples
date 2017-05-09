@@ -5,7 +5,8 @@
   "RootNamespace": "",
   "Packages": [
     "Fuse",
-    "FuseJS"
+    "FuseJS",
+    "Fuse.Launcher.InterApp"
   ],
   "Includes": [
     "*",
