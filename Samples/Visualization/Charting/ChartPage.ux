@@ -1,0 +1,48 @@
+<!-- A common base for tall the chart pages. This provides the standard title layout and zooming
+	to full screen -->
+<Container ux:Class="ChartPage" Subtree="inner">
+	<string ux:Property="Title"/>
+	<string ux:Property="File"/>
+	
+	<Rectangle ux:Class="ChartButton" CornerRadius="5" Padding="5" Color="#ADF8">
+		<string ux:Property="Label"/>
+		<Text Value="{Property this.Label}" FontSize="23" Color="#000" ux:Name="label"/>
+		
+		<WhileDisabled>
+			<Change this.Color="#DEF" Duration="0.1"/>
+			<Change label.Color="#888" Duration="0.1"/>
+		</WhileDisabled>
+	</Rectangle>
+				
+	<!-- this wrapper holds the size in the outer ColumnLayout when switching to full-screen -->
+	<Panel ux:Binding="Children" BoxSizing="FillAspect" Aspect="1.5">
+		<DockPanel ux:Name="chart" TransformOrigin="TopLeft">
+			<Rectangle Layer="Background" CornerRadius="5" Color="#FFF"/>
+		
+			<Panel Dock="Top" Padding="2,5" Margin="0,0,0,5">
+				<Rectangle Layer="Background" CornerRadius="5,5,0,0" Color="#BBB"/>
+				<Text Alignment="Left" Value="{Property this.Title}" Color="#000"/>
+				<Text Alignment="Right" Value="&lt;{Property this.File}&gt;" Color="#000"/>
+				
+				<Clicked>
+					<Toggle Target="showFull"/>
+				</Clicked>
+			</Panel>
+			
+			<Panel ux:Name="inner"/>
+			
+			<WhileTrue ux:Name="showFull">
+				<Change chart.LayoutMaster="{Resource fullScreen}"/>
+				<BringToFront Target="this"/>
+			</WhileTrue>
+			
+			<LayoutAnimation>
+				<Move Vector="1" RelativeTo="PositionChange" Duration="0.25" Easing="SinusoidalInOut"/>
+				<!-- Using `Scale` instead of `Resize` as drawing a chart is too costly to be done repeatedly.
+					Note the use of `TransformOrigin="TopLeft"` on the wrapping `DockPanel` -->
+				<Scale Factor="1" RelativeTo="SizeChange" Duration="0.25" Easing="SinusoidalInOut"/>
+			</LayoutAnimation>
+		</DockPanel>
+	</Panel>
+	
+</Container>

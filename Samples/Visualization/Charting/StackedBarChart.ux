@@ -1,0 +1,86 @@
+<ChartPage ux:Class="StackedBarChart" File="StackedBarChart" Title="Stacked bar ranges"
+	xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function Item( value, label ) {
+			this.value = value
+			this.label = label
+		}
+		exports.data1 = Observable( 
+			new Item(10, "2007"),
+			new Item(20, "2008"),
+			new Item(13, "2009"),
+			new Item(27, "2010"),
+			new Item(15, "2011"),
+			new Item(5, "2012"),
+			new Item(50, "2013")
+		);
+		exports.data2 = Observable( 
+			new Item(20, "2007"),
+			new Item(10, "2008"),
+			new Item(13, "2009"),
+			new Item(11, "2010"),
+			new Item(24, "2011"),
+			new Item(32, "2012"),
+			new Item(3, "2013")
+		);
+		exports.data3 = Observable( 
+			new Item(20, "2007"),
+			new Item(5, "2008"),
+			new Item(13, "2009"),
+			new Item(11, "2010"),
+			new Item(24, "2011"),
+			new Item(32, "2012"),
+			new Item(3, "2013")
+		);
+	</JavaScript>
+	<c:Plot Margin="20,10,50,10" ux:Name="plot" ZAxisMetric="MergeRange">
+		<c:DataSeries Data="{data1}"/>
+		<c:DataSeries Data="{data2}" Metric="Add"/>
+		<c:DataSeries Data="{data3}" Metric="Add"/>
+
+		<GridLayout Columns="50,20,1*" Rows="1*,20,50"/>
+	
+		<c:PlotAxis Row="0" Column="0" Axis="Y">
+			<Text ux:Template="Label" Alignment="CenterRight" 
+				Value="{Plot axis.value}" FontSize="20" Color="#000"/>
+		</c:PlotAxis>
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000" AxisLine="1"/>
+		
+		<!-- 
+			https://pixabay.com/en/chamois-animal-cute-goat-mammal-162138/ 
+			https://pixabay.com/en/elephant-animal-mammal-black-grey-35527/
+			https://pixabay.com/en/animal-pig-pink-cute-face-funny-157487/
+			
+			The images are used below to demonstrate the ranged areas. Naturally plain panels work just as well.
+		-->
+	
+		<Panel Row="0" Column="2">
+			<c:PlotData ux:Class="StackImage">
+				<Uno.UX.FileSource ux:Property="File"/>
+				<float4 ux:Property="Color"/>
+				<c:PlotBar Style="Range">
+					<Image File="{Property this.File}" StretchMode="Fill" Width="90%"/>
+					<Panel Width="70%" Color="{Property this.Color}"/>
+				</c:PlotBar>
+			</c:PlotData>
+
+			<StackImage SeriesIndex="0" File="Assets/pig.png" Color="#FFAAAA"/>
+			<StackImage SeriesIndex="1" File="Assets/goat.png" Color="#3f7f00"/>
+			<StackImage SeriesIndex="2" File="Assets/elephant.png" Color="#939dac"/>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"/>
+		<Panel Row="2" Column="2" HitTestMode="None">
+			<c:PlotAxisData Axis="X">
+				<!-- An example of how to do manual positioning of labels along the axis. -->
+				<Text X="{Plot axis.position} * 100%" Y="0" FontSize="18" Color="#000" 
+					Value="{Plot axis.label}" Anchor="105%,45%" TransformOrigin="Anchor">
+					<Rotation Degrees="-60"/>
+				</Text>
+			</c:PlotAxisData>
+		</Panel>
+
+	</c:Plot>
+</ChartPage>

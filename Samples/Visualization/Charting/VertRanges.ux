@@ -1,0 +1,52 @@
+<ChartPage Title="Vertical layout with ranged bars" File="VertRanges" ux:Class="VertRanges" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		function Item( y, z, label ) {
+			this.y = y
+			this.z = z
+			this.label = label
+		}
+		
+		var names = [ "Vebjørn", "Annbjørg",  "Øystein", "Åslaug",  "Tormod", "Borghild", "Dagfinn", "Gudrun", "Sverre", "Åshild" ];
+		exports.data1 = Observable()
+		for (var i=0; i < names.length; ++i ) {
+			var c = Math.random() * 100 -25
+			var y = c - (Math.random() + 0.2) * 50
+			var z = c + (Math.random() + 0.2) * 50
+			exports.data1.add( new Item( y, z, names[i] ) )
+		}
+	</JavaScript>
+	<c:Plot XAxisMetric="OffsetCount" ZAxisMetric="MergeRange" Margin="5,20,20,10" Orientation="Vertical">
+		<c:DataSeries Data="{data1}"/>
+
+		<GridLayout Columns="auto,10,1*" Rows="1*,10,20"/>
+		
+		<c:PlotAxis Row="0" Column="0" Axis="X" Margin="0,0,4,0">
+			<Text ux:Template="Label" Alignment="CenterRight" FontSize="15" 
+				Color="#000" Value="{Plot axis.label}"/>
+		</c:PlotAxis>
+		<c:PlotTicks Row="0" Column="1" Axis="X" StrokeWidth="2" StrokeColor="#004"/>
+		
+		<Panel Row="0" Column="2">
+			<c:PlotData>
+				<c:PlotBar Style="Range">
+					<Rectangle Alignment="VerticalCenter" Height="60%" Color="#A6B"/>
+				</c:PlotBar>
+				
+				<!-- This mimics the PlotBar's behavior. There's no reason to do this here, as a Stroke could have just been added to the previous Rectangle. It's here for example purposes, showing how to reconstruct the bar from the source values. -->
+				<Rectangle X="{Plot data.x}" Y="{Plot data.y}" Anchor="0%,50%"
+					Width="({Plot data.rel.z} - {Plot data.rel.y}) * 100%" Height="1 / {Plot stepCount.y} * 60%"
+					StrokeWidth="2" StrokeColor="#000"
+					ZOffset="1"
+					/>
+			</c:PlotData>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" Axis="Y" StrokeWidth="2" StrokeColor="#004"/>
+		<c:PlotAxis Row="2" Column="2" Axis="Y">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="15" 
+				Color="#000" Value="{Plot axis.value}"/>
+		</c:PlotAxis>
+		
+	</c:Plot>
+</ChartPage>

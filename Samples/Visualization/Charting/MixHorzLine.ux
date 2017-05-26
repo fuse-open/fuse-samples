@@ -1,0 +1,41 @@
+<ChartPage Title="Extruded line to base" File="MixHorzLine" ux:Class="MixHorzLine" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		exports.points = Observable( -10, 50,-20, 30, -35 )
+		
+		exports.random = function() {
+			var items = []
+			for (var i =0; i < 5; ++i) {
+				items.push( (Math.random() - 0.5) * 100 )
+			}
+			exports.points.replaceAll(items)
+		}
+	</JavaScript>
+	<c:Plot XAxisMetric="Count" RangePadding="0.1" ux:Name="plot">
+		<c:DataSeries Data="{points}"/>
+
+		<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
+		
+		<AttractorConfig Unit="Normalized" Type="Elastic" Duration="0.3" ux:Global="plotAttract"/>
+		
+		<Grid Margin="5" Columns="10,1*,10">
+			<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000"/>
+			
+			<Panel>
+				<Curve StrokeWidth="3" StrokeColor="#042">
+					<c:PlotData>
+						<CurvePoint X="{Plot data.screenRel.x}" Y="attract({Plot data.screenRel.y}, plotAttract)"/>
+					</c:PlotData>
+				</Curve>
+				<Curve Color="#0848" Extrude="Vertical" ExtrudeTo="attract({Plot baseline.y},plotAttract)">
+					<c:PlotData>
+						<CurvePoint X="{Plot data.screenRel.x}" Y="attract({Plot data.screenRel.y}, plotAttract)"/>
+					</c:PlotData>
+				</Curve>
+			</Panel>
+			
+			<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000"/>
+		</Grid>
+	</c:Plot>
+	
+</ChartPage>

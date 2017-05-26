@@ -1,0 +1,66 @@
+<ChartPage Title="Spider chart" File="SpiderChart" ux:Class="SpiderChart" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+
+		var data = [ {
+			label: "Attention",
+			value: 54,
+		}, {
+			label: "Care",
+			value: 15,
+		}, { 
+			label: "Fight",
+			value: 68,
+		}, {
+			label: "Performance",
+			value: 74,
+		}, {
+			label: "Avoid bad experiences",
+			value: 51,
+		}, {
+			label: "Under- standing",
+			value: 90,
+		}, {
+			label: "Approval",
+			value: 58,
+		}, { 
+			label: "Sense of Duty",
+			value: 80,
+		}, {
+			label: "Dominance",
+			value: 80,
+		}, {
+			label: "Autonomy",
+			value: 51,
+		} ]
+		
+		exports.data = Observable()
+		exports.data.replaceAll( data )
+	</JavaScript>
+	<c:Plot Margin="40,20" YRange="0,100">
+		<c:DataSeries Data="{data}"/>
+
+		<Panel Margin="50" BoxSizing="FillAspect">
+			<c:PlotData>
+				<c:PlotPoint Style="AngularFull" PointOffset="0.05">
+					<Text Value="{Plot data.label}" TextWrapping="Wrap" MaxWidth="100"/>
+				</c:PlotPoint>
+			</c:PlotData>
+			
+			<Circle Color="#b7dde8" Width="30%"/>
+			<Circle StrokeColor="#888" StrokeWidth="1" Width="50%"/>
+			<Circle Color="#e1e1e1" Width="70%"/>
+			<Circle Color="#b7dde8"/>
+
+			<Curve Style="Straight" StrokeWidth="2" StrokeColor="#000" ZOffset="2" Close="Auto"
+				Fill="#FFA2">
+				<c:PlotData>
+					<c:PlotCurvePoint Style="Angular"/>
+				</c:PlotData>
+			</Curve>
+			
+			<c:PlotTicks Style="Angular" StrokeColor="#000" StrokeWidth="1" ZOffset="1"
+				AxisLine="0.01" BaseOffset="0.01"/>
+		</Panel>
+	</c:Plot>
+</ChartPage>

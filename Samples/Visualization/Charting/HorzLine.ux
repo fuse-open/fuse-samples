@@ -1,0 +1,85 @@
+<ChartPage ux:Class="HorzLine" File="HorzLine" Title="Decorated line chart" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function Item( value, label ) {
+			this.value = value
+			this.label = label
+		}
+		exports.data = Observable( 
+			new Item(7, "2007"),
+			new Item(20, "2008"),
+			new Item(13, "2009"),
+			new Item(27, "2010"),
+			new Item(15, "2011"),
+			new Item(5, "2012"),
+			new Item(50, "2013"),
+			new Item(20, "2014"),
+			new Item(30, "2015"),
+			new Item(35, "2016"),
+			new Item(15, "2017")
+		);
+
+		exports.incrOffset = function() {
+			plot.stepOffset(1)
+		}
+		exports.decrOffset = function() {
+			plot.stepOffset(-1)
+		}
+	</JavaScript>
+	<c:Plot XAxisMetric="OffsetCount" RangePadding="0.1" Margin="20,10,50,10" ux:Name="plot"
+		DataExtend="1,1">
+		<c:DataSeries Data="{data}"/>
+
+		<GridLayout Columns="50,20,1*" Rows="1*,20,20"/>
+	
+		<c:PlotAxis Row="0" Column="0" Axis="Y">
+			<Text ux:Template="Label" Alignment="CenterRight" 
+				Value="{Plot axis.value}k" FontSize="20" Color="#000"/>
+		</c:PlotAxis>
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000" AxisLine="1"/>
+		
+		<Panel ClipToBounds="true">
+			<c:PlotArea YStepSize="40" XStepSize="100"/>
+			
+			<Curve StrokeWidth="5" StrokeColor="#000">
+				<c:PlotData>
+					<c:PlotCurvePoint/>
+				</c:PlotData>
+			</Curve>
+			
+			<Panel ZOffset="1">
+				<c:PlotData>
+					<c:PlotPoint>
+						<Circle Width="10" Height="10" Color="#FFF"/>
+						<Circle Width="20" Height="20" Color="#000"/>
+					</c:PlotPoint>
+				</c:PlotData>
+			</Panel>
+			
+			<!-- Show the minimum and maximum values of the data. These lines are for the entire data set, not just he part that is visible. -->
+			<Rectangle Y="{Plot dataMaxline.y} * 100%" Height="2" Color="#ADA"/>
+			<Rectangle Y="{Plot dataMinline.y} * 100%" Height="2" Color="#DAA"/>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"/>
+		<c:PlotAxis Row="2" Column="2" Axis="X" HitTestMode="None">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="20" Color="#000" 
+				Value="{Plot axis.label}"/>
+		</c:PlotAxis>
+
+		<Panel Row="1" RowSpan="2" Column="2">
+			<WhileTrue Value="{Plot hasNext}">
+				<Panel Layer="Overlay" Alignment="BottomRight" Anchor="0%,100%">
+					<ChartButton Label="▶" Clicked="{incrOffset}" Padding="2,0"/>
+				</Panel>
+			</WhileTrue>
+			
+			<WhileTrue Value="{Plot hasPrev}">
+				<Panel Layer="Overlay" Alignment="BottomLeft" Anchor="100%,100%">
+					<ChartButton Label="◀" Clicked="{decrOffset}" Padding="2,0"/>
+				</Panel>
+			</WhileTrue>
+		</Panel>
+	</c:Plot>
+</ChartPage>

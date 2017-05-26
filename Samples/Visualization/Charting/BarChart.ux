@@ -1,0 +1,98 @@
+<ChartPage Title="Vertical orientation bar chart" File="BarChart" ux:Class="BarChart" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		function Item( x, y ) {
+			this.x = x
+			this.y = y
+			this.label = "" + x
+		}
+		
+		function gauss( x ) {
+			var sigma = Math.sqrt(15)
+			var a = 1 / (sigma * Math.sqrt(2 * Math.PI))
+			var b = 0
+			var c = sigma
+			return a * Math.pow( Math.E, -(x - b)*(x-b) / (2*c*c) )
+		}
+		exports.data = Observable()
+		exports.data2 = Observable()
+		for (var i=-15; i <= 15; ++i ) {
+			var item = new Item(i, gauss(i));
+			exports.data.add( item  )
+			exports.data2.add( Math.max(0, item.y + (Math.random()-0.3)*0.04) )
+		}
+		
+		exports.offset = Observable(0)
+		exports.incrOffset = function() {
+			exports.offset.value += 1
+		}
+		exports.decrOffset = function() {
+			exports.offset.value -= 1
+		}
+	</JavaScript>
+	<AttractorConfig Unit="Normalized" Easing="SinusoidalInOut" 
+		Duration="0.3" DurationExp="0" ux:Global="plotAttract"/>
+	
+	<c:Plot XAxisMetric="OffsetCount" Margin="5,20,40,10" Orientation="Vertical" DataLimit="10"
+		DataOffset="{offset}" ux:Name="plot" DataExtend="1,1">
+		<c:DataSeries Data="{data}" ux:Name="barSeries"/>
+		<c:DataSeries Data="{data2}" ux:Name="lineSeries"/>
+
+		<GridLayout Columns="auto,10,5,1*" Rows="1*,5,10,20"/>
+		
+		<c:PlotAxis Row="0" Column="0" Axis="X" Margin="0,0,4,0" Width="50" 
+			Group="1" ClipToBounds="true" ExcludeExtend="false">
+			<Text ux:Template="Label" Alignment="CenterRight" FontSize="15" 
+				Color="#000" Value="{Plot axis.label}">
+				<LayoutAnimation>
+					<Move Vector="1" RelativeTo="PositionChange" Duration="0.3" Easing="SinusoidalInOut"/>
+				</LayoutAnimation>
+			</Text>
+		</c:PlotAxis>
+		<c:PlotTicks Row="0" Column="1" Axis="X" StrokeWidth="2" StrokeColor="#004"/>
+		
+		<Panel Row="0" Column="3">
+			<Panel ClipToBounds="true">
+				<c:PlotData>
+					<c:PlotBar>
+						<Rectangle Color="#0808" Height="80%" Alignment="VerticalCenter"/>
+						<LayoutAnimation>
+							<Move Vector="1" RelativeTo="PositionChange" Duration="0.3" Easing="SinusoidalInOut"/>
+						</LayoutAnimation>
+					</c:PlotBar>
+					<!-- Mimic a PlotBar's behavior -->
+					<Rectangle StrokeWidth="2" StrokeColor="#000" ZOffset="1"
+						X="0" Y="{Plot data.y}" Anchor="0%,50%"
+						Width="{Plot data.x}" Height="1 / {Plot stepCount.y} * 80%">
+						<LayoutAnimation>
+							<Move Vector="1" RelativeTo="PositionChange" Duration="0.3" Easing="SinusoidalInOut"/>
+						</LayoutAnimation>
+					</Rectangle>
+				</c:PlotData>
+				
+				<Curve StrokeColor="#84A8" StrokeWidth="2" ZOffset="1">
+					<c:PlotData Series="lineSeries">
+						<c:PlotCurvePoint Attractor="plotAttract"/>
+					</c:PlotData>
+				</Curve>
+			</Panel>
+			
+			<WhileTrue Value="{Plot hasNext}">
+				<ChartButton Alignment="TopRight" Layer="Overlay" Label="▲" Clicked="{incrOffset}"
+					Anchor="0%,0%"/>
+			</WhileTrue>
+			<WhileTrue Value="{Plot hasPrev}">
+				<ChartButton Alignment="BottomRight" Layer="Overlay" Label="▼" Clicked="{decrOffset}"
+					Anchor="0%,100%"/>
+			</WhileTrue>
+		</Panel>
+		
+		<c:PlotTicks Row="2" Column="3" Axis="Y" StrokeWidth="2" StrokeColor="#004"/>
+		<c:PlotAxis Row="3" Column="3" Axis="Y">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="15" 
+				Color="#000" Value="{{Plot axis.value}*100}%"/>
+		</c:PlotAxis>
+		
+	</c:Plot>
+		
+</ChartPage>

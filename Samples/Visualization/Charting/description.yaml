@@ -1,0 +1,46 @@
+name: Charting examples
+desc: A variety of different chart types using the charting API.
+api:
+    -
+        class: Fuse.Charting.Plot
+        desc: Used to create a plot.
+    -
+        class: Fuse.Charting.PlotWedge
+        desc: Creates a segment of a pie chart
+    -
+        class: Fuse.Charting.PlotData
+        desc: Enumerates plot data for drawing lines, bars, and decorations.
+    -
+        class: Fuse.Charting.PlotTicks
+        desc: Draws X,Y tick lines, chart divisions, and pie chart dividers.
+    -
+        class: Fuse.Animations.AttractorConfig
+        desc: Animates the change in values on a chart.
+    - 
+        class: Fuse.Animations.Attract
+        desc: Animates the change in values on a chart.
+    -
+        class: Fuse.Charting.DataSeries
+        desc: Creates charts with 1, 2 or 3 data series.
+    -
+        class: Fuse.Charting.PlotArea
+        desc: Adjusts the displayed chart data to the available size.
+    -
+        class: Fuse.Charting.PlotAxisData
+        desc: Enumerates access data to produce alternate labels.
+    -
+        class: Fuse.Charting.PlotAxis
+        desc: Labels the X/Y axes of  chart.
+    -
+        class: Fuse.Charting.PlotBar
+        desc: Creates bar charts, stacked bar charts, and range charts.
+    -
+        class: Fuse.Charting.PlotCurvePoint
+        desc: Creates line and spider charts.
+    -
+        class: Fuse.Charting.PlotExpression
+        desc: Extracts labels, position information, and other plot data for visualization.
+    -
+        class: Fuse.Charting.PlotPoint
+        desc: Adds decorations to the plotted data.
+        

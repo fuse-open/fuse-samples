@@ -1,0 +1,67 @@
+<ChartPage ux:Class="FullBarChart" File="FullBarChart" Title="Selectable full height bars" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function Item( value, label ) {
+			this.value = value
+			this.label = label
+		}
+		exports.data = Observable( 
+			new Item(7, "2007"),
+			new Item(20, "2008"),
+			new Item(13, "2009"),
+			new Item(27, "2010"),
+			new Item(15, "2011"),
+			new Item(5, "2012"),
+			new Item(50, "2013")
+		);
+	</JavaScript>
+	<c:Plot YRange="0,60" YAxisSteps="6" Margin="20,10,50,10" ux:Name="plot">
+		<Selection/>
+		<c:DataSeries Data="{data}"/>
+
+		<GridLayout Columns="50,20,1*" Rows="1*,20,50"/>
+	
+		<c:PlotAxis Row="0" Column="0" Axis="Y">
+			<Text ux:Template="Label" Alignment="CenterRight" 
+				Value="{Plot axis.value}" FontSize="20" Color="#000"/>
+		</c:PlotAxis>
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000" AxisLine="1"/>
+		
+		<Panel Row="0" Column="2">
+			<c:PlotData>
+				<Panel>
+					<Selectable Value="{Plot data.label}"/>
+					<WhileSelected>
+						<Change a.Color="#FF9090" Duration="0.2"/>
+						<Change b.Color="#90FF90" Duration="0.2"/>
+					</WhileSelected>
+					<c:PlotBar Color="#C89090" ux:Name="a" HitTestMode="None"/>
+					<c:PlotBar Style="Full" Color="#90C890" ux:Name="b">
+						<Tapped>
+							<ToggleSelection/>
+						</Tapped>
+					</c:PlotBar>
+				</Panel>
+			</c:PlotData>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"/>
+		<Panel Row="2" Column="2" HitTestMode="None">
+			<c:PlotAxisData Axis="X">
+				<Panel>
+					<Text X="{Plot axis.position} * 100%" Y="0" FontSize="18" Color="#000" 
+						Value="{Plot axis.label}" Anchor="105%,45%" TransformOrigin="Anchor" ux:Name="t">
+						<Rotation Degrees="-60"/>
+						<!-- https://github.com/fusetools/fuselibs/issues/4182 -->
+						<Selectable Value="{Plot axis.label}"/>
+						<WhileSelected>
+							<Change t.Color="#080"/>
+						</WhileSelected>
+					</Text>
+				</Panel>
+			</c:PlotAxisData>
+		</Panel>
+
+	</c:Plot>
+</ChartPage>
