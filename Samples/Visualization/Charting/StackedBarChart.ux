@@ -57,7 +57,10 @@
 		-->
 	
 		<Panel Row="0" Column="2">
-			<c:PlotData ux:Class="StackImage">
+			<!-- https://github.com/fusetools/Fuse/issues/3812 
+				This doesn't work in Preview yet 
+			-->
+			<!--<c:PlotData ux:Class="StackImage">
 				<Uno.UX.FileSource ux:Property="File"/>
 				<float4 ux:Property="Color"/>
 				<c:PlotBar Style="Range">
@@ -68,7 +71,7 @@
 
 			<StackImage SeriesIndex="0" File="Assets/pig.png" Color="#FFAAAA"/>
 			<StackImage SeriesIndex="1" File="Assets/goat.png" Color="#3f7f00"/>
-			<StackImage SeriesIndex="2" File="Assets/elephant.png" Color="#939dac"/>
+			<StackImage SeriesIndex="2" File="Assets/elephant.png" Color="#939dac"/>-->
 		</Panel>
 		
 		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"/>
