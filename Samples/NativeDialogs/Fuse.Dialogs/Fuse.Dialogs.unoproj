@@ -8,7 +8,7 @@
     "Fuse.Scripting",
     "Uno.Threading",
     "Fuse.Designer",
-    "FuseCore",
+    "Fuse",
   ],
   "Includes": [
     "*",
