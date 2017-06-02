@@ -1,4 +1,4 @@
-<Navigator DefaultTemplate="home">
+<Navigator DefaultPath="home">
 	<ux:Include File="Login.ux" />
 	<ux:Include File="Chat.ux" />
 	
