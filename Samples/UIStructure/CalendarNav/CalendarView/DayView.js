@@ -3,7 +3,7 @@ var DateTime = require("Lib/DateTime")
 
 var date = Observable(new Date())
 
-this.Parameter.onValueChanged( function(value) {
+this.Parameter.onValueChanged(module, function(value) {
 	date.value = new Date(value.year, value.month,value.day)
 })
 
