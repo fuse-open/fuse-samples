@@ -91,6 +91,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
     <td><a href="Samples/Controls/Selection">Selection</a></td>
   </tr>
+  <tr>
+    <td><a href="Samples/RatingComponents">Rating controls</a></td>
+  </tr>
 </table>
 
 ## Misc
