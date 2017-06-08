@@ -129,7 +129,7 @@
 		</Transition>
 	</Page>
 		
-	<Navigator DefaultTemplate="Main" GotoState="Unchanged" ux:Name="TheNav"
+	<Navigator DefaultPath="Main" GotoState="Unchanged" ux:Name="TheNav"
 		ClipToBounds="true" Remove="Released">
 		
 		<MainPage ux:Template="Main" Title="Starting Page">

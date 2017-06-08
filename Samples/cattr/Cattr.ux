@@ -10,7 +10,7 @@
 		<StatusBarBackground Dock="Top" Background="#7f5ce6" />
 		<BottomBarBackground Dock="Bottom" />
 
-		<Navigator DefaultTemplate="petSelection">
+		<Navigator DefaultPath="petSelection">
 			<PetSelectionPage ux:Template="petSelection" router="router" />
 			<HomePage ux:Template="home" router="router" />
 		</Navigator>

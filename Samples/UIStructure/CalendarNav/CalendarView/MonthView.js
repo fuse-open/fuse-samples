@@ -5,7 +5,7 @@ var viewNode = this
 var date = Observable(DateTime.first(new Date()))
 
 /** The parameter to this page contains the date we should be displaying. */
-this.Parameter.onValueChanged( function(value) {
+this.Parameter.onValueChanged(module, function(value) {
 	date.value = new Date(value.year, value.month,1)
 })
 
@@ -43,7 +43,7 @@ function Day(day) {
 
 /** The `days` are filled with complete weeks worth of days to cover the current month. */
 exports.days = Observable()
-date.onValueChanged( function(v) {
+date.onValueChanged(module, function(v) {
 	var first = DateTime.first(v)
 	var num = DateTime.monthDays(v)
 	

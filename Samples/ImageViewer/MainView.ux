@@ -43,12 +43,12 @@
 				<Change BlockColor.Color="0,0.1,0.2,0.8" Duration="0.2" Easing="QuadraticInOut"/>
 				<Change TheViewer.Visibility="Visible"/>
 				<Change TheTrans.Vector="0" Duration="0.3" Easing="QuadraticInOut"/>
-				<PulseForward Target="ZoomTo" Direction="Backward"/>
+				<PulseForward Target="ZoomTo" When="Backward"/>
 				
 				<!-- reset transform so animation gets close to target size -->
-				<Set TheZoomer.Value="1" Direction="Backward"/>
-				<Set ThePanner.Value="0,0" Direction="Backward"/>
-				<Set TheRotater.Value="0" Direction="Backward"/>
+				<Set TheZoomer.Value="1" When="Backward"/>
+				<Set ThePanner.Value="0,0" When="Backward"/>
+				<Set TheRotater.Value="0" When="Backward"/>
 			</WhileTrue>
 			
 			<ZoomGesture Target="TheTransform" Minimum="1" Maximum="3" ux:Name="TheZoom"/>

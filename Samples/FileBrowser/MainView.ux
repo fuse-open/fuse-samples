@@ -4,7 +4,7 @@
 		router.goto("directory", "/");
 	</JavaScript>
 	<ClientPanel Background="#373F51">
-		<Navigator DefaultTemplate="directory">
+		<Navigator DefaultPath="directory">
 			<Directory ux:Template="directory" router="router" />
 		</Navigator>
 	</ClientPanel>
