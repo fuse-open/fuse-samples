@@ -72,10 +72,10 @@ fi
 
 echo "Bulding examples"
 if [ $ACTION == "build" ]; then
-    $MONO $BUILDER -b $UNO -a "build -v --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
+    $MONO $BUILDER -b $UNO -a "build -v --trace --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
 elif [ $ACTION == "preview" ]; then
     if [ "$TARGET" == "local" ]; then
-        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR $EXCLUDE_ARGS 
+        $MONO $BUILDER -b $FUSE -a "host-preview --compile-only" $PROJECT_DIR $EXCLUDE_ARGS
     else
         $MONO $BUILDER -b $FUSE -a "preview --compile-only --target=$TARGET" $PROJECT_DIR $EXCLUDE_ARGS
     fi
