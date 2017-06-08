@@ -1,5 +1,6 @@
 using Uno;
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Time;
 
 using Fuse;
 using Fuse.Controls;
@@ -19,7 +20,7 @@ namespace Native
 				new ScriptMethod<DatePicker>("getDate", getDate, ExecutionThread.JavaScript));
 		}
 
-		static void setDate(DatePicker datePicker, object[] args)
+		static void setDate(Context c, DatePicker datePicker, object[] args)
 		{
 			if (args.Length != 3)
 			{
@@ -31,7 +32,7 @@ namespace Native
 				dpv.SetDate(new LocalDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2])));
 		}
 
-		static void setMinDate(DatePicker datePicker, object[] args)
+		static void setMinDate(Context c, DatePicker datePicker, object[] args)
 		{
 			if (args.Length != 3)
 			{
@@ -43,7 +44,7 @@ namespace Native
 				dpv.SetMinDate(new LocalDate(Marshal.ToInt(args[0]), Marshal.ToInt(args[1]), Marshal.ToInt(args[2])));
 		}
 
-		static void setMaxDate(DatePicker datePicker, object[] args)
+		static void setMaxDate(Context c, DatePicker datePicker, object[] args)
 		{
 			if (args.Length != 3)
 			{
@@ -57,7 +58,7 @@ namespace Native
 
 		// TODO: this does not work since a Func cannot be called from JS when
 		// mainthread is specified
-		static object getDate(DatePicker datePicker, object[] args)
+		static object getDate(Context c, DatePicker datePicker, object[] args)
 		{
 			var dpv = datePicker.DatePickerView;
 			if (dpv != null)
