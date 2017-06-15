@@ -1,0 +1,96 @@
+<App xmlns:c="Fuse.Charting" Background="#ddd">
+	
+	<DockPanel Color="#373C62">
+		<StackPanel Margin="50,50,50,0" Dock="Top" Height="170" Color="#6B76A3" >
+			<Shadow />
+			<Rectangle Alignment="Left" Margin="10,13" Width="90%" Height="30" Color="#FFF4" CornerRadius="15"/>
+			<Rectangle Alignment="Left" Margin="10,7" Width="80%" Height="12" Color="#FFF4" CornerRadius="12/2"/>
+			<Rectangle Alignment="Left" Margin="10,7" Width="50%" Height="12" Color="#FFF4" CornerRadius="12/2"/>
+			<Rectangle Alignment="Left" Margin="10,7" Width="70%" Height="12" Color="#FFF4" CornerRadius="12/2"/>
+			<Rectangle Alignment="Left" Margin="10,7" Width="50%" Height="12" Color="#FFF4" CornerRadius="12/2"/>
+		</StackPanel>
+		<Panel Margin="50" Color="#6B76A3" Padding="0,20,0,0">
+			<Shadow />
+			<Panel xmlns:c="Fuse.Charting" >
+				<JavaScript>
+					var Observable = require("FuseJS/Observable")
+					
+					function Item( value) {
+					this.value = value
+					}
+
+					exports.values1 = Observable(
+						new Item( 1200 ),
+						new Item( 2000 ),
+						new Item( 1000 ),
+						new Item( 1400 ),
+						new Item( 1400 ),
+						new Item( 1000 )
+					);
+					
+					exports.values2 = Observable(
+						new Item( 1800 ),
+						new Item( 2300 ),
+						new Item( 3200 ),
+						new Item( 2000 ),
+						new Item( 2500 ),
+						new Item( 1800 )
+					);
+
+					exports.values3 = Observable(
+						new Item( 2400 ),
+						new Item( 3000 ),
+						new Item( 3900 ),
+						new Item( 2200 ),
+						new Item( 2900 ),
+						new Item( 1900 )
+					);
+
+				</JavaScript>
+				<Panel ux:Class="MyPlot">
+					<int ux:Property="SeriesIndex" />
+					<float4 ux:Property="MainColor" />
+					<float4 ux:Property="BackgroundColor" />
+					<Panel Opacity="1">
+
+						<Curve StrokeWidth="2" StrokeColor="{ReadProperty MainColor}" Close="None">
+							<c:PlotData SeriesIndex="{ReadProperty SeriesIndex}">
+								<c:PlotCurvePoint />
+								<c:PlotPoint>
+									<Circle Color="{ReadProperty MainColor}" Width="6" Height="6">
+										<Stroke Width="2" Color="#202B33" Alignment="Outside" />
+									</Circle>
+								</c:PlotPoint>
+							</c:PlotData>
+						</Curve>
+					</Panel>
+					<Curve Close="None" Extrude="Bottom">
+						<SolidColor Color="{ReadProperty BackgroundColor}" />
+						<c:PlotData SeriesIndex="{ReadProperty SeriesIndex}">
+							<c:PlotCurvePoint />
+						</c:PlotData>
+					</Curve>
+				</Panel>
+				<c:Plot >
+					<c:DataSeries Data="{values1}" />
+					<c:DataSeries Data="{values2}" />
+					<c:DataSeries Data="{values3}" />
+
+					<GridLayout Rows="1*, 20" />
+
+					<Panel Row="0">
+						<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#d0d0d019" />
+					</Panel> 
+
+					<MyPlot Row="0" MainColor="#48B66A" BackgroundColor="#213536" SeriesIndex="0" />
+					<MyPlot Row="0" MainColor="#E6175D" BackgroundColor="#322B38" SeriesIndex="1" />
+					<MyPlot Row="0" MainColor="#FF993B" BackgroundColor="#303334" SeriesIndex="2" />
+
+				</c:Plot>
+			</Panel>
+		</Panel>
+	</DockPanel>
+
+
+
+</App>
