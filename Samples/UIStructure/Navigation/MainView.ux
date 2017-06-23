@@ -2,7 +2,6 @@
 	<Font File="Assets/MaterialIcons-Regular.ttf" ux:Global="MaterialIcons"/>
 	
 	<Router ux:Name="router"/>
-	<ResourceObject Key="router" Value="router"/>
 	
 	<ClientPanel>
 		<!-- TODO: Provide dismiss in UX, or way to set a value (`Active`) to `null` -->
@@ -22,9 +21,18 @@
 		<OnUserEvent EventName="dismissMenu" Handler="{dismissMenu}"/>
 		
 		<EdgeNavigator ux:Name="edge">
-			<AppMenu Edge="Left" ux:Name="menu" router="router"/>
+			<AppMenu Edge="Left" ux:Name="menu" router="router">
+				<ActivatingAnimation>
+					<Change block.Visibility="Visible"/>
+					<Change block.Color="#0005"/>
+				</ActivatingAnimation>
+			</AppMenu>
 
-			<ApplicationTop router="router"/>
+			<Panel>
+				<Rectangle Layer="Overlay" Visibility="Collapsed" Color="#0000" ux:Name="block"/>
+				
+				<ApplicationTop router="router"/>
+			</Panel>
 		</EdgeNavigator>
 	</ClientPanel>
 </App>
