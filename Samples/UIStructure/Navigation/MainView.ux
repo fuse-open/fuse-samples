@@ -1,5 +1,5 @@
 <App>
-	<Font File="../../Assets/fonts/MaterialIcons-Regular.ttf" ux:Global="MaterialIcons"/>
+	<Font File="Assets/MaterialIcons-Regular.ttf" ux:Global="MaterialIcons"/>
 	
 	<Router ux:Name="router"/>
 	<ResourceObject Key="router" Value="router"/>
