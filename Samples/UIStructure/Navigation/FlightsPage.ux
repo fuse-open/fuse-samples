@@ -1,0 +1,33 @@
+<Page Color="#EEE" ux:Class="FlightsPage">
+	<Router ux:Dependency="router"/>
+	
+	<TitleAreaContent>
+		<!-- create tabs to show active sub-page -->
+		<PageIndicator Navigation="flightNav" Alignment="Center">
+			<Panel ux:Template="Dot" Padding="10,2" HitTestMode="LocalBounds">
+				<Rectangle Layer="Background" Color="#0000" ux:Name="back"
+					StrokeWidth="1.5" StrokeColor="#888"/>
+				<Text Value="{Page Title}" FontSize="16" TextColor="#000" ux:Name="text"/>
+				<ActivatingAnimation>
+					<Change back.Color="#888"/>
+					<Change text.Color="#FFF"/>
+				</ActivatingAnimation>
+				<Clicked>
+					<NavigateTo Target="{Page Node}"/>
+				</Clicked>
+			</Panel>
+		</PageIndicator>
+	</TitleAreaContent>
+	
+	<!-- TODO: Navigator wasn't working here with the NavigateTo above -->
+	<!-- 	<Navigator ux:Name="flightNav" DefaultPath="arrivals"> -->
+	<PageControl Interaction="None" ux:Name="flightNav">
+		<Page Color="#EEF" Title="Arrivals" ux:Name="arrivals">
+			<Text Alignment="Center" Value="Listing of arrivals"/>
+		</Page>
+		
+		<Page Color="#EEC" Title="Departures" ux:Name="departures">
+			<Text Alignment="Center" Value="Listing of departures"/>
+		</Page>
+	</PageControl>
+</Page>

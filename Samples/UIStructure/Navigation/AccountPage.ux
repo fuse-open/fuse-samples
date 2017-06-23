@@ -1,0 +1,10 @@
+<Page ux:Class="AccountPage" Title="Your Account">
+	<JavaScript>
+		exports.userName = "Hannah"
+	</JavaScript>
+	<TitleAreaContent>
+		<ResourceString Key="Title" Value="{userName}'s Account"/>
+	</TitleAreaContent>
+	
+	<Text Alignment="Center" Value="Account information"/>
+</Page>

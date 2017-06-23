@@ -1,0 +1,18 @@
+<Page ux:Class="BookingPage" Title="View Booking">
+	<JavaScript>
+		var Observable = require( "FuseJS/Observable" )
+		exports.info = Observable()
+		
+		this.Parameter.onValueChanged( module, function(v) {
+			//load the info from a module (with fetch)
+			exports.info.value = {
+				id: v.id,
+			}
+		})
+	</JavaScript>
+	<TitleAreaContent>
+		<ResourceString Key="Title" Value="View {info.id}"/>
+	</TitleAreaContent>
+	
+	<Text Alignment="Center" Value="View Booking Page"/>
+</Page>

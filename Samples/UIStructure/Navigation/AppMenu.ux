@@ -1,0 +1,47 @@
+<DockPanel Color="#DDD" ux:Class="AppMenu">
+	<!-- TODO: Remove this, depends on removing that JavaScript part -->
+	<Router ux:Dependency="router"/>
+	
+	<!-- TODO: Remove need for this JavaScript, do routing with a UX action -->
+	<JavaScript>
+		exports.gotoOne = function() {
+			router.goto( "home", {}, "flights", {}, "arrivals" )
+		}
+		exports.gotoTwo = function() {
+			router.goto( "home", {}, "flights", {}, "departures" )
+		}
+		exports.gotoThree = function() {
+			router.goto( "home", {}, "bookings" )
+		}
+		exports.gotoAccount = function() {
+			router.push( "account" )
+		}
+	</JavaScript>
+	
+	<!-- logo / app name -->
+	<Panel Dock="Top">
+		<Text Value="✈️" Alignment="Center" Margin="0,0,0,10" FontSize="100"/>
+		<Text Value="AppName" Alignment="BottomCenter" FontSize="20"/>
+	</Panel>
+
+	<Panel ux:Class="AppMenuItem" HitTestMode="LocalBounds">
+		<string ux:Property="Icon"/>
+		<string ux:Property="Label"/>
+		<!-- TODO: Remove use of `object` here, introduce an appropriate type -->
+		<object ux:Property="Handler"/>
+		
+		<Text Alignment="CenterLeft" Width="32" Margin="4,0" Value="{Property this.Icon}"
+			Font="MaterialIcons" FontSize="32"/>
+		<Text Alignment="CenterLeft" Margin="40,0,10,0"  Value="{Property this.Label}"/>
+		<Clicked Handler="{Property this.Handler}">
+			<RaiseUserEvent EventName="dismissMenu"/>
+		</Clicked>
+	</Panel>
+	
+	<StackPanel ItemSpacing="5" Margin="0,30,0,0">
+		<AppMenuItem Icon="&#xE904;" Label="Arrivals" Handler="{gotoOne}"/>
+		<AppMenuItem Icon="&#xE905;" Label="Departures" Handler="{gotoTwo}"/>
+		<AppMenuItem Icon="&#xE896;" Label="Bookings" Handler="{gotoThree}"/>
+		<AppMenuItem Icon="&#xE7FD;" Label="Account" Handler="{gotoAccount}"/>
+	</StackPanel>
+</DockPanel>

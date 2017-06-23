@@ -1,0 +1,17 @@
+<!-- 
+	This class will be used to place things in the title area,
+	There must be a resource called `titleArea` that defines where this content is placed.
+-->
+<Container ux:Class="TitleAreaContent" Subtree="titleRegion">
+	<WhileActive Threshold="0.5" ux:Binding="Children">
+		<Change titleRegionRoot.IsEnabled="true"/>
+	</WhileActive>
+	
+	<AlternateRoot ParentNode="{Resource titleArea}" IsEnabled="false" ux:Name="titleRegionRoot"
+		ux:Binding="Children">
+		<Panel ux:Name="titleRegion">
+			<!-- show page title -->
+			<Text Value="{Resource Title}" Alignment="Center" FontSize="20"/>
+		</Panel>
+	</AlternateRoot>
+</Container>

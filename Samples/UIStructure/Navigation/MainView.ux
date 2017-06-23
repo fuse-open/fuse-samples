@@ -1,0 +1,30 @@
+<App>
+	<Font File="../../Assets/fonts/MaterialIcons-Regular.ttf" ux:Global="MaterialIcons"/>
+	
+	<Router ux:Name="router"/>
+	<ResourceObject Key="router" Value="router"/>
+	
+	<ClientPanel>
+		<!-- TODO: Provide dismiss in UX, or way to set a value (`Active`) to `null` -->
+		<JavaScript>
+			exports.dismissMenu = function() {
+				edge.dismiss()
+			}
+		</JavaScript>
+		
+		<!-- An event that opens the left edge menu -->
+		<UserEvent ux:Name="requestMenu"/>
+		<OnUserEvent EventName="requestMenu">
+			<Set edge.Active="menu"/>
+		</OnUserEvent>
+		
+		<UserEvent ux:Name="dismissMenu"/>
+		<OnUserEvent EventName="dismissMenu" Handler="{dismissMenu}"/>
+		
+		<EdgeNavigator ux:Name="edge">
+			<AppMenu Edge="Left" ux:Name="menu" router="router"/>
+
+			<ApplicationTop router="router"/>
+		</EdgeNavigator>
+	</ClientPanel>
+</App>
