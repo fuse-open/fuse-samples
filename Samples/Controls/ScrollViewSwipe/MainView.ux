@@ -1,0 +1,48 @@
+<App>
+	<ClientPanel>
+		<Panel>
+			<!-- the header to hide/reveal -->
+			<StackPanel Alignment="Top" Color="#AAA" ux:Name="headerPanel">
+				<Text Value="Header Area" FontSize="32" Margin="10"/>
+				<!-- reveal when user swipes or at the top of the ScrollView -->
+				<Translation Y="max({ReadProperty swipeAnim.Progress},
+					{ReadProperty scrollAnim.Progress})-1" RelativeTo="Size" ux:Name="topY"/>
+				<!-- a semi-translucent divider -->
+				<Panel Height="5" Color="#8888" ux:Name="divider"/>
+			</StackPanel>
+			
+			<!-- Scroll to top button -->
+			<Panel Alignment="BottomRight" Margin="10" Padding="10">
+				<Circle Layer="Background"  Color="#FFFB"/>
+				<Text Value="⬆" FontSize="45" Color="#000"/>
+				<Clicked>
+					<ScrollTo Target="scrollView" Position="0,0" />
+				</Clicked>
+			</Panel>
+			
+			<ScrollView ux:Name="scrollView">
+				<!-- support the swipe to reveal aspect -->
+				<SwipeGesture Direction="Down" LengthNode="headerPanel" ux:Name="swipeDown" Type="Active"/>
+				<SwipingAnimation Source="swipeDown" ux:Name="swipeAnim"/>
+				
+				<!-- support the scrolled to top aspect -->
+				<ScrollingAnimation From="height(headerPanel)" To="0" ux:Name="scrollAnim"/>
+				
+				<StackPanel>
+					<!-- reserve space for header panel, but let divider overlap -->
+					<Panel Height="height(headerPanel) - height(divider)" Color="#FFF"/>
+					
+					<!-- pattern to show scrolling -->
+					<LinearGradient StartPoint="0,0" EndPoint="1,1">	
+						<GradientStop Offset="0" Color="#AFA"/>
+						<GradientStop Offset="1" Color="#FAF"/>
+					</LinearGradient>
+					<Each Count="20">
+						<Rectangle Height="20" Color="#FFF"/>
+						<Panel Height="200"/>
+					</Each>
+				</StackPanel>
+			</ScrollView>
+		</Panel>
+	</ClientPanel>
+</App>

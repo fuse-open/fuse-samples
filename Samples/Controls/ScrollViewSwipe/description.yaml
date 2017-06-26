@@ -1,0 +1,22 @@
+name: Scroll swipe to reveal header
+desc: Creates a swipe-to-reveal header in a ScrollView.
+api:
+    -
+        class: Fuse.Gestures.SwipeGesture
+        desc: Reveals a header when the user swipes down in a ScrollView.
+    -
+        class: Fuse.Gestures.SwipingAnimation
+        desc: Reveals a header when the user swipes down in a ScrollView.
+    -
+        class: Fuse.Triggers.ScrollingAnimation
+        desc: Reveals a header at the top the ScrollView, or when swiping down.
+    -
+        class: Fuse.Translation
+        desc: Combines a `ScrollingAnimation` and `SwipingAnimation` to reveal a top header.
+    -
+        expression: max
+        desc: Combines a `ScrollingAnimation` and `SwipingAnimation` to reveal a top header.
+    -
+        expression: height
+        desc: Reserves space in a `ScrollView` for a header panel.
+        
