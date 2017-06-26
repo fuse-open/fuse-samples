@@ -51,6 +51,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
     <td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
     <td><a href="Samples/Visualization/Vectors">Vectors</a></td>
+    <td><a href="Samples/Visualization/Charting">Charting</a></td>
   </tr>
 </table>
 
