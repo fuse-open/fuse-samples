@@ -77,6 +77,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   <tr>
     <td><a href="Samples/RelativeTo">RelativeTo</a></td>
     <td><a href="Samples/Animation/TimelineWrap">Timeline Wrap</a></td>
+    <td><a href="Samples/Controls/ScrollViewSwipe">Scroll swipe to reveal header</a></td>
   </tr>
 </table>
 
