@@ -1,18 +1,33 @@
-name: Navigator Demo App
-desc: This example demonstrates how to combine several pages and components into a single application. It simulates a login/logout process.
-api: 
+name: Application navigation
+desc: Multi-level application navigation with
+api:
+    -   
+        class: Fuse.AlternateRoot
+        desc: Pages place content in a common title area
+    -
+        class: Fuse.Resources.ResourceObject
+        desc: Assigns a node to a resource for use later in an `AlternateRoot`.
+    -
+        class: Fuse.Triggers.Actions.RaiseUserEvent
+        desc: Coordinates display and dismissal of side menu
+    -
+        class: Fuse.Triggers.OnUserEvent
+        desc: Coordinates display and dismissal of side menu
+    -
+        class: Fuse.UserEvent
+        desc: Coordinates display and dismissal of side menu
+    -
+        class: Fuse.Navigation.Router
+        desc: Navigation control for a multi-level application
     -
         class: Fuse.Controls.Navigator
-        desc: Used to structure the navigation between several top-level pages.
+        desc: Navigation between application pages
     -
         class: Fuse.Controls.PageControl
-        desc: Used for section navigation between several related pages.
-    - 
-        class: Fuse.Navigation.Router
-        desc: Coordinates a multi-level navigation with a `Navigator` and `PageControl`
+        desc: Navigation between application pages
     -
-        class: Fuse.Navigation.WhileCanGoBack
-        desc: Toggles between a back button and menu icon in the title bar.
-    -
-        class: Fuse.Controls.EdgeNavigator
-        desc: Provides a left menu to access various app pages.
+        class: Fuse.Controls.PageIndicator
+        desc: Dynamic action bar for navigation in application
+    -   
+        class: Fuse.Controls.Container
+        desc: Combined with AlternateRoot to display page specific elements in the title bar

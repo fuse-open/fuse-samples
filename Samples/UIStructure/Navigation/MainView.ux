@@ -1,77 +1,37 @@
 <App>
-	<Router ux:Name="router" />
-
-	<Text ux:Class="Label" FontSize="24"/>
+	<Font File="Assets/MaterialIcons-Regular.ttf" ux:Global="MaterialIcons"/>
 	
-	<Panel ux:Class="TitleBar" Color="#AAA" Padding="4"/>
-
-	<Rectangle ux:Class="ListIcon" BoxSizing="FillAspect" Aspect="1" Color="Blue"
-		CornerRadius="2" Margin="3"/>
-	<JavaScript>
-		var state = require("App/state.js")
-		exports.loading = state.loading
-		exports.login = state.login
-		
-		exports.goBack = function() {
-			router.goBack()
-		}
-		exports.goChannels = function() {
-			router.goto( "home", {}, "channels", {}, "list", {} )
-			TheEdge.dismiss()
-		}
-		exports.goContacts = function() {
-			router.goto( "home", {}, "contacts", {}, "list", {} )
-			TheEdge.dismiss()
-		}
-		exports.goSettings = function() {
-			router.goto( "home", {}, "settings", {} )
-			TheEdge.dismiss()
-		}
-		
-		exports.openMenu = function() {
-			console.log( "Goto Menu" )
-			TheEdge.open( "Left" )
-		}
-
-		//never true in this demo, but shows how to navigate to login if the user hasn't done so yet.
-		if (exports.login.value == false) {
-			router.goto( "login", {} )
-		}
-	</JavaScript>
+	<Router ux:Name="router"/>
+	
 	<ClientPanel>
-		<WhileTrue Value="{loading}">
-			<Panel Layer="Overlay" HitTestMode="LocalBounds" ux:Name="BlockPanel">
-				<Circle Width="100" Height="100" Alignment="Center" 
-					LengthAngleDegrees="90" StartAngleDegrees="0">
-					<Stroke Width="10" Color="0.5,0.55,0.65,1"/>
-					<WhileVisible>
-						<Spin Frequency="0.5"/>
-					</WhileVisible>
-				</Circle>
-			</Panel>
-		</WhileTrue>
+		<JavaScript>
+			exports.dismissMenu = function() {
+				edge.dismiss()
+			}
+		</JavaScript>
 		
-		<EdgeNavigator ux:Name="TheEdge">
-			<WhileTrue Value="{login}">
-				<StackPanel Edge="Left" Color="#BAC" ItemSpacing="10" Padding="20">
-					<Image File="Assets/zen.png" StretchSizing="Zero"/>
-					
-					<Button Text="Channels" Clicked="{goChannels}"/>
-					<Button Text="Contacts" Clicked="{goContacts}"/>
-					<Button Text="Settings" Clicked="{goSettings}"/>
-				</StackPanel>
-			</WhileTrue>
+		<!-- An event that opens the left edge menu -->
+		<UserEvent ux:Name="requestMenu"/>
+		<OnUserEvent EventName="requestMenu">
+			<Set edge.Active="menu"/>
+		</OnUserEvent>
+		
+		<UserEvent ux:Name="dismissMenu"/>
+		<OnUserEvent EventName="dismissMenu" Handler="{dismissMenu}"/>
+		
+		<EdgeNavigator ux:Name="edge">
+			<AppMenu Edge="Left" ux:Name="menu" router="router">
+				<ActivatingAnimation>
+					<Change block.Visibility="Visible"/>
+					<Change block.Color="#0005"/>
+				</ActivatingAnimation>
+			</AppMenu>
 
-			<Panel ux:Name="MainNavPanel">
-				<DeactivatingAnimation>
-					<Change MainNavPanel.Opacity="0.5"/>
-					<Scale Factor="0.8"/>
-					<Move X="0.1" RelativeTo="ParentSize"/>
-				</DeactivatingAnimation>
+			<Panel>
+				<Rectangle Layer="Overlay" Visibility="Collapsed" Color="#0000" ux:Name="block"/>
 				
-				<ux:Include File="MainNavigator.ux"/>
+				<ApplicationTop router="router"/>
 			</Panel>
 		</EdgeNavigator>
 	</ClientPanel>
 </App>
-

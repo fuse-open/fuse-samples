@@ -1,0 +1,40 @@
+<Page Color="#CCC" Title="Bookings" ux:Class="BookingsPage">
+	<Router ux:Dependency="router"/>
+
+	<JavaScript>
+		var Observable = require( "FuseJS/Observable" )
+		exports.order = function() {
+			router.push( "createBooking" )
+		}
+		
+		exports.bookings = Observable()
+		for (var i=0; i < 10; ++i ) {
+			exports.bookings.add( {
+				id: Math.floor( Math.random() * 100000 ),
+				title: "Booking @" + i,
+			})
+		}
+		
+		exports.view = function(args) {
+			router.push( "booking", { id: args.data.id } )
+		}
+	</JavaScript>
+	<TitleAreaContent>
+		<Panel Alignment="Right" Padding="5,0" HitTestMode="LocalBounds" Clicked="{order}">
+			<Text Value="&#xE854;" Alignment="Center" Font="MaterialIcons" FontSize="28"/>
+		</Panel>
+	</TitleAreaContent>
+	
+	<ScrollView>
+		<StackPanel ItemSpacing="5" Margin="0,5">
+			<Each Items="{bookings}">
+				<DockPanel HitTestMode="LocalBounds" Clicked="{view}" Color="#FFF">
+					<Text Value="#{id}" FontSize="32" Dock="Left" Alignment="Center"/>
+					<Text Value="{title}" Alignment="Center" Margin="10"/>
+					
+					<Text Dock="Right" Margin="5" Value="&#xE5CC;" Font="MaterialIcons" FontSize="40" Alignment="Center"/>
+				</DockPanel>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+</Page>

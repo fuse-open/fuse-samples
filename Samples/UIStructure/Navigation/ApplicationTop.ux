@@ -1,0 +1,75 @@
+<DockPanel ux:Class="ApplicationTop">
+	<Router ux:Dependency="router"/>
+	
+	<!-- 
+		The title is partially static and dynamic:
+		
+			- The Menu or Back button is on all pages and in the code here
+			- Each page will use `TitleAreaContent` to add a title, or other controls into this panel.
+	-->
+	<Panel Dock="Top" ux:Name="titleArea" Height="40" Color="#DDD">
+		<!-- Include Back or Menu navigation -->
+		<Panel Alignment="Left" Padding="5,0" HitTestMode="LocalBounds" Navigation="router">
+			<WhileCanGoBack>
+				<Text Value="&#xE5C4;" Alignment="Center" Font="MaterialIcons" FontSize="28"/>
+				<Clicked>
+					<GoBack/>
+				</Clicked>
+			</WhileCanGoBack>
+			<WhileCanGoBack Invert="true">
+				<Text Value="&#xE5D2;" Alignment="Center" Font="MaterialIcons" FontSize="28"/>
+				<Clicked>
+					<RaiseUserEvent EventName="requestMenu"/>
+				</Clicked>
+			</WhileCanGoBack>
+		</Panel>
+	</Panel>
+	<!-- The `TitleAreaContent` finds the panel via a resource binding -->
+	<ResourceObject Key="titleArea" Value="titleArea"/>
+
+	<!-- 
+		Two levels of navigation are used. 
+		
+		The "home" path contains the bottom action bar to quickly navigate between top-level sections. Any page that wishes to have this action bar should reside inside "home".
+		
+		The other pages will not have this action bar, but will still have the common titleArea.
+	-->
+	<Navigator DefaultPath="home">
+		<CreateBookingPage ux:Template="createBooking"/>
+		<AccountPage ux:Template="account"/>
+		<BookingPage ux:Template="booking"/>
+		
+		<DockPanel ux:Name="home">
+			<PageControl Interaction="None" ux:Name="homeNav">
+				<FlightsPage ux:Name="flights" router="router">
+					<!-- use resources to adjust icon in the bottom action bar -->
+					<string ux:Key="Icon" ux:Value="&#xE539;"/>
+					<string ux:Key="ShortTitle" ux:Value="Flights"/>
+				</FlightsPage>
+				<BookingsPage ux:Name="bookings" router="router">
+					<string ux:Key="Icon" ux:Value="&#xE896;"/>
+					<string ux:Key="ShortTitle" ux:Value="Bookings"/>
+				</BookingsPage>
+			</PageControl>
+
+			<!-- The icon/page listing at the bottom. Here we're using a PageIndicator to make the creation dynamic. Though you could also hard-code the display here and use a `Navigator` above instead of a `PageControl` -->
+			<PageIndicator Navigation="homeNav" Dock="Bottom" Color="#DDD">
+				<GridLayout RowCount="1" ChildOrder="ColumnMajor"/>
+
+				<StackPanel ux:Template="Dot" Alignment="Center" ItemSpacing="5" Margin="5">
+					<Text Value="{Page Icon}" Font="MaterialIcons" FontSize="40"
+						Color="#888" TextAlignment="Center" ux:Name="icon"/>
+					<Text Value="{Page ShortTitle}" FontSize="14" 
+						Color="#888" TextAlignment="Center" ux:Name="label"/>
+					<ActivatingAnimation>
+						<Change icon.Color="#468"/>
+						<Change label.Color="#468"/>
+					</ActivatingAnimation>
+					<Clicked>
+						<NavigateTo Target="{Page Visual}"/>
+					</Clicked>
+				</StackPanel>
+			</PageIndicator>
+		</DockPanel>
+	</Navigator>
+</DockPanel>

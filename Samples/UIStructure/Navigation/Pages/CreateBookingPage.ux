@@ -1,0 +1,5 @@
+<Page ux:Class="CreateBookingPage" Title="Create Booking">
+	<TitleAreaContent/>
+	
+	<Text Alignment="Center" Value="Create Booking Page"/>
+</Page>

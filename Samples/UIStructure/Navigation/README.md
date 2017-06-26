@@ -1,11 +1,24 @@
-# Navigator Demo App
+# Navigation
 
-This example demonstrates how to combine several pages and components into a single application. The `Navigator` is used for routing, with external data loading being simulated in the JavaScript. _The app is non-functional beyond just navigating between pages._
+Multi-level application navigation using an edge menu, a title area, an action bar.
 
-The JS files in the `App` directory are part of the global application state and logic. They are listed as `Bundle` in the `.unoproj` file. Each place that requires them will get a same copy of that module, thus enabled the sharing of data.
 
-The `state.js` file exports a `loading` property. This is used by other pages to report that they are logically loading some data. It is used in a trigger on the main page to display a loading animation. In this example the loading delays are artificial; in a real app you'd set/reset this flag will fetching external data.
+## Structure
 
-The various navigator pages use a combination of standard and custom animations per page. The result in this app is a bit exaggerated as a means to show off the options.
+The first navigation level is created by a `EdgeNavigator` in `MainView.ux` to control the side menu. This doesn't participate in the `Router` navigation but instead uses signals.
 
-The top-level is wrapped in an `EdgeNavigator` to provide a left swipe-in menu.
+`ApplicationTop.ux` creates the next levels of animation, it is the root level for the `Router`. All pages have a title bar; those in `home` have an additional action bar at the bottom.
+
+The application uses `goto` to get to any page within `home` and `push` to get to all others. This limits the overall application depth to avoid confusing the user.
+
+
+## Flights Page sub-navigation
+
+The `FlightsPage.ux` has another level of navigation for "arrivals" and "departures". This is controlled via the router but exposed as more of a filter to the user at the top of the page. By making this proper router paths the side menu is able to navigate directly to either sub-page.
+
+
+## Bookings sub-pages
+
+The `BookingsPage.ux` displays a list of bookings (in a real app you'd obviously want to load this list). A top-right corner icon uses the router to `push` the `createBooking` page. Clicking on individual items will `push` the `booking` page for that item.
+
+Note that only the `id` is passed to the `booking` page. That page is responsible for looking up information based on that id, usually via a common JavaScript module.
