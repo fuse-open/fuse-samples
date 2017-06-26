@@ -19,8 +19,6 @@
 		</PageIndicator>
 	</TitleAreaContent>
 	
-	<!-- TODO: Navigator wasn't working here with the NavigateTo above -->
-	<!-- 	<Navigator ux:Name="flightNav" DefaultPath="arrivals"> -->
 	<PageControl Interaction="None" ux:Name="flightNav">
 		<Page Color="#EEF" Title="Arrivals" ux:Name="arrivals">
 			<Text Alignment="Center" Value="Listing of arrivals"/>

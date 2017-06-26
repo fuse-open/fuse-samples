@@ -4,7 +4,6 @@
 	<Router ux:Name="router"/>
 	
 	<ClientPanel>
-		<!-- TODO: Provide dismiss in UX, or way to set a value (`Active`) to `null` -->
 		<JavaScript>
 			exports.dismissMenu = function() {
 				edge.dismiss()

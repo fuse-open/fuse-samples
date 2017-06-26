@@ -1,8 +1,6 @@
 <DockPanel Color="#DDD" ux:Class="AppMenu">
-	<!-- TODO: Remove this, depends on removing that JavaScript part -->
 	<Router ux:Dependency="router"/>
 	
-	<!-- TODO: Remove need for this JavaScript, do routing with a UX action -->
 	<JavaScript>
 		exports.gotoOne = function() {
 			router.goto( "home", {}, "flights", {}, "arrivals" )
@@ -27,7 +25,6 @@
 	<Panel ux:Class="AppMenuItem" HitTestMode="LocalBounds">
 		<string ux:Property="Icon"/>
 		<string ux:Property="Label"/>
-		<!-- TODO: Remove use of `object` here, introduce an appropriate type -->
 		<object ux:Property="Handler"/>
 		
 		<Text Alignment="CenterLeft" Width="32" Margin="4,0" Value="{Property this.Icon}"
