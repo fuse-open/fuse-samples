@@ -1,0 +1,63 @@
+<ChartPage Title="Negative values with in-plot ticks" File="NegHorzLine" ux:Class="NegHorzLine" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		exports.pointsA = Observable( -10, -50,-20, -30, -35 )
+		exports.pointsB = Observable( -5, -40,-30, -20, -45 )
+		
+		function randomItems() {
+			var items = []
+			for (var i =0; i < 5; ++i) {
+				items.push( -Math.random() * 50 )
+			}
+			return items
+		}
+		
+		exports.random = function() {
+			exports.pointsA.replaceAll( randomItems() )
+			exports.pointsB.replaceAll( randomItems() )
+		}
+	</JavaScript>
+	<AttractorConfig Unit="Normalized" Easing="CubicInOut" Duration="0.3" ux:Global="plotAttract"/>
+	<c:Plot RangePadding="0.1">
+		<c:DataSeries Data="{pointsA}"/>
+		<c:DataSeries Data="{pointsB}"/>
+				
+		<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
+		
+		<Panel>
+			<c:PlotData SeriesIndex="0">
+				<c:PlotPoint Width="5%" Height="5%" Attractor="plotAttract">
+					<RegularPolygon Sides="3" Color="#338"/>
+				</c:PlotPoint>
+			</c:PlotData>
+			
+			<Curve StrokeWidth="2" StrokeColor="#77A">
+				<c:PlotData SeriesIndex="0">
+					<c:PlotCurvePoint Attractor="plotAttract"/>
+				</c:PlotData>
+			</Curve>
+		</Panel>
+
+		<Panel>
+			<c:PlotData SeriesIndex="1">
+				<c:PlotPoint Width="5%" Height="5%" Attractor="plotAttract">
+					<RegularPolygon Sides="5" Color="#383"/>
+				</c:PlotPoint>
+			</c:PlotData>
+			
+			<Curve StrokeWidth="2" StrokeColor="#7A7">
+				<c:PlotData SeriesIndex="1">
+					<c:PlotCurvePoint Attractor="plotAttract"/>
+				</c:PlotData>
+			</Curve>
+		</Panel>
+		
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#8888"/>
+		
+		<c:PlotAxis Axis="Y" ContentPosition="Anchor" SkipEnds="1,0">
+			<Text ux:Template="Label" Alignment="TopCenter" FontSize="30" Color="#AAA" 
+				Value="{Plot axis.value}" Margin="5"/>
+		</c:PlotAxis>
+	</c:Plot>
+	
+</ChartPage>

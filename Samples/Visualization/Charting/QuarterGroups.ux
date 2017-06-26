@@ -1,0 +1,88 @@
+<ChartPage ux:Class="QuarterGroups" File="QuarterGroups" 
+	Title="Monthly data grouped into Quarters" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function Item( value, quarter, month ) {
+			this.value = value
+			this.label = quarter
+		}
+		exports.data = Observable( 
+			new Item(7, "Q1", "January"),
+			new Item(20, "Q1", "February"),
+			new Item(13, "Q1", "March"),
+			new Item(27, "Q2", "April"),
+			new Item(15, "Q2", "May"),
+			new Item(5, "Q2", "June"),
+			new Item(50, "Q3", "July"),
+			new Item(20, "Q3", "August"),
+			new Item(30, "Q3", "September"),
+			new Item(35, "Q4", "October"),
+			new Item(15, "Q4", "November"),
+			new Item(20, "Q4", "December"),
+			new Item(21, "Q1", "January")
+		);
+
+		exports.incrOffset = function() {
+			plot.stepOffset(1)
+		}
+		exports.decrOffset = function() {
+			plot.stepOffset(-1)
+		}
+	</JavaScript>
+	<!-- Refer to the README.md to understand why `DataExtend` is used -->
+	<c:Plot RangePadding="0.1" Margin="20,10,50,10" ux:Name="plot" DataExtend="3,1">
+		<c:DataSeries Data="{data}"/>
+
+		<GridLayout Columns="50,20,1*" Rows="1*,10,20"/>
+	
+		<c:PlotAxis Row="0" Column="0" Axis="Y">
+			<Text ux:Template="Label" Alignment="CenterRight" 
+				Value="{Plot axis.value}k" FontSize="20" Color="#000"/>
+		</c:PlotAxis>
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000" AxisLine="1"/>
+		
+		<Panel>
+			<c:PlotArea YStepSize="40" XStepSize="100/3"/>
+			
+			<StackPanel Orientation="Horizontal" Alignment="TopRight" ItemSpacing="10">
+				<ChartButton Label="◀" Clicked="{decrOffset}" Padding="2,0" ux:Name="dataPrev"
+					IsEnabled="{Plot hasPrev}"/>
+				<ChartButton Label="▶" Clicked="{incrOffset}" Padding="2,0" ux:Name="dataNext"
+					IsEnabled="{Plot hasNext}"/>
+			</StackPanel>
+		
+			<Panel ClipToBounds="true">
+				<c:PlotData>
+					<c:PlotPoint Width="10" Height="10">
+						<Circle Color="#FFF" StrokeColor="#000" StrokeWidth="1.5"/>
+					</c:PlotPoint>
+				</c:PlotData>
+			
+				<Curve>
+					<Stroke Width="5" Color="#000"/>
+					<Stroke Width="2" Color="#FFF"/>
+					<c:PlotData>
+						<c:PlotCurvePoint/>
+					</c:PlotData>
+				</Curve>
+			</Panel>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"/>
+		<c:PlotAxis Row="2" Column="2" Axis="X" Group="3" ContentPosition="Anchor" 
+			ClipToBounds="true" ExcludeExtend="false">
+			<Panel ux:Template="Label" Padding="2,0">
+				<Text TextAlignment="Center" FontSize="20" Color="#000" Value="{Plot axis.label}"/>
+				<Rectangle Color="#DEF"/>
+				
+				<!-- Obscure visual if the label is partially out-of-view -->
+				<WhileTrue Value="({Plot axis.index} &lt; {Plot offset}) 
+					|| ( ({Plot axis.index}+3) &gt; ({Plot offset} + {Plot count}))">
+					<Change Label.Opacity="0.4"/>
+				</WhileTrue>
+			</Panel>
+		</c:PlotAxis>
+
+	</c:Plot>
+</ChartPage>

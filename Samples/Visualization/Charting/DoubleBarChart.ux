@@ -1,0 +1,73 @@
+<ChartPage Title="2-series with side-by-side bars" File="DoubeBarChart" ux:Class="DoubleBarChart" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		function Item( x, y ) {
+			this.x = x
+			this.y = y
+		}
+		
+		function gauss( x, u ) {
+			var sigma = Math.sqrt(u)
+			var a = 1 / (sigma * Math.sqrt(2 * Math.PI))
+			var b = 0
+			var c = sigma
+			return a * Math.pow( Math.E, -(x - b)*(x-b) / (2*c*c) )
+		}
+		
+		function gaussItems( o, u, f ) {
+			var items = []
+			for (var i=-7; i <= 7; ++i ) {
+				items.push( new Item(i, gauss(i + o, u)*f ) )
+			}
+			return items
+		}
+		
+		exports.data1 = Observable()
+		exports.data2 = Observable()
+		exports.data1.replaceAll( gaussItems( 0, 7, 1 ) )
+		exports.data2.replaceAll( gaussItems( 5, 15, 0.5 ) )
+		
+		exports.random = function() {
+			exports.data1.replaceAll( gaussItems( Math.random() * 6 - 3, Math.random() * 6 + 4, 1 ) )
+			exports.data2.replaceAll( gaussItems( Math.random() * 6 + 1, Math.random() * 8 + 11, 0.5 ) )
+		}
+	</JavaScript>
+	<c:Plot Margin="5,20,20,10">
+		<c:DataSeries Data="{data1}" ux:Name="series0"/>
+		<c:DataSeries Data="{data2}" ux:Name="series1"/>
+
+		<GridLayout Columns="auto,10,5,1*" Rows="1*,5,10,20"/>
+		
+		<c:PlotAxis Row="0" Column="0" Axis="Y" Margin="0,0,4,0">
+			<Text ux:Template="Label" Alignment="CenterRight" FontSize="15" 
+				Color="#000" Value="{Plot axis.value}"/>
+		</c:PlotAxis>
+		<c:PlotTicks Row="0" Column="1" Axis="Y" StrokeWidth="2" StrokeColor="#004"/>
+		
+		<AttractorConfig Unit="Normalized" Type="Elastic" Duration="0.3" ux:Global="plotAttract"/>
+		
+		<Panel Row="0" Column="3">
+			<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
+			
+			<!-- PlotBar isn't aware that multiple series are being plotted. It will always use the full width of the graph step along the axis. We use a child rectangle with a relative width and position to position the two bars beside each other.  -->
+			<c:PlotData Series="series0">
+				<c:PlotBar Attractor="plotAttract">
+					<Rectangle Width="40%" X="0%" Color="#4A4"/>
+				</c:PlotBar>
+			</c:PlotData>
+			<c:PlotData Series="series1">
+				<c:PlotBar Attractor="plotAttract">
+					<Rectangle Width="40%" X="50%" Color="#4AA"/>
+				</c:PlotBar>
+			</c:PlotData>
+		</Panel>
+		
+		<c:PlotTicks Row="2" Column="3" Axis="X" StrokeWidth="2" StrokeColor="#004"/>
+		<c:PlotAxis Row="3" Column="3" Axis="X">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="15" 
+				Color="#000" Value="{Plot axis.value}"/>
+		</c:PlotAxis>
+		
+	</c:Plot>
+		
+</ChartPage>

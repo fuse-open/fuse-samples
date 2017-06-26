@@ -1,0 +1,66 @@
+<ChartPage Title="Multi-series with pos/neg styling" File="MixedBarChart" ux:Class="MixedBarChart" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		function Item( y, label ) {
+			this.y = y
+			this.label = label
+		}
+		
+		exports.data1 = Observable()
+		exports.data2 = Observable()
+		
+		exports.random = function() {
+			exports.data1.clear()
+			exports.data2.clear()
+			for (var i=0; i <= 10; ++i ) {
+				var y = (Math.random() + 0.2) * 100 * (Math.random() > 0.5 ? -1 : 1)
+				exports.data1.add( new Item( y, "#" + i ) )
+				exports.data2.add( { y: y * (Math.random() * 0.8 + 0.2) } )
+			}
+		}
+		
+		exports.random()
+	</JavaScript>
+	<c:Plot Margin="5,20,20,10" YAxisSteps="8">
+		<c:DataSeries Data="{data1}"/>
+		<c:DataSeries Data="{data2}"/>
+
+		<ChartButton Layer="Overlay" Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
+		
+		<AttractorConfig Unit="Normalized" Easing="Linear" Duration="0.2" ux:Global="plotAttract"/>
+		<AttractorConfig Unit="Points" Easing="Linear" Duration="0.2" ux:Global="cornerAttract"/>
+		<AttractorConfig Unit="Normalized" Type="Elastic" Duration="0.5" ux:Global="lazyAttract"/>
+		
+		<GridLayout Columns="auto,10,5,1*" Rows="1*,5,10,20"/>
+		
+		<c:PlotAxis Row="0" Column="0" Axis="Y" Margin="0,0,4,0">
+			<Text ux:Template="Label" Alignment="CenterRight" FontSize="15" 
+				Color="#000" Value="{Plot axis.value}€"/>
+		</c:PlotAxis>
+		<c:PlotTicks Row="0" Column="1" Axis="Y" StrokeWidth="2" StrokeColor="#004"/>
+		
+		<Panel Row="0" Column="3">
+			<c:PlotData SeriesIndex="1">
+				<c:PlotBar Attractor="lazyAttract">
+					<Rectangle Alignment="VerticalCenter" Color="#0088" CornerRadius="5" Height="5"/>
+				</c:PlotBar>
+			</c:PlotData>
+			<c:PlotData SeriesIndex="0">
+				<c:PlotBar Attractor="plotAttract">
+					<Rectangle Alignment="HorizontalCenter" Width="60%"
+						Color="attract(({Plot data.source.y} &lt; {Plot baseline.y}) ? #DAA : #ADA,plotAttract)" 
+						StrokeColor="({Plot data.source.y} &lt; {Plot baseline.y}) ? #800 : #080" StrokeWidth="2"
+						CornerRadius="attract(
+							({Plot data.source.y} &lt; {Plot baseline.y}) ? (0,0,20,20) : (20,20,0,0), cornerAttract)"/>
+				</c:PlotBar>
+			</c:PlotData>
+		</Panel>
+		
+		<c:PlotTicks Row="2" Column="3" Axis="X" StrokeWidth="2" StrokeColor="#004"/>
+		<c:PlotAxis Row="3" Column="3" Axis="X">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="15" 
+				Color="#000" Value="{Plot axis.label}"/>
+		</c:PlotAxis>
+		
+	</c:Plot>
+</ChartPage>

@@ -1,0 +1,86 @@
+<ChartPage Title="4-d scatter plot" File="ScatterPlot" ux:Class="ScatterPlot" xmlns:p="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function Item(x,y,z,w) {
+			this.x = x
+			this.y = y
+			this.z = z
+			this.w = w
+		}
+		exports.items = Observable()
+		
+		function genRandom() {
+			var items = []
+			var count = 25
+			for (var i=0; i < count; ++i) {
+				if (Math.random() > 0.5) {
+					continue
+				}
+				
+				var base = i / count
+				items.push( new Item( Math.random() * 10 + base * 90, Math.random() * 300 + base*700, 
+					Math.random(), Math.random() ) )
+			}
+			return items
+		}
+		
+		exports.random = function() {
+			exports.items.replaceAll( genRandom() )
+		}
+		
+		exports.random()
+	</JavaScript>
+	<p:Plot Margin="10" ux:Name="p" XAxisMetric="Range">
+		<p:DataSeries Data="{items}"/>
+		<!-- Adjust the number of  divisions based on the available space -->
+		<p:PlotArea XStepSize="56" YStepSize="28"/>
+
+		<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
+
+		<AttractorConfig Unit="Normalized" Easing="SinusoidalInOut" Duration="1.0" ux:Global="moveAttract"/>
+		<AttractorConfig Unit="Normalized" Easing="BackOut" Duration="1.5" ux:Global="sizeAttract"/>
+		
+		<p:PlotData>
+			<!-- The z-axis is normalized over the entire input, from 0...1. Since we don't want the circle taking up the entire display we only multiply b 8%, meaning the biggest input data will be 8% of the parent's size. 
+			
+			An soon-to-be-released `lerp` operation will simplify the `Color` expression to:
+				lerp(#8F8A,#F88A, attract({Plot data.screenRel.w},sizeAttract))
+			-->
+			<Circle 
+				Width="attract({Plot data.screenRel.z},sizeAttract) * 8%" 
+				Height="attract({Plot data.screenRel.z}, sizeAttract) * 8%" 
+				X="attract({Plot data.screenRel.x},moveAttract) * 100%" 
+				Y="attract({Plot data.screenRel.y},moveAttract) * 100%"
+				Anchor="50%,50%" 
+				StrokeWidth="1" StrokeColor="#000" 
+				Color="#8F8A * attract({Plot data.screenRel.w},sizeAttract) 
+					+ #F88A * (1-attract({Plot data.screenRel.w},sizeAttract))"
+				ux:Name="c">
+				<RemovingAnimation>
+					<Scale Factor="0" Duration="1.0"/>
+				</RemovingAnimation>
+				<AddingAnimation>
+					<!-- Don't use 0 here, it's a defect they will sometimes cause it to not appear -->
+					<Scale Factor="0.01" Duration="1.5"/>
+				</AddingAnimation>
+			</Circle>
+		</p:PlotData>
+		
+		<!-- Create X,Y grid lines over whole chart -->
+		<p:PlotTicks Axis="Both" StrokeWidth="1" StrokeColor="#888"/>
+		
+		<!-- Label the Y lines -->
+		<p:PlotAxis Axis="Y" ContentPosition="Anchor" SkipEnds="1,0">
+			<Text ux:Template="Label" Alignment="TopLeft" FontSize="14" Color="#444" Value="{Plot axis.value}" Margin="2"/>
+		</p:PlotAxis>
+		
+		<!-- Label the X lines -->
+		<p:PlotAxis Axis="X" ContentPosition="Anchor" SkipEnds="1,0">
+			<Panel ux:Template="Label" Alignment="BottomLeft" Anchor="100%,100%" Padding="5,2">
+				<Text FontSize="14" Color="#444" Value="{Plot axis.value}"/>
+			</Panel>
+		</p:PlotAxis>
+		
+	</p:Plot>
+</ChartPage>
