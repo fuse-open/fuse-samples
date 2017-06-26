@@ -1,0 +1,35 @@
+<Item ux:Class="ItemDecoratedCurve" Title="Decorated Curve">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		function DataPoint( x, y, size ) {
+			return {
+				x: x,
+				y: y,
+				size: size,
+			}
+		}
+		
+		// using a small object for each point
+		exports.locs = Observable(
+			new DataPoint( 0, 0.4, 1 ),
+			new DataPoint( 0.2, 0.8, 3 ),
+			new DataPoint( 0.4, 0.1, 2 ),
+			new DataPoint( 0.6, 0.9, 1 ),
+			new DataPoint( 0.8, 0.5, 4 ),
+			new DataPoint( 1, 0.4, 2 )
+		)
+	</JavaScript>
+	<Panel Height="200" Padding="10,0">
+		<Each Items="{locs}">
+			<Circle StrokeWidth="2" StrokeColor="#000" Color="#FFF"
+				X="{x} * 100%" Y="{y} * 100%" Anchor="50%,50%"
+				Width="{size} * 10" Height="{size} * 10"	/>
+		</Each>
+		<Curve StrokeWidth="2" StrokeColor="#000" Height="200">
+			<Each Items="{locs}">
+				<CurvePoint X="{x}" Y="{y}"/>
+			</Each>
+		</Curve>
+	</Panel>
+</Item>

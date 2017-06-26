@@ -1,0 +1,28 @@
+<Item ux:Class="ItemPathJS" Title="JavaScript Path">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+		
+		var rows = 4
+		var cols = 20
+
+		//draw a full rectangle
+		var path = "M 0 0 h 100 v 100 h -100 v -100 z"
+		
+		var cellHeight = 100 / rows
+		var cellWidth = 100 / cols
+		
+		//draw cells in opposite stroke direction to subtract them
+		for (var x=0; x < cols; ++x) {
+			for (var y =0; y < rows; ++y) {
+				if ( (x%2) == (y%2) ) {
+					continue
+				}
+				path += "M " + ((x/cols) * 100) + " " + ((y/rows) * 100)
+				path += "v " + cellHeight + " h " + cellWidth + " v -" + cellHeight + " h -" + cellWidth + " z"
+			}
+		}
+		
+		exports.path = path
+	</JavaScript>
+	<Path Data="{path}" Color="#444" Height="200" StretchMode="Fill"/>
+</Item>

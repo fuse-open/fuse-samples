@@ -1,0 +1,18 @@
+name: Vector Components
+desc: Several ways to use the various vector components.
+api:
+    -
+        class: Fuse.Controls.Curve
+        desc: A straight line, curved line with decoration, and tangent to adjust shape.
+    -
+        class: Fuse.Controls.Arc
+        desc: Draws a speed gauge style progress control.
+    -
+        class: Fuse.Controls.Ellipse
+        desc: Part of a speed gauge style progress control.
+    -
+        class: Fuse.Controls.Path
+        desc: A copied SVG path and a JavaScript generated checkboard shape.
+    -
+        class: Fuse.Controls.CurvePoint
+        desc: Line points bound to JavaScript arrays and objects to form a line.
