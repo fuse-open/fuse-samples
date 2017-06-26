@@ -50,6 +50,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
   </tr>
   <tr>
     <td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
+    <td><a href="Samples/Visualization/Vectors">Vectors</a></td>
   </tr>
 </table>
 
@@ -89,7 +90,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/Controls/Scrollbar">Scrollbar</a></td>
   </tr>
   <tr>
-    <td><a href="Samples/Controls/Selection">Selection</a></td>
+    <td><a href="Samples/Controls/Selection">Selection</a></td>    
   </tr>
   <tr>
     <td><a href="Samples/RatingComponents">Rating controls</a></td>
