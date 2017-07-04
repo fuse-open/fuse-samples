@@ -1,4 +1,3 @@
-<!-- TODO: IsCurrentlyRecording, startVideo, endVideo -->
 <App Background="#000">
 	<iOS.StatusBarConfig Style="Light" />
 	<MemoryPolicy ux:Global="UnloadImmediately" UnloadInBackground="True" UnusedTimeout="1" UnpinInvisible="True" />
