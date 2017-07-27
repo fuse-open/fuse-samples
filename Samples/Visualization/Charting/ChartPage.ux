@@ -15,14 +15,15 @@
 	</Rectangle>
 				
 	<!-- this wrapper holds the size in the outer ColumnLayout when switching to full-screen -->
-	<Panel ux:Binding="Children" BoxSizing="FillAspect" Aspect="1.5">
+	<Panel ux:Binding="Children" BoxSizing="FillAspect" Aspect="1.3">
 		<DockPanel ux:Name="chart" TransformOrigin="TopLeft">
 			<Rectangle Layer="Background" CornerRadius="5" Color="#FFF"/>
 		
 			<Panel Dock="Top" Padding="2,5" Margin="0,0,0,5">
 				<Rectangle Layer="Background" CornerRadius="5,5,0,0" Color="#BBB"/>
 				<Text Alignment="Left" Value="{Property this.Title}" Color="#000"/>
-				<Text Alignment="Right" Value="&lt;{Property this.File}&gt;" Color="#000"/>
+				<Text Alignment="Right" Value="&lt;{Property this.File}&gt;" Color="#000"
+					ux:Name="fileText" Visibility="Hidden"/>
 				
 				<Clicked>
 					<Toggle Target="showFull"/>
@@ -34,6 +35,7 @@
 			<WhileTrue ux:Name="showFull">
 				<Change chart.LayoutMaster="{Resource fullScreen}"/>
 				<BringToFront Target="this"/>
+				<Change fileText.Visibility="Visible"/>
 			</WhileTrue>
 			
 			<LayoutAnimation>

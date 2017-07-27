@@ -6,13 +6,11 @@
 		<ScrollView>
 			<DockPanel Margin="10">
 				<Panel>
-					<ColumnLayout ColumnSize="200" ItemSpacing="10" ColumnSpacing="10" Sizing="Fill"/>
+					<ColumnLayout ColumnSize="300" ItemSpacing="10" ColumnSpacing="10" Sizing="Fill"/>
 
 					<BarChart/>
 					<QuarterGroups/>
 					<ScatterPlot/>
-					<!-- https://github.com/fusetools/Fuse/issues/3812 -->
-					<!-- <StackedBarChart/> -->
 					<FullBarChart/>
 					<PieChart/>
 					<VertLine/>
@@ -23,6 +21,9 @@
 					<MixedBarChart/>
 					<SpiderChart/>
 					<HorzLine/>
+					<GroupLine/>
+					<!-- https://github.com/fusetools/Fuse/issues/3812 -->
+					<!-- <StackedBarChart/> -->
 				</Panel>
 				
 				<Panel Dock="Top" Margin="0,0,0,10" Padding="6,3">

@@ -1,0 +1,65 @@
+<ChartPage ux:Class="GroupLine" File="GroupLine" Title="Lots of data in groups" xmlns:c="Fuse.Charting">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable")
+
+		exports.items = Observable()
+		for (var i=0; i < 500; ++i) {
+			exports.items.add( Math.sin(i / 20.0) * Math.cos(i/40) )
+		}
+
+		//the very small step values are to show the offseting/scrolling of groups in detail
+		exports.incrOffset = function() {
+			plot.stepOffset(1)
+		}
+		exports.decrOffset = function() {
+			plot.stepOffset(-1)
+		}
+	</JavaScript>
+	<c:Plot Margin="20,10,50,10" ux:Name="plot" 
+		DataExtend="20,20" 
+		YAxisSteps="2" YRange="-1,1">
+		<c:DataSeries Data="{items}"/>
+
+		<GridLayout Columns="20,10,1*" Rows="1*,10,20"/>
+	
+		<c:PlotAxis Row="0" Column="0" Axis="Y">
+			<Text ux:Template="Label" Alignment="CenterRight" 
+				Value="{Plot axis.value}" FontSize="12" Color="#000"/>
+		</c:PlotAxis>
+		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#000" AxisLine="1"/>
+		
+		<Panel ClipToBounds="true">
+			<c:PlotArea XStepSize="5"/>
+			
+			<c:PlotTicks StrokeWidth="1" StrokeColor="#0048" Group="20"/>
+			
+			<Curve StrokeWidth="3" StrokeColor="#000">
+				<c:PlotData>
+					<c:PlotCurvePoint/>
+				</c:PlotData>
+			</Curve>
+		</Panel>
+		
+		<c:PlotTicks Row="1" Column="2" StrokeWidth="1" StrokeColor="#000" AxisLine="0"
+			Group="5"/>
+		<c:PlotAxis Row="2" Column="2" Axis="X" HitTestMode="None" Group="20" ClipToBounds="true"
+			ExcludeExtend="false">
+			<Text ux:Template="Label" TextAlignment="Center" FontSize="20" Color="#000" 
+				Value="{Plot axis.value}" Background="#EEE" Margin="2,0"/>
+		</c:PlotAxis>
+
+		<Panel Row="1" RowSpan="2" Column="2">
+			<WhileTrue Value="{Plot hasNext}">
+				<Panel Layer="Overlay" Alignment="BottomRight" Anchor="0%,100%">
+					<ChartButton Label="▶" Clicked="{incrOffset}" Padding="2,0"/>
+				</Panel>
+			</WhileTrue>
+			
+			<WhileTrue Value="{Plot hasPrev}">
+				<Panel Layer="Overlay" Alignment="BottomLeft" Anchor="100%,100%">
+					<ChartButton Label="◀" Clicked="{decrOffset}" Padding="2,0"/>
+				</Panel>
+			</WhileTrue>
+		</Panel>
+	</c:Plot>
+</ChartPage>

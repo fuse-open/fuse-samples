@@ -18,14 +18,14 @@
 		}
 	</JavaScript>
 	<AttractorConfig Unit="Normalized" Easing="CubicInOut" Duration="0.3" ux:Global="plotAttract"/>
-	<c:Plot RangePadding="0.1">
+	<c:Plot XAxisMetric="Count" RangePadding="0.1">
 		<c:DataSeries Data="{pointsA}"/>
 		<c:DataSeries Data="{pointsB}"/>
 				
 		<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
 		
-		<Panel>
-			<c:PlotData SeriesIndex="0">
+		<Panel ux:Name="thePlot">
+			<c:PlotData SeriesIndex="0" SkipEnds="1">
 				<c:PlotPoint Width="5%" Height="5%" Attractor="plotAttract">
 					<RegularPolygon Sides="3" Color="#338"/>
 				</c:PlotPoint>
@@ -39,7 +39,7 @@
 		</Panel>
 
 		<Panel>
-			<c:PlotData SeriesIndex="1">
+			<c:PlotData SeriesIndex="1" SkipEnds="1">
 				<c:PlotPoint Width="5%" Height="5%" Attractor="plotAttract">
 					<RegularPolygon Sides="5" Color="#383"/>
 				</c:PlotPoint>
@@ -55,7 +55,8 @@
 		<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#8888"/>
 		
 		<c:PlotAxis Axis="Y" ContentPosition="Anchor" SkipEnds="1,0">
-			<Text ux:Template="Label" Alignment="TopCenter" FontSize="30" Color="#AAA" 
+			<Text ux:Template="Label" Alignment="TopCenter" 
+				FontSize="height(thePlot) * 0.05" Color="#AAA" 
 				Value="{Plot axis.value}" Margin="5"/>
 		</c:PlotAxis>
 	</c:Plot>
