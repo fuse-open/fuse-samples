@@ -1,0 +1,31 @@
+<App>
+	<Panel xmlns:c="Fuse.Charting" >
+		<LinearGradient >
+			<GradientStop Offset="0" Color="#F2C898" />
+			<GradientStop Offset="1" Color="#CF7C5E" />
+		</LinearGradient>
+		<JavaScript>
+			var Observable = require("FuseJS/Observable");
+			var counter = 0;
+			function Item(value, size) {
+				this.id = counter++;
+				this.value = value;
+				this.size = size;
+				this.sizePercent = size+"%";
+			}
+			var data = Observable(new Item(2, 100), new Item(3, 80), new Item(5, 40), new Item(3, 100),new Item(2, 70));
+
+			module.exports = {
+				data: data
+			}
+		</JavaScript>
+		<Panel BoxSizing="FillAspect" Aspect="1">
+			<c:Plot Margin="40">
+				<c:DataSeries Data="{data}" />
+				<c:PlotData >
+					<c:PlotWedge Width="{Plot data.object}.sizePercent" Height="{Plot data.object}.sizePercent" Color="(((1 - {{Plot data.object}.size/100}) * #b0b08C) + (({{Plot data.object}.size/100}) * #FCFEFE))" HitTestMode="LocalVisual" />
+				</c:PlotData>
+			</c:Plot>
+		</Panel>
+	</Panel>
+</App>

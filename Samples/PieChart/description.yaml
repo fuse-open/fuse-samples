@@ -1,0 +1,15 @@
+name: Pie chart
+desc: Demonstrates the usage of the premium PlotWedge component from the Fuse.Charting API
+api:
+    -
+        class: Fuse.Charting.Chart
+        desc: Base element for the premium charting API
+    -
+        class: Fuse.Charting.PlotData
+        desc: Plots the data series
+    -
+        class: Fuse.Charting.PlotWedge
+        desc: Draws plot wedges
+    -
+        class: Fuse.Charting.DataSeries
+        desc: Provides data to plot
