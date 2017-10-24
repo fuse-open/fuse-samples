@@ -52,6 +52,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/ImageViewer">Zoom- Pan- and RotateGesture</a></td>
     <td><a href="Samples/Visualization/Vectors">Vectors</a></td>
     <td><a href="Samples/Visualization/Charting">Charting</a></td>
+	<td><a href="Samples/UIStructure/ScrollViewPager">Infinite scrolling</a></td>
   </tr>
 </table>
 
