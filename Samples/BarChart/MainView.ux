@@ -1,0 +1,40 @@
+<App>
+	<Panel xmlns:c="Fuse.Charting" Color="#2196F3">
+		<JavaScript>
+			var Observable = require("FuseJS/Observable");
+			function Item(label, value) {
+				this.label = label;
+				this.value = value;
+			}
+
+			module.exports.data = Observable(new Item("Hats", 100), new Item("Without hats", 30));
+		</JavaScript>
+		<DockPanel Margin="40" Color="#FFF">
+			<Shadow />
+			<Text Dock="Top" Alignment="Center" Margin="10" FontSize="30">Safety</Text>
+			<c:Plot Margin="20">
+				<GridLayout Rows="1*,40" Columns="40,1*"/>
+
+				<c:DataSeries Data="{data}" />
+				<c:PlotAxis Row="1" Column="1" Axis="X" >
+					<Text ux:Template="Label" Value="{Plot axis.label}" Alignment="Center"/>
+				</c:PlotAxis>
+				<c:PlotAxis Row="0" Column="0" Axis="Y">
+				    <Text ux:Template="Label" TextAlignment="Center" FontSize="14" Color="#666"
+				        Value="{Plot axis.value}"/>
+				</c:PlotAxis>
+				<Panel Row="0" Column="1">
+					<c:PlotData>
+						<c:PlotArea YStepSize="20"/>
+						<c:PlotBar>
+							<Rectangle Color="#f58b4d" Height="100%" Alignment="Bottom" Margin="20,0,20,0">
+								<Shadow />
+							</Rectangle>
+						</c:PlotBar>
+					</c:PlotData>
+				</Panel>
+				<c:PlotTicks Axis="Y" StrokeWidth="1" StrokeColor="#DDD" Row="0" Column="1" />
+			</c:Plot>
+		</DockPanel>
+	</Panel>
+</App>

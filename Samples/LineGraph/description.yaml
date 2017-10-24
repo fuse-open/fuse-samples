@@ -1,0 +1,15 @@
+name: Line graph
+desc: Demonstrates how the premium Fuse.Charting API can be used to draw a nice-looking 
+api:
+    -
+        class: Fuse.Charting.Chart
+        desc: Base element for the premium charting API
+    -
+        class: Fuse.Controls.Curve
+        desc: Used to render the line graph
+    -
+        class: Fuse.Charting.PlotData
+        desc: Plots the data series
+    -
+        class: Fuse.Charting.DataSeries
+        desc: Provides data to plot
