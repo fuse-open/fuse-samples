@@ -1,0 +1,34 @@
+<App>
+	<JavaScript File="MainView.js"/>
+	<ClientPanel Color="#AAA">
+		<!-- LayoutMode="PreserveVisual" is required for ScrollViewPager to work correctly. This ensures
+			the ScrollView doesn't shift visually when items are removed/added from the ends -->
+		<ScrollView LayoutMode="PreserveVisual">
+			<StackPanel ItemSpacing="10" Margin="10">
+				<!-- Reuse="Frame" improves performance by resuing existing elements when they are
+					removed from one end and added to the other -->
+				<Each Items="{items}" ux:Name="theEach" Reuse="Frame">
+					<DockPanel Padding="10,5" Name="{id}">
+						<Rectangle Layer="Background" CornerRadius="10" Color="#FFF"/>
+						<Rectangle Margin="5" Dock="Bottom" Height="{size}" Color="#EEE"/>
+						<Circle Height="50" Width="50" Dock="Left" Color="{color}"/>
+						<Text  Alignment="CenterLeft" Value="{value}" FontSize="32" Color="#000"/>
+					</DockPanel>
+				</Each>
+				
+				<WhileTrue Value="{isLoading}">
+					<!-- LayoutRole="Placeholder" tells the LayerMode="PreserveVisual" calculations to ignore this
+						element: the position of this element will not be preserved -->
+					<Panel LayoutRole="Placeholder" Height="100" Color="#AFA">
+						<Text Alignment="Center" Value="Loading..."/>
+					</Panel>
+				</WhileTrue>
+			</StackPanel>
+
+			<!-- The ScrollViewPager must be placed within the ScrollView and must be told which
+				Each it controls.  ReachedEnd is called when the end of the {items} getting close
+				in the ScrollView -->
+			<ScrollViewPager Each="theEach" ReachedEnd="{loadMore}" ux:Name="svp"/>
+		</ScrollView>
+	</ClientPanel>
+</App>
