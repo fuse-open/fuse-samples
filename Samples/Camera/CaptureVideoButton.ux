@@ -1,0 +1,17 @@
+<Panel ux:Class="CaptureVideoButton" HitTestMode="LocalBoundsAndChildren">
+	<WhileTrue Value="{isRecording}" ux:Name="_recording">
+		<Change Duration="0.15" _rect.Width="36" Easing="ExponentialOut" EasingBack="BounceIn" DurationBack="0.5" />
+		<Change Duration="0.15" _rect.Height="36" Easing="ExponentialOut" EasingBack="BounceIn" DurationBack="0.5" />
+		<Change Duration="0.15" _rect.CornerRadius="4" Easing="ExponentialOut" EasingBack="BounceIn" DurationBack="0.5" />
+		<Clicked Handler="{stopRecording}" />
+	</WhileTrue>
+	<WhileFalse Value="{isRecording}">
+		<Clicked Handler="{startRecording}" />
+	</WhileFalse>
+	<Circle Width="78" Height="78">
+		<Stroke Color="#fff" Width="6" />
+	</Circle>
+	<Rectangle Width="62" Height="62" CornerRadius="45" ux:Name="_rect" Alignment="Center">
+		<SolidColor Color="#f00" />
+	</Rectangle>
+</Panel>

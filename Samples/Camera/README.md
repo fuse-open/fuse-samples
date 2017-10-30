@@ -1,20 +1,38 @@
-# Taking pictures from JavaScript
+# Camera
 
-This example uses the FuseJS Camera, ImageTools and CameraRoll APIs to acquire and manipulate images from JavaScript.
+This example uses the Fuse.Controls.Camera premium package
 
 Basic Camera use is simple:
+```xml
+<CameraView ux:Name="_camera" />
+<JavaScript>
+	var Camera = _camera;
+	Camera.capturePhoto()
+		.then(function(photo) {
+			photo.save()
+				.then(function(filePath) {
+					console.log("Photo saved to: " + filePath);
+					photo.release();
+				})
+				.catch(function(error) {
+					console.log("Failed to save photo: " + error);
+					photo.release();
+				});
+		})
+		.catch(function(error) {
+			console.log("Failed to capture photo: " + error);
+		});
+</JavaScript>
 ```
-var Camera = require('FuseJS/Camera');
-Camera.takePicture(/* target width */ 1080, /* target height */ 1920}).then(function(newImage){
-    image.value = newImage.path;
-});
-```
-`takePicture` returns a `Promise` that will resolve to an object of image info once the picture has been taken.
-We can then get the `path` property of that object and use it to display the image.
+`capturePhoto` returns a `Promise` that will resolve to an object representing the captured photo.
+We can then save the photo to a file on disk. `save()` will return a `Promise` that resolves to a filepath.
 
-* Note: The target width and target height in this scenario are used to determine bounds for an aspect-corrected resize.
-The dimensions of the returned image can differ if the original aspect is different.
+#### Camera features implemented in this example
+- Photo capture
+- Capture preview with the special ImageSource provided by in the Camera API
+- Video recording and preview.
+- Changing capture mode
+- Changing flash mode
+- Dealing with Android specific photo settings
 
-The sample js is extensively commented and goes through some somewhat arbitrary use cases.
-
-You can find the official Camera API documentation [here](https://www.fusetools.com/docs/fuse/camera/camera).
+Please have a look at the official docs for complete API reference [here](https://www.fusetools.com/docs/fuse/camera/camera).

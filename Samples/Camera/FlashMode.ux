@@ -1,0 +1,14 @@
+<Panel ux:Class="FlashMode">
+	<string ux:Property="Mode" />
+	<Match Value="{Property Mode}">
+		<Case String="auto">
+			<FlashAutoIcon />
+		</Case>
+		<Case String="off">
+			<FlashOffIcon />
+		</Case>
+		<Case String="on">
+			<FlashOnIcon />
+		</Case>
+	</Match>
+</Panel>

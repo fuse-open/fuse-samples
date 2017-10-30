@@ -1,0 +1,35 @@
+<Panel ux:Class="Assets">
+
+	<Image ux:Class="FlashAutoIcon" StretchMode="PixelPrecise" Width="28" Height="28">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/Flash_Auto_white.png" />
+			<FileImageSource Density="2" File="Assets/Flash_Auto_white@2x.png" />
+			<FileImageSource Density="3" File="Assets/Flash_Auto_white@3x.png" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="FlashOffIcon" StretchMode="PixelPrecise" Width="28" Height="28">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/Flash_Off_white.png" />
+			<FileImageSource Density="2" File="Assets/Flash_Off_white@2x.png" />
+			<FileImageSource Density="3" File="Assets/Flash_Off_white@3x.png" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="FlashOnIcon" StretchMode="PixelPrecise" Width="28" Height="28">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/Flash_On_white.png" />
+			<FileImageSource Density="2" File="Assets/Flash_On_white@2x.png" />
+			<FileImageSource Density="3" File="Assets/Flash_On_white@3x.png" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="RotateIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource Density="1" File="Assets/rotate.png" />
+			<FileImageSource Density="2" File="Assets/rotate@2x.png" />
+			<FileImageSource Density="3" File="Assets/rotate@3x.png" />
+		</MultiDensityImageSource>
+	</Image>
+
+</Panel>
