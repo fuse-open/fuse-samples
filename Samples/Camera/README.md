@@ -35,4 +35,4 @@ We can then save the photo to a file on disk. `save()` will return a `Promise` t
 - Changing flash mode
 - Dealing with Android specific photo settings
 
-Please have a look at the official docs for complete API reference [here](https://www.fusetools.com/docs/fuse/camera/camera).
+Please have a look at the official docs for complete API reference [here](https://www.fusetools.com/docs/fuse/controls/cameraviewbase).
