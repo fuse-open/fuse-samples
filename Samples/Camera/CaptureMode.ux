@@ -1,0 +1,28 @@
+<Panel ux:Class="CaptureMode" Margin="2" Mode="photo" ux:Name="_self" >
+	<string ux:Property="Mode"  />
+	<Rectangle CornerRadius="8">
+		<Stroke Color="#fff" />
+	</Rectangle>
+	<WhileTrue ux:Name="_photo" Value="{ReadProperty _self.Mode} == 'photo'">
+		<Change Duration="0.35" _photoText.TextColor="#000" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+		<Change Duration="0.35" _photoBackground.Color="#fff" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+	</WhileTrue>
+	<WhileTrue ux:Name="_video" Value="{ReadProperty _self.Mode} == 'video'">
+		<Change Duration="0.35" _videoText.TextColor="#000" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+		<Change Duration="0.35" _videoBackground.Color="#fff" Easing="ExponentialOut" EasingBack="ExponentialIn" />
+	</WhileTrue>
+	<Grid Columns="1*,1*">
+		<Panel HitTestMode="LocalBoundsAndChildren" Clicked="{setCaptureModePhoto}">
+			<Text Margin="4" Value="PHOTO" TextColor="#fff" TextAlignment="Center" ux:Name="_photoText" />
+			<Rectangle CornerRadius="8,0,0,8">
+				<SolidColor Color="#000" ux:Name="_photoBackground" />
+			</Rectangle>
+		</Panel>
+		<Panel HitTestMode="LocalBoundsAndChildren" Clicked="{setCaptureModeVideo}" >
+			<Text Margin="4" Value="VIDEO" TextColor="#fff" TextAlignment="Center" ux:Name="_videoText" />
+			<Rectangle CornerRadius="0,8,8,0">
+				<SolidColor Color="#000" ux:Name="_videoBackground" />
+			</Rectangle>
+		</Panel>
+	</Grid>
+</Panel>

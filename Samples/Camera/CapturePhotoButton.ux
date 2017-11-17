@@ -1,0 +1,13 @@
+<Panel ux:Class="CapturePhotoButton" HitTestMode="LocalBoundsAndChildren">
+	<WhileTrue Value="true">
+		<Clicked>
+			<Change _center.Color="#000" Duration="0.1" DurationBack="0.25" Easing="ExponentialIn" EasingBack="Linear" />
+		</Clicked>
+	</WhileTrue>
+	<Circle Width="78" Height="78">
+		<Stroke Color="#fff" Width="6" />
+	</Circle>
+	<Circle Width="62" Height="62">
+		<SolidColor Color="#fff" ux:Name="_center" />
+	</Circle>
+</Panel>

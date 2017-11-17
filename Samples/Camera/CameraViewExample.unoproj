@@ -1,0 +1,14 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Controls.CameraView",
+    "Fuse.ImageTools",
+  ],
+  "Includes": [
+    "*"
+  ],
+  "Mobile": {
+    "Orientations": "Portrait"
+  }
+}
