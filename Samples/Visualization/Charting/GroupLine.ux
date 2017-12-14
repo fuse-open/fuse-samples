@@ -1,16 +1,10 @@
-<ChartPage ux:Class="GroupLine" File="GroupLine" Title="Lots of data in groups" xmlns:c="Fuse.Charting">
+<ChartPage ux:Class="GroupLine" File="GroupLine" Title="Lots of data in groups" xmlns:c="Fuse.Charting" Model="GroupLine">
 	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-
-		exports.items = Observable()
-		for (var i=0; i < 500; ++i) {
-			exports.items.add( Math.sin(i / 20.0) * Math.cos(i/40) )
-		}
-
 		//the very small step values are to show the offseting/scrolling of groups in detail
 		exports.incrOffset = function() {
 			plot.stepOffset(1)
 		}
+		
 		exports.decrOffset = function() {
 			plot.stepOffset(-1)
 		}

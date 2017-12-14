@@ -1,21 +1,4 @@
-<ChartPage ux:Class="FullBarChart" File="FullBarChart" Title="Selectable full height bars" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		
-		function Item( value, label ) {
-			this.value = value
-			this.label = label
-		}
-		exports.data = Observable( 
-			new Item(7, "2007"),
-			new Item(20, "2008"),
-			new Item(13, "2009"),
-			new Item(27, "2010"),
-			new Item(15, "2011"),
-			new Item(5, "2012"),
-			new Item(50, "2013")
-		);
-	</JavaScript>
+<ChartPage ux:Class="FullBarChart" File="FullBarChart" Title="Selectable full height bars" xmlns:c="Fuse.Charting" Model="FullBarChart">
 	<c:Plot YRange="0,60" YAxisSteps="6" Margin="20,10,50,10" ux:Name="plot">
 		<Selection/>
 		<c:DataSeries Data="{data}"/>

@@ -1,40 +1,5 @@
 <ChartPage ux:Class="StackedBarChart" File="StackedBarChart" Title="Stacked bar ranges"
-	xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		
-		function Item( value, label ) {
-			this.value = value
-			this.label = label
-		}
-		exports.data1 = Observable( 
-			new Item(10, "2007"),
-			new Item(20, "2008"),
-			new Item(13, "2009"),
-			new Item(27, "2010"),
-			new Item(15, "2011"),
-			new Item(5, "2012"),
-			new Item(50, "2013")
-		);
-		exports.data2 = Observable( 
-			new Item(20, "2007"),
-			new Item(10, "2008"),
-			new Item(13, "2009"),
-			new Item(11, "2010"),
-			new Item(24, "2011"),
-			new Item(32, "2012"),
-			new Item(3, "2013")
-		);
-		exports.data3 = Observable( 
-			new Item(20, "2007"),
-			new Item(5, "2008"),
-			new Item(13, "2009"),
-			new Item(11, "2010"),
-			new Item(24, "2011"),
-			new Item(32, "2012"),
-			new Item(3, "2013")
-		);
-	</JavaScript>
+	xmlns:c="Fuse.Charting" Model="StackedBarChart">
 	<c:Plot Margin="20,10,50,10" ux:Name="plot" ZAxisMetric="MergeRange">
 		<c:DataSeries Data="{data1}"/>
 		<c:DataSeries Data="{data2}" Metric="Add"/>

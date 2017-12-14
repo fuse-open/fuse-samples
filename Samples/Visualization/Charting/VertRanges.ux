@@ -1,21 +1,4 @@
-<ChartPage Title="Vertical layout with ranged bars" File="VertRanges" ux:Class="VertRanges" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( y, z, label ) {
-			this.y = y
-			this.z = z
-			this.label = label
-		}
-		
-		var names = [ "Vebjørn", "Annbjørg",  "Øystein", "Åslaug",  "Tormod", "Borghild", "Dagfinn", "Gudrun", "Sverre", "Åshild" ];
-		exports.data1 = Observable()
-		for (var i=0; i < names.length; ++i ) {
-			var c = Math.random() * 100 -25
-			var y = c - (Math.random() + 0.2) * 50
-			var z = c + (Math.random() + 0.2) * 50
-			exports.data1.add( new Item( y, z, names[i] ) )
-		}
-	</JavaScript>
+<ChartPage Title="Vertical layout with ranged bars" File="VertRanges" ux:Class="VertRanges" xmlns:c="Fuse.Charting" Model="VertRanges">
 	<c:Plot XAxisMetric="OffsetCount" ZAxisMetric="MergeRange" Margin="5,20,20,10" Orientation="Vertical">
 		<c:DataSeries Data="{data1}"/>
 

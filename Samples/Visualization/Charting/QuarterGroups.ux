@@ -1,31 +1,10 @@
-<ChartPage ux:Class="QuarterGroups" File="QuarterGroups" 
-	Title="Monthly data grouped into Quarters" xmlns:c="Fuse.Charting">
+<ChartPage ux:Class="QuarterGroups" File="QuarterGroups(plot)" 
+	Title="Monthly data grouped into Quarters" xmlns:c="Fuse.Charting" Model="QuarterGroups">
 	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		
-		function Item( value, quarter, month ) {
-			this.value = value
-			this.label = quarter
-		}
-		exports.data = Observable( 
-			new Item(7, "Q1", "January"),
-			new Item(20, "Q1", "February"),
-			new Item(13, "Q1", "March"),
-			new Item(27, "Q2", "April"),
-			new Item(15, "Q2", "May"),
-			new Item(5, "Q2", "June"),
-			new Item(50, "Q3", "July"),
-			new Item(20, "Q3", "August"),
-			new Item(30, "Q3", "September"),
-			new Item(35, "Q4", "October"),
-			new Item(15, "Q4", "November"),
-			new Item(20, "Q4", "December"),
-			new Item(21, "Q1", "January")
-		);
-
 		exports.incrOffset = function() {
 			plot.stepOffset(1)
 		}
+		
 		exports.decrOffset = function() {
 			plot.stepOffset(-1)
 		}

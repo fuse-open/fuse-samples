@@ -1,16 +1,4 @@
-<ChartPage Title="Extruded line to base" File="MixHorzLine" ux:Class="MixHorzLine" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		exports.points = Observable( -10, 50,-20, 30, -35 )
-		
-		exports.random = function() {
-			var items = []
-			for (var i =0; i < 5; ++i) {
-				items.push( (Math.random() - 0.5) * 100 )
-			}
-			exports.points.replaceAll(items)
-		}
-	</JavaScript>
+<ChartPage Title="Extruded line to base" File="MixHorzLine" ux:Class="MixHorzLine" xmlns:c="Fuse.Charting" Model="MixHorzLine">
 	<c:Plot XAxisMetric="Count" RangePadding="0.1" ux:Name="plot">
 		<c:DataSeries Data="{points}"/>
 

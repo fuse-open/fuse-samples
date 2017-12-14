@@ -1,32 +1,4 @@
-<ChartPage Title="Pie chart" File="PieChart" ux:Class="PieChart" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( y, z, label, color ) {
-			this.y = y
-			this.z = z
-			this.label = label
-			this.color = color
-		}
-		
-		var names = [ "Vebjørn", "Annbjørg",  "Øystein", "Åslaug",  "Tormod", "Borghild" ]
-		var colors = [ "#DEF", "#DFE", "#FDE", "#EDF", "#EFD", "#FED" ]
-		exports.data1 = Observable()
-		
-		function create() {
-			var list = []
-			for (var i=0; i < names.length; ++i ) {
-				var c = Math.random() * 100 + 10
-				list.push( new Item( c, Math.random(), names[i], colors[i] ) )
-			}
-			return list
-		}
-		
-		exports.random = function() {
-			exports.data1.replaceAll( create() )
-		}
-		
-		exports.random()
-	</JavaScript>
+<ChartPage Title="Pie chart" File="PieChart" ux:Class="PieChart" xmlns:c="Fuse.Charting" Model="PieChart">
 	<AttractorConfig Unit="Normalized" Type="Elastic" ux:Global="pieAttract"/>	
 	<ChartButton Alignment="TopRight" Margin="5" Clicked="{random}" Label="✧"/>
 	<c:Plot Margin="5,20,20,10">

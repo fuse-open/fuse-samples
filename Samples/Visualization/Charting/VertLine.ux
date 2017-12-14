@@ -1,18 +1,4 @@
-<ChartPage Title="Transposed X/Y axes" File="VertLine" ux:Class="VertLine" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( value, label ) {
-			this.x = value
-			this.label = label
-		}
-		exports.data = Observable( 
-			new Item(1, "2012"),
-			new Item(5, "2013"),
-			new Item(2, "2014"),
-			new Item(3, "2015"),
-			new Item(3.5, "2016")
-		);
-	</JavaScript>
+<ChartPage Title="Transposed X/Y axes" File="VertLine" ux:Class="VertLine" xmlns:c="Fuse.Charting" Model="VertLine">
 	<!-- This swaps the default role of the X/Y Axes, making Y the counter one and X the range. A very similar effect can be achieved by using `Orientation="Vertical"` instead, which is the recommended approach. This example is nonetheless kept for the odd situations where it might be better, or easier, to swap the axes. -->
 	<c:Plot XAxisMetric="Range" YAxisMetric="Count">
 		<c:DataSeries Data="{data}"/>

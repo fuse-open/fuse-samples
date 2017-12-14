@@ -5,6 +5,7 @@
     "Fuse.Charting",
   ],
   "Includes": [
-    "*"
+    "*",
+    "*.js:FuseJS",
   ]
 }
