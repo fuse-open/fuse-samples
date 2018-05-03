@@ -15,8 +15,9 @@
 	var selected = Observable();
 
 	function onSelected(arg) {
-		selected.value = arg.data.name;
-		//console.log(menu.Selected);
+		if(arg.data && arg.data.name) {
+			selected.value = arg.data.name;
+		}
 	}
 
 	module.exports = {
