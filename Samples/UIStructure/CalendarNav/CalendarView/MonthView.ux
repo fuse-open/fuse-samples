@@ -29,7 +29,7 @@
 		<Grid ColumnCount="7" CellSpacing="3" DefaultRow="1*" Rows="auto">
 			<Each Items="{daysOfWeek}">
 				<Panel Color="{Resource ColorWhite}">
-					<Text FontSize="18" Value="{}" TextAlignment="Center" Color="{Resource ColorTextSecond}"/>
+					<Text FontSize="18" Value="{data()}" TextAlignment="Center" Color="{Resource ColorTextSecond}"/>
 				</Panel>
 			</Each>
 			<Each Items="{days}" MatchKey="type">
