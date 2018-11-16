@@ -1,0 +1,3 @@
+<Extensions Backend="CPlusPlus">
+  <Set Facebook.AppID="YOUR-FACEBOOK-APP-ID" />
+</Extensions>

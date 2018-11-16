@@ -1,0 +1,6 @@
+if iOS {
+  FacebookSDKs-iOS: "https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip"
+}
+if Android {
+	FacebookSDKs-Android: "https://origincache.facebook.com/developers/resources/?id=facebook-android-sdk-current.zip"
+}

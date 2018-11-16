@@ -109,6 +109,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
 
 <table>
   <tr>
+    <td><a href="Samples/NativeFacebookLogin">Native Facebook Login</a></td>
     <td><a href="Samples/AmazonS3">AmazonS3</a></td>
     <td><a href="Samples/AzureADB2COAuth">Azure AD B2C login</a></td>
     <td><a href="Samples/FacebookLogin">Facebook login</a></td>
