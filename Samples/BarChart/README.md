@@ -4,13 +4,7 @@ This example shows how we can create bar charts using the premium Fuse.Charting 
 
 ## Preparation
 
-In order to use the library, you have to install it. This is done by running the following command from the commandline:
-
-```
-uno install Fuse.Charting
-```
-
-With that done, you should be all set. Remember to include `Fuse.Charting` package in your unoproj file:
+In order to use the library, you have to include `Fuse.Charting` package in your unoproj file:
 
 ```
 "Packages": [
