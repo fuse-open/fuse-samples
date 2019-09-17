@@ -4,13 +4,7 @@ This example shows how you can create simple, but good looking graphs using the 
 
 ## Preparation
 
-In order to use the library, you have to install it. This is done by running the following command from the commandline:
-
-```
-uno install Fuse.Charting
-```
-
-With that done, you should be all set. Remember to include `Fuse.Charting` package in your unoproj file:
+In order to use the library, you have to include `Fuse.Charting` package in your unoproj file:
 
 ```
 "Packages": [
