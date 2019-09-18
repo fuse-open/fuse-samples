@@ -55,9 +55,9 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/UIStructure/ScrollViewPager">Infinite scrolling</a></td>
   </tr>
   <tr>
-    <td><a href="Samples/PieChart">Pie chart *(Pro)*</a></td>
-    <td><a href="Samples/BarChart">Bar chart *(Pro)*</a></td>
-    <td><a href="Samples/LineGraph">Line graph *(Pro)*</a></td>
+    <td><a href="Samples/PieChart">Pie chart</a></td>
+    <td><a href="Samples/BarChart">Bar chart</a></td>
+    <td><a href="Samples/LineGraph">Line graph</a></td>
   </tr>
 </table>
 
@@ -98,7 +98,7 @@ These samples are supplied directly from the feature teams of Fuse and we welcom
     <td><a href="Samples/Controls/Scrollbar">Scrollbar</a></td>
   </tr>
   <tr>
-    <td><a href="Samples/Controls/Selection">Selection</a></td>    
+    <td><a href="Samples/Controls/Selection">Selection</a></td>
   </tr>
   <tr>
     <td><a href="Samples/RatingComponents">Rating controls</a></td>
