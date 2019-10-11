@@ -1,42 +1,4 @@
-<ChartPage Title="Spider chart" File="SpiderChart" ux:Class="SpiderChart" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-
-		var data = [ {
-			label: "Attention",
-			value: 54,
-		}, {
-			label: "Care",
-			value: 15,
-		}, { 
-			label: "Fight",
-			value: 68,
-		}, {
-			label: "Performance",
-			value: 74,
-		}, {
-			label: "Avoid bad experiences",
-			value: 51,
-		}, {
-			label: "Under- standing",
-			value: 90,
-		}, {
-			label: "Approval",
-			value: 58,
-		}, { 
-			label: "Sense of Duty",
-			value: 80,
-		}, {
-			label: "Dominance",
-			value: 80,
-		}, {
-			label: "Autonomy",
-			value: 51,
-		} ]
-		
-		exports.data = Observable()
-		exports.data.replaceAll( data )
-	</JavaScript>
+<ChartPage Title="Spider chart" File="SpiderChart" ux:Class="SpiderChart" xmlns:c="Fuse.Charting" Model="SpiderChart">
 	<c:Plot Margin="40,20" YRange="0,100">
 		<c:DataSeries Data="{data}"/>
 

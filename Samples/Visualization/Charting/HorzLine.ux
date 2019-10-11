@@ -1,28 +1,9 @@
-<ChartPage ux:Class="HorzLine" File="HorzLine" Title="Decorated line chart" xmlns:c="Fuse.Charting">
+<ChartPage ux:Class="HorzLine" File="HorzLine" Title="Decorated line chart" xmlns:c="Fuse.Charting" Model="HorzLine">
 	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		
-		function Item( value, label ) {
-			this.value = value
-			this.label = label
-		}
-		exports.data = Observable( 
-			new Item(7, "2007"),
-			new Item(20, "2008"),
-			new Item(13, "2009"),
-			new Item(27, "2010"),
-			new Item(15, "2011"),
-			new Item(5, "2012"),
-			new Item(50, "2013"),
-			new Item(20, "2014"),
-			new Item(30, "2015"),
-			new Item(35, "2016"),
-			new Item(15, "2017")
-		);
-
 		exports.incrOffset = function() {
 			plot.stepOffset(1)
 		}
+	
 		exports.decrOffset = function() {
 			plot.stepOffset(-1)
 		}

@@ -1,22 +1,4 @@
-<ChartPage Title="Negative values with in-plot ticks" File="NegHorzLine" ux:Class="NegHorzLine" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		exports.pointsA = Observable( -10, -50,-20, -30, -35 )
-		exports.pointsB = Observable( -5, -40,-30, -20, -45 )
-		
-		function randomItems() {
-			var items = []
-			for (var i =0; i < 5; ++i) {
-				items.push( -Math.random() * 50 )
-			}
-			return items
-		}
-		
-		exports.random = function() {
-			exports.pointsA.replaceAll( randomItems() )
-			exports.pointsB.replaceAll( randomItems() )
-		}
-	</JavaScript>
+<ChartPage Title="Negative values with in-plot ticks" File="NegHorzLine" ux:Class="NegHorzLine" xmlns:c="Fuse.Charting" Model="NegHorzLine">
 	<AttractorConfig Unit="Normalized" Easing="CubicInOut" Duration="0.3" ux:Global="plotAttract"/>
 	<c:Plot XAxisMetric="Count" RangePadding="0.1">
 		<c:DataSeries Data="{pointsA}"/>

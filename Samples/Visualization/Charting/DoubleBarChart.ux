@@ -1,37 +1,4 @@
-<ChartPage Title="2-series with side-by-side bars" File="DoubeBarChart" ux:Class="DoubleBarChart" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( x, y ) {
-			this.x = x
-			this.y = y
-		}
-		
-		function gauss( x, u ) {
-			var sigma = Math.sqrt(u)
-			var a = 1 / (sigma * Math.sqrt(2 * Math.PI))
-			var b = 0
-			var c = sigma
-			return a * Math.pow( Math.E, -(x - b)*(x-b) / (2*c*c) )
-		}
-		
-		function gaussItems( o, u, f ) {
-			var items = []
-			for (var i=-7; i <= 7; ++i ) {
-				items.push( new Item(i, gauss(i + o, u)*f ) )
-			}
-			return items
-		}
-		
-		exports.data1 = Observable()
-		exports.data2 = Observable()
-		exports.data1.replaceAll( gaussItems( 0, 7, 1 ) )
-		exports.data2.replaceAll( gaussItems( 5, 15, 0.5 ) )
-		
-		exports.random = function() {
-			exports.data1.replaceAll( gaussItems( Math.random() * 6 - 3, Math.random() * 6 + 4, 1 ) )
-			exports.data2.replaceAll( gaussItems( Math.random() * 6 + 1, Math.random() * 8 + 11, 0.5 ) )
-		}
-	</JavaScript>
+<ChartPage Title="2-series with side-by-side bars" File="DoubeBarChart" ux:Class="DoubleBarChart" xmlns:c="Fuse.Charting" Model="DoubleBarChart">
 	<c:Plot Margin="5,20,20,10">
 		<c:DataSeries Data="{data1}" ux:Name="series0"/>
 		<c:DataSeries Data="{data2}" ux:Name="series1"/>

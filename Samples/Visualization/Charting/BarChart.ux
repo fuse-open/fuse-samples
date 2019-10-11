@@ -1,35 +1,4 @@
-<ChartPage Title="Vertical orientation bar chart" File="BarChart" ux:Class="BarChart" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( x, y ) {
-			this.x = x
-			this.y = y
-			this.label = "" + x
-		}
-		
-		function gauss( x ) {
-			var sigma = Math.sqrt(15)
-			var a = 1 / (sigma * Math.sqrt(2 * Math.PI))
-			var b = 0
-			var c = sigma
-			return a * Math.pow( Math.E, -(x - b)*(x-b) / (2*c*c) )
-		}
-		exports.data = Observable()
-		exports.data2 = Observable()
-		for (var i=-15; i <= 15; ++i ) {
-			var item = new Item(i, gauss(i));
-			exports.data.add( item  )
-			exports.data2.add( Math.max(0, item.y + (Math.random()-0.3)*0.04) )
-		}
-		
-		exports.offset = Observable(0)
-		exports.incrOffset = function() {
-			exports.offset.value += 1
-		}
-		exports.decrOffset = function() {
-			exports.offset.value -= 1
-		}
-	</JavaScript>
+<ChartPage Title="Vertical orientation bar chart" File="BarChart" ux:Class="BarChart" xmlns:c="Fuse.Charting" Model="BarChart">
 	<AttractorConfig Unit="Normalized" Easing="SinusoidalInOut" 
 		Duration="0.3" DurationExp="0" ux:Global="plotAttract"/>
 	

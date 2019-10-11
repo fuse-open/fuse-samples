@@ -1,26 +1,4 @@
-<ChartPage Title="Multi-series with pos/neg styling" File="MixedBarChart" ux:Class="MixedBarChart" xmlns:c="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		function Item( y, label ) {
-			this.y = y
-			this.label = label
-		}
-		
-		exports.data1 = Observable()
-		exports.data2 = Observable()
-		
-		exports.random = function() {
-			exports.data1.clear()
-			exports.data2.clear()
-			for (var i=0; i <= 10; ++i ) {
-				var y = (Math.random() + 0.2) * 100 * (Math.random() > 0.5 ? -1 : 1)
-				exports.data1.add( new Item( y, "#" + i ) )
-				exports.data2.add( { y: y * (Math.random() * 0.8 + 0.2) } )
-			}
-		}
-		
-		exports.random()
-	</JavaScript>
+<ChartPage Title="Multi-series with pos/neg styling" File="MixedBarChart" ux:Class="MixedBarChart" xmlns:c="Fuse.Charting" Model="MixedBarChart">
 	<c:Plot Margin="5,20,20,10" YAxisSteps="8">
 		<c:DataSeries Data="{data1}"/>
 		<c:DataSeries Data="{data2}"/>

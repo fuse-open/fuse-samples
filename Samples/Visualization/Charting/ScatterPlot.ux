@@ -1,36 +1,5 @@
-<ChartPage Title="4-d scatter plot" File="ScatterPlot" ux:Class="ScatterPlot" xmlns:p="Fuse.Charting">
-	<JavaScript>
-		var Observable = require("FuseJS/Observable")
-		
-		function Item(x,y,z,w) {
-			this.x = x
-			this.y = y
-			this.z = z
-			this.w = w
-		}
-		exports.items = Observable()
-		
-		function genRandom() {
-			var items = []
-			var count = 25
-			for (var i=0; i < count; ++i) {
-				if (Math.random() > 0.5) {
-					continue
-				}
-				
-				var base = i / count
-				items.push( new Item( Math.random() * 10 + base * 90, Math.random() * 300 + base*700, 
-					Math.random(), Math.random() ) )
-			}
-			return items
-		}
-		
-		exports.random = function() {
-			exports.items.replaceAll( genRandom() )
-		}
-		
-		exports.random()
-	</JavaScript>
+<ChartPage Title="4-d scatter plot" File="ScatterPlot" ux:Class="ScatterPlot" xmlns:p="Fuse.Charting"
+	Model="ScatterPlot">
 	<p:Plot Margin="10" ux:Name="p" XAxisMetric="Range">
 		<p:DataSeries Data="{items}"/>
 		<!-- Adjust the number of  divisions based on the available space -->
