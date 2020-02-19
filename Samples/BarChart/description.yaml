@@ -2,7 +2,7 @@ name: Bar chart
 desc: Demonstrates how bar charts can be built using the premium library Fuse.Charting
 api:
     -
-        class: Fuse.Charting.Chart
+        class: Fuse.Charting.Plot
         desc: Base element for the premium charting API
     -
         class: Fuse.Charting.PlotData

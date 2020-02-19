@@ -2,7 +2,7 @@ name: Line graph
 desc: Demonstrates how the premium Fuse.Charting API can be used to draw a nice-looking 
 api:
     -
-        class: Fuse.Charting.Chart
+        class: Fuse.Charting.Plot
         desc: Base element for the premium charting API
     -
         class: Fuse.Controls.Curve
