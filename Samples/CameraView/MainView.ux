@@ -1,0 +1,114 @@
+<App Background="#000">
+	<iOS.StatusBarConfig Style="Light" />
+	<MemoryPolicy ux:Global="UnloadImmediately" UnloadInBackground="True" UnusedTimeout="1" UnpinInvisible="True" />
+
+	<FileImageSource ux:Global="iconFlashOff" File="Assets/flash_off.png" />
+	<FileImageSource ux:Global="iconFlashOn" File="Assets/flash_on.png" />
+	<FileImageSource ux:Global="iconPhotoCamera" File="Assets/photo_camera.png" />
+	<FileImageSource ux:Global="iconVideocam" File="Assets/videocam.png" />
+	<FileImageSource ux:Global="iconCameraRear" File="Assets/camera_rear.png" />
+	<FileImageSource ux:Global="iconCameraFront" File="Assets/camera_front.png" />
+	<FileImageSource ux:Global="iconCheckCircle" File="Assets/check_circle.png" />
+	<FileImageSource ux:Global="iconCancel" File="Assets/cancel.png" />
+
+	<JavaScript File="MainView.js" />
+
+	<DockPanel Margin="8">
+
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Panel>
+
+			<!-- temporary picture can take a while to show up, use busy -->
+			<!-- CameraView should set busy while initialising too -->
+			<WhileBusy>
+				<Text Value="Loading..." Color="#fffa" Alignment="Center" />
+			</WhileBusy>
+
+			<!-- when there is a temporary picture taken -->
+			<WhileString Value="{image}" Equals="" Invert="true">
+
+				<!-- save and discard action buttons -->
+				<StackPanel Alignment="BottomCenter" Margin="16" Orientation="Horizontal" ItemSpacing="16">
+					<Panel Width="56" Aspect="1" BoxSizing="FillAspect" Clicked="{savePicture}" HitTestMode="LocalBounds">
+						<Image Source="iconCheckCircle" Margin="4" Alignment="Center" />
+						<Rectangle Color="#0005" CornerRadius="2" />
+					</Panel>
+					<Panel Width="56" Aspect="1" BoxSizing="FillAspect" Clicked="{discardPicture}" HitTestMode="LocalBounds">
+						<Image Source="iconCancel" Margin="4" Alignment="Center" />
+						<Rectangle Color="#0005" CornerRadius="2" />
+					</Panel>
+				</StackPanel>
+
+				<!-- the temporary picture itself -->
+				<Image File="{image}" MemoryPolicy="UnloadImmediately" StretchMode="UniformToFill" />
+
+			</WhileString>
+
+			<!-- when there is no temporary picture -->
+			<WhileString Value="{image}" Equals="">
+				<!-- we put all of the things we want on top of the CameraView inside the same NativeViewHost -->
+				<NativeViewHost>
+
+					<!-- toggle flash state -->
+					<Rectangle Width="32" Aspect="1" BoxSizing="FillAspect" Alignment="TopLeft" Margin="8" Clicked="{toggleFlash}" HitTestMode="LocalBounds" CornerRadius="2" Color="#0001">
+						<WhileTrue Value="{flashIsOn}">
+							<Image Source="iconFlashOn" Margin="4" Alignment="Center" />
+						</WhileTrue>
+						<WhileFalse Value="{flashIsOn}">
+							<Image Source="iconFlashOff" Margin="4" Alignment="Center" />
+						</WhileFalse>
+					</Rectangle>
+
+					<!-- toggle media between photo/video -->
+					<Grid ColumnCount="2" Width="128" Aspect="4" BoxSizing="FillAspect" Alignment="TopCenter" Margin="8">
+						<Panel Clicked="{toggleMediaPhoto}" HitTestMode="LocalBounds">
+							<Image Source="iconPhotoCamera" Margin="4" Alignment="Center" />
+							<WhileString Value="{currentMedia}" Equals="Photo">
+								<Change mediaPhotoBackground.Color="#0005" />
+							</WhileString>
+							<Rectangle ux:Name="mediaPhotoBackground" Color="#0001" CornerRadius="16,0,0,16" />
+						</Panel>
+						<Panel Clicked="{toggleMediaVideo}" HitTestMode="LocalBounds">
+							<Image Source="iconVideocam" Margin="4" Alignment="Center" />
+							<WhileString Value="{currentMedia}" Equals="Video">
+								<Change mediaVideoBackground.Color="#0005" />
+							</WhileString>
+							<Rectangle ux:Name="mediaVideoBackground" Color="#0001" CornerRadius="0,16,16,0" />
+						</Panel>
+					</Grid>
+
+					<!-- toggle camera direction -->
+					<Rectangle Width="32" Aspect="1" BoxSizing="FillAspect" Alignment="TopRight" Margin="8" Clicked="{swapCamera}" HitTestMode="LocalBounds" CornerRadius="2" Color="#0001">
+						<WhileString Value="{cameraDirection}" Equals="B">
+							<Image Source="iconCameraRear" Margin="4" Alignment="Center" />
+						</WhileString>
+						<WhileString Value="{cameraDirection}" Equals="F">
+							<Image Source="iconCameraFront" Margin="4" Alignment="Center" />
+						</WhileString>
+					</Rectangle>
+
+					<!-- capture button -->
+					<WhileTrue Value="{videoIsRecording}">
+						<Change captureButton.CornerRadius="16" />
+						<Cycle Target="captureButtonScaling.Vector" Low="0.9" High="1" Frequency="2" />
+					</WhileTrue>
+					<Rectangle ux:Name="captureButton" CornerRadius="28" Width="56" Aspect="1" BoxSizing="FillAspect" Color="#f42" Clicked="{capture}" Alignment="BottomCenter" Margin="16">
+						<Scaling ux:Name="captureButtonScaling" Vector="1" />
+						<Stroke Width="2" Color="#fff" />
+						<WhilePressed>
+							<Change captureButton.CornerRadius="16" Duration="0.16" />
+							<Rotate Target="captureButton" Degrees="90" Duration="0.16" />
+						</WhilePressed>
+					</Rectangle>
+
+					<!-- the camera view itself -->
+					<CameraView ux:Name="cameraPanel" Facing="Back" />
+
+				</NativeViewHost>
+			</WhileString>
+		</Panel>
+
+	</DockPanel>
+</App>
